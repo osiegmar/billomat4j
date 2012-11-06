@@ -23,10 +23,17 @@ import java.util.List;
 
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class EmailRecipients {
 
+    @JsonProperty("to")
     private List<String> toRecipients;
+
+    @JsonProperty("cc")
     private List<String> ccRecipients;
+
+    @JsonProperty("bcc")
     private List<String> bccRecipients;
 
     public List<String> getToRecipients() {

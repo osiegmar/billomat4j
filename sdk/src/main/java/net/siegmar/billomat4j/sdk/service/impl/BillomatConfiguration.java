@@ -18,10 +18,8 @@
  */
 package net.siegmar.billomat4j.sdk.service.impl;
 
-import net.siegmar.billomat4j.sdk.domain.EmailRecipients;
 import net.siegmar.billomat4j.sdk.domain.types.PaymentType;
 import net.siegmar.billomat4j.sdk.json.CustomBooleanDeserializer;
-import net.siegmar.billomat4j.sdk.json.CustomEmailRecipientsSerializer;
 import net.siegmar.billomat4j.sdk.json.PaymentTypesDeserializer;
 import net.siegmar.billomat4j.sdk.json.PaymentTypesSerializer;
 import net.siegmar.billomat4j.sdk.json.Views;
@@ -127,11 +125,6 @@ public class BillomatConfiguration {
                 new SimpleModule("PaymentTypesSerializer",
                         new Version(1, 0, 0, null, "net.siegmar", "billomat4j"))
                 .addSerializer(PaymentType[].class, new PaymentTypesSerializer()));
-
-        objectMapper.registerModule(
-                new SimpleModule("CustomEmailRecipientsSerializer",
-                        new Version(1, 0, 0, null, "net.siegmar", "billomat4j"))
-                .addSerializer(EmailRecipients.class, new CustomEmailRecipientsSerializer()));
 
         objectReader = objectMapper.reader()
                 .with(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
