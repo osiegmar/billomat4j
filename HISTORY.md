@@ -1,4 +1,4 @@
-## 1.0.1 (?)
+## 1.0.1 (2012-11-18)
 
 * Billomat JSON-API now supports multiple e-mail recipients
 
