@@ -54,7 +54,6 @@ import net.siegmar.billomat4j.sdk.service.impl.UserServiceImpl;
 import net.siegmar.billomat4j.sdk.template.TemplateServiceTest;
 
 import org.apache.commons.io.FileUtils;
-import org.junit.Test;
 
 public abstract class AbstractServiceTest {
 
@@ -106,7 +105,7 @@ public abstract class AbstractServiceTest {
 
     private static Properties loadProperties() {
         final Properties p = new Properties();
-        try (InputStream in = Test.class.getResourceAsStream("/billomat.properties")) {
+        try (InputStream in = AbstractServiceTest.class.getResourceAsStream("/billomat.properties")) {
             p.load(in);
         } catch (final IOException e) {
             throw new IllegalStateException(e);

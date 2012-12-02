@@ -18,35 +18,32 @@
  */
 package net.siegmar.billomat4j.sdk.client;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNotNull;
+import static org.testng.Assert.assertTrue;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import net.siegmar.billomat4j.sdk.AbstractServiceTest;
 import net.siegmar.billomat4j.sdk.domain.client.Client;
 import net.siegmar.billomat4j.sdk.domain.client.ClientFilter;
 
-import org.junit.After;
-import org.junit.Test;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.Test;
 
 public class ClientServiceTest extends AbstractServiceTest {
 
+    private final List<Client> createdClients = new ArrayList<>();
+
     // Client
 
-    @After
+    @AfterMethod
     public void cleanup() {
-        // Clean up all Clients
-        List<Client> clients = clientService.findClients(null);
-        if (!clients.isEmpty()) {
-            for (final Client client : clients) {
-                clientService.deleteClient(client.getId());
-            }
-
-            clients = clientService.findClients(null);
-            assertTrue(clients.isEmpty());
+        for (final Client client : createdClients) {
+            clientService.deleteClient(client.getId());
         }
+        createdClients.clear();
     }
 
     @Test
@@ -57,20 +54,20 @@ public class ClientServiceTest extends AbstractServiceTest {
 
         // Create #1
         final Client client1 = buildClient("ClientServiceTest Company");
-        clientService.createClient(client1);
+        createClient(client1);
         assertNotNull(client1.getId());
 
         // Create #2
         final Client client2 = buildClient("ClientServiceTest Company");
         client2.setName("Test Company2");
-        clientService.createClient(client2);
+        createClient(client2);
         assertNotNull(client2.getId());
 
         // Find again
         clients = clientService.findClients(null);
-        assertEquals(2, clients.size());
-        assertEquals(client1.getId(), clients.get(0).getId());
-        assertEquals(client2.getId(), clients.get(1).getId());
+        assertEquals(clients.size(), 2);
+        assertEquals(clients.get(0).getId(), client1.getId());
+        assertEquals(clients.get(1).getId(), client2.getId());
     }
 
     private Client buildClient(final String name) {
@@ -80,13 +77,18 @@ public class ClientServiceTest extends AbstractServiceTest {
         return client;
     }
 
+    private void createClient(final Client client) {
+        clientService.createClient(client);
+        createdClients.add(client);
+    }
+
     @Test
     public void findByNumber() {
         final Client client = new Client();
         client.setNumberPre("KD");
         client.setNumberLength(5);
         client.setNumber(8);
-        clientService.createClient(client);
+        createClient(client);
 
         assertNotNull(clientService.getClientByNumber("KD00008"));
     }
@@ -95,27 +97,26 @@ public class ClientServiceTest extends AbstractServiceTest {
     @Test
     public void findFiltered() {
         // Find
-        final ClientFilter clientFilter = new ClientFilter().byCountryCode("DE");
+        final ClientFilter clientFilter = new ClientFilter().byCountryCode("AT");
         List<Client> clients = clientService.findClients(clientFilter);
         assertTrue(clients.isEmpty());
 
         // Create #1
-        final Client client1 = buildClient("ClientServiceTest Company");
-        clientService.createClient(client1);
+        final Client client1 = buildClient("ClientServiceTest Company1");
+        client1.setCountryCode("AT");
+        createClient(client1);
         assertNotNull(client1.getId());
 
         // Create #2
-        final Client client2 = buildClient("ClientServiceTest Company");
-        client2.setName("Test Company2");
+        final Client client2 = buildClient("ClientServiceTest Company2");
         client2.setCountryCode("CH");
-        clientService.createClient(client2);
+        createClient(client2);
         assertNotNull(client2.getId());
 
         // Find again
         clients = clientService.findClients(clientFilter);
-        assertEquals(1, clients.size());
-        final Client foundClient = clients.iterator().next();
-        assertEquals(client1.getId(), foundClient.getId());
+        assertEquals(clients.size(), 1);
+        assertEquals(clients.get(0).getId(), client1.getId());
     }
 
     @Test
@@ -128,12 +129,12 @@ public class ClientServiceTest extends AbstractServiceTest {
     public void getById() {
         // Create
         final Client client = buildClient("ClientServiceTest Company");
-        clientService.createClient(client);
+        createClient(client);
         assertNotNull(client.getId());
 
         // Get
         final Client clientById = clientService.getClientById(client.getId());
-        assertEquals(client.getId(), clientById.getId());
+        assertEquals(clientById.getId(), client.getId());
     }
 
     @Test
@@ -141,7 +142,7 @@ public class ClientServiceTest extends AbstractServiceTest {
         // Create #1
         final Client client = buildClient("ClientServiceTest Company");
         client.setNumber(9999);
-        clientService.createClient(client);
+        createClient(client);
         assertNotNull(client.getId());
 
         // Update
@@ -150,13 +151,13 @@ public class ClientServiceTest extends AbstractServiceTest {
         updateClient.setName("Updated Company");
         clientService.updateClient(updateClient);
 
-        assertEquals("Updated Company", updateClient.getName());
-        assertEquals("9999", updateClient.getClientNumber());
+        assertEquals(updateClient.getName(), "Updated Company");
+        assertEquals(updateClient.getClientNumber(), "9999");
 
         // Get
         final Client updatedClient = clientService.getClientById(client.getId());
-        assertEquals("Updated Company", updatedClient.getName());
-        assertEquals("9999", updatedClient.getClientNumber());
+        assertEquals(updatedClient.getName(), "Updated Company");
+        assertEquals(updatedClient.getClientNumber(), "9999");
     }
 
     @Test
@@ -164,19 +165,19 @@ public class ClientServiceTest extends AbstractServiceTest {
         // Create #1
         final Client client = buildClient("ClientServiceTest Company");
         client.setNumber(9999);
-        clientService.createClient(client);
+        createClient(client);
         assertNotNull(client.getId());
 
         // Update
         client.setName("Updated Company");
         clientService.updateClient(client);
-        assertEquals("Updated Company", client.getName());
-        assertEquals("9999", client.getClientNumber());
+        assertEquals(client.getName(), "Updated Company");
+        assertEquals(client.getClientNumber(), "9999");
 
         // Get
         final Client updatedClient = clientService.getClientById(client.getId());
-        assertEquals("Updated Company", updatedClient.getName());
-        assertEquals("9999", updatedClient.getClientNumber());
+        assertEquals(updatedClient.getName(), "Updated Company");
+        assertEquals(updatedClient.getClientNumber(), "9999");
     }
 
 }

@@ -1,10 +1,9 @@
 package net.siegmar.billomat4j.sdk;
 
-import static org.junit.Assert.assertEquals;
-
+import static org.testng.Assert.assertEquals;
 import net.siegmar.billomat4j.sdk.service.AbstractCustomFieldService;
 
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 public abstract class AbstractCustomFieldServiceTest extends AbstractServiceTest {
 
@@ -19,11 +18,11 @@ public abstract class AbstractCustomFieldServiceTest extends AbstractServiceTest
         final int ownerId = buildOwner();
 
         try {
-            assertEquals("", service.getCustomFieldValue(ownerId));
+            assertEquals(service.getCustomFieldValue(ownerId), "");
             service.setCustomFieldValue(ownerId, "foo");
-            assertEquals("foo", service.getCustomFieldValue(ownerId));
+            assertEquals(service.getCustomFieldValue(ownerId), "foo");
             service.setCustomFieldValue(ownerId, "");
-            assertEquals("", service.getCustomFieldValue(ownerId));
+            assertEquals(service.getCustomFieldValue(ownerId), "");
         } finally {
             deleteOwner(ownerId);
         }

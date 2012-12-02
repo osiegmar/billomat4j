@@ -18,12 +18,13 @@
  */
 package net.siegmar.billomat4j.sdk.article;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertNotNull;
+import static org.testng.Assert.assertTrue;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Currency;
 import java.util.List;
 
@@ -31,28 +32,27 @@ import net.siegmar.billomat4j.sdk.AbstractServiceTest;
 import net.siegmar.billomat4j.sdk.domain.article.Article;
 import net.siegmar.billomat4j.sdk.domain.article.ArticleFilter;
 
-import org.junit.After;
-import org.junit.Test;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.Test;
 
 public class ArticleServiceTest extends AbstractServiceTest {
 
+    private final List<Article> createdArticles = new ArrayList<>();
+
     // Article
 
-    @After
+    @AfterMethod
     public void cleanup() {
-        final List<Article> articles = articleService.findArticles(null);
-        if (!articles.isEmpty()) {
-            for (final Article article : articles) {
-                articleService.deleteArticle(article.getId());
-            }
-            assertTrue(articleService.findArticles(null).isEmpty());
+        for (final Article article : createdArticles) {
+            articleService.deleteArticle(article.getId());
         }
+        createdArticles.clear();
     }
 
     @Test
     public void findAll() {
         assertTrue(articleService.findArticles(null).isEmpty());
-        createArticle("Test Article");
+        createArticle("Test Article (findAll)");
         assertFalse(articleService.findArticles(null).isEmpty());
     }
 
@@ -71,34 +71,37 @@ public class ArticleServiceTest extends AbstractServiceTest {
         article.setCurrencyCode(Currency.getInstance("EUR"));
         articleService.createArticle(article);
 
+        createdArticles.add(article);
+
         return article;
     }
 
     @Test
     public void update() {
-        final Article article = createArticle("Test Article");
-        article.setTitle("Test Article Update");
+        final Article article = createArticle("Test Article (update)");
+        article.setTitle("Test Article (updated)");
         articleService.updateArticle(article);
-        assertEquals("Test Article Update", article.getTitle());
-        assertEquals("Test Article Update", articleService.getArticleById(article.getId()).getTitle());
+        assertEquals(article.getTitle(), "Test Article (updated)");
+        assertEquals(articleService.getArticleById(article.getId()).getTitle(), "Test Article (updated)");
     }
 
     @Test
     public void findFiltered() {
-        List<Article> articles = articleService.findArticles(null);
-        assertTrue(articles.isEmpty());
+        final ArticleFilter articleFilter = new ArticleFilter().byTitle("Test Article1 (findFiltered)");
+        List<Article> articles = articleService.findArticles(articleFilter);
+        assertEquals(articles.size(), 0);
 
-        final Article article1 = createArticle("Test Article1");
+        final Article article1 = createArticle("Test Article1 (findFiltered)");
         assertNotNull(article1.getId());
         assertNotNull(article1.getArticleNumber());
 
-        final Article article2 = createArticle("Test Article2");
+        final Article article2 = createArticle("Test Article2 (findFiltered)");
         assertNotNull(article2.getId());
         assertNotNull(article2.getArticleNumber());
 
-        articles = articleService.findArticles(new ArticleFilter().byTitle("Test Article1"));
-        assertEquals(1, articles.size());
-        assertEquals(article1.getId(), articles.get(0).getId());
+        articles = articleService.findArticles(articleFilter);
+        assertEquals(articles.size(), 1);
+        assertEquals(articles.get(0).getId(), article1.getId());
     }
 
 }

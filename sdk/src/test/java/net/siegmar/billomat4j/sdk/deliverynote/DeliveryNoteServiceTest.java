@@ -18,12 +18,14 @@
  */
 package net.siegmar.billomat4j.sdk.deliverynote;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertNotNull;
+import static org.testng.Assert.assertNull;
+import static org.testng.Assert.assertTrue;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 import net.siegmar.billomat4j.sdk.AbstractServiceTest;
@@ -39,54 +41,44 @@ import net.siegmar.billomat4j.sdk.domain.template.Template;
 import net.siegmar.billomat4j.sdk.domain.template.TemplateFormat;
 import net.siegmar.billomat4j.sdk.domain.template.TemplateType;
 
-import org.junit.After;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.Test;
 
 public class DeliveryNoteServiceTest extends AbstractServiceTest {
 
+    private final List<DeliveryNote> createdDeliveryNotes = new ArrayList<>();
+
     // DeliveryNote
 
-    @After
+    @AfterMethod
     public void cleanup() {
-        // Clean up all deliveryNotes
-        List<DeliveryNote> deliveryNotes = deliveryNoteService.findDeliveryNotes(null);
-        if (!deliveryNotes.isEmpty()) {
-            for (final DeliveryNote deliveryNote : deliveryNotes) {
-                final int clientId = deliveryNote.getClientId();
-                deliveryNoteService.deleteDeliveryNote(deliveryNote.getId());
-                clientService.deleteClient(clientId);
-            }
-
-            deliveryNotes = deliveryNoteService.findDeliveryNotes(null);
-            assertTrue(deliveryNotes.isEmpty());
+        for (final DeliveryNote deliveryNote : createdDeliveryNotes) {
+            final int clientId = deliveryNote.getClientId();
+            deliveryNoteService.deleteDeliveryNote(deliveryNote.getId());
+            clientService.deleteClient(clientId);
         }
+        createdDeliveryNotes.clear();
     }
 
     @Test
     public void findAll() {
-        List<DeliveryNote> deliveryNotes = deliveryNoteService.findDeliveryNotes(null);
-        assertTrue(deliveryNotes.isEmpty());
-
-        final DeliveryNote deliveryNote1 = createDeliveryNote(1);
-        final DeliveryNote deliveryNote2 = createDeliveryNote(2);
-
-        deliveryNotes = deliveryNoteService.findDeliveryNotes(null);
-        assertEquals(2, deliveryNotes.size());
-        assertEquals(deliveryNote1.getId(), deliveryNotes.get(0).getId());
-        assertEquals(deliveryNote2.getId(), deliveryNotes.get(1).getId());
+        assertTrue(deliveryNoteService.findDeliveryNotes(null).isEmpty());
+        createDeliveryNote(1);
+        assertFalse(deliveryNoteService.findDeliveryNotes(null).isEmpty());
     }
 
     @Test
     public void findFiltered() {
-        assertTrue(deliveryNoteService.findDeliveryNotes(null).isEmpty());
+        final DeliveryNoteFilter deliveryNoteFilter = new DeliveryNoteFilter().byDeliveryNoteNumber("1");
+        List<DeliveryNote> deliveryNotes = deliveryNoteService.findDeliveryNotes(deliveryNoteFilter);
+        assertTrue(deliveryNotes.isEmpty());
 
         final DeliveryNote deliveryNote1 = createDeliveryNote(1);
         createDeliveryNote(2);
 
-        final List<DeliveryNote> deliveryNotes = deliveryNoteService.findDeliveryNotes(new DeliveryNoteFilter().byDeliveryNoteNumber("1"));
-        assertEquals(1, deliveryNotes.size());
-        assertEquals(deliveryNote1.getId(), deliveryNotes.get(0).getId());
+        deliveryNotes = deliveryNoteService.findDeliveryNotes(deliveryNoteFilter);
+        assertEquals(deliveryNotes.size(), 1);
+        assertEquals(deliveryNotes.get(0).getId(), deliveryNote1.getId());
     }
 
     @Test
@@ -100,8 +92,9 @@ public class DeliveryNoteServiceTest extends AbstractServiceTest {
         deliveryNote.setNumberPre("I");
         deliveryNote.setNumber(5);
         deliveryNoteService.createDeliveryNote(deliveryNote);
+        createdDeliveryNotes.add(deliveryNote);
 
-        assertEquals(deliveryNote.getId(), deliveryNoteService.getDeliveryNoteByNumber("I5").getId());
+        assertEquals(deliveryNoteService.getDeliveryNoteByNumber("I5").getId(), deliveryNote.getId());
     }
 
     @Test
@@ -113,7 +106,7 @@ public class DeliveryNoteServiceTest extends AbstractServiceTest {
     @Test
     public void getById() {
         final DeliveryNote deliveryNote = createDeliveryNote(1);
-        assertEquals(deliveryNote.getId(), deliveryNoteService.getDeliveryNoteById(deliveryNote.getId()).getId());
+        assertEquals(deliveryNoteService.getDeliveryNoteById(deliveryNote.getId()).getId(), deliveryNote.getId());
     }
 
     @Test
@@ -121,8 +114,8 @@ public class DeliveryNoteServiceTest extends AbstractServiceTest {
         final DeliveryNote deliveryNote = createDeliveryNote(1);
         deliveryNote.setLabel("Test Label");
         deliveryNoteService.updateDeliveryNote(deliveryNote);
-        assertEquals("Test Label", deliveryNote.getLabel());
-        assertEquals("Test Label", deliveryNoteService.getDeliveryNoteById(deliveryNote.getId()).getLabel());
+        assertEquals(deliveryNote.getLabel(), "Test Label");
+        assertEquals(deliveryNoteService.getDeliveryNoteById(deliveryNote.getId()).getLabel(), "Test Label");
     }
 
     @Test
@@ -134,14 +127,16 @@ public class DeliveryNoteServiceTest extends AbstractServiceTest {
         clientService.deleteClient(clientId);
 
         assertNull(deliveryNoteService.getDeliveryNoteById(deliveryNote.getId()));
+
+        createdDeliveryNotes.remove(deliveryNote);
     }
 
     @Test
     public void complete() {
         final DeliveryNote deliveryNote = createDeliveryNote(1);
-        assertEquals(DeliveryNoteStatus.DRAFT, deliveryNote.getStatus());
+        assertEquals(deliveryNote.getStatus(), DeliveryNoteStatus.DRAFT);
         deliveryNoteService.completeDeliveryNote(deliveryNote.getId(), null);
-        assertEquals(DeliveryNoteStatus.CREATED, deliveryNoteService.getDeliveryNoteById(deliveryNote.getId()).getStatus());
+        assertEquals(deliveryNoteService.getDeliveryNoteById(deliveryNote.getId()).getStatus(), DeliveryNoteStatus.CREATED);
     }
 
     @Test
@@ -151,9 +146,9 @@ public class DeliveryNoteServiceTest extends AbstractServiceTest {
 
         try {
             final DeliveryNote deliveryNote = createDeliveryNote(1);
-            assertEquals(DeliveryNoteStatus.DRAFT, deliveryNote.getStatus());
+            assertEquals(deliveryNote.getStatus(), DeliveryNoteStatus.DRAFT);
             deliveryNoteService.completeDeliveryNote(deliveryNote.getId(), null);
-            assertEquals(DeliveryNoteStatus.CREATED, deliveryNoteService.getDeliveryNoteById(deliveryNote.getId()).getStatus());
+            assertEquals(deliveryNoteService.getDeliveryNoteById(deliveryNote.getId()).getStatus(), DeliveryNoteStatus.CREATED);
         } finally {
             templateService.deleteTemplate(template.getId());
         }
@@ -177,8 +172,7 @@ public class DeliveryNoteServiceTest extends AbstractServiceTest {
         assertNotNull(deliveryNotePdf);
     }
 
-    @Test
-    @Ignore
+    @Test(enabled = false)
     public void sendDeliveryNoteViaEmail() {
         final DeliveryNote deliveryNote = createDeliveryNote(1);
         deliveryNoteService.completeDeliveryNote(deliveryNote.getId(), null);
@@ -214,6 +208,9 @@ public class DeliveryNoteServiceTest extends AbstractServiceTest {
         deliveryNote.addDeliveryNoteItem(deliveryNoteItem2);
 
         deliveryNoteService.createDeliveryNote(deliveryNote);
+
+        createdDeliveryNotes.add(deliveryNote);
+
         return deliveryNote;
     }
 

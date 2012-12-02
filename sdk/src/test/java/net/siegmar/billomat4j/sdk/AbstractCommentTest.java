@@ -18,10 +18,10 @@
  */
 package net.siegmar.billomat4j.sdk;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNotNull;
+import static org.testng.Assert.assertNull;
+import static org.testng.Assert.assertTrue;
 
 import java.util.List;
 
@@ -30,7 +30,7 @@ import net.siegmar.billomat4j.sdk.domain.ActionKey;
 import net.siegmar.billomat4j.sdk.domain.Filter;
 import net.siegmar.billomat4j.sdk.service.AbstractCommentService;
 
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 public abstract class AbstractCommentTest<K extends ActionKey, C extends AbstractComment<K>, F extends Filter> extends AbstractServiceTest {
 
@@ -48,7 +48,7 @@ public abstract class AbstractCommentTest<K extends ActionKey, C extends Abstrac
             assertTrue(service.findComments(ownerId, buildFilter()).isEmpty());
 
             final List<C> comments = service.findComments(ownerId, null);
-            assertEquals(1, comments.size());
+            assertEquals(comments.size(), 1);
 
             final C comment = buildComment(ownerId);
             comment.setComment("Test Comment");

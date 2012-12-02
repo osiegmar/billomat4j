@@ -18,76 +18,74 @@
  */
 package net.siegmar.billomat4j.sdk.unit;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertNotNull;
+import static org.testng.Assert.assertTrue;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import net.siegmar.billomat4j.sdk.AbstractServiceTest;
 import net.siegmar.billomat4j.sdk.domain.unit.Unit;
 import net.siegmar.billomat4j.sdk.domain.unit.UnitFilter;
 
-import org.junit.After;
-import org.junit.Test;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.Test;
 
 public class UnitServiceTest extends AbstractServiceTest {
 
-    @After
+    private final List<Unit> createdUnits = new ArrayList<>();
+
+    @AfterMethod
     public void cleanup() {
-        final List<Unit> units = unitService.findUnits(null);
-        for (final Unit unit : units) {
+        for (final Unit unit : createdUnits) {
             unitService.deleteUnit(unit.getId());
         }
-
-        assertTrue(unitService.findUnits(null).isEmpty());
+        createdUnits.clear();
     }
 
     @Test
     public void findAll() {
-        List<Unit> units = unitService.findUnits(null);
-        assertTrue(units.isEmpty());
-
-        createUnit("Test Unit 1");
-        createUnit("Test Unit 2");
-
-        units = unitService.findUnits(null);
-        assertEquals(2, units.size());
+        assertTrue(unitService.findUnits(null).isEmpty());
+        createUnit("Test Unit 1 (findAll)");
+        assertFalse(unitService.findUnits(null).isEmpty());
     }
 
     private Unit createUnit(final String name) {
         final Unit unit = new Unit();
         unit.setName(name);
         unitService.createUnit(unit);
+        createdUnits.add(unit);
 
         return unit;
     }
 
     @Test
     public void findFiltered() {
-        createUnit("Test Unit 1");
-        createUnit("Test Unit 2");
+        createUnit("Test Unit 1 (findFiltered)");
+        createUnit("Test Unit 2 (findFiltered)");
 
-        final List<Unit> units = unitService.findUnits(new UnitFilter().byName("Test Unit 1"));
-        assertEquals(1, units.size());
-        assertEquals("Test Unit 1", units.get(0).getName());
+        final List<Unit> units = unitService.findUnits(new UnitFilter().byName("Test Unit 1 (findFiltered)"));
+        assertEquals(units.size(), 1);
+        assertEquals(units.get(0).getName(), "Test Unit 1 (findFiltered)");
     }
 
     @Test
     public void create() {
-        final Unit unit = createUnit("Test Unit 1");
+        final Unit unit = createUnit("Test Unit 1 (create)");
         assertNotNull(unit.getId());
     }
 
     @Test
     public void update() {
-        final Unit unit = createUnit("Test Unit 1");
+        final Unit unit = createUnit("Test Unit 1 (update)");
         assertNotNull(unit.getId());
 
-        unit.setName("Test Unit 1 Updated");
+        unit.setName("Test Unit 1 (updated)");
         unitService.updateUnit(unit);
-        assertEquals("Test Unit 1 Updated", unit.getName());
-        assertEquals("Test Unit 1 Updated", unitService.getUnitById(unit.getId()).getName());
+        assertEquals(unit.getName(), "Test Unit 1 (updated)");
+        assertEquals(unitService.getUnitById(unit.getId()).getName(), "Test Unit 1 (updated)");
     }
 
 }

@@ -18,13 +18,14 @@
  */
 package net.siegmar.billomat4j.sdk.reminder;
 
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertNotNull;
+import static org.testng.Assert.assertNull;
+import static org.testng.Assert.assertTrue;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -42,56 +43,48 @@ import net.siegmar.billomat4j.sdk.domain.template.Template;
 import net.siegmar.billomat4j.sdk.domain.template.TemplateFormat;
 import net.siegmar.billomat4j.sdk.domain.template.TemplateType;
 
-import org.junit.After;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.Test;
 
 public class ReminderServiceTest extends AbstractServiceTest {
 
+    private final List<Reminder> createdReminders = new ArrayList<>();
+    private final List<Client> createdClients = new ArrayList<>();
+
     // Reminder
 
-    @After
+    @AfterMethod
     public void cleanup() {
-        // Clean up all reminders
-        List<Reminder> reminders = reminderService.findReminders(null);
-        if (!reminders.isEmpty()) {
-            for (final Reminder reminder : reminders) {
-                final Invoice invoice = invoiceService.getInvoiceById(reminder.getInvoiceId());
-                final int clientId = invoice.getClientId();
-                reminderService.deleteReminder(reminder.getId());
-                invoiceService.deleteInvoice(invoice.getId());
-                clientService.deleteClient(clientId);
-            }
-
-            reminders = reminderService.findReminders(null);
-            assertTrue(reminders.isEmpty());
+        for (final Reminder reminder : createdReminders) {
+            reminderService.deleteReminder(reminder.getId());
+            invoiceService.deleteInvoice(reminder.getInvoiceId());
         }
+        for (final Client client : createdClients) {
+            clientService.deleteClient(client.getId());
+        }
+        createdReminders.clear();
+        createdClients.clear();
     }
 
     @Test
     public void findAll() {
-        List<Reminder> reminders = reminderService.findReminders(null);
-        assertTrue(reminders.isEmpty());
-
-        final Reminder reminder1 = createReminder(1);
-        final Reminder reminder2 = createReminder(2);
-
-        reminders = reminderService.findReminders(null);
-        assertEquals(2, reminders.size());
-        assertEquals(reminder1.getId(), reminders.get(0).getId());
-        assertEquals(reminder2.getId(), reminders.get(1).getId());
+        assertTrue(reminderService.findReminders(null).isEmpty());
+        createReminder(1);
+        assertFalse(reminderService.findReminders(null).isEmpty());
     }
 
     @Test
     public void findFiltered() {
-        assertTrue(reminderService.findReminders(null).isEmpty());
+        final ReminderFilter reminderFilter = new ReminderFilter().byInvoiceNumber("1");
+        List<Reminder> reminders = reminderService.findReminders(reminderFilter);
+        assertTrue(reminders.isEmpty());
 
         final Reminder reminder1 = createReminder(1);
         createReminder(2);
 
-        final List<Reminder> reminders = reminderService.findReminders(new ReminderFilter().byInvoiceNumber("1"));
-        assertEquals(1, reminders.size());
-        assertEquals(reminder1.getId(), reminders.get(0).getId());
+        reminders = reminderService.findReminders(reminderFilter);
+        assertEquals(reminders.size(), 1);
+        assertEquals(reminders.get(0).getId(), reminder1.getId());
     }
 
     @Test
@@ -103,7 +96,7 @@ public class ReminderServiceTest extends AbstractServiceTest {
     @Test
     public void getById() {
         final Reminder reminder = createReminder(1);
-        assertEquals(reminder.getId(), reminderService.getReminderById(reminder.getId()).getId());
+        assertEquals(reminderService.getReminderById(reminder.getId()).getId(), reminder.getId());
     }
 
     @Test
@@ -111,8 +104,8 @@ public class ReminderServiceTest extends AbstractServiceTest {
         final Reminder reminder = createReminder(1);
         reminder.setLabel("Test Label");
         reminderService.updateReminder(reminder);
-        assertEquals("Test Label", reminder.getLabel());
-        assertEquals("Test Label", reminderService.getReminderById(reminder.getId()).getLabel());
+        assertEquals(reminder.getLabel(), "Test Label");
+        assertEquals(reminderService.getReminderById(reminder.getId()).getLabel(), "Test Label");
     }
 
     @Test
@@ -126,13 +119,16 @@ public class ReminderServiceTest extends AbstractServiceTest {
         clientService.deleteClient(clientId);
 
         assertNull(reminderService.getReminderById(reminder.getId()));
+
+        createdClients.clear();
+        createdReminders.clear();
     }
 
     @Test
     public void complete() {
         final Reminder reminder = createReminder(1);
         reminderService.completeReminder(reminder.getId(), null);
-        assertEquals(ReminderStatus.OPEN, reminderService.getReminderById(reminder.getId()).getStatus());
+        assertEquals(reminderService.getReminderById(reminder.getId()).getStatus(), ReminderStatus.OPEN);
     }
 
     @Test
@@ -143,7 +139,7 @@ public class ReminderServiceTest extends AbstractServiceTest {
         try {
             final Reminder reminder = createReminder(1);
             reminderService.completeReminder(reminder.getId(), null);
-            assertEquals(ReminderStatus.OPEN, reminderService.getReminderById(reminder.getId()).getStatus());
+            assertEquals(reminderService.getReminderById(reminder.getId()).getStatus(), ReminderStatus.OPEN);
         } finally {
             templateService.deleteTemplate(template.getId());
         }
@@ -165,7 +161,7 @@ public class ReminderServiceTest extends AbstractServiceTest {
         reminderService.completeReminder(reminder.getId(), null);
         reminderService.uploadReminderSignedPdf(reminder.getId(), "dummy".getBytes());
 
-        assertArrayEquals("dummy".getBytes(), reminderService.getReminderSignedPdf(reminder.getId()).getBase64file());
+        assertEquals(reminderService.getReminderSignedPdf(reminder.getId()).getBase64file(), "dummy".getBytes());
     }
 
     @Test
@@ -176,8 +172,7 @@ public class ReminderServiceTest extends AbstractServiceTest {
         assertNotNull(reminderPdf);
     }
 
-    @Test
-    @Ignore
+    @Test(enabled = false)
     public void sendReminderViaEmail() {
         final Reminder reminder = createReminder(1);
         reminderService.completeReminder(reminder.getId(), null);
@@ -196,13 +191,15 @@ public class ReminderServiceTest extends AbstractServiceTest {
         final Reminder reminder = createReminder(1);
         reminderService.completeReminder(reminder.getId(), null);
         reminderService.cancelReminder(reminder.getId());
-        assertEquals(ReminderStatus.CANCELED, reminderService.getReminderById(reminder.getId()).getStatus());
+        assertEquals(reminderService.getReminderById(reminder.getId()).getStatus(), ReminderStatus.CANCELED);
     }
 
     private Reminder createReminder(final int number) {
         final Client client = new Client();
         client.setName("ReminderServiceTest Client");
         clientService.createClient(client);
+
+        createdClients.add(client);
 
         final Invoice invoice = new Invoice();
         invoice.setClientId(client.getId());
@@ -227,6 +224,9 @@ public class ReminderServiceTest extends AbstractServiceTest {
         reminder.addReminderItem(reminderItem2);
 
         reminderService.createReminder(reminder);
+
+        createdReminders.add(reminder);
+
         return reminder;
     }
 

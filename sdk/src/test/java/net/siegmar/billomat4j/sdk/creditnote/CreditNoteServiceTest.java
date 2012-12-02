@@ -18,13 +18,14 @@
  */
 package net.siegmar.billomat4j.sdk.creditnote;
 
-import static org.junit.Assert.assertArrayEquals;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertTrue;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertNotNull;
+import static org.testng.Assert.assertNull;
+import static org.testng.Assert.assertTrue;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 import net.siegmar.billomat4j.sdk.AbstractServiceTest;
@@ -42,54 +43,44 @@ import net.siegmar.billomat4j.sdk.domain.template.Template;
 import net.siegmar.billomat4j.sdk.domain.template.TemplateFormat;
 import net.siegmar.billomat4j.sdk.domain.template.TemplateType;
 
-import org.junit.After;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.Test;
 
 public class CreditNoteServiceTest extends AbstractServiceTest {
 
+    private final List<CreditNote> createdCreditNotes = new ArrayList<>();
+
     // CreditNote
 
-    @After
+    @AfterMethod
     public void cleanup() {
-        // Clean up all creditNotes
-        List<CreditNote> creditNotes = creditNoteService.findCreditNotes(null);
-        if (!creditNotes.isEmpty()) {
-            for (final CreditNote creditNote : creditNotes) {
-                final int clientId = creditNote.getClientId();
-                creditNoteService.deleteCreditNote(creditNote.getId());
-                clientService.deleteClient(clientId);
-            }
-
-            creditNotes = creditNoteService.findCreditNotes(null);
-            assertTrue(creditNotes.isEmpty());
+        for (final CreditNote creditNote : createdCreditNotes) {
+            final int clientId = creditNote.getClientId();
+            creditNoteService.deleteCreditNote(creditNote.getId());
+            clientService.deleteClient(clientId);
         }
+        createdCreditNotes.clear();
     }
 
     @Test
     public void findAll() {
-        List<CreditNote> creditNotes = creditNoteService.findCreditNotes(null);
-        assertTrue(creditNotes.isEmpty());
-
-        final CreditNote creditNote1 = createCreditNote(1);
-        final CreditNote creditNote2 = createCreditNote(2);
-
-        creditNotes = creditNoteService.findCreditNotes(null);
-        assertEquals(2, creditNotes.size());
-        assertEquals(creditNote1.getId(), creditNotes.get(0).getId());
-        assertEquals(creditNote2.getId(), creditNotes.get(1).getId());
+        assertTrue(creditNoteService.findCreditNotes(null).isEmpty());
+        createCreditNote(1);
+        assertFalse(creditNoteService.findCreditNotes(null).isEmpty());
     }
 
     @Test
     public void findFiltered() {
-        assertTrue(creditNoteService.findCreditNotes(null).isEmpty());
+        final CreditNoteFilter creditNoteFilter = new CreditNoteFilter().byCreditNoteNumber("1");
+        List<CreditNote> creditNotes = creditNoteService.findCreditNotes(creditNoteFilter);
+        assertTrue(creditNotes.isEmpty());
 
         final CreditNote creditNote1 = createCreditNote(1);
         createCreditNote(2);
 
-        final List<CreditNote> creditNotes = creditNoteService.findCreditNotes(new CreditNoteFilter().byCreditNoteNumber("1"));
-        assertEquals(1, creditNotes.size());
-        assertEquals(creditNote1.getId(), creditNotes.get(0).getId());
+        creditNotes = creditNoteService.findCreditNotes(creditNoteFilter);
+        assertEquals(creditNotes.size(), 1);
+        assertEquals(creditNotes.get(0).getId(), creditNote1.getId());
     }
 
     @Test
@@ -103,8 +94,9 @@ public class CreditNoteServiceTest extends AbstractServiceTest {
         creditNote.setNumberPre("I");
         creditNote.setNumber(5);
         creditNoteService.createCreditNote(creditNote);
+        createdCreditNotes.add(creditNote);
 
-        assertEquals(creditNote.getId(), creditNoteService.getCreditNoteByNumber("I5").getId());
+        assertEquals(creditNoteService.getCreditNoteByNumber("I5").getId(), creditNote.getId());
     }
 
     @Test
@@ -113,10 +105,10 @@ public class CreditNoteServiceTest extends AbstractServiceTest {
         final CreditNote creditNote2 = createCreditNote(2);
 
         final List<CreditNoteGroup> creditNoteGroups = creditNoteService.getGroupedCreditNotes(new CreditNoteGroupFilter().byDay(), null);
-        assertEquals(1, creditNoteGroups.size());
+        assertEquals(creditNoteGroups.size(), 1);
 
         final CreditNoteGroup creditNoteGroup = creditNoteGroups.get(0);
-        assertEquals(creditNote1.getTotalNet().add(creditNote2.getTotalNet()), creditNoteGroup.getTotalNet());
+        assertEquals(creditNoteGroup.getTotalNet(), creditNote1.getTotalNet().add(creditNote2.getTotalNet()));
     }
 
     @Test
@@ -128,7 +120,7 @@ public class CreditNoteServiceTest extends AbstractServiceTest {
     @Test
     public void getById() {
         final CreditNote creditNote = createCreditNote(1);
-        assertEquals(creditNote.getId(), creditNoteService.getCreditNoteById(creditNote.getId()).getId());
+        assertEquals(creditNoteService.getCreditNoteById(creditNote.getId()).getId(), creditNote.getId());
     }
 
     @Test
@@ -136,8 +128,8 @@ public class CreditNoteServiceTest extends AbstractServiceTest {
         final CreditNote creditNote = createCreditNote(1);
         creditNote.setLabel("Test Label");
         creditNoteService.updateCreditNote(creditNote);
-        assertEquals("Test Label", creditNote.getLabel());
-        assertEquals("Test Label", creditNoteService.getCreditNoteById(creditNote.getId()).getLabel());
+        assertEquals(creditNote.getLabel(), "Test Label");
+        assertEquals(creditNoteService.getCreditNoteById(creditNote.getId()).getLabel(), "Test Label");
     }
 
     @Test
@@ -149,14 +141,16 @@ public class CreditNoteServiceTest extends AbstractServiceTest {
         clientService.deleteClient(clientId);
 
         assertNull(creditNoteService.getCreditNoteById(creditNote.getId()));
+
+        createdCreditNotes.remove(creditNote);
     }
 
     @Test
     public void complete() {
         final CreditNote creditNote = createCreditNote(1);
-        assertEquals(CreditNoteStatus.DRAFT, creditNote.getStatus());
+        assertEquals(creditNote.getStatus(), CreditNoteStatus.DRAFT);
         creditNoteService.completeCreditNote(creditNote.getId(), null);
-        assertEquals(CreditNoteStatus.OPEN, creditNoteService.getCreditNoteById(creditNote.getId()).getStatus());
+        assertEquals(creditNoteService.getCreditNoteById(creditNote.getId()).getStatus(), CreditNoteStatus.OPEN);
     }
 
     @Test
@@ -166,9 +160,9 @@ public class CreditNoteServiceTest extends AbstractServiceTest {
 
         try {
             final CreditNote creditNote = createCreditNote(1);
-            assertEquals(CreditNoteStatus.DRAFT, creditNote.getStatus());
+            assertEquals(creditNote.getStatus(), CreditNoteStatus.DRAFT);
             creditNoteService.completeCreditNote(creditNote.getId(), null);
-            assertEquals(CreditNoteStatus.OPEN, creditNoteService.getCreditNoteById(creditNote.getId()).getStatus());
+            assertEquals(creditNoteService.getCreditNoteById(creditNote.getId()).getStatus(), CreditNoteStatus.OPEN);
         } finally {
             templateService.deleteTemplate(template.getId());
         }
@@ -190,7 +184,7 @@ public class CreditNoteServiceTest extends AbstractServiceTest {
         creditNoteService.completeCreditNote(creditNote.getId(), null);
         creditNoteService.uploadCreditNoteSignedPdf(creditNote.getId(), "dummy".getBytes());
 
-        assertArrayEquals("dummy".getBytes(), creditNoteService.getCreditNoteSignedPdf(creditNote.getId()).getBase64file());
+        assertEquals(creditNoteService.getCreditNoteSignedPdf(creditNote.getId()).getBase64file(), "dummy".getBytes());
     }
 
     @Test
@@ -201,8 +195,7 @@ public class CreditNoteServiceTest extends AbstractServiceTest {
         assertNotNull(creditNotePdf);
     }
 
-    @Test
-    @Ignore
+    @Test(enabled = false)
     public void sendCreditNoteViaEmail() {
         final CreditNote creditNote = createCreditNote(1);
         creditNoteService.completeCreditNote(creditNote.getId(), null);
@@ -238,6 +231,9 @@ public class CreditNoteServiceTest extends AbstractServiceTest {
         creditNote.addCreditNoteItem(creditNoteItem2);
 
         creditNoteService.createCreditNote(creditNote);
+
+        createdCreditNotes.add(creditNote);
+
         return creditNote;
     }
 

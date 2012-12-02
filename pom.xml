@@ -38,7 +38,7 @@
         <versions.logback>1.0.7</versions.logback>
         <versions.commons-cli>1.2</versions.commons-cli>
         <versions.commons-io>2.4</versions.commons-io>
-        <versions.junit>4.10</versions.junit>
+        <versions.testng>6.8</versions.testng>
     </properties>
 
     <modules>
@@ -48,9 +48,9 @@
 
     <dependencies>
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${versions.junit}</version>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>${versions.testng}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -71,11 +71,6 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>2.11</version>
-                    <configuration>
-                        <includes>
-                            <include>**/TestSuite.java</include>
-                        </includes>
-                    </configuration>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>

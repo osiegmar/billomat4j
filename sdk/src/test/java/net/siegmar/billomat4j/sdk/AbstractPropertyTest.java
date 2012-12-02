@@ -18,10 +18,10 @@
  */
 package net.siegmar.billomat4j.sdk;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertNotNull;
+import static org.testng.Assert.assertTrue;
 
 import java.util.List;
 
@@ -30,7 +30,7 @@ import net.siegmar.billomat4j.sdk.domain.settings.AbstractProperty;
 import net.siegmar.billomat4j.sdk.domain.types.PropertyType;
 import net.siegmar.billomat4j.sdk.service.AbstractPropertyService;
 
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 public abstract class AbstractPropertyTest<P extends AbstractProperty, A extends AbstractPropertyValue> extends AbstractServiceTest {
 
@@ -56,16 +56,16 @@ public abstract class AbstractPropertyTest<P extends AbstractProperty, A extends
         // Find again
         articleProperties = service.getProperties();
         final P foundArticleProperty = articleProperties.get(0);
-        assertEquals(articleProperty.getId(), foundArticleProperty.getId());
+        assertEquals(foundArticleProperty.getId(), articleProperty.getId());
 
         // Update
         articleProperty.setDefaultValue("Default Value");
         service.updateProperty(articleProperty);
-        assertEquals("Default Value", articleProperty.getDefaultValue());
+        assertEquals(articleProperty.getDefaultValue(), "Default Value");
 
         // Get By Id
         final P articlePropertyById = service.getPropertyById(articleProperty.getId());
-        assertEquals("Default Value", articlePropertyById.getDefaultValue());
+        assertEquals(articlePropertyById.getDefaultValue(), "Default Value");
 
         // Delete
         service.deleteProperty(articleProperty.getId());
@@ -98,10 +98,10 @@ public abstract class AbstractPropertyTest<P extends AbstractProperty, A extends
         // Find property values
         propertyValues = service.getPropertyValues(ownerId);
         assertFalse(propertyValues.isEmpty());
-        assertEquals(propertyValue.getId(), propertyValues.get(0).getId());
+        assertEquals(propertyValues.get(0).getId(), propertyValue.getId());
 
         // Find property value
-        assertEquals(propertyValue.getId(), service.getPropertyValueById(propertyValue.getId()).getId());
+        assertEquals(service.getPropertyValueById(propertyValue.getId()).getId(), propertyValue.getId());
 
         // Cleanup
         service.deleteProperty(property.getId());

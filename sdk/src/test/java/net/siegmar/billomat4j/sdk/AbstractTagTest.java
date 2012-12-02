@@ -18,15 +18,15 @@
  */
 package net.siegmar.billomat4j.sdk;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
 import java.util.List;
 
 import net.siegmar.billomat4j.sdk.domain.AbstractTag;
 import net.siegmar.billomat4j.sdk.service.AbstractTagService;
 
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 public abstract class AbstractTagTest<T extends AbstractTag> extends AbstractServiceTest {
 
@@ -53,14 +53,14 @@ public abstract class AbstractTagTest<T extends AbstractTag> extends AbstractSer
 
             // Find tags
             tags = service.getTags(null);
-            assertEquals(2, tags.size());
+            assertEquals(tags.size(), 2);
 
             // Find tags by owner
-            assertEquals(tag1.getId(), service.getTags(owner1).get(0).getId());
-            assertEquals(tag2.getId(), service.getTags(owner2).get(0).getId());
+            assertEquals(service.getTags(owner1).get(0).getId(), tag1.getId());
+            assertEquals(service.getTags(owner2).get(0).getId(), tag2.getId());
 
             // Find tag
-            assertEquals(tag1.getId(), service.getTagById(tag1.getId()).getId());
+            assertEquals(service.getTagById(tag1.getId()).getId(), tag1.getId());
 
             // Cleanup
             service.deleteTag(tag1.getId());

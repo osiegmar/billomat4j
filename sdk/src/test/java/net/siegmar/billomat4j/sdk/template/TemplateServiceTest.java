@@ -18,11 +18,11 @@
  */
 package net.siegmar.billomat4j.sdk.template;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertNotNull;
+import static org.testng.Assert.assertTrue;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -33,23 +33,19 @@ import net.siegmar.billomat4j.sdk.domain.template.TemplateFilter;
 import net.siegmar.billomat4j.sdk.domain.template.TemplateFormat;
 import net.siegmar.billomat4j.sdk.domain.template.TemplateType;
 
-import org.junit.After;
-import org.junit.Test;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.Test;
 
 public class TemplateServiceTest extends AbstractServiceTest {
 
-    @After
-    public void cleanup() {
-        // Clean up all Templates
-        List<Template> templates = templateService.findTemplates(null);
-        if (!templates.isEmpty()) {
-            for (final Template template : templates) {
-                templateService.deleteTemplate(template.getId());
-            }
+    private final List<Template> createdTemplates = new ArrayList<>();
 
-            templates = templateService.findTemplates(null);
-            assertTrue(templates.isEmpty());
+    @AfterMethod
+    public void cleanup() {
+        for (final Template template : createdTemplates) {
+            templateService.deleteTemplate(template.getId());
         }
+        createdTemplates.clear();
     }
 
     @Test
@@ -60,13 +56,13 @@ public class TemplateServiceTest extends AbstractServiceTest {
 
         // Create #1 (OFFER)
         final Template template1 = buildTemplate();
-        templateService.createTemplate(template1);
+        createTemplate(template1);
         assertNotNull(template1.getId());
 
         // Create #2 (CONFIRMATION)
         final Template template2 = buildTemplate();
         template2.setType(TemplateType.CONFIRMATION);
-        templateService.createTemplate(template2);
+        createTemplate(template2);
         assertNotNull(template2.getId());
 
         // Find again
@@ -75,10 +71,10 @@ public class TemplateServiceTest extends AbstractServiceTest {
         final Iterator<Template> templatesIterator = templates.iterator();
         final Template foundTemplate1 = templatesIterator.next();
         final Template foundTemplate2 = templatesIterator.next();
-        assertEquals(template1.getId(), foundTemplate1.getId());
-        assertEquals(TemplateType.OFFER, foundTemplate1.getType());
-        assertEquals(template2.getId(), foundTemplate2.getId());
-        assertEquals(TemplateType.CONFIRMATION, foundTemplate2.getType());
+        assertEquals(foundTemplate1.getId(), template1.getId());
+        assertEquals(foundTemplate1.getType(), TemplateType.OFFER);
+        assertEquals(foundTemplate2.getId(), template2.getId());
+        assertEquals(foundTemplate2.getType(), TemplateType.CONFIRMATION);
     }
 
     private Template buildTemplate() {
@@ -91,6 +87,11 @@ public class TemplateServiceTest extends AbstractServiceTest {
         return template;
     }
 
+    private void createTemplate(final Template template) {
+        templateService.createTemplate(template);
+        createdTemplates.add(template);
+    }
+
     @Test
     public void findFiltered() {
         final TemplateFilter templateFilter = new TemplateFilter().byType(TemplateType.OFFER, TemplateType.INVOICE);
@@ -101,50 +102,50 @@ public class TemplateServiceTest extends AbstractServiceTest {
 
         // Create #1 (OFFER)
         final Template template1 = buildTemplate();
-        templateService.createTemplate(template1);
+        createTemplate(template1);
         assertNotNull(template1.getId());
 
         // Create #2 (CONFIRMATION)
         final Template template2 = buildTemplate();
         template2.setType(TemplateType.CONFIRMATION);
-        templateService.createTemplate(template2);
+        createTemplate(template2);
         assertNotNull(template2.getId());
 
         // Create #3 (CONFIRMATION)
         final Template template3 = buildTemplate();
         template3.setType(TemplateType.INVOICE);
-        templateService.createTemplate(template3);
+        createTemplate(template3);
         assertNotNull(template3.getId());
 
         // Find again
         templates = templateService.findTemplates(templateFilter);
         assertTrue(templates.size() == 2);
         final Template foundTemplate1 = templates.get(0);
-        assertEquals(template1.getId(), foundTemplate1.getId());
-        assertEquals(TemplateType.OFFER, foundTemplate1.getType());
+        assertEquals(foundTemplate1.getId(), template1.getId());
+        assertEquals(foundTemplate1.getType(), TemplateType.OFFER);
 
         final Template foundTemplate2 = templates.get(1);
-        assertEquals(template3.getId(), foundTemplate2.getId());
-        assertEquals(TemplateType.INVOICE, foundTemplate2.getType());
+        assertEquals(foundTemplate2.getId(), template3.getId());
+        assertEquals(foundTemplate2.getType(), TemplateType.INVOICE);
     }
 
     @Test
     public void create() {
         // Create
         final Template template = buildTemplate();
-        templateService.createTemplate(template);
+        createTemplate(template);
         assertNotNull(template.getId());
 
         // Load by Id
         final Template templateLoaded = templateService.getTemplateById(template.getId());
-        assertEquals(template.getCreated(), templateLoaded.getCreated());
+        assertEquals(templateLoaded.getCreated(), template.getCreated());
     }
 
     @Test
     public void update() {
         // Create
         final Template template = buildTemplate();
-        templateService.createTemplate(template);
+        createTemplate(template);
         assertNotNull(template.getId());
 
         // Update
@@ -153,21 +154,21 @@ public class TemplateServiceTest extends AbstractServiceTest {
 
         // Load by Id
         final Template templateLoaded = templateService.getTemplateById(template.getId());
-        assertEquals("RTF Template", templateLoaded.getName());
-        assertEquals(template.getCreated(), templateLoaded.getCreated());
+        assertEquals(templateLoaded.getName(), "RTF Template");
+        assertEquals(templateLoaded.getCreated(), template.getCreated());
     }
 
     @Test
     public void preview() {
         // Create
         final Template template = buildTemplate();
-        templateService.createTemplate(template);
+        createTemplate(template);
         assertNotNull(template.getId());
 
         // Preview
         final byte[] preview = templateService.getTemplatePreview(template.getId(), ImageFormat.jpg);
         final byte[] localPreview = loadFile("preview.jpg");
-        assertTrue(Arrays.equals(localPreview, preview));
+        assertEquals(preview, localPreview);
     }
 
 }

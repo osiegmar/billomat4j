@@ -115,7 +115,6 @@
         <module name="IllegalCatch"/>
         <module name="IllegalThrows"/>
         <module name="PackageDeclaration"/>
-        <module name="JUnitTestCase"/>
         <module name="ReturnCount">
             <property name="max" value="4"/>
             <property name="severity" value="warning"/>

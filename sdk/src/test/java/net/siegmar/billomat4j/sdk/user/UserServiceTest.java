@@ -18,10 +18,10 @@
  */
 package net.siegmar.billomat4j.sdk.user;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertFalse;
+import static org.testng.Assert.assertNotNull;
+import static org.testng.Assert.assertTrue;
 
 import java.util.List;
 
@@ -29,7 +29,7 @@ import net.siegmar.billomat4j.sdk.AbstractServiceTest;
 import net.siegmar.billomat4j.sdk.domain.user.User;
 import net.siegmar.billomat4j.sdk.domain.user.UserFilter;
 
-import org.junit.Test;
+import org.testng.annotations.Test;
 
 public class UserServiceTest extends AbstractServiceTest {
 
@@ -51,7 +51,7 @@ public class UserServiceTest extends AbstractServiceTest {
     public void getById() {
         final User user = userService.findUsers(new UserFilter().byEmail("@")).iterator().next();
         final User user2 = userService.getUserById(user.getId());
-        assertEquals(user.getId(), user2.getId());
+        assertEquals(user2.getId(), user.getId());
     }
 
     @Test
