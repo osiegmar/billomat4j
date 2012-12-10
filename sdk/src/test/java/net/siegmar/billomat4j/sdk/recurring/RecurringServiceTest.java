@@ -33,9 +33,11 @@ import net.siegmar.billomat4j.sdk.AbstractServiceTest;
 import net.siegmar.billomat4j.sdk.domain.client.Client;
 import net.siegmar.billomat4j.sdk.domain.recurring.Recurring;
 import net.siegmar.billomat4j.sdk.domain.recurring.RecurringCycle;
+import net.siegmar.billomat4j.sdk.domain.recurring.RecurringEmailReceiver;
 import net.siegmar.billomat4j.sdk.domain.recurring.RecurringFilter;
 import net.siegmar.billomat4j.sdk.domain.recurring.RecurringItem;
 import net.siegmar.billomat4j.sdk.domain.types.PaymentType;
+import net.siegmar.billomat4j.sdk.domain.types.RecipientType;
 
 import org.apache.commons.lang3.time.DateUtils;
 import org.testng.annotations.AfterMethod;
@@ -110,6 +112,28 @@ public class RecurringServiceTest extends AbstractServiceTest {
         assertNull(recurringService.getRecurringById(recurring.getId()));
 
         createdRecurrings.remove(recurring);
+    }
+
+    @Test
+    public void emailReceiver() {
+        final Recurring recurring = createRecurring(PaymentType.BANK_TRANSFER);
+
+        assertTrue(recurringService.getRecurringEmailReceivers(recurring.getId()).isEmpty());
+
+        final RecurringEmailReceiver recurringEmailReceiver = new RecurringEmailReceiver();
+        recurringEmailReceiver.setRecurringId(recurring.getId());
+        recurringEmailReceiver.setType(RecipientType.Bcc);
+        recurringEmailReceiver.setAddress(getEmail());
+
+        recurringService.createRecurringEmailReceiver(recurringEmailReceiver);
+        assertNotNull(recurringEmailReceiver.getId());
+        assertFalse(recurringService.getRecurringEmailReceivers(recurring.getId()).isEmpty());
+
+        recurringEmailReceiver.setType(RecipientType.Cc);
+        recurringService.updateRecurringEmailReceiver(recurringEmailReceiver);
+        assertEquals(recurringService.getRecurringEmailReceiverById(recurringEmailReceiver.getId()).getType(), RecipientType.Cc);
+
+        recurringService.deleteRecurringEmailReceiver(recurringEmailReceiver.getId());
     }
 
     private Recurring createRecurring(final PaymentType paymentType) {

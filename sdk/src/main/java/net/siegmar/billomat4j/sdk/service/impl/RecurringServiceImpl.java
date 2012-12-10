@@ -21,6 +21,8 @@ package net.siegmar.billomat4j.sdk.service.impl;
 import java.util.List;
 
 import net.siegmar.billomat4j.sdk.domain.recurring.Recurring;
+import net.siegmar.billomat4j.sdk.domain.recurring.RecurringEmailReceiver;
+import net.siegmar.billomat4j.sdk.domain.recurring.RecurringEmailReceivers;
 import net.siegmar.billomat4j.sdk.domain.recurring.RecurringFilter;
 import net.siegmar.billomat4j.sdk.domain.recurring.RecurringItem;
 import net.siegmar.billomat4j.sdk.domain.recurring.RecurringItems;
@@ -36,6 +38,7 @@ public class RecurringServiceImpl extends AbstractService implements RecurringSe
     private static final String RESOURCE = "recurrings";
     private static final String RESOURCE_ITEMS = "recurring-items";
     private static final String RESOURCE_TAGS = "recurring-tags";
+    private static final String RESOURCE_EMAIL_RECEIVER = "recurring-email-receivers";
 
     public RecurringServiceImpl(final BillomatConfiguration billomatConfiguration) {
         super(billomatConfiguration);
@@ -129,6 +132,33 @@ public class RecurringServiceImpl extends AbstractService implements RecurringSe
     @Override
     public void deleteTag(final int recurringTagId) {
         delete(RESOURCE_TAGS, recurringTagId);
+    }
+
+    // RecurringEmailReceiver
+
+    @Override
+    public List<RecurringEmailReceiver> getRecurringEmailReceivers(final int recurringId) {
+        return getAllPagesFromResource(RESOURCE_EMAIL_RECEIVER, RecurringEmailReceivers.class, recurringIdFilter(recurringId));
+    }
+
+    @Override
+    public RecurringEmailReceiver getRecurringEmailReceiverById(final int recurringEmailReceiverId) {
+        return getById(RESOURCE_EMAIL_RECEIVER, RecurringEmailReceiver.class, recurringEmailReceiverId);
+    }
+
+    @Override
+    public void createRecurringEmailReceiver(final RecurringEmailReceiver recurringEmailReceiver) {
+        create(RESOURCE_EMAIL_RECEIVER, Validate.notNull(recurringEmailReceiver));
+    }
+
+    @Override
+    public void updateRecurringEmailReceiver(final RecurringEmailReceiver recurringEmailReceiver) {
+        update(RESOURCE_EMAIL_RECEIVER, Validate.notNull(recurringEmailReceiver));
+    }
+
+    @Override
+    public void deleteRecurringEmailReceiver(final int recurringEmailReceiverId) {
+        delete(RESOURCE_EMAIL_RECEIVER, recurringEmailReceiverId);
     }
 
 }
