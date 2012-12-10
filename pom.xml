@@ -33,7 +33,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <versions.commons-lang>3.1</versions.commons-lang>
-        <versions.jackson>2.1.0</versions.jackson>
+        <versions.jackson>2.1.1</versions.jackson>
         <versions.slf4j>1.7.2</versions.slf4j>
         <versions.logback>1.0.7</versions.logback>
         <versions.commons-cli>1.2</versions.commons-cli>
@@ -61,7 +61,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>2.3.2</version>
+                    <version>3.0</version>
                     <configuration>
                         <source>1.7</source>
                         <target>1.7</target>
@@ -70,12 +70,12 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-surefire-plugin</artifactId>
-                    <version>2.11</version>
+                    <version>2.12.4</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-release-plugin</artifactId>
-                    <version>2.2.2</version>
+                    <version>2.3.2</version>
                     <configuration>
                         <pushChanges>false</pushChanges>
                         <localCheckout>true</localCheckout>
@@ -85,6 +85,7 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-site-plugin</artifactId>
+                    <version>3.2</version>
                     <configuration>
                         <reportPlugins>
                             <plugin>
