@@ -1,7 +1,7 @@
 ## 1.0.2 (2012-12-??)
 
 * Replaced JUnit with TestNG
-* Updated Jackson dependency from 2.1.0 to 2.1.1
+* Updated versions of dependencies
 * Added support for recurring e-mail receivers
 
 ## 1.0.1 (2012-11-18)
