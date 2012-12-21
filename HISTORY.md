@@ -1,4 +1,4 @@
-## 1.0.2 (2012-12-20)
+## 1.0.2 (2012-12-21)
 
 * Replaced JUnit with TestNG
 * Updated versions of dependencies

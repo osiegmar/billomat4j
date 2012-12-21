@@ -118,7 +118,9 @@ public class RecurringServiceTest extends AbstractServiceTest {
     public void emailReceiver() {
         final Recurring recurring = createRecurring(PaymentType.BANK_TRANSFER);
 
-        assertTrue(recurringService.getRecurringEmailReceivers(recurring.getId()).isEmpty());
+        final List<RecurringEmailReceiver> recurringEmailReceivers = recurringService.getRecurringEmailReceivers(recurring.getId());
+        assertEquals(recurringEmailReceivers.size(), 1);
+        assertEquals(recurringEmailReceivers.get(0).getAddress(), "");
 
         final RecurringEmailReceiver recurringEmailReceiver = new RecurringEmailReceiver();
         recurringEmailReceiver.setRecurringId(recurring.getId());
@@ -127,7 +129,6 @@ public class RecurringServiceTest extends AbstractServiceTest {
 
         recurringService.createRecurringEmailReceiver(recurringEmailReceiver);
         assertNotNull(recurringEmailReceiver.getId());
-        assertFalse(recurringService.getRecurringEmailReceivers(recurring.getId()).isEmpty());
 
         recurringEmailReceiver.setType(RecipientType.Cc);
         recurringService.updateRecurringEmailReceiver(recurringEmailReceiver);
