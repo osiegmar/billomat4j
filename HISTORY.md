@@ -1,3 +1,7 @@
+## 1.0.3 (2013-??-??)
+
+* Run integration tests in a separate profile
+
 ## 1.0.2 (2012-12-21)
 
 * Replaced JUnit with TestNG
