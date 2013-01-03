@@ -47,18 +47,10 @@ This example fetches all paid invoices for the last 30 days and prints them out.
     }
 
 
-Build
------
-
-If you only want to build the SDK without running the integration tests -
-
-    mvn package -DskipTests
-
-
 Testing
 -------
 
-**WARNING**: Do not run the tests with your regular Billomat account. The tests will wipe out all your invoices, clients and so on. Ask the Billomat-Team for a dedicated Test-User!
+**WARNING**: Do not run the integration tests with your regular Billomat account. The tests will wipe out all your invoices, clients and so on. Ask the Billomat-Team for a dedicated Test-User!
 
 Create a file "sdk/src/test/resources/billomat.properties" with this content:
 
@@ -68,7 +60,9 @@ Create a file "sdk/src/test/resources/billomat.properties" with this content:
 
 The email address is required for sending test documents (like invoices).
 
-The tests will run during the typical Maven build procedure. Just invoke "mvn package".
+Run the integration test suite by invoking:
+
+    mvn -P integration-tests package
 
 
 Contribution
