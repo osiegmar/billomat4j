@@ -21,9 +21,12 @@ package net.siegmar.billomat4j.sdk.domain.settings;
 import java.math.BigDecimal;
 import java.util.Currency;
 
+import net.siegmar.billomat4j.sdk.json.Views;
+
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 
 import com.fasterxml.jackson.annotation.JsonRootName;
+import com.fasterxml.jackson.annotation.JsonView;
 
 @JsonRootName("settings")
 public class Settings {
@@ -51,19 +54,40 @@ public class Settings {
     private String reminderEmailSubject;
     private String reminderEmailBody;
     private String articleNumberPre;
+
+    @JsonView(Views.NonSerialize.class)
     private String articleNumberNext;
+
     private String clientNumberPre;
+
+    @JsonView(Views.NonSerialize.class)
     private String clientNumberNext;
+
     private String invoiceNumberPre;
+
+    @JsonView(Views.NonSerialize.class)
     private String invoiceNumberNext;
+
     private String offerNumberPre;
+
+    @JsonView(Views.NonSerialize.class)
     private String offerNumberNext;
+
     private String confirmationNumberPre;
+
+    @JsonView(Views.NonSerialize.class)
     private String confirmationNumberNext;
+
     private String deliveryNoteNumberPre;
+
+    @JsonView(Views.NonSerialize.class)
     private String deliveryNoteNumberNext;
+
     private String creditNoteNumberPre;
+
+    @JsonView(Views.NonSerialize.class)
     private String creditNoteNumberNext;
+
     private Integer offerNumberLength;
     private Integer invoiceNumberLength;
     private Integer confirmationNumberLength;
@@ -267,10 +291,6 @@ public class Settings {
         return articleNumberNext;
     }
 
-    public void setArticleNumberNext(final String articleNumberNext) {
-        this.articleNumberNext = articleNumberNext;
-    }
-
     public String getClientNumberPre() {
         return clientNumberPre;
     }
@@ -281,10 +301,6 @@ public class Settings {
 
     public String getClientNumberNext() {
         return clientNumberNext;
-    }
-
-    public void setClientNumberNext(final String clientNumberNext) {
-        this.clientNumberNext = clientNumberNext;
     }
 
     public String getInvoiceNumberPre() {
@@ -299,10 +315,6 @@ public class Settings {
         return invoiceNumberNext;
     }
 
-    public void setInvoiceNumberNext(final String invoiceNumberNext) {
-        this.invoiceNumberNext = invoiceNumberNext;
-    }
-
     public String getOfferNumberPre() {
         return offerNumberPre;
     }
@@ -313,10 +325,6 @@ public class Settings {
 
     public String getOfferNumberNext() {
         return offerNumberNext;
-    }
-
-    public void setOfferNumberNext(final String offerNumberNext) {
-        this.offerNumberNext = offerNumberNext;
     }
 
     public String getConfirmationNumberPre() {
@@ -331,10 +339,6 @@ public class Settings {
         return confirmationNumberNext;
     }
 
-    public void setConfirmationNumberNext(final String confirmationNumberNext) {
-        this.confirmationNumberNext = confirmationNumberNext;
-    }
-
     public String getDeliveryNoteNumberPre() {
         return deliveryNoteNumberPre;
     }
@@ -347,10 +351,6 @@ public class Settings {
         return deliveryNoteNumberNext;
     }
 
-    public void setDeliveryNoteNumberNext(final String deliveryNoteNumberNext) {
-        this.deliveryNoteNumberNext = deliveryNoteNumberNext;
-    }
-
     public String getCreditNoteNumberPre() {
         return creditNoteNumberPre;
     }
@@ -361,10 +361,6 @@ public class Settings {
 
     public String getCreditNoteNumberNext() {
         return creditNoteNumberNext;
-    }
-
-    public void setCreditNoteNumberNext(final String creditNoteNumberNext) {
-        this.creditNoteNumberNext = creditNoteNumberNext;
     }
 
     public Integer getOfferNumberLength() {

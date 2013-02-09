@@ -1,3 +1,7 @@
+## 1.0.4 (2013-??-??)
+
+* Removed setters for read-only elements in Settings
+
 ## 1.0.3 (2013-02-09)
 
 * Run integration tests in a separate profile
