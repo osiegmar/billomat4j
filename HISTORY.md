@@ -2,6 +2,7 @@
 
 * Run integration tests in a separate profile
 * Updated Jackson JSON library to fix null-Enum bug
+* Added support for "next" numbers in settings
 
 ## 1.0.2 (2012-12-21)
 

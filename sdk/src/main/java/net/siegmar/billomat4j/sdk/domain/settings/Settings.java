@@ -51,12 +51,19 @@ public class Settings {
     private String reminderEmailSubject;
     private String reminderEmailBody;
     private String articleNumberPre;
+    private String articleNumberNext;
     private String clientNumberPre;
+    private String clientNumberNext;
     private String invoiceNumberPre;
+    private String invoiceNumberNext;
     private String offerNumberPre;
+    private String offerNumberNext;
     private String confirmationNumberPre;
+    private String confirmationNumberNext;
     private String deliveryNoteNumberPre;
+    private String deliveryNoteNumberNext;
     private String creditNoteNumberPre;
+    private String creditNoteNumberNext;
     private Integer offerNumberLength;
     private Integer invoiceNumberLength;
     private Integer confirmationNumberLength;
@@ -255,12 +262,28 @@ public class Settings {
         this.articleNumberPre = articleNumberPre;
     }
 
+    public String getArticleNumberNext() {
+        return articleNumberNext;
+    }
+
+    public void setArticleNumberNext(final String articleNumberNext) {
+        this.articleNumberNext = articleNumberNext;
+    }
+
     public String getClientNumberPre() {
         return clientNumberPre;
     }
 
     public void setClientNumberPre(final String clientNumberPre) {
         this.clientNumberPre = clientNumberPre;
+    }
+
+    public String getClientNumberNext() {
+        return clientNumberNext;
+    }
+
+    public void setClientNumberNext(final String clientNumberNext) {
+        this.clientNumberNext = clientNumberNext;
     }
 
     public String getInvoiceNumberPre() {
@@ -271,12 +294,28 @@ public class Settings {
         this.invoiceNumberPre = invoiceNumberPre;
     }
 
+    public String getInvoiceNumberNext() {
+        return invoiceNumberNext;
+    }
+
+    public void setInvoiceNumberNext(final String invoiceNumberNext) {
+        this.invoiceNumberNext = invoiceNumberNext;
+    }
+
     public String getOfferNumberPre() {
         return offerNumberPre;
     }
 
     public void setOfferNumberPre(final String offerNumberPre) {
         this.offerNumberPre = offerNumberPre;
+    }
+
+    public String getOfferNumberNext() {
+        return offerNumberNext;
+    }
+
+    public void setOfferNumberNext(final String offerNumberNext) {
+        this.offerNumberNext = offerNumberNext;
     }
 
     public String getConfirmationNumberPre() {
@@ -287,6 +326,14 @@ public class Settings {
         this.confirmationNumberPre = confirmationNumberPre;
     }
 
+    public String getConfirmationNumberNext() {
+        return confirmationNumberNext;
+    }
+
+    public void setConfirmationNumberNext(final String confirmationNumberNext) {
+        this.confirmationNumberNext = confirmationNumberNext;
+    }
+
     public String getDeliveryNoteNumberPre() {
         return deliveryNoteNumberPre;
     }
@@ -295,12 +342,28 @@ public class Settings {
         this.deliveryNoteNumberPre = deliveryNoteNumberPre;
     }
 
+    public String getDeliveryNoteNumberNext() {
+        return deliveryNoteNumberNext;
+    }
+
+    public void setDeliveryNoteNumberNext(final String deliveryNoteNumberNext) {
+        this.deliveryNoteNumberNext = deliveryNoteNumberNext;
+    }
+
     public String getCreditNoteNumberPre() {
         return creditNoteNumberPre;
     }
 
     public void setCreditNoteNumberPre(final String creditNoteNumberPre) {
         this.creditNoteNumberPre = creditNoteNumberPre;
+    }
+
+    public String getCreditNoteNumberNext() {
+        return creditNoteNumberNext;
+    }
+
+    public void setCreditNoteNumberNext(final String creditNoteNumberNext) {
+        this.creditNoteNumberNext = creditNoteNumberNext;
     }
 
     public Integer getOfferNumberLength() {
