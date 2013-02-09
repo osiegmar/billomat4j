@@ -77,6 +77,7 @@ public class Settings {
     private Integer discountDays;
     private Integer dueDays;
     private Integer offerValidityDays;
+    private BccAddresses bccAddresses;
 
     public String getInvoiceIntro() {
         return invoiceIntro;
@@ -468,6 +469,14 @@ public class Settings {
 
     public void setOfferValidityDays(final Integer offerValidityDays) {
         this.offerValidityDays = offerValidityDays;
+    }
+
+    public BccAddresses getBccAddresses() {
+        return bccAddresses;
+    }
+
+    public void setBccAddresses(final BccAddresses bccAddresses) {
+        this.bccAddresses = bccAddresses;
     }
 
     @Override
