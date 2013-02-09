@@ -1,6 +1,7 @@
 ## 1.0.3 (2013-??-??)
 
 * Run integration tests in a separate profile
+* Updated Jackson JSON library to fix null-Enum bug
 
 ## 1.0.2 (2012-12-21)
 

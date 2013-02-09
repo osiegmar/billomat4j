@@ -34,7 +34,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
         <versions.commons-lang>3.1</versions.commons-lang>
-        <versions.jackson>2.1.2</versions.jackson>
+        <versions.jackson>2.1.3</versions.jackson>
         <versions.slf4j>1.7.2</versions.slf4j>
         <versions.logback>1.0.9</versions.logback>
         <versions.commons-cli>1.2</versions.commons-cli>
