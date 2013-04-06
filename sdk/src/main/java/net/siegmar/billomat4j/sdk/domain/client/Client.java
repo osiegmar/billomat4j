@@ -70,6 +70,7 @@ public class Client extends AbstractMeta {
     private Integer offerValidityDays;
     private Integer priceGroup;
     private String note;
+    private Boolean archived;
 
     @JsonView(Views.NonSerialize.class)
     private BigDecimal revenueGross;
@@ -391,6 +392,14 @@ public class Client extends AbstractMeta {
 
     public BigDecimal getRevenueNet() {
         return revenueNet;
+    }
+
+    public Boolean getArchived() {
+        return archived;
+    }
+
+    public void setArchived(final Boolean archived) {
+        this.archived = archived;
     }
 
 }

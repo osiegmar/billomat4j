@@ -18,6 +18,7 @@
  */
 package net.siegmar.billomat4j.sdk.client;
 
+import static org.junit.Assert.assertFalse;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotNull;
 import static org.testng.Assert.assertTrue;
@@ -178,6 +179,21 @@ public class ClientServiceIT extends AbstractServiceIT {
         final Client updatedClient = clientService.getClientById(client.getId());
         assertEquals(updatedClient.getName(), "Updated Company");
         assertEquals(updatedClient.getClientNumber(), "9999");
+    }
+
+    @Test
+    public void archiveCustomer() {
+        // Create #1
+        final Client client = buildClient("ClientServiceTest Company");
+        client.setNumber(9999);
+        createClient(client);
+        assertNotNull(client.getId());
+        assertFalse(client.getArchived());
+
+        // Update
+        client.setArchived(true);
+        clientService.updateClient(client);
+        assertTrue(client.getArchived());
     }
 
 }

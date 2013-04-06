@@ -1,6 +1,7 @@
 ## 1.0.4 (2013-??-??)
 
 * Removed setters for read-only elements in Settings
+* Added support for archiving customers
 
 ## 1.0.3 (2013-02-09)
 
