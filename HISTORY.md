@@ -1,7 +1,8 @@
 ## 1.0.4 (2013-??-??)
 
-* Removed setters for read-only elements in Settings
+* Removed setters for read-only elements in settings
 * Added support for archiving customers
+* Added support for paid_amount and open_amount in invoices
 
 ## 1.0.3 (2013-02-09)
 

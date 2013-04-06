@@ -71,6 +71,8 @@ public class Invoice extends AbstractMeta {
     private Integer offerId;
     private Integer confirmationId;
     private Integer recurringId;
+    private BigDecimal paidAmount;
+    private BigDecimal openAmount;
 
     @JsonProperty("invoice-items")
     private InvoiceItems invoiceItems;
@@ -320,6 +322,22 @@ public class Invoice extends AbstractMeta {
             invoiceItems = new InvoiceItems();
         }
         invoiceItems.getInvoiceItems().add(invoiceItem);
+    }
+
+    public BigDecimal getPaidAmount() {
+        return paidAmount;
+    }
+
+    public void setPaidAmount(final BigDecimal paidAmount) {
+        this.paidAmount = paidAmount;
+    }
+
+    public BigDecimal getOpenAmount() {
+        return openAmount;
+    }
+
+    public void setOpenAmount(final BigDecimal openAmount) {
+        this.openAmount = openAmount;
     }
 
 }
