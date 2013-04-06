@@ -71,7 +71,11 @@ public class Invoice extends AbstractMeta {
     private Integer offerId;
     private Integer confirmationId;
     private Integer recurringId;
+
+    @JsonView(Views.NonSerialize.class)
     private BigDecimal paidAmount;
+
+    @JsonView(Views.NonSerialize.class)
     private BigDecimal openAmount;
 
     @JsonProperty("invoice-items")
@@ -328,16 +332,8 @@ public class Invoice extends AbstractMeta {
         return paidAmount;
     }
 
-    public void setPaidAmount(final BigDecimal paidAmount) {
-        this.paidAmount = paidAmount;
-    }
-
     public BigDecimal getOpenAmount() {
         return openAmount;
-    }
-
-    public void setOpenAmount(final BigDecimal openAmount) {
-        this.openAmount = openAmount;
     }
 
 }
