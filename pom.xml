@@ -9,13 +9,13 @@
     <artifactId>billomat4j-parent</artifactId>
     <packaging>pom</packaging>
 
-    <version>1.0.5-SNAPSHOT</version>
+    <version>1.0.4</version>
 
     <scm>
         <connection>scm:git:git://github.com/osiegmar/billomat4j.git</connection>
         <developerConnection>scm:git:git@github.com:osiegmar/billomat4j.git</developerConnection>
         <url>https://github.com/osiegmar/billomat4j.git</url>
-      <tag>HEAD</tag>
+      <tag>v1.0.4</tag>
   </scm>
 
     <description>Software Development Kit for Billomat's Web-API. See http://www.billomat.com/ for further information.</description>
