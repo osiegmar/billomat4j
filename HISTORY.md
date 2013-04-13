@@ -1,4 +1,4 @@
-## 1.0.4 (2013-14-13)
+## 1.0.4 (2013-04-13)
 
 * Removed setters for read-only elements in settings
 * Added support for archiving customers
