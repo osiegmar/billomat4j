@@ -4,6 +4,7 @@
 * Added support for archiving customers
 * Added support for paid_amount and open_amount in invoices
 * Added support for bgcolor, color1, color2, color3 in settings
+* Added support for user salutation
 
 ## 1.0.3 (2013-02-09)
 

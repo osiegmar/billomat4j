@@ -22,18 +22,28 @@ import java.util.Locale;
 import java.util.TimeZone;
 
 import net.siegmar.billomat4j.sdk.domain.AbstractMeta;
+import net.siegmar.billomat4j.sdk.domain.types.SalutationType;
 
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 @JsonRootName("user")
 public class User extends AbstractMeta {
 
+    private SalutationType salutation;
     private String firstName;
     private String lastName;
     private String email;
     private Locale locale;
     private TimeZone timezone;
     private Integer roleId;
+
+    public SalutationType getSalutation() {
+        return salutation;
+    }
+
+    public void setSalutation(final SalutationType salutation) {
+        this.salutation = salutation;
+    }
 
     public String getFirstName() {
         return firstName;
