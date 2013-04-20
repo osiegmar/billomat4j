@@ -1,3 +1,7 @@
+## 1.0.5 (2013-??-??)
+
+* Added support for downloading offer PDFs
+
 ## 1.0.4 (2013-04-13)
 
 * Removed setters for read-only elements in settings

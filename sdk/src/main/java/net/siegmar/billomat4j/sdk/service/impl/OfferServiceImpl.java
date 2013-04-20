@@ -29,6 +29,7 @@ import net.siegmar.billomat4j.sdk.domain.offer.OfferComments;
 import net.siegmar.billomat4j.sdk.domain.offer.OfferFilter;
 import net.siegmar.billomat4j.sdk.domain.offer.OfferItem;
 import net.siegmar.billomat4j.sdk.domain.offer.OfferItems;
+import net.siegmar.billomat4j.sdk.domain.offer.OfferPdf;
 import net.siegmar.billomat4j.sdk.domain.offer.OfferTag;
 import net.siegmar.billomat4j.sdk.domain.offer.OfferTags;
 import net.siegmar.billomat4j.sdk.domain.offer.Offers;
@@ -87,6 +88,11 @@ public class OfferServiceImpl extends AbstractService implements OfferService {
     @Override
     public void deleteOffer(final int id) {
         delete(RESOURCE, id);
+    }
+
+    @Override
+    public OfferPdf getOfferPdf(final int id) {
+        return getPdf(RESOURCE, OfferPdf.class, id, null);
     }
 
     @Override

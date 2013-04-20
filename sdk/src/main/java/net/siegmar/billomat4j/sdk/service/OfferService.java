@@ -27,6 +27,7 @@ import net.siegmar.billomat4j.sdk.domain.offer.OfferComment;
 import net.siegmar.billomat4j.sdk.domain.offer.OfferCommentFilter;
 import net.siegmar.billomat4j.sdk.domain.offer.OfferFilter;
 import net.siegmar.billomat4j.sdk.domain.offer.OfferItem;
+import net.siegmar.billomat4j.sdk.domain.offer.OfferPdf;
 import net.siegmar.billomat4j.sdk.domain.offer.OfferTag;
 
 /**
@@ -104,6 +105,15 @@ public interface OfferService extends
      *             if an error occured while accessing the web service
      */
     void deleteOffer(int offerId);
+
+    /**
+     * @param offerId
+     *            the id of the offer to get the PDF for
+     * @return the offer PDF or {@code null} if not found
+     * @throws net.siegmar.billomat4j.sdk.service.impl.ServiceException
+     *             if an error occured while accessing the web service
+     */
+    OfferPdf getOfferPdf(int offerId);
 
     /**
      * Sets the offer status to {@link net.siegmar.billomat4j.sdk.domain.offer.OfferStatus#COMPLETED}.
