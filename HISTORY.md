@@ -1,4 +1,4 @@
-## 1.0.5 (2013-??-??)
+## 1.0.5 (2013-10-03)
 
 * Added support for downloading offer PDFs
 * Removed CLI
