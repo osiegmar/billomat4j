@@ -23,8 +23,19 @@ public enum RecurringCycle {
     DAILY,
     WEEKLY,
     MONTHLY,
+
+    /**
+     * @deprecated Use {@link net.siegmar.billomat4j.sdk.domain.recurring.Recurring#setCycleNumber(Integer)} with value 3 instead.
+     */
+    @Deprecated
     QUARTERLY,
+
+    /**
+     * @deprecated Use {@link net.siegmar.billomat4j.sdk.domain.recurring.Recurring#setCycleNumber(Integer)} with value 6 instead.
+     */
+    @Deprecated
     SEMIYEARLY,
+
     YEARLY
 
 }

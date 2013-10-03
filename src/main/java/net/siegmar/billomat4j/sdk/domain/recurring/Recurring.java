@@ -56,6 +56,7 @@ public class Recurring extends AbstractMeta {
     private RecurringAction action;
     private RecurringCycle cycle;
     private Integer hour;
+    private Integer cycleNumber;
 
     @JsonSerialize(using = MyDateSerializer.class)
     @JsonInclude(Include.NON_NULL)
@@ -393,6 +394,14 @@ public class Recurring extends AbstractMeta {
             recurringItems = new RecurringItems();
         }
         recurringItems.getRecurringItems().add(recurringItem);
+    }
+
+    public Integer getCycleNumber() {
+        return cycleNumber;
+    }
+
+    public void setCycleNumber(final Integer cycleNumber) {
+        this.cycleNumber = cycleNumber;
     }
 
 }
