@@ -106,6 +106,8 @@ public class Settings {
     private String color1;
     private String color2;
     private String color3;
+    private String defaultEmailSender;
+    private Boolean printVersion;
 
     public String getInvoiceIntro() {
         return invoiceIntro;
@@ -509,6 +511,22 @@ public class Settings {
 
     public void setColor3(final String color3) {
         this.color3 = color3;
+    }
+
+    public String getDefaultEmailSender() {
+        return defaultEmailSender;
+    }
+
+    public void setDefaultEmailSender(final String defaultEmailSender) {
+        this.defaultEmailSender = defaultEmailSender;
+    }
+
+    public Boolean getPrintVersion() {
+        return printVersion;
+    }
+
+    public void setPrintVersion(final Boolean printVersion) {
+        this.printVersion = printVersion;
     }
 
     @Override
