@@ -6,6 +6,7 @@
 * Added support for recurring cycle numbers
 * Added support for default_email_sender and print_version in Settings
 * Added support for client contacts
+* Updated versions of dependencies
 
 ## 1.0.4 (2013-04-13)
 
