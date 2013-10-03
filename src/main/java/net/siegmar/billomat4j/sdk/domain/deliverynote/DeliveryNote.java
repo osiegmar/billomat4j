@@ -65,6 +65,7 @@ public class DeliveryNote extends AbstractMeta {
     private Integer confirmationId;
     private Integer invoiceId;
     private DeliveryNoteItems deliveryNoteItems;
+    private Integer contactId;
 
     public Integer getClientId() {
         return clientId;
@@ -244,6 +245,14 @@ public class DeliveryNote extends AbstractMeta {
         }
 
         deliveryNoteItems.getDeliveryNoteItems().add(deliveryNoteItem);
+    }
+
+    public Integer getContactId() {
+        return contactId;
+    }
+
+    public void setContactId(final Integer contactId) {
+        this.contactId = contactId;
     }
 
 }

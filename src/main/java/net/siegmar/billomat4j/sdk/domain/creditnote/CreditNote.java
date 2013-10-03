@@ -63,6 +63,7 @@ public class CreditNote extends AbstractMeta {
     private Taxes taxes;
     private Integer invoiceId;
     private CreditNoteItems creditNoteItems;
+    private Integer contactId;
 
     public Integer getClientId() {
         return clientId;
@@ -226,6 +227,14 @@ public class CreditNote extends AbstractMeta {
         }
 
         creditNoteItems.getCreditNoteItems().add(creditNoteItem);
+    }
+
+    public Integer getContactId() {
+        return contactId;
+    }
+
+    public void setContactId(final Integer contactId) {
+        this.contactId = contactId;
     }
 
 }

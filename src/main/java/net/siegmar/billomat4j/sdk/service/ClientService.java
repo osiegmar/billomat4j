@@ -24,6 +24,7 @@ import net.siegmar.billomat4j.sdk.domain.client.Client;
 import net.siegmar.billomat4j.sdk.domain.client.ClientFilter;
 import net.siegmar.billomat4j.sdk.domain.client.ClientPropertyValue;
 import net.siegmar.billomat4j.sdk.domain.client.ClientTag;
+import net.siegmar.billomat4j.sdk.domain.client.Contact;
 import net.siegmar.billomat4j.sdk.domain.settings.ClientProperty;
 
 /**
@@ -31,6 +32,7 @@ import net.siegmar.billomat4j.sdk.domain.settings.ClientProperty;
  * @see http://www.billomat.com/api/kunden/attribute/
  * @see http://www.billomat.com/api/kunden/schlagworte/
  * @see http://www.billomat.com/api/einstellungen/kunden-attribute/
+ * @see http://www.billomat.com/api/kunden/kontakte
  */
 public interface ClientService extends
     GenericCustomFieldService,
@@ -107,5 +109,53 @@ public interface ClientService extends
      *             if an error occured while accessing the web service
      */
     void deleteClient(int clientId);
+
+    /**
+     * @param clientId
+     *            the id of the client the contacts belong to
+     * @return all contacts for the specified client or an empty list if no contacts were found - never {@code null}
+     * @throws net.siegmar.billomat4j.sdk.service.impl.ServiceException
+     *             if an error occured while accessing the web service
+     */
+    List<Contact> findContacts(int clientId);
+
+    /**
+     * Gets a contact by its id.
+     *
+     * @param contactId
+     *            the contact's id
+     * @return the contact or {@code null} if not found
+     * @throws net.siegmar.billomat4j.sdk.service.impl.ServiceException
+     *             if an error occured while accessing the web service
+     */
+    Contact getContact(int contactId);
+
+    /**
+     * @param contact
+     *            the contact to create, must not be {@code null}
+     * @throws NullPointerException
+     *             if contact is null
+     * @throws net.siegmar.billomat4j.sdk.service.impl.ServiceException
+     *             if an error occured while accessing the web service
+     */
+    void createContact(Contact contact);
+
+    /**
+     * @param contact
+     *            the contact to update, must not be {@code null}
+     * @throws NullPointerException
+     *             if contact is null
+     * @throws net.siegmar.billomat4j.sdk.service.impl.ServiceException
+     *             if an error occured while accessing the web service
+     */
+    void updateContact(Contact contact);
+
+    /**
+     * @param contactId
+     *            the id of the contact to be deleted
+     * @throws net.siegmar.billomat4j.sdk.service.impl.ServiceException
+     *             if an error occured while accessing the web service
+     */
+    void deleteContact(int contactId);
 
 }

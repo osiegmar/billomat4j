@@ -24,6 +24,7 @@ public abstract class AbstractComment<K extends ActionKey> extends AbstractMeta 
 
     private Integer userId;
     private String comment;
+    private Integer contactId;
 
     @JsonProperty("actionkey")
     private K actionKey;
@@ -50,6 +51,14 @@ public abstract class AbstractComment<K extends ActionKey> extends AbstractMeta 
 
     public void setActionKey(final K actionKey) {
         this.actionKey = actionKey;
+    }
+
+    public Integer getContactId() {
+        return contactId;
+    }
+
+    public void setContactId(final Integer contactId) {
+        this.contactId = contactId;
     }
 
 }

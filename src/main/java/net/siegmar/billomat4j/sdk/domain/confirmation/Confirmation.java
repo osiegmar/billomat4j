@@ -68,6 +68,7 @@ public class Confirmation extends AbstractMeta {
 
     private Integer offerId;
     private ConfirmationItems confirmationItems;
+    private Integer contactId;
 
     public Integer getClientId() {
         return clientId;
@@ -239,6 +240,14 @@ public class Confirmation extends AbstractMeta {
         }
 
         confirmationItems.getConfirmationItems().add(confirmationItem);
+    }
+
+    public Integer getContactId() {
+        return contactId;
+    }
+
+    public void setContactId(final Integer contactId) {
+        this.contactId = contactId;
     }
 
 }

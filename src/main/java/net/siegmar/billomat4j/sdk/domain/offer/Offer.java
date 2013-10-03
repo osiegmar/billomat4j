@@ -62,6 +62,7 @@ public class Offer extends AbstractMeta {
     private Currency currencyCode;
     private BigDecimal quote;
     private Taxes taxes;
+    private Integer contactId;
 
     @JsonSerialize(using = MyDateSerializer.class)
     @JsonInclude(Include.NON_NULL)
@@ -231,6 +232,14 @@ public class Offer extends AbstractMeta {
             offerItems = new OfferItems();
         }
         offerItems.getOfferItems().add(offerItem);
+    }
+
+    public Integer getContactId() {
+        return contactId;
+    }
+
+    public void setContactId(final Integer contactId) {
+        this.contactId = contactId;
     }
 
 }

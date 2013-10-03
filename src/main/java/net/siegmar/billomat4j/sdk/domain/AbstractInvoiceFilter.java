@@ -28,6 +28,10 @@ public abstract class AbstractInvoiceFilter<T extends AbstractInvoiceFilter<T>> 
         return add("client_id", clientId);
     }
 
+    public T byContactId(final int contactId) {
+        return add("contact_id", contactId);
+    }
+
     public T byFrom(final Date from) {
         return add("from", DateFormatUtils.ISO_DATE_FORMAT.format(from));
     }

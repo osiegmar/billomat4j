@@ -27,6 +27,8 @@ import net.siegmar.billomat4j.sdk.domain.client.ClientPropertyValues;
 import net.siegmar.billomat4j.sdk.domain.client.ClientTag;
 import net.siegmar.billomat4j.sdk.domain.client.ClientTags;
 import net.siegmar.billomat4j.sdk.domain.client.Clients;
+import net.siegmar.billomat4j.sdk.domain.client.Contact;
+import net.siegmar.billomat4j.sdk.domain.client.Contacts;
 import net.siegmar.billomat4j.sdk.domain.settings.ClientProperties;
 import net.siegmar.billomat4j.sdk.domain.settings.ClientProperty;
 import net.siegmar.billomat4j.sdk.service.ClientService;
@@ -39,6 +41,7 @@ public class ClientServiceImpl extends AbstractService implements ClientService 
     private static final String PROPERTIES_RESOURCE = "client-properties";
     private static final String ATTRIBUTE_RESOURCE = "client-property-values";
     private static final String TAG_RESOURCE = "client-tags";
+    private static final String CONTACT_RESOURCE = "contacts";
 
     public ClientServiceImpl(final BillomatConfiguration billomatConfiguration) {
         super(billomatConfiguration);
@@ -159,6 +162,33 @@ public class ClientServiceImpl extends AbstractService implements ClientService 
     @Override
     public void deleteTag(final int clientTagId) {
         delete(TAG_RESOURCE, clientTagId);
+    }
+
+    // Contact
+
+    @Override
+    public List<Contact> findContacts(final int clientId) {
+        return getAllPagesFromResource(CONTACT_RESOURCE, Contacts.class, clientIdFilter(clientId));
+    }
+
+    @Override
+    public Contact getContact(final int contactId) {
+        return getById(CONTACT_RESOURCE, Contact.class, contactId);
+    }
+
+    @Override
+    public void createContact(final Contact contact) {
+        create(CONTACT_RESOURCE, Validate.notNull(contact));
+    }
+
+    @Override
+    public void updateContact(final Contact contact) {
+        update(CONTACT_RESOURCE, Validate.notNull(contact));
+    }
+
+    @Override
+    public void deleteContact(final int contactId) {
+        delete(CONTACT_RESOURCE, contactId);
     }
 
 }

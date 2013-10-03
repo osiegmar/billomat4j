@@ -57,6 +57,7 @@ public class Recurring extends AbstractMeta {
     private RecurringCycle cycle;
     private Integer hour;
     private Integer cycleNumber;
+    private Integer contactId;
 
     @JsonSerialize(using = MyDateSerializer.class)
     @JsonInclude(Include.NON_NULL)
@@ -402,6 +403,14 @@ public class Recurring extends AbstractMeta {
 
     public void setCycleNumber(final Integer cycleNumber) {
         this.cycleNumber = cycleNumber;
+    }
+
+    public Integer getContactId() {
+        return contactId;
+    }
+
+    public void setContactId(final Integer contactId) {
+        this.contactId = contactId;
     }
 
 }

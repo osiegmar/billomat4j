@@ -59,6 +59,7 @@
         <classes>
             <class name="net.siegmar.billomat4j.sdk.article.ArticleServiceIT" />
             <class name="net.siegmar.billomat4j.sdk.client.ClientServiceIT" />
+            <class name="net.siegmar.billomat4j.sdk.client.ContactIT" />
             <class name="net.siegmar.billomat4j.sdk.confirmation.ConfirmationServiceIT" />
             <class name="net.siegmar.billomat4j.sdk.creditnote.CreditNoteServiceIT" />
             <class name="net.siegmar.billomat4j.sdk.deliverynote.DeliveryNoteServiceIT" />
