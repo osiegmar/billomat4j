@@ -7,8 +7,6 @@ Java Software Development Kit for the [Billomat](http://www.billomat.com/) [API]
 Requirements
 ------------
 
-The Software Development Kit (SDK):
-
 - At runtime:
     - Java 7
     - Apache Commons Lang
@@ -17,17 +15,11 @@ The Software Development Kit (SDK):
 - Additionally at buildtime:
     - Apache Maven
 
-The Command Line Interface (CLI):
-
-- At runtime:
-    - The SDK
-    - Apache Commons CLI
-
 
 Example
 -------
 
-This example fetches all paid invoices for the last 30 days and prints them out. This file is also part of this project - see sdk/src/test/java/net/siegmar/billomat4j/sdk/Example.java
+This example fetches all paid invoices for the last 30 days and prints them out. This file is also part of this project - see src/test/java/net/siegmar/billomat4j/sdk/Example.java
 
     BillomatConfiguration billomatConfiguration = new BillomatConfiguration();
     billomatConfiguration.setBillomatId("<billomatId>");
@@ -52,7 +44,7 @@ Testing
 
 **WARNING**: Do not run the integration tests with your regular Billomat account. The tests will wipe out all your invoices, clients and so on. Ask the Billomat-Team for a dedicated Test-User!
 
-Create a file "sdk/src/test/resources/billomat.properties" with this content:
+Create a file "src/test/resources/billomat.properties" with this content:
 
     billomatId = <your-billomat-id>
     billomatApiKey = <your-billomat-api-key>
