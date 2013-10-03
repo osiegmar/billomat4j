@@ -23,7 +23,6 @@ import net.siegmar.billomat4j.sdk.domain.client.Client;
 import net.siegmar.billomat4j.sdk.domain.recurring.Recurring;
 import net.siegmar.billomat4j.sdk.domain.recurring.RecurringItem;
 
-
 public class RecurringItemIT extends AbstractItemIT<RecurringItem> {
 
     public RecurringItemIT() {

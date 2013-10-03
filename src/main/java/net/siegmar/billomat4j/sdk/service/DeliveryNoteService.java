@@ -37,10 +37,10 @@ import net.siegmar.billomat4j.sdk.domain.deliverynote.DeliveryNoteTag;
  * @see http://www.billomat.com/api/lieferscheine/schlagworte/
  */
 public interface DeliveryNoteService extends
-    AbstractCustomFieldService,
-    AbstractTagService<DeliveryNoteTag>,
-    AbstractCommentService<DeliveryNoteActionKey, DeliveryNoteComment, DeliveryNoteCommentFilter>,
-    AbstractItemService<DeliveryNoteItem> {
+    GenericCustomFieldService,
+    GenericTagService<DeliveryNoteTag>,
+    GenericCommentService<DeliveryNoteActionKey, DeliveryNoteComment, DeliveryNoteCommentFilter>,
+    GenericItemService<DeliveryNoteItem> {
 
     /**
      * @param deliveryNoteFilter

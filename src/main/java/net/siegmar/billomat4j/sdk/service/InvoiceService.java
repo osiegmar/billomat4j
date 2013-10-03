@@ -42,11 +42,11 @@ import net.siegmar.billomat4j.sdk.domain.invoice.InvoiceTag;
  * @see http://www.billomat.com/api/rechnungen/schlagworte/
  */
 public interface InvoiceService extends
-    AbstractCustomFieldService,
-    AbstractTagService<InvoiceTag>,
-    AbstractCommentService<InvoiceActionKey, InvoiceComment, InvoiceCommentFilter>,
-    AbstractItemService<InvoiceItem>,
-    AbstractPaymentService<InvoicePayment, InvoicePaymentFilter> {
+    GenericCustomFieldService,
+    GenericTagService<InvoiceTag>,
+    GenericCommentService<InvoiceActionKey, InvoiceComment, InvoiceCommentFilter>,
+    GenericItemService<InvoiceItem>,
+    GenericPaymentService<InvoicePayment, InvoicePaymentFilter> {
 
     /**
      * @param invoiceFilter

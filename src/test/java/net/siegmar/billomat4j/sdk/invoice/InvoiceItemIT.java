@@ -23,7 +23,6 @@ import net.siegmar.billomat4j.sdk.domain.client.Client;
 import net.siegmar.billomat4j.sdk.domain.invoice.Invoice;
 import net.siegmar.billomat4j.sdk.domain.invoice.InvoiceItem;
 
-
 public class InvoiceItemIT extends AbstractItemIT<InvoiceItem> {
 
     public InvoiceItemIT() {

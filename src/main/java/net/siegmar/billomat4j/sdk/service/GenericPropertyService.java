@@ -23,7 +23,7 @@ import java.util.List;
 import net.siegmar.billomat4j.sdk.domain.AbstractPropertyValue;
 import net.siegmar.billomat4j.sdk.domain.settings.AbstractProperty;
 
-public interface AbstractPropertyService<P extends AbstractProperty, V extends AbstractPropertyValue> {
+public interface GenericPropertyService<P extends AbstractProperty, V extends AbstractPropertyValue> {
 
     // Property
 

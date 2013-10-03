@@ -36,6 +36,9 @@ import com.fasterxml.jackson.databind.module.SimpleModule;
 
 public class BillomatConfiguration {
 
+    private static final String GROUP_ID = "net.siegmar";
+    private static final String ARTIFACT_ID = "billomat4j";
+
     private String billomatId;
     private String apiKey;
     private boolean secure = true;
@@ -113,17 +116,17 @@ public class BillomatConfiguration {
 
         objectMapper.registerModule(
                 new SimpleModule("CustomBooleanDeserializer",
-                        new Version(1, 0, 0, null, "net.siegmar", "billomat4j"))
+                        new Version(1, 0, 0, null, GROUP_ID, ARTIFACT_ID))
                 .addDeserializer(Boolean.class, new CustomBooleanDeserializer()));
 
         objectMapper.registerModule(
                 new SimpleModule("PaymentTypesDeserializer",
-                        new Version(1, 0, 0, null, "net.siegmar", "billomat4j"))
+                        new Version(1, 0, 0, null, GROUP_ID, ARTIFACT_ID))
                 .addDeserializer(PaymentType[].class, new PaymentTypesDeserializer()));
 
         objectMapper.registerModule(
                 new SimpleModule("PaymentTypesSerializer",
-                        new Version(1, 0, 0, null, "net.siegmar", "billomat4j"))
+                        new Version(1, 0, 0, null, GROUP_ID, ARTIFACT_ID))
                 .addSerializer(PaymentType[].class, new PaymentTypesSerializer()));
 
         objectReader = objectMapper.reader()

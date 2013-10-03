@@ -2,6 +2,7 @@
 
 * Added support for downloading offer PDFs
 * Removed CLI
+* Replaced Maven with Gradle for building
 
 ## 1.0.4 (2013-04-13)
 

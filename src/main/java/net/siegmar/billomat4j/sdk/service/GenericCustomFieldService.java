@@ -18,7 +18,7 @@
  */
 package net.siegmar.billomat4j.sdk.service;
 
-public interface AbstractCustomFieldService {
+public interface GenericCustomFieldService {
 
     /**
      * Gets a custom field value.

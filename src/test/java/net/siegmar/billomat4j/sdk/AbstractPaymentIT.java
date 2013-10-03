@@ -30,15 +30,16 @@ import java.util.List;
 import net.siegmar.billomat4j.sdk.domain.AbstractPayment;
 import net.siegmar.billomat4j.sdk.domain.AbstractPaymentFilter;
 import net.siegmar.billomat4j.sdk.domain.types.PaymentType;
-import net.siegmar.billomat4j.sdk.service.AbstractPaymentService;
+import net.siegmar.billomat4j.sdk.service.GenericPaymentService;
 
 import org.testng.annotations.Test;
 
-public abstract class AbstractPaymentIT<P extends AbstractPayment, F extends AbstractPaymentFilter<?>> extends AbstractServiceIT {
+public abstract class AbstractPaymentIT<P extends AbstractPayment, F extends AbstractPaymentFilter<?>>
+    extends AbstractServiceIT {
 
-    private AbstractPaymentService<P, F> service;
+    private GenericPaymentService<P, F> service;
 
-    public void setService(final AbstractPaymentService<P, F> service) {
+    public void setService(final GenericPaymentService<P, F> service) {
         this.service = service;
     }
 

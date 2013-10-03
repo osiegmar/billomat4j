@@ -13,7 +13,7 @@
 
     <!-- Headers -->
     <module name="Header">
-        <property name="headerFile" value="config/java.header"/>
+        <property name="headerFile" value="config/checkstyle/java.header"/>
     </module>
 
     <!-- Javadoc -->
@@ -38,7 +38,7 @@
     <module name="TreeWalker">
 
         <property name="tabWidth" value="4"/>
-        <property name="cacheFile" value="target/cachefile"/>
+        <property name="cacheFile" value="build/checkstyle-cachefile"/>
 
         <module name="FileContentsHolder"/>
 
@@ -78,7 +78,6 @@
         <module name="AvoidInlineConditionals"/>
         -->
         <module name="CovariantEquals"/>
-        <module name="DoubleCheckedLocking"/>
         <module name="EmptyStatement"/>
         <module name="EqualsAvoidNull"/>
         <module name="EqualsHashCode"/>
@@ -130,10 +129,12 @@
         <module name="FallThrough">
             <property name="severity" value="warning"/>
         </module>
+        <!--  
         <module name="MultipleStringLiterals">
             <property name="severity" value="warning"/>
             <property name="ignoreStringsRegexp" value='^(("")|(", "))$'/>
         </module>
+        -->
         <module name="MultipleVariableDeclarations">
             <property name="severity" value="warning"/>
         </module>
@@ -144,15 +145,20 @@
 
         <!-- Imports -->
         <module name="AvoidStarImport"/>
+<!--
         <module name="AvoidStaticImport"/>
+-->
         <module name="IllegalImport"/>
         <module name="RedundantImport"/>
         <module name="UnusedImports"/>
+<!--
         <module name="ImportOrder">
-            <property name="groups" value="/^javax?\./,org"/>
+            <property name="groups" value="/^javax?\./,org,com"/>
             <property name="ordered" value="true"/>
             <property name="separated" value="true"/>
+            <property name="option" value="top"/>
         </module>
+-->
         <!--
         <module name="ImportControl"/>
         -->
@@ -285,6 +291,10 @@
         <property name="offCommentFormat" value="CSOFF\: ([\w\|]+)"/>
         <property name="onCommentFormat" value="CSON\: ([\w\|]+)"/>
         <property name="checkFormat" value="$1"/>
+    </module>
+
+    <module name="SuppressionFilter">
+        <property name="file" value="config/checkstyle/suppressions.xml"/>
     </module>
 
 </module>

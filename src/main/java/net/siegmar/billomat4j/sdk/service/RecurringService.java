@@ -32,9 +32,9 @@ import net.siegmar.billomat4j.sdk.domain.recurring.RecurringTag;
  * @see http://www.billomat.com/api/abo-rechnungen/schlagworte/
  */
 public interface RecurringService extends
-    AbstractCustomFieldService,
-    AbstractTagService<RecurringTag>,
-    AbstractItemService<RecurringItem> {
+    GenericCustomFieldService,
+    GenericTagService<RecurringTag>,
+    GenericItemService<RecurringItem> {
 
     /**
      * @param recurringFilter

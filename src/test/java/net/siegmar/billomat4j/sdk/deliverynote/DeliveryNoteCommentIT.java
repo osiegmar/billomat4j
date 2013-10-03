@@ -25,8 +25,8 @@ import net.siegmar.billomat4j.sdk.domain.deliverynote.DeliveryNoteActionKey;
 import net.siegmar.billomat4j.sdk.domain.deliverynote.DeliveryNoteComment;
 import net.siegmar.billomat4j.sdk.domain.deliverynote.DeliveryNoteCommentFilter;
 
-
-public class DeliveryNoteCommentIT extends AbstractCommentIT<DeliveryNoteActionKey, DeliveryNoteComment, DeliveryNoteCommentFilter> {
+public class DeliveryNoteCommentIT
+    extends AbstractCommentIT<DeliveryNoteActionKey, DeliveryNoteComment, DeliveryNoteCommentFilter> {
 
     public DeliveryNoteCommentIT() {
         setService(deliveryNoteService);

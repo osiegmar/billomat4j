@@ -23,7 +23,6 @@ import net.siegmar.billomat4j.sdk.domain.client.Client;
 import net.siegmar.billomat4j.sdk.domain.offer.Offer;
 import net.siegmar.billomat4j.sdk.domain.offer.OfferItem;
 
-
 public class OfferItemIT extends AbstractItemIT<OfferItem> {
 
     public OfferItemIT() {

@@ -7,13 +7,32 @@ Java Software Development Kit for the [Billomat](http://www.billomat.com/) [API]
 Requirements
 ------------
 
-- At runtime:
-    - Java 7
-    - Apache Commons Lang
-    - Jackson JSON Processor
-    - SLF4J
-- Additionally at buildtime:
-    - Apache Maven
+- Java 7
+- Apache Commons Lang
+- Jackson JSON Processor
+- SLF4J
+
+
+Build
+-----
+
+If you're not already familiar with [Gradle](http://www.gradle.org/), here are the basics to build billomat4j.
+
+To import this project to eclipse, run this first:
+
+    ./gradlew eclipse
+
+Then all required configuration files are created and you can import the project in eclipse.
+
+
+To build a .jar file run this:
+
+    ./gradlew assemble
+
+The .jar file will be created in the directory "build/libs/".
+
+
+If you're on Windows, you have to use the gradlew.bat batch script instead of the gradlew Unix/Linux shell script. 
 
 
 Example
@@ -54,7 +73,7 @@ The email address is required for sending test documents (like invoices).
 
 Run the integration test suite by invoking:
 
-    mvn -P integration-tests package
+    ./gradlew integrationTest
 
 
 Contribution

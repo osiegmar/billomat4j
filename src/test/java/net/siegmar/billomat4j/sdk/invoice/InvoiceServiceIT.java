@@ -104,7 +104,9 @@ public class InvoiceServiceIT extends AbstractServiceIT {
         final Invoice invoice1 = createInvoice(1);
         final Invoice invoice2 = createInvoice(2);
 
-        final List<InvoiceGroup> invoiceGroups = invoiceService.getGroupedInvoices(new InvoiceGroupFilter().byDay(), null);
+        final List<InvoiceGroup> invoiceGroups =
+                invoiceService.getGroupedInvoices(new InvoiceGroupFilter().byDay(), null);
+
         assertEquals(invoiceGroups.size(), 1);
 
         final InvoiceGroup invoiceGroup = invoiceGroups.get(0);

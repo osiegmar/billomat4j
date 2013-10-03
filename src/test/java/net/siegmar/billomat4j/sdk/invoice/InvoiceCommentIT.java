@@ -25,7 +25,6 @@ import net.siegmar.billomat4j.sdk.domain.invoice.InvoiceActionKey;
 import net.siegmar.billomat4j.sdk.domain.invoice.InvoiceComment;
 import net.siegmar.billomat4j.sdk.domain.invoice.InvoiceCommentFilter;
 
-
 public class InvoiceCommentIT extends AbstractCommentIT<InvoiceActionKey, InvoiceComment, InvoiceCommentFilter> {
 
     public InvoiceCommentIT() {

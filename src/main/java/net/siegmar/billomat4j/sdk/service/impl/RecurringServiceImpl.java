@@ -138,7 +138,8 @@ public class RecurringServiceImpl extends AbstractService implements RecurringSe
 
     @Override
     public List<RecurringEmailReceiver> getRecurringEmailReceivers(final int recurringId) {
-        return getAllPagesFromResource(RESOURCE_EMAIL_RECEIVER, RecurringEmailReceivers.class, recurringIdFilter(recurringId));
+        return getAllPagesFromResource(RESOURCE_EMAIL_RECEIVER, RecurringEmailReceivers.class,
+                recurringIdFilter(recurringId));
     }
 
     @Override

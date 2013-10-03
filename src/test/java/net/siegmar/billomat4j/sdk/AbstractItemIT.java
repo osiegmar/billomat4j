@@ -27,15 +27,15 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import net.siegmar.billomat4j.sdk.domain.AbstractItem;
-import net.siegmar.billomat4j.sdk.service.AbstractItemService;
+import net.siegmar.billomat4j.sdk.service.GenericItemService;
 
 import org.testng.annotations.Test;
 
 public abstract class AbstractItemIT<I extends AbstractItem> extends AbstractServiceIT {
 
-    private AbstractItemService<I> service;
+    private GenericItemService<I> service;
 
-    public void setService(final AbstractItemService<I> service) {
+    public void setService(final GenericItemService<I> service) {
         this.service = service;
     }
 

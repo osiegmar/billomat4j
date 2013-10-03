@@ -33,9 +33,9 @@ import net.siegmar.billomat4j.sdk.domain.settings.ArticleProperty;
  * @see http://www.billomat.com/api/einstellungen/artikel-attribute/
  */
 public interface ArticleService extends
-    AbstractCustomFieldService,
-    AbstractPropertyService<ArticleProperty, ArticlePropertyValue>,
-    AbstractTagService<ArticleTag> {
+    GenericCustomFieldService,
+    GenericPropertyService<ArticleProperty, ArticlePropertyValue>,
+    GenericTagService<ArticleTag> {
 
     /**
      * @param articleFilter

@@ -42,11 +42,11 @@ import net.siegmar.billomat4j.sdk.domain.creditnote.CreditNoteTag;
  * @see http://www.billomat.com/api/gutschriften/schlagworte/
  */
 public interface CreditNoteService extends
-    AbstractCustomFieldService,
-    AbstractTagService<CreditNoteTag>,
-    AbstractCommentService<CreditNoteActionKey, CreditNoteComment, CreditNoteCommentFilter>,
-    AbstractItemService<CreditNoteItem>,
-    AbstractPaymentService<CreditNotePayment, CreditNotePaymentFilter> {
+    GenericCustomFieldService,
+    GenericTagService<CreditNoteTag>,
+    GenericCommentService<CreditNoteActionKey, CreditNoteComment, CreditNoteCommentFilter>,
+    GenericItemService<CreditNoteItem>,
+    GenericPaymentService<CreditNotePayment, CreditNotePaymentFilter> {
 
     /**
      * @param creditNoteFilter

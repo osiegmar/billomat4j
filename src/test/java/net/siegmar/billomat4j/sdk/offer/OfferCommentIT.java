@@ -25,7 +25,6 @@ import net.siegmar.billomat4j.sdk.domain.offer.OfferActionKey;
 import net.siegmar.billomat4j.sdk.domain.offer.OfferComment;
 import net.siegmar.billomat4j.sdk.domain.offer.OfferCommentFilter;
 
-
 public class OfferCommentIT extends AbstractCommentIT<OfferActionKey, OfferComment, OfferCommentFilter> {
 
     public OfferCommentIT() {

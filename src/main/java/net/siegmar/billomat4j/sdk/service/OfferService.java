@@ -37,10 +37,10 @@ import net.siegmar.billomat4j.sdk.domain.offer.OfferTag;
  * @see http://www.billomat.com/api/angebote/schlagworte/
  */
 public interface OfferService extends
-    AbstractCustomFieldService,
-    AbstractTagService<OfferTag>,
-    AbstractCommentService<OfferActionKey, OfferComment, OfferCommentFilter>,
-    AbstractItemService<OfferItem> {
+    GenericCustomFieldService,
+    GenericTagService<OfferTag>,
+    GenericCommentService<OfferActionKey, OfferComment, OfferCommentFilter>,
+    GenericItemService<OfferItem> {
 
     /**
      * @param offerFilter

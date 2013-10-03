@@ -20,48 +20,56 @@ package net.siegmar.billomat4j.sdk.service;
 
 import java.util.List;
 
-import net.siegmar.billomat4j.sdk.domain.AbstractTag;
+import net.siegmar.billomat4j.sdk.domain.AbstractItem;
 
-public interface AbstractTagService<T extends AbstractTag> {
+public interface GenericItemService<I extends AbstractItem> {
 
     /**
-     * Find tags by their owner object id.
-     *
      * @param ownerId
-     *            the id of the tags owner object
-     * @return all found tags or an empty list if no tags were found - never {@code null}
+     *            the id of owning entity
+     * @return items found by filter criteria or an empty list if no items were found - never {@code null}
      * @throws net.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
-    List<T> getTags(Integer ownerId);
+    List<I> getItems(int ownerId);
 
     /**
-     * Gets a tag by its id.
+     * Gets an item by its id.
      *
-     * @param tagId
-     *            the tags id
-     * @return the tag or {@code null} if not found
+     * @param itemId
+     *            the item's id
+     * @return the item or {@code null} if not found
      * @throws net.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
-    T getTagById(int tagId);
+    I getItemById(int itemId);
 
     /**
-     * @param tag
-     *            the tag to create, must not be {@code null}
+     * @param item
+     *            the item to create, must not be {@code null}
      * @throws NullPointerException
-     *             if tag is null
+     *             if item is null
      * @throws net.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
-    void createTag(T tag);
+    void createItem(I item);
 
     /**
-     * @param tagId
-     *            the id of the tag to be deleted
+     * @param item
+     *            the item to update, must not be {@code null}
+     * @throws NullPointerException
+     *             if item is null
      * @throws net.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
-    void deleteTag(int tagId);
+    void updateItem(I item);
+
+    /**
+     * @param id
+     *            the id of the item to be deleted
+     * @throws net.siegmar.billomat4j.sdk.service.impl.ServiceException
+     *             if an error occured while accessing the web service
+     */
+    void deleteItem(int itemId);
 
 }

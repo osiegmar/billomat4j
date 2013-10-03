@@ -20,56 +20,50 @@ package net.siegmar.billomat4j.sdk.service;
 
 import java.util.List;
 
-import net.siegmar.billomat4j.sdk.domain.AbstractItem;
+import net.siegmar.billomat4j.sdk.domain.AbstractComment;
+import net.siegmar.billomat4j.sdk.domain.ActionKey;
+import net.siegmar.billomat4j.sdk.domain.Filter;
 
-public interface AbstractItemService<I extends AbstractItem> {
+public interface GenericCommentService<K extends ActionKey, C extends AbstractComment<K>, F extends Filter> {
 
     /**
      * @param ownerId
      *            the id of owning entity
-     * @return items found by filter criteria or an empty list if no items were found - never {@code null}
+     * @param commentFilter
+     *            comment filter, may be {@code null} to find unfiltered
+     * @return comments found by filter criteria or an empty list if no comments were found - never {@code null}
      * @throws net.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
-    List<I> getItems(int ownerId);
+    List<C> findComments(int ownerId, F commentFilter);
 
     /**
-     * Gets an item by its id.
+     * Gets a comment by its id.
      *
-     * @param itemId
-     *            the item's id
-     * @return the item or {@code null} if not found
+     * @param commentId
+     *            the comment's id
+     * @return the comment or {@code null} if not found
      * @throws net.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
-    I getItemById(int itemId);
+    C getCommentById(int commentId);
 
     /**
-     * @param item
-     *            the item to create, must not be {@code null}
+     * @param comment
+     *            the comment to create, must not be {@code null}
      * @throws NullPointerException
-     *             if item is null
+     *             if comment is null
      * @throws net.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
-    void createItem(I item);
+    void createComment(C comment);
 
     /**
-     * @param item
-     *            the item to update, must not be {@code null}
-     * @throws NullPointerException
-     *             if item is null
+     * @param commentId
+     *            the id of the comment to be deleted
      * @throws net.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
-    void updateItem(I item);
-
-    /**
-     * @param id
-     *            the id of the item to be deleted
-     * @throws net.siegmar.billomat4j.sdk.service.impl.ServiceException
-     *             if an error occured while accessing the web service
-     */
-    void deleteItem(int itemId);
+    void deleteComment(int commentId);
 
 }

@@ -37,10 +37,10 @@ import net.siegmar.billomat4j.sdk.domain.confirmation.ConfirmationTag;
  * @see http://www.billomat.com/api/auftragsbestaetigungen/schlagworte/
  */
 public interface ConfirmationService extends
-    AbstractCustomFieldService,
-    AbstractTagService<ConfirmationTag>,
-    AbstractCommentService<ConfirmationActionKey, ConfirmationComment, ConfirmationCommentFilter>,
-    AbstractItemService<ConfirmationItem> {
+    GenericCustomFieldService,
+    GenericTagService<ConfirmationTag>,
+    GenericCommentService<ConfirmationActionKey, ConfirmationComment, ConfirmationCommentFilter>,
+    GenericItemService<ConfirmationItem> {
 
     /**
      * @param confirmationFilter

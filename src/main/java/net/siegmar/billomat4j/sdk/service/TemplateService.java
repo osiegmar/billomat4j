@@ -27,7 +27,7 @@ import net.siegmar.billomat4j.sdk.domain.template.TemplateFilter;
 /**
  * @see http://www.billomat.com/api/vorlagen/
  */
-public interface TemplateService extends AbstractCustomFieldService {
+public interface TemplateService extends GenericCustomFieldService {
 
     /**
      * @param templateFilter

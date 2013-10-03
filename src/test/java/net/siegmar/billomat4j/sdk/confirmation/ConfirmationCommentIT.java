@@ -25,8 +25,8 @@ import net.siegmar.billomat4j.sdk.domain.confirmation.ConfirmationActionKey;
 import net.siegmar.billomat4j.sdk.domain.confirmation.ConfirmationComment;
 import net.siegmar.billomat4j.sdk.domain.confirmation.ConfirmationCommentFilter;
 
-
-public class ConfirmationCommentIT extends AbstractCommentIT<ConfirmationActionKey, ConfirmationComment, ConfirmationCommentFilter> {
+public class ConfirmationCommentIT
+    extends AbstractCommentIT<ConfirmationActionKey, ConfirmationComment, ConfirmationCommentFilter> {
 
     public ConfirmationCommentIT() {
         setService(confirmationService);

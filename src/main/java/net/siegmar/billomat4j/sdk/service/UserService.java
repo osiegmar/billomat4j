@@ -31,8 +31,8 @@ import net.siegmar.billomat4j.sdk.domain.user.UserPropertyValue;
  * @see http://www.billomat.com/api/einstellungen/benutzer-attribute/
  */
 public interface UserService extends
-    AbstractCustomFieldService,
-    AbstractPropertyService<UserProperty, UserPropertyValue> {
+    GenericCustomFieldService,
+    GenericPropertyService<UserProperty, UserPropertyValue> {
 
     /**
      * @param userFilter

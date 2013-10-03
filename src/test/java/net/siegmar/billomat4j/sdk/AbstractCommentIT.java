@@ -28,15 +28,16 @@ import java.util.List;
 import net.siegmar.billomat4j.sdk.domain.AbstractComment;
 import net.siegmar.billomat4j.sdk.domain.ActionKey;
 import net.siegmar.billomat4j.sdk.domain.Filter;
-import net.siegmar.billomat4j.sdk.service.AbstractCommentService;
+import net.siegmar.billomat4j.sdk.service.GenericCommentService;
 
 import org.testng.annotations.Test;
 
-public abstract class AbstractCommentIT<K extends ActionKey, C extends AbstractComment<K>, F extends Filter> extends AbstractServiceIT {
+public abstract class AbstractCommentIT<K extends ActionKey, C extends AbstractComment<K>, F extends Filter>
+    extends AbstractServiceIT {
 
-    private AbstractCommentService<K, C, F> service;
+    private GenericCommentService<K, C, F> service;
 
-    public void setService(final AbstractCommentService<K, C, F> service) {
+    public void setService(final GenericCommentService<K, C, F> service) {
         this.service = service;
     }
 

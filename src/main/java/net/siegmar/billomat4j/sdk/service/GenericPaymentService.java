@@ -20,50 +20,47 @@ package net.siegmar.billomat4j.sdk.service;
 
 import java.util.List;
 
-import net.siegmar.billomat4j.sdk.domain.AbstractComment;
-import net.siegmar.billomat4j.sdk.domain.ActionKey;
-import net.siegmar.billomat4j.sdk.domain.Filter;
+import net.siegmar.billomat4j.sdk.domain.AbstractPayment;
+import net.siegmar.billomat4j.sdk.domain.AbstractPaymentFilter;
 
-public interface AbstractCommentService<K extends ActionKey, C extends AbstractComment<K>, F extends Filter> {
+public interface GenericPaymentService<P extends AbstractPayment, F extends AbstractPaymentFilter<?>> {
 
     /**
-     * @param ownerId
-     *            the id of owning entity
-     * @param commentFilter
-     *            comment filter, may be {@code null} to find unfiltered
-     * @return comments found by filter criteria or an empty list if no comments were found - never {@code null}
+     * @param paymentFilter
+     *            payment filter, may be {@code null} to find unfiltered
+     * @return payments found by filter criteria or an empty list if no payments were found - never {@code null}
      * @throws net.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
-    List<C> findComments(int ownerId, F commentFilter);
+    List<P> findPayments(F paymentFilter);
 
     /**
-     * Gets a comment by its id.
+     * Gets a payment by its id.
      *
-     * @param commentId
-     *            the comment's id
-     * @return the comment or {@code null} if not found
+     * @param paymentId
+     *            the payment's id
+     * @return the payment or {@code null} if not found
      * @throws net.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
-    C getCommentById(int commentId);
+    P getPaymentById(int paymentId);
 
     /**
-     * @param comment
-     *            the comment to create, must not be {@code null}
+     * @param payment
+     *            the payment to create, must not be {@code null}
      * @throws NullPointerException
-     *             if comment is null
+     *             if payment is null
      * @throws net.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
-    void createComment(C comment);
+    void createPayment(P payment);
 
     /**
-     * @param commentId
-     *            the id of the comment to be deleted
+     * @param paymentId
+     *            the id of the payment to be deleted
      * @throws net.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
-    void deleteComment(int commentId);
+    void deletePayment(int paymentId);
 
 }

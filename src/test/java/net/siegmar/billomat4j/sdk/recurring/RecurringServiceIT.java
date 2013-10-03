@@ -118,7 +118,9 @@ public class RecurringServiceIT extends AbstractServiceIT {
     public void emailReceiver() {
         final Recurring recurring = createRecurring(PaymentType.BANK_TRANSFER);
 
-        final List<RecurringEmailReceiver> recurringEmailReceivers = recurringService.getRecurringEmailReceivers(recurring.getId());
+        final List<RecurringEmailReceiver> recurringEmailReceivers =
+                recurringService.getRecurringEmailReceivers(recurring.getId());
+
         assertEquals(recurringEmailReceivers.size(), 1);
         assertEquals(recurringEmailReceivers.get(0).getAddress(), "");
 
@@ -132,7 +134,8 @@ public class RecurringServiceIT extends AbstractServiceIT {
 
         recurringEmailReceiver.setType(RecipientType.Cc);
         recurringService.updateRecurringEmailReceiver(recurringEmailReceiver);
-        assertEquals(recurringService.getRecurringEmailReceiverById(recurringEmailReceiver.getId()).getType(), RecipientType.Cc);
+        assertEquals(recurringService.getRecurringEmailReceiverById(recurringEmailReceiver.getId()).getType(),
+                RecipientType.Cc);
 
         recurringService.deleteRecurringEmailReceiver(recurringEmailReceiver.getId());
     }

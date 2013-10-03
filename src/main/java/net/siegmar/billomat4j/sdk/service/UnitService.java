@@ -26,7 +26,7 @@ import net.siegmar.billomat4j.sdk.domain.unit.UnitFilter;
 /**
  * @see http://www.billomat.com/api/einheiten/
  */
-public interface UnitService extends AbstractCustomFieldService {
+public interface UnitService extends GenericCustomFieldService {
 
     /**
      * @param unitFilter

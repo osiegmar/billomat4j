@@ -118,7 +118,8 @@ public class ConfirmationServiceIT extends AbstractServiceIT {
     public void complete() {
         final Confirmation confirmation = createConfirmation(1);
         confirmationService.completeConfirmation(confirmation.getId(), null);
-        assertEquals(confirmationService.getConfirmationById(confirmation.getId()).getStatus(), ConfirmationStatus.COMPLETED);
+        assertEquals(confirmationService.getConfirmationById(confirmation.getId()).getStatus(),
+                ConfirmationStatus.COMPLETED);
     }
 
     @Test
@@ -129,7 +130,8 @@ public class ConfirmationServiceIT extends AbstractServiceIT {
         try {
             final Confirmation confirmation = createConfirmation(1);
             confirmationService.completeConfirmation(confirmation.getId(), template.getId());
-            assertEquals(confirmationService.getConfirmationById(confirmation.getId()).getStatus(), ConfirmationStatus.COMPLETED);
+            assertEquals(confirmationService.getConfirmationById(confirmation.getId()).getStatus(),
+                    ConfirmationStatus.COMPLETED);
         } finally {
             templateService.deleteTemplate(template.getId());
         }
@@ -172,7 +174,8 @@ public class ConfirmationServiceIT extends AbstractServiceIT {
         final Confirmation confirmation = createConfirmation(1);
         confirmationService.completeConfirmation(confirmation.getId(), null);
         confirmationService.cancelConfirmation(confirmation.getId());
-        assertEquals(confirmationService.getConfirmationById(confirmation.getId()).getStatus(), ConfirmationStatus.CANCELED);
+        assertEquals(confirmationService.getConfirmationById(confirmation.getId()).getStatus(),
+                ConfirmationStatus.CANCELED);
     }
 
     @Test
@@ -180,7 +183,8 @@ public class ConfirmationServiceIT extends AbstractServiceIT {
         final Confirmation confirmation = createConfirmation(1);
         confirmationService.completeConfirmation(confirmation.getId(), null);
         confirmationService.clearConfirmation(confirmation.getId());
-        assertEquals(confirmationService.getConfirmationById(confirmation.getId()).getStatus(), ConfirmationStatus.CLEARED);
+        assertEquals(confirmationService.getConfirmationById(confirmation.getId()).getStatus(),
+                ConfirmationStatus.CLEARED);
     }
 
     @Test
@@ -189,7 +193,8 @@ public class ConfirmationServiceIT extends AbstractServiceIT {
         confirmationService.completeConfirmation(confirmation.getId(), null);
         confirmationService.clearConfirmation(confirmation.getId());
         confirmationService.unclearConfirmation(confirmation.getId());
-        assertEquals(confirmationService.getConfirmationById(confirmation.getId()).getStatus(), ConfirmationStatus.COMPLETED);
+        assertEquals(confirmationService.getConfirmationById(confirmation.getId()).getStatus(),
+                ConfirmationStatus.COMPLETED);
     }
 
     private Confirmation createConfirmation(final int number) {

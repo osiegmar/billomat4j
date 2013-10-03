@@ -136,7 +136,8 @@ public class DeliveryNoteServiceIT extends AbstractServiceIT {
         final DeliveryNote deliveryNote = createDeliveryNote(1);
         assertEquals(deliveryNote.getStatus(), DeliveryNoteStatus.DRAFT);
         deliveryNoteService.completeDeliveryNote(deliveryNote.getId(), null);
-        assertEquals(deliveryNoteService.getDeliveryNoteById(deliveryNote.getId()).getStatus(), DeliveryNoteStatus.CREATED);
+        assertEquals(deliveryNoteService.getDeliveryNoteById(deliveryNote.getId()).getStatus(),
+                DeliveryNoteStatus.CREATED);
     }
 
     @Test
@@ -148,7 +149,8 @@ public class DeliveryNoteServiceIT extends AbstractServiceIT {
             final DeliveryNote deliveryNote = createDeliveryNote(1);
             assertEquals(deliveryNote.getStatus(), DeliveryNoteStatus.DRAFT);
             deliveryNoteService.completeDeliveryNote(deliveryNote.getId(), null);
-            assertEquals(deliveryNoteService.getDeliveryNoteById(deliveryNote.getId()).getStatus(), DeliveryNoteStatus.CREATED);
+            assertEquals(deliveryNoteService.getDeliveryNoteById(deliveryNote.getId()).getStatus(),
+                    DeliveryNoteStatus.CREATED);
         } finally {
             templateService.deleteTemplate(template.getId());
         }

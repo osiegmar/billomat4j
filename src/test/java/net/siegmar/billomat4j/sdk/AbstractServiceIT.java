@@ -57,7 +57,7 @@ import org.apache.commons.io.FileUtils;
 
 public abstract class AbstractServiceIT {
 
-    private static Properties PROPERTIES;
+    private static final Properties PROPERTIES;
 
     protected final ArticleService articleService;
     protected final ClientService clientService;
@@ -82,7 +82,7 @@ public abstract class AbstractServiceIT {
         billomatConfiguration.setBillomatId(PROPERTIES.getProperty("billomatId"));
         billomatConfiguration.setApiKey(PROPERTIES.getProperty("billomatApiKey"));
         billomatConfiguration.setSecure(true);
-        billomatConfiguration.setIgnoreUnknownProperties(false);
+        billomatConfiguration.setIgnoreUnknownProperties(true);
 
         articleService = new ArticleServiceImpl(billomatConfiguration);
         clientService = new ClientServiceImpl(billomatConfiguration);

@@ -104,7 +104,9 @@ public class CreditNoteServiceIT extends AbstractServiceIT {
         final CreditNote creditNote1 = createCreditNote(1);
         final CreditNote creditNote2 = createCreditNote(2);
 
-        final List<CreditNoteGroup> creditNoteGroups = creditNoteService.getGroupedCreditNotes(new CreditNoteGroupFilter().byDay(), null);
+        final List<CreditNoteGroup> creditNoteGroups =
+                creditNoteService.getGroupedCreditNotes(new CreditNoteGroupFilter().byDay(), null);
+
         assertEquals(creditNoteGroups.size(), 1);
 
         final CreditNoteGroup creditNoteGroup = creditNoteGroups.get(0);

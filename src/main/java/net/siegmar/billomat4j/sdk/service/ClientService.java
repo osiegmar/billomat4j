@@ -33,9 +33,9 @@ import net.siegmar.billomat4j.sdk.domain.settings.ClientProperty;
  * @see http://www.billomat.com/api/einstellungen/kunden-attribute/
  */
 public interface ClientService extends
-    AbstractCustomFieldService,
-    AbstractPropertyService<ClientProperty, ClientPropertyValue>,
-    AbstractTagService<ClientTag> {
+    GenericCustomFieldService,
+    GenericPropertyService<ClientProperty, ClientPropertyValue>,
+    GenericTagService<ClientTag> {
 
     /**
      * @see http://www.billomat.com/api/account/

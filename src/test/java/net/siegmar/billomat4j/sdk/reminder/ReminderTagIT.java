@@ -26,7 +26,6 @@ import net.siegmar.billomat4j.sdk.domain.invoice.Invoice;
 import net.siegmar.billomat4j.sdk.domain.reminder.Reminder;
 import net.siegmar.billomat4j.sdk.domain.reminder.ReminderTag;
 
-
 public class ReminderTagIT extends AbstractTagIT<ReminderTag> {
 
     public ReminderTagIT() {

@@ -33,9 +33,9 @@ import net.siegmar.billomat4j.sdk.domain.reminder.ReminderTag;
  * @see http://www.billomat.com/api/mahnungen/schlagworte/
  */
 public interface ReminderService extends
-    AbstractCustomFieldService,
-    AbstractTagService<ReminderTag>,
-    AbstractItemService<ReminderItem> {
+    GenericCustomFieldService,
+    GenericTagService<ReminderTag>,
+    GenericItemService<ReminderItem> {
 
     /**
      * @param reminderFilter

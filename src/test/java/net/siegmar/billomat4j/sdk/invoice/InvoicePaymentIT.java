@@ -25,7 +25,6 @@ import net.siegmar.billomat4j.sdk.domain.invoice.InvoicePayment;
 import net.siegmar.billomat4j.sdk.domain.invoice.InvoicePaymentFilter;
 import net.siegmar.billomat4j.sdk.domain.types.PaymentType;
 
-
 public class InvoicePaymentIT extends AbstractPaymentIT<InvoicePayment, InvoicePaymentFilter> {
 
     public InvoicePaymentIT() {

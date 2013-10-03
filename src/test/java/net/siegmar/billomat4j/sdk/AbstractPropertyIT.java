@@ -28,15 +28,16 @@ import java.util.List;
 import net.siegmar.billomat4j.sdk.domain.AbstractPropertyValue;
 import net.siegmar.billomat4j.sdk.domain.settings.AbstractProperty;
 import net.siegmar.billomat4j.sdk.domain.types.PropertyType;
-import net.siegmar.billomat4j.sdk.service.AbstractPropertyService;
+import net.siegmar.billomat4j.sdk.service.GenericPropertyService;
 
 import org.testng.annotations.Test;
 
-public abstract class AbstractPropertyIT<P extends AbstractProperty, A extends AbstractPropertyValue> extends AbstractServiceIT {
+public abstract class AbstractPropertyIT<P extends AbstractProperty, A extends AbstractPropertyValue>
+    extends AbstractServiceIT {
 
-    private AbstractPropertyService<P, A> service;
+    private GenericPropertyService<P, A> service;
 
-    public void setService(final AbstractPropertyService<P, A> service) {
+    public void setService(final GenericPropertyService<P, A> service) {
         this.service = service;
     }
 

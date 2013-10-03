@@ -24,15 +24,15 @@ import static org.testng.Assert.assertTrue;
 import java.util.List;
 
 import net.siegmar.billomat4j.sdk.domain.AbstractTag;
-import net.siegmar.billomat4j.sdk.service.AbstractTagService;
+import net.siegmar.billomat4j.sdk.service.GenericTagService;
 
 import org.testng.annotations.Test;
 
 public abstract class AbstractTagIT<T extends AbstractTag> extends AbstractServiceIT {
 
-    private AbstractTagService<T> service;
+    private GenericTagService<T> service;
 
-    public void setService(final AbstractTagService<T> service) {
+    public void setService(final GenericTagService<T> service) {
         this.service = service;
     }
 

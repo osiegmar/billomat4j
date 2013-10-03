@@ -25,8 +25,8 @@ import net.siegmar.billomat4j.sdk.domain.creditnote.CreditNoteActionKey;
 import net.siegmar.billomat4j.sdk.domain.creditnote.CreditNoteComment;
 import net.siegmar.billomat4j.sdk.domain.creditnote.CreditNoteCommentFilter;
 
-
-public class CreditNoteCommentIT extends AbstractCommentIT<CreditNoteActionKey, CreditNoteComment, CreditNoteCommentFilter> {
+public class CreditNoteCommentIT
+    extends AbstractCommentIT<CreditNoteActionKey, CreditNoteComment, CreditNoteCommentFilter> {
 
     public CreditNoteCommentIT() {
         setService(creditNoteService);
