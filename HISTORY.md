@@ -1,3 +1,7 @@
+## 1.0.6 (2014-??-??)
+
+* Fixed an issue that made stopping of Recurrings impossible
+
 ## 1.0.5 (2013-10-03)
 
 * Added support for downloading offer PDFs

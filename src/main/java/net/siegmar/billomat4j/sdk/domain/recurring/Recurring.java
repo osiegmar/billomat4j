@@ -72,7 +72,6 @@ public class Recurring extends AbstractMeta {
     private Date lastCreationDate;
 
     @JsonSerialize(using = MyDateSerializer.class)
-    @JsonInclude(Include.NON_NULL)
     private Date nextCreationDate;
 
     private Integer iterations;
