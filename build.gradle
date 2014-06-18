@@ -9,6 +9,8 @@ version = '1.0.6-SNAPSHOT'
 
 sourceCompatibility = 1.7
 
+compileJava.options.encoding = 'UTF-8'
+
 repositories {
     mavenCentral()
 }
@@ -26,8 +28,4 @@ task integrationTest(type: Test, dependsOn: "test") {
     useTestNG() {
         suites 'src/test/resources/testng.xml'
     }
-}
-
-task wrapper(type: Wrapper) {
-    gradleVersion = '1.8'
 }
