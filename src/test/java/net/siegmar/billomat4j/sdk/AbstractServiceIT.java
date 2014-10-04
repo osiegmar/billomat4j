@@ -81,6 +81,8 @@ public abstract class AbstractServiceIT {
         final BillomatConfiguration billomatConfiguration = new BillomatConfiguration();
         billomatConfiguration.setBillomatId(PROPERTIES.getProperty("billomatId"));
         billomatConfiguration.setApiKey(PROPERTIES.getProperty("billomatApiKey"));
+        billomatConfiguration.setAppId(PROPERTIES.getProperty("billomatAppId"));
+        billomatConfiguration.setAppSecret(PROPERTIES.getProperty("billomatAppSecret"));
         billomatConfiguration.setSecure(true);
         billomatConfiguration.setIgnoreUnknownProperties(true);
 

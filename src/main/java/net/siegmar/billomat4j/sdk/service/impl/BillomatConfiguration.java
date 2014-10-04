@@ -41,6 +41,8 @@ public class BillomatConfiguration {
 
     private String billomatId;
     private String apiKey;
+    private String appId;
+    private String appSecret;
     private boolean secure = true;
     private boolean ignoreUnknownProperties = true;
     private RequestHelper requestHelper;
@@ -61,6 +63,22 @@ public class BillomatConfiguration {
 
     public void setApiKey(final String apiKey) {
         this.apiKey = apiKey;
+    }
+
+    public String getAppId() {
+        return appId;
+    }
+
+    public void setAppId(final String appId) {
+        this.appId = appId;
+    }
+
+    public String getAppSecret() {
+        return appSecret;
+    }
+
+    public void setAppSecret(final String appSecret) {
+        this.appSecret = appSecret;
     }
 
     public boolean isSecure() {

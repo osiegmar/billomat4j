@@ -36,6 +36,10 @@ public class Example {
         billomatConfiguration.setBillomatId("<billomatId>");
         billomatConfiguration.setApiKey("<apiKey>");
 
+        // Optional Settings for registered Apps
+        billomatConfiguration.setAppId("<appId>");
+        billomatConfiguration.setAppSecret("<appSecret>");
+
         final InvoiceService invoiceService = new InvoiceServiceImpl(billomatConfiguration);
 
         System.out.println("Paid invoices for the last 30 days:");

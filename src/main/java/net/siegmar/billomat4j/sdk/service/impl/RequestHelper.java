@@ -189,6 +189,12 @@ class RequestHelper {
         connection.setConnectTimeout(CONNECT_TIMEOUT);
         connection.setReadTimeout(READ_TIMEOUT);
         connection.setRequestProperty("X-BillomatApiKey", billomatConfiguration.getApiKey());
+        if (billomatConfiguration.getAppId() != null) {
+            connection.setRequestProperty("X-AppId", billomatConfiguration.getAppId());
+        }
+        if (billomatConfiguration.getAppSecret() != null) {
+            connection.setRequestProperty("X-AppSecret", billomatConfiguration.getAppSecret());
+        }
         connection.setRequestProperty("Accept", CONTENT_TYPE);
         connection.setRequestProperty("User-Agent", USER_AGENT);
         connection.setRequestMethod(type);
