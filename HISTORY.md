@@ -1,7 +1,8 @@
-## 1.0.6 (2014-??-??)
+## 1.1.0 (2016-??-??)
 
 * Fixed an issue that made stopping of Recurrings impossible
 * Added support for registered Apps (appId / appSecret headers)
+* Added payment types INVOICE_CORRECTION and CHECK
 
 ## 1.0.5 (2013-10-03)
 
@@ -41,4 +42,3 @@
 ## 1.0.0 (2012-11-04)
 
 * First release
-

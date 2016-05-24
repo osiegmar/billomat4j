@@ -20,11 +20,13 @@ package net.siegmar.billomat4j.sdk.domain.types;
 
 public enum PaymentType {
 
+    INVOICE_CORRECTION,
     CREDIT_NOTE,
     BANK_CARD,
     BANK_TRANSFER,
     DEBIT,
     CASH,
+    CHECK,
     PAYPAL,
     CREDIT_CARD,
     COUPON,
