@@ -1,18 +1,20 @@
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'checkstyle'
+apply plugin: 'findbugs'
 apply plugin: 'maven'
+apply plugin: 'signing'
 
-group = 'de.siegmar.billomat4j'
-archivesBaseName = 'billomat4j-sdk'
-version = '1.0.6-SNAPSHOT'
+group = 'de.siegmar'
+archivesBaseName = 'billomat4j'
+version = '1.1.0-SNAPSHOT'
 
 sourceCompatibility = 1.7
 
 compileJava.options.encoding = 'UTF-8'
 
 repositories {
-    mavenCentral()
+    jcenter()
 }
 
 dependencies {
@@ -24,8 +26,85 @@ dependencies {
     testCompile('org.testng:testng:6.8.7')
 }
 
+processResources {
+    expand(version: version)
+}
+
 task integrationTest(type: Test, dependsOn: "test") {
     useTestNG() {
         suites 'src/test/resources/testng.xml'
+    }
+}
+
+tasks.withType(FindBugs) {
+    reports {
+        xml.enabled = false
+        html.enabled = true
+    }
+}
+
+task javadocJar(type: Jar) {
+    classifier = 'javadoc'
+    from javadoc
+}
+
+task sourcesJar(type: Jar) {
+    classifier = 'sources'
+    from sourceSets.main.allSource
+}
+
+artifacts {
+    archives javadocJar, sourcesJar
+}
+
+if (hasProperty('signing.keyId')) {
+    signing {
+        sign configurations.archives
+    }
+}
+
+if (hasProperty('ossrhUsername')) {
+    uploadArchives {
+        repositories {
+            mavenDeployer {
+                beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+                repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+                    authentication(userName: ossrhUsername, password: ossrhPassword)
+                }
+
+                snapshotRepository(url: "https://oss.sonatype.org/content/repositories/snapshots/") {
+                    authentication(userName: ossrhUsername, password: ossrhPassword)
+                }
+
+                pom.project {
+                    name 'FastCSV'
+                    packaging 'jar'
+                    description 'Java Software Development Kit for the Billomat API.'
+                    url 'https://github.com/osiegmar/billomat4j'
+
+                    scm {
+                        connection 'scm:git:https://github.com/osiegmar/billomat4j.git'
+                        developerConnection 'scm:git:https://github.com/osiegmar/billomat4j.git'
+                        url 'https://github.com/osiegmar/billomat4j'
+                    }
+
+                    licenses {
+                        license {
+                            name 'GNU Lesser General Public License version 3.0'
+                            url 'http://www.gnu.org/licenses/lgpl-3.0.txt'
+                        }
+                    }
+
+                    developers {
+                        developer {
+                            id 'osiegmar'
+                            name 'Oliver Siegmar'
+                            email 'oliver@siegmar.de'
+                        }
+                    }
+                }
+            }
+        }
     }
 }
