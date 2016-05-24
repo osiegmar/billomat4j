@@ -26,10 +26,10 @@ import static org.testng.Assert.assertNull;
 import java.math.BigDecimal;
 import java.util.List;
 
+import org.testng.annotations.Test;
+
 import de.siegmar.billomat4j.sdk.domain.AbstractItem;
 import de.siegmar.billomat4j.sdk.service.GenericItemService;
-
-import org.testng.annotations.Test;
 
 public abstract class AbstractItemIT<I extends AbstractItem> extends AbstractServiceIT {
 

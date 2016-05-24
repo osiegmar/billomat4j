@@ -26,15 +26,15 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import de.siegmar.billomat4j.sdk.domain.template.Template;
-import de.siegmar.billomat4j.sdk.domain.template.TemplateFormat;
-import de.siegmar.billomat4j.sdk.AbstractServiceIT;
-import de.siegmar.billomat4j.sdk.domain.template.ImageFormat;
-import de.siegmar.billomat4j.sdk.domain.template.TemplateFilter;
-import de.siegmar.billomat4j.sdk.domain.template.TemplateType;
-
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
+
+import de.siegmar.billomat4j.sdk.AbstractServiceIT;
+import de.siegmar.billomat4j.sdk.domain.template.ImageFormat;
+import de.siegmar.billomat4j.sdk.domain.template.Template;
+import de.siegmar.billomat4j.sdk.domain.template.TemplateFilter;
+import de.siegmar.billomat4j.sdk.domain.template.TemplateFormat;
+import de.siegmar.billomat4j.sdk.domain.template.TemplateType;
 
 public class TemplateServiceIT extends AbstractServiceIT {
 

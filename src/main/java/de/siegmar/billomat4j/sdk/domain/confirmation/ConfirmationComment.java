@@ -18,9 +18,9 @@
  */
 package de.siegmar.billomat4j.sdk.domain.confirmation;
 
-import de.siegmar.billomat4j.sdk.domain.AbstractComment;
-
 import com.fasterxml.jackson.annotation.JsonRootName;
+
+import de.siegmar.billomat4j.sdk.domain.AbstractComment;
 
 @JsonRootName("confirmation-comment")
 public class ConfirmationComment extends AbstractComment<ConfirmationActionKey> {

@@ -21,14 +21,14 @@ package de.siegmar.billomat4j.sdk.domain.creditnote;
 import java.math.BigDecimal;
 import java.util.Date;
 
-import de.siegmar.billomat4j.sdk.domain.AbstractIdentifiable;
-import de.siegmar.billomat4j.sdk.json.MyDateSerializer;
-
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+import de.siegmar.billomat4j.sdk.domain.AbstractIdentifiable;
+import de.siegmar.billomat4j.sdk.json.MyDateSerializer;
 
 @JsonRootName("credit-note-group")
 public class CreditNoteGroup extends AbstractIdentifiable {

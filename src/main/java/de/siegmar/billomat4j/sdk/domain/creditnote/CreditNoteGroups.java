@@ -22,11 +22,11 @@ import java.util.ArrayList;
 import java.util.Currency;
 import java.util.List;
 
-import de.siegmar.billomat4j.sdk.domain.WrappedRecord;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
+
+import de.siegmar.billomat4j.sdk.domain.WrappedRecord;
 
 @JsonRootName("credit-note-groups")
 public class CreditNoteGroups implements WrappedRecord<CreditNoteGroup> {

@@ -28,11 +28,14 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import de.siegmar.billomat4j.sdk.domain.creditnote.CreditNote;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.Test;
+
 import de.siegmar.billomat4j.sdk.AbstractServiceIT;
 import de.siegmar.billomat4j.sdk.domain.Email;
 import de.siegmar.billomat4j.sdk.domain.EmailRecipients;
 import de.siegmar.billomat4j.sdk.domain.client.Client;
+import de.siegmar.billomat4j.sdk.domain.creditnote.CreditNote;
 import de.siegmar.billomat4j.sdk.domain.creditnote.CreditNoteFilter;
 import de.siegmar.billomat4j.sdk.domain.creditnote.CreditNoteGroup;
 import de.siegmar.billomat4j.sdk.domain.creditnote.CreditNoteGroupFilter;
@@ -42,9 +45,6 @@ import de.siegmar.billomat4j.sdk.domain.creditnote.CreditNoteStatus;
 import de.siegmar.billomat4j.sdk.domain.template.Template;
 import de.siegmar.billomat4j.sdk.domain.template.TemplateFormat;
 import de.siegmar.billomat4j.sdk.domain.template.TemplateType;
-
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.Test;
 
 public class CreditNoteServiceIT extends AbstractServiceIT {
 

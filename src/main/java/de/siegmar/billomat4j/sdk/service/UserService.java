@@ -21,7 +21,6 @@ package de.siegmar.billomat4j.sdk.service;
 import java.util.List;
 
 import de.siegmar.billomat4j.sdk.domain.settings.UserProperty;
-import de.siegmar.billomat4j.sdk.service.impl.ServiceException;
 import de.siegmar.billomat4j.sdk.domain.user.User;
 import de.siegmar.billomat4j.sdk.domain.user.UserFilter;
 import de.siegmar.billomat4j.sdk.domain.user.UserPropertyValue;
@@ -39,7 +38,7 @@ public interface UserService extends
      * @param userFilter
      *            user filter, may be {@code null} to find unfiltered
      * @return users found by filter criteria or an empty list if no users were found - never {@code null}
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     List<User> findUsers(UserFilter userFilter);
@@ -48,14 +47,14 @@ public interface UserService extends
      * @param userId
      *            the user's id
      * @return the user or {@code null} if not found
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     User getUserById(int userId);
 
     /**
      * @return the authenticated user
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     User getMySelf();

@@ -19,11 +19,11 @@
 package de.siegmar.billomat4j.sdk.confirmation;
 
 import de.siegmar.billomat4j.sdk.AbstractCommentIT;
-import de.siegmar.billomat4j.sdk.domain.confirmation.ConfirmationCommentFilter;
 import de.siegmar.billomat4j.sdk.domain.client.Client;
 import de.siegmar.billomat4j.sdk.domain.confirmation.Confirmation;
 import de.siegmar.billomat4j.sdk.domain.confirmation.ConfirmationActionKey;
 import de.siegmar.billomat4j.sdk.domain.confirmation.ConfirmationComment;
+import de.siegmar.billomat4j.sdk.domain.confirmation.ConfirmationCommentFilter;
 
 public class ConfirmationCommentIT
     extends AbstractCommentIT<ConfirmationActionKey, ConfirmationComment, ConfirmationCommentFilter> {

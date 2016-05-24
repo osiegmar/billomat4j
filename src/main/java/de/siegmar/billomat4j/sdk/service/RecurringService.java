@@ -20,12 +20,11 @@ package de.siegmar.billomat4j.sdk.service;
 
 import java.util.List;
 
-import de.siegmar.billomat4j.sdk.domain.recurring.RecurringItem;
 import de.siegmar.billomat4j.sdk.domain.recurring.Recurring;
 import de.siegmar.billomat4j.sdk.domain.recurring.RecurringEmailReceiver;
 import de.siegmar.billomat4j.sdk.domain.recurring.RecurringFilter;
+import de.siegmar.billomat4j.sdk.domain.recurring.RecurringItem;
 import de.siegmar.billomat4j.sdk.domain.recurring.RecurringTag;
-import de.siegmar.billomat4j.sdk.service.impl.ServiceException;
 
 /**
  * @see http://www.billomat.com/api/abo-rechnungen/
@@ -42,7 +41,7 @@ public interface RecurringService extends
      *            recurring filter, may be {@code null} to find unfiltered
      * @return recurrings found by filter criteria or an empty list if no recurrings were found - never
      *         {@code null}
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     List<Recurring> findRecurrings(RecurringFilter recurringFilter);
@@ -53,7 +52,7 @@ public interface RecurringService extends
      * @param recurringId
      *            the recurring's id
      * @return the recurring or {@code null} if not found
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     Recurring getRecurringById(int recurringId);
@@ -63,7 +62,7 @@ public interface RecurringService extends
      *            the recurring to create, must not be {@code null}
      * @throws NullPointerException
      *             if recurring is null
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void createRecurring(Recurring recurring);
@@ -73,7 +72,7 @@ public interface RecurringService extends
      *            the recurring to update, must not be {@code null}
      * @throws NullPointerException
      *             if recurring is null
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void updateRecurring(Recurring recurring);
@@ -81,7 +80,7 @@ public interface RecurringService extends
     /**
      * @param recurringId
      *            the id of the recurring to be deleted
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void deleteRecurring(int recurringId);
@@ -91,7 +90,7 @@ public interface RecurringService extends
      *            the recurring id
      * @return email receivers found for the given recurring id or an empty list if no items were found - never
      *         {@code null}
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     List<RecurringEmailReceiver> getRecurringEmailReceivers(int recurringId);
@@ -102,7 +101,7 @@ public interface RecurringService extends
      * @param recurringEmailReceiverId
      *            the recurring receiver's id
      * @return the recurring receiver or {@code null} if not found
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     RecurringEmailReceiver getRecurringEmailReceiverById(int recurringEmailReceiverId);
@@ -112,7 +111,7 @@ public interface RecurringService extends
      *            the recurring receiver to create, must not be {@code null}
      * @throws NullPointerException
      *             if recurringEmailReceiver is null
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void createRecurringEmailReceiver(RecurringEmailReceiver recurringEmailReceiver);
@@ -122,7 +121,7 @@ public interface RecurringService extends
      *            the recurring receiver to update, must not be {@code null}
      * @throws NullPointerException
      *             if recurringEmailReceiver is null
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void updateRecurringEmailReceiver(RecurringEmailReceiver recurringEmailReceiver);
@@ -130,7 +129,7 @@ public interface RecurringService extends
     /**
      * @param recurringEmailReceiverId
      *            the id of the recurring receiver to be deleted
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void deleteRecurringEmailReceiver(int recurringEmailReceiverId);

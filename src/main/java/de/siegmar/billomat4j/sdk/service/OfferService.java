@@ -20,16 +20,14 @@ package de.siegmar.billomat4j.sdk.service;
 
 import java.util.List;
 
+import de.siegmar.billomat4j.sdk.domain.Email;
 import de.siegmar.billomat4j.sdk.domain.offer.Offer;
 import de.siegmar.billomat4j.sdk.domain.offer.OfferActionKey;
 import de.siegmar.billomat4j.sdk.domain.offer.OfferComment;
+import de.siegmar.billomat4j.sdk.domain.offer.OfferCommentFilter;
 import de.siegmar.billomat4j.sdk.domain.offer.OfferFilter;
 import de.siegmar.billomat4j.sdk.domain.offer.OfferItem;
 import de.siegmar.billomat4j.sdk.domain.offer.OfferPdf;
-import de.siegmar.billomat4j.sdk.domain.offer.OfferStatus;
-import de.siegmar.billomat4j.sdk.service.impl.ServiceException;
-import de.siegmar.billomat4j.sdk.domain.Email;
-import de.siegmar.billomat4j.sdk.domain.offer.OfferCommentFilter;
 import de.siegmar.billomat4j.sdk.domain.offer.OfferTag;
 
 /**
@@ -49,7 +47,7 @@ public interface OfferService extends
      *            offer filter, may be {@code null} to find unfiltered
      * @return offers found by filter criteria or an empty list if no offers were found - never
      *         {@code null}
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     List<Offer> findOffers(OfferFilter offerFilter);
@@ -60,7 +58,7 @@ public interface OfferService extends
      * @param offerId
      *            the offer's id
      * @return the offer or {@code null} if not found
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     Offer getOfferById(int offerId);
@@ -75,7 +73,7 @@ public interface OfferService extends
      *             if offerNumber is null
      * @throws IllegalArgumentException
      *             if offerNumber is empty
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     Offer getOfferByNumber(String offerNumber);
@@ -85,7 +83,7 @@ public interface OfferService extends
      *            the offer to create, must not be {@code null}
      * @throws NullPointerException
      *             if offer is null
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void createOffer(Offer offer);
@@ -95,7 +93,7 @@ public interface OfferService extends
      *            the offer to update, must not be {@code null}
      * @throws NullPointerException
      *             if offer is null
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void updateOffer(Offer offer);
@@ -103,7 +101,7 @@ public interface OfferService extends
     /**
      * @param offerId
      *            the id of the offer to be deleted
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void deleteOffer(int offerId);
@@ -112,19 +110,19 @@ public interface OfferService extends
      * @param offerId
      *            the id of the offer to get the PDF for
      * @return the offer PDF or {@code null} if not found
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     OfferPdf getOfferPdf(int offerId);
 
     /**
-     * Sets the offer status to {@link OfferStatus#COMPLETED}.
+     * Sets the offer status to {@link de.siegmar.billomat4j.sdk.domain.offer.OfferStatus#OPEN}.
      *
      * @param offerId
      *            the id of the offer to update
      * @param templateId
      *            the id of the template to use for the resulting document or {@code null} of no template should be used
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void completeOffer(int offerId, Integer templateId);
@@ -136,47 +134,47 @@ public interface OfferService extends
      *            the email configuration
      * @throws NullPointerException
      *             if offerEmail is null
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void sendOfferViaEmail(int offerId, Email offerEmail);
 
     /**
-     * Sets the offer status to {@link OfferStatus#CANCELED}.
+     * Sets the offer status to {@link de.siegmar.billomat4j.sdk.domain.offer.OfferStatus#CANCELED}.
      *
      * @param offerId
      *            the id of the offer to update
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void cancelOffer(int offerId);
 
     /**
-     * Sets the offer status to {@link OfferStatus#WON}.
+     * Sets the offer status to {@link de.siegmar.billomat4j.sdk.domain.offer.OfferStatus#WON}.
      *
      * @param offerId
      *            the id of the offer to update
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void winOffer(int offerId);
 
     /**
-     * Sets the offer status to {@link OfferStatus#LOST}.
+     * Sets the offer status to {@link de.siegmar.billomat4j.sdk.domain.offer.OfferStatus#LOST}.
      *
      * @param offerId
      *            the id of the offer to update
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void loseOffer(int offerId);
 
     /**
-     * Sets the offer status to {@link OfferStatus#CLEARED}.
+     * Sets the offer status to {@link de.siegmar.billomat4j.sdk.domain.offer.OfferStatus#CLEARED}.
      *
      * @param offerId
      *            the id of the offer to update
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void clearOffer(int offerId);
@@ -186,7 +184,7 @@ public interface OfferService extends
      *
      * @param offerId
      *            the id of the offer to update
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void unclearOffer(int offerId);

@@ -18,9 +18,9 @@
  */
 package de.siegmar.billomat4j.sdk.domain.recurring;
 
-import de.siegmar.billomat4j.sdk.domain.AbstractInvoiceItem;
-
 import com.fasterxml.jackson.annotation.JsonRootName;
+
+import de.siegmar.billomat4j.sdk.domain.AbstractInvoiceItem;
 
 @JsonRootName("recurring-item")
 public class RecurringItem extends AbstractInvoiceItem {

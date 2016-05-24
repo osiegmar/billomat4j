@@ -22,8 +22,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-import de.siegmar.billomat4j.sdk.domain.invoice.InvoiceItems;
-import de.siegmar.billomat4j.sdk.domain.invoice.InvoicePayments;
+import org.apache.commons.lang3.Validate;
+
 import de.siegmar.billomat4j.sdk.domain.Email;
 import de.siegmar.billomat4j.sdk.domain.Filter;
 import de.siegmar.billomat4j.sdk.domain.invoice.Invoice;
@@ -35,15 +35,15 @@ import de.siegmar.billomat4j.sdk.domain.invoice.InvoiceGroup;
 import de.siegmar.billomat4j.sdk.domain.invoice.InvoiceGroupFilter;
 import de.siegmar.billomat4j.sdk.domain.invoice.InvoiceGroups;
 import de.siegmar.billomat4j.sdk.domain.invoice.InvoiceItem;
+import de.siegmar.billomat4j.sdk.domain.invoice.InvoiceItems;
 import de.siegmar.billomat4j.sdk.domain.invoice.InvoicePayment;
 import de.siegmar.billomat4j.sdk.domain.invoice.InvoicePaymentFilter;
+import de.siegmar.billomat4j.sdk.domain.invoice.InvoicePayments;
 import de.siegmar.billomat4j.sdk.domain.invoice.InvoicePdf;
 import de.siegmar.billomat4j.sdk.domain.invoice.InvoiceTag;
 import de.siegmar.billomat4j.sdk.domain.invoice.InvoiceTags;
 import de.siegmar.billomat4j.sdk.domain.invoice.Invoices;
 import de.siegmar.billomat4j.sdk.service.InvoiceService;
-
-import org.apache.commons.lang3.Validate;
 
 public class InvoiceServiceImpl extends AbstractService implements InvoiceService {
 

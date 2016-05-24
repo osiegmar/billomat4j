@@ -21,10 +21,9 @@ package de.siegmar.billomat4j.sdk.service;
 import java.util.List;
 
 import de.siegmar.billomat4j.sdk.domain.settings.CountryTax;
-import de.siegmar.billomat4j.sdk.domain.settings.Tax;
 import de.siegmar.billomat4j.sdk.domain.settings.ReminderText;
 import de.siegmar.billomat4j.sdk.domain.settings.Settings;
-import de.siegmar.billomat4j.sdk.service.impl.ServiceException;
+import de.siegmar.billomat4j.sdk.domain.settings.Tax;
 
 /**
  * @see http://www.billomat.com/api/einstellungen/
@@ -40,7 +39,7 @@ public interface SettingsService {
      * Gets the account's main settings.
      *
      * @return the account's main settings
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     Settings getSettings();
@@ -50,7 +49,7 @@ public interface SettingsService {
      *            the settings to update, must not be {@code null}
      * @throws NullPointerException
      *             if settings is null
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void updateSettings(Settings settings);
@@ -59,7 +58,7 @@ public interface SettingsService {
 
     /**
      * @return all configured taxes or an empty list if no taxes were found - never {@code null}
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     List<Tax> getTaxes();
@@ -70,7 +69,7 @@ public interface SettingsService {
      * @param taxId
      *            the tax's id
      * @return the tax or {@code null} if not found
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     Tax getTaxById(int taxId);
@@ -80,7 +79,7 @@ public interface SettingsService {
      *            the tax to create, must not be {@code null}
      * @throws NullPointerException
      *             if tax is null
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void createTax(Tax tax);
@@ -90,7 +89,7 @@ public interface SettingsService {
      *            the tax to update, must not be {@code null}
      * @throws NullPointerException
      *             if tax is null
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void updateTax(Tax tax);
@@ -98,7 +97,7 @@ public interface SettingsService {
     /**
      * @param taxId
      *            the id of the tax to be deleted
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void deleteTax(int taxId);
@@ -107,7 +106,7 @@ public interface SettingsService {
 
     /**
      * @return all configured country taxes or an empty list if no country taxes were found - never {@code null}
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     List<CountryTax> getCountryTaxes();
@@ -118,7 +117,7 @@ public interface SettingsService {
      * @param countryTaxId
      *            the country tax's id
      * @return the country tax or {@code null} if not found
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     CountryTax getCountryTaxById(int countryTaxId);
@@ -128,7 +127,7 @@ public interface SettingsService {
      *            the country tax to create, must not be {@code null}
      * @throws NullPointerException
      *             if countryTax is null
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void createCountryTax(CountryTax countryTax);
@@ -138,7 +137,7 @@ public interface SettingsService {
      *            the country tax to update, must not be {@code null}
      * @throws NullPointerException
      *             if countryTax is null
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void updateCountryTax(CountryTax countryTax);
@@ -146,7 +145,7 @@ public interface SettingsService {
     /**
      * @param countryTaxId
      *            the id of the country tax to be deleted
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void deleteCountryTax(int countryTaxId);
@@ -155,7 +154,7 @@ public interface SettingsService {
 
     /**
      * @return all configured reminder texts or an empty list if no reminder texts were found - never {@code null}
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     List<ReminderText> getReminderTexts();
@@ -166,7 +165,7 @@ public interface SettingsService {
      * @param reminderTextId
      *            the reminder text's id
      * @return the reminder text or {@code null} if not found
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     ReminderText getReminderTextById(int reminderTextId);
@@ -176,7 +175,7 @@ public interface SettingsService {
      *            the reminder text to create, must not be {@code null}
      * @throws NullPointerException
      *             if reminderText is null
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void createReminderText(ReminderText reminderText);
@@ -186,7 +185,7 @@ public interface SettingsService {
      *            the reminder text to update, must not be {@code null}
      * @throws NullPointerException
      *             if reminderText is null
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void updateReminderText(ReminderText reminderText);
@@ -194,7 +193,7 @@ public interface SettingsService {
     /**
      * @param reminderTextId
      *            the id of the reminder text to be deleted
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void deleteReminderText(int reminderTextId);

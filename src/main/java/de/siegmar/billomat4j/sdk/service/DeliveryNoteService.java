@@ -20,17 +20,15 @@ package de.siegmar.billomat4j.sdk.service;
 
 import java.util.List;
 
+import de.siegmar.billomat4j.sdk.domain.Email;
 import de.siegmar.billomat4j.sdk.domain.deliverynote.DeliveryNote;
 import de.siegmar.billomat4j.sdk.domain.deliverynote.DeliveryNoteActionKey;
 import de.siegmar.billomat4j.sdk.domain.deliverynote.DeliveryNoteComment;
 import de.siegmar.billomat4j.sdk.domain.deliverynote.DeliveryNoteCommentFilter;
-import de.siegmar.billomat4j.sdk.domain.deliverynote.DeliveryNoteItem;
-import de.siegmar.billomat4j.sdk.domain.deliverynote.DeliveryNoteStatus;
-import de.siegmar.billomat4j.sdk.domain.deliverynote.DeliveryNoteTag;
-import de.siegmar.billomat4j.sdk.service.impl.ServiceException;
-import de.siegmar.billomat4j.sdk.domain.Email;
 import de.siegmar.billomat4j.sdk.domain.deliverynote.DeliveryNoteFilter;
+import de.siegmar.billomat4j.sdk.domain.deliverynote.DeliveryNoteItem;
 import de.siegmar.billomat4j.sdk.domain.deliverynote.DeliveryNotePdf;
+import de.siegmar.billomat4j.sdk.domain.deliverynote.DeliveryNoteTag;
 
 /**
  * @see http://www.billomat.com/api/lieferscheine/
@@ -49,7 +47,7 @@ public interface DeliveryNoteService extends
      *            delivery note filter, may be {@code null} to find unfiltered
      * @return delivery notes found by filter criteria or an empty list if no delivery notes were found - never
      *         {@code null}
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     List<DeliveryNote> findDeliveryNotes(DeliveryNoteFilter deliveryNoteFilter);
@@ -60,7 +58,7 @@ public interface DeliveryNoteService extends
      * @param deliveryNoteId
      *            the delivery note's id
      * @return the delivery note or {@code null} if not found
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     DeliveryNote getDeliveryNoteById(int deliveryNoteId);
@@ -75,7 +73,7 @@ public interface DeliveryNoteService extends
      *             if deliveryNoteNumber is null
      * @throws IllegalArgumentException
      *             if deliveryNoteNumber is empty
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     DeliveryNote getDeliveryNoteByNumber(String deliveryNoteNumber);
@@ -85,7 +83,7 @@ public interface DeliveryNoteService extends
      *            the delivery note to create, must not be {@code null}
      * @throws NullPointerException
      *             if deliveryNote is null
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void createDeliveryNote(DeliveryNote deliveryNote);
@@ -95,7 +93,7 @@ public interface DeliveryNoteService extends
      *            the delivery note to update, must not be {@code null}
      * @throws NullPointerException
      *             if deliveryNote is null
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void updateDeliveryNote(DeliveryNote deliveryNote);
@@ -103,7 +101,7 @@ public interface DeliveryNoteService extends
     /**
      * @param deliveryNoteId
      *            the id of the delivery note to be deleted
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void deleteDeliveryNote(int deliveryNoteId);
@@ -112,20 +110,20 @@ public interface DeliveryNoteService extends
      * @param deliveryNoteId
      *            the id of the delivery note to get the PDF for
      * @return the delivery note PDF or {@code null} if not found
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     DeliveryNotePdf getDeliveryNotePdf(int deliveryNoteId);
 
     /**
      * Sets the delivery note status to
-     * {@link DeliveryNoteStatus#COMPLETED}.
+     * {@link de.siegmar.billomat4j.sdk.domain.deliverynote.DeliveryNoteStatus#CREATED}.
      *
      * @param deliveryNoteId
      *            the id of the delivery note to update
      * @param templateId
      *            the id of the template to use for the resulting document or {@code null} of no template should be used
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void completeDeliveryNote(int deliveryNoteId, Integer templateId);
@@ -137,7 +135,7 @@ public interface DeliveryNoteService extends
      *            the email configuration
      * @throws NullPointerException
      *             if deliveryNoteEmail is null
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void sendDeliveryNoteViaEmail(int deliveryNoteId, Email deliveryNoteEmail);

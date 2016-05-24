@@ -18,9 +18,9 @@
  */
 package de.siegmar.billomat4j.sdk.domain.unit;
 
-import de.siegmar.billomat4j.sdk.domain.AbstractMeta;
-
 import com.fasterxml.jackson.annotation.JsonRootName;
+
+import de.siegmar.billomat4j.sdk.domain.AbstractMeta;
 
 @JsonRootName("unit")
 public class Unit extends AbstractMeta {

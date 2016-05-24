@@ -18,11 +18,11 @@
  */
 package de.siegmar.billomat4j.sdk.domain;
 
-import de.siegmar.billomat4j.sdk.json.Views;
-
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 
 import com.fasterxml.jackson.annotation.JsonView;
+
+import de.siegmar.billomat4j.sdk.json.Views;
 
 public abstract class AbstractIdentifiable implements Identifiable {
 

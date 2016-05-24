@@ -20,16 +20,16 @@ package de.siegmar.billomat4j.sdk.service.impl;
 
 import java.util.List;
 
-import de.siegmar.billomat4j.sdk.domain.user.User;
-import de.siegmar.billomat4j.sdk.domain.user.UserPropertyValue;
-import de.siegmar.billomat4j.sdk.service.UserService;
+import org.apache.commons.lang3.Validate;
+
 import de.siegmar.billomat4j.sdk.domain.settings.UserProperties;
 import de.siegmar.billomat4j.sdk.domain.settings.UserProperty;
+import de.siegmar.billomat4j.sdk.domain.user.User;
 import de.siegmar.billomat4j.sdk.domain.user.UserFilter;
+import de.siegmar.billomat4j.sdk.domain.user.UserPropertyValue;
 import de.siegmar.billomat4j.sdk.domain.user.UserPropertyValues;
 import de.siegmar.billomat4j.sdk.domain.user.Users;
-
-import org.apache.commons.lang3.Validate;
+import de.siegmar.billomat4j.sdk.service.UserService;
 
 public class UserServiceImpl extends AbstractService implements UserService {
 

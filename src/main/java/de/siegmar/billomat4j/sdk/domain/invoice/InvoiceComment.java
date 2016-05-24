@@ -18,9 +18,9 @@
  */
 package de.siegmar.billomat4j.sdk.domain.invoice;
 
-import de.siegmar.billomat4j.sdk.domain.AbstractComment;
-
 import com.fasterxml.jackson.annotation.JsonRootName;
+
+import de.siegmar.billomat4j.sdk.domain.AbstractComment;
 
 @JsonRootName("invoice-comment")
 public class InvoiceComment extends AbstractComment<InvoiceActionKey> {

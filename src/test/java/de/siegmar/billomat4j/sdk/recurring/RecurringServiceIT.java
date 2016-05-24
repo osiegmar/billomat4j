@@ -29,19 +29,19 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.lang3.time.DateUtils;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.Test;
+
 import de.siegmar.billomat4j.sdk.AbstractServiceIT;
-import de.siegmar.billomat4j.sdk.domain.recurring.RecurringItem;
 import de.siegmar.billomat4j.sdk.domain.client.Client;
 import de.siegmar.billomat4j.sdk.domain.recurring.Recurring;
 import de.siegmar.billomat4j.sdk.domain.recurring.RecurringCycle;
 import de.siegmar.billomat4j.sdk.domain.recurring.RecurringEmailReceiver;
 import de.siegmar.billomat4j.sdk.domain.recurring.RecurringFilter;
+import de.siegmar.billomat4j.sdk.domain.recurring.RecurringItem;
 import de.siegmar.billomat4j.sdk.domain.types.PaymentType;
 import de.siegmar.billomat4j.sdk.domain.types.RecipientType;
-
-import org.apache.commons.lang3.time.DateUtils;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.Test;
 
 public class RecurringServiceIT extends AbstractServiceIT {
 

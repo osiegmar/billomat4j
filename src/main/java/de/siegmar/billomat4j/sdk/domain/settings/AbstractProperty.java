@@ -18,12 +18,12 @@
  */
 package de.siegmar.billomat4j.sdk.domain.settings;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonView;
+
 import de.siegmar.billomat4j.sdk.domain.AbstractIdentifiable;
 import de.siegmar.billomat4j.sdk.domain.types.PropertyType;
 import de.siegmar.billomat4j.sdk.json.Views;
-
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonView;
 
 public abstract class AbstractProperty extends AbstractIdentifiable {
 

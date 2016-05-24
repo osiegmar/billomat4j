@@ -18,8 +18,6 @@
  */
 package de.siegmar.billomat4j.sdk.service;
 
-import de.siegmar.billomat4j.sdk.service.impl.ServiceException;
-
 public interface GenericCustomFieldService {
 
     /**
@@ -27,7 +25,7 @@ public interface GenericCustomFieldService {
      *
      * @param ownerId the id of the custom field owning object
      * @return the custom field value
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     String getCustomFieldValue(int ownerId);
@@ -37,7 +35,7 @@ public interface GenericCustomFieldService {
      *
      * @param ownerId the id of the custom field owning object
      * @param value the value to be set
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void setCustomFieldValue(int ownerId, String value);

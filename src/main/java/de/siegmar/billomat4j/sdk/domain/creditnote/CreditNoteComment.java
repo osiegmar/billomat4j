@@ -18,9 +18,9 @@
  */
 package de.siegmar.billomat4j.sdk.domain.creditnote;
 
-import de.siegmar.billomat4j.sdk.domain.AbstractComment;
-
 import com.fasterxml.jackson.annotation.JsonRootName;
+
+import de.siegmar.billomat4j.sdk.domain.AbstractComment;
 
 @JsonRootName("credit-note-comment")
 public class CreditNoteComment extends AbstractComment<CreditNoteActionKey> {

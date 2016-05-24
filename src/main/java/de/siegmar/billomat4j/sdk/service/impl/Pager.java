@@ -24,13 +24,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import de.siegmar.billomat4j.sdk.domain.Filter;
-import de.siegmar.billomat4j.sdk.domain.Pageable;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.databind.ObjectReader;
+
+import de.siegmar.billomat4j.sdk.domain.Filter;
+import de.siegmar.billomat4j.sdk.domain.Pageable;
 
 class Pager<T extends Pageable<E>, E> {
 

@@ -18,10 +18,10 @@
  */
 package de.siegmar.billomat4j.sdk.recurring;
 
-import de.siegmar.billomat4j.sdk.domain.recurring.RecurringItem;
 import de.siegmar.billomat4j.sdk.AbstractItemIT;
 import de.siegmar.billomat4j.sdk.domain.client.Client;
 import de.siegmar.billomat4j.sdk.domain.recurring.Recurring;
+import de.siegmar.billomat4j.sdk.domain.recurring.RecurringItem;
 
 public class RecurringItemIT extends AbstractItemIT<RecurringItem> {
 

@@ -28,6 +28,9 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.Test;
+
 import de.siegmar.billomat4j.sdk.AbstractServiceIT;
 import de.siegmar.billomat4j.sdk.domain.Email;
 import de.siegmar.billomat4j.sdk.domain.EmailRecipients;
@@ -42,9 +45,6 @@ import de.siegmar.billomat4j.sdk.domain.invoice.InvoiceStatus;
 import de.siegmar.billomat4j.sdk.domain.template.Template;
 import de.siegmar.billomat4j.sdk.domain.template.TemplateFormat;
 import de.siegmar.billomat4j.sdk.domain.template.TemplateType;
-
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.Test;
 
 public class InvoiceServiceIT extends AbstractServiceIT {
 

@@ -22,11 +22,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import de.siegmar.billomat4j.sdk.domain.AbstractPageable;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
+
+import de.siegmar.billomat4j.sdk.domain.AbstractPageable;
 
 @JsonRootName("reminder-texts")
 public class ReminderTexts extends AbstractPageable<ReminderText> {

@@ -28,13 +28,13 @@ import java.util.ArrayList;
 import java.util.Currency;
 import java.util.List;
 
-import de.siegmar.billomat4j.sdk.AbstractServiceIT;
-import de.siegmar.billomat4j.sdk.domain.article.Article;
-import de.siegmar.billomat4j.sdk.domain.article.ArticleFilter;
-
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
+
+import de.siegmar.billomat4j.sdk.AbstractServiceIT;
+import de.siegmar.billomat4j.sdk.domain.article.Article;
+import de.siegmar.billomat4j.sdk.domain.article.ArticleFilter;
 
 public class ArticleServiceIT extends AbstractServiceIT {
 

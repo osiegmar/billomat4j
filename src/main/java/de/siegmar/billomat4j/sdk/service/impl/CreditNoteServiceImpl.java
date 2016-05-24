@@ -22,6 +22,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.lang3.Validate;
+
 import de.siegmar.billomat4j.sdk.domain.Email;
 import de.siegmar.billomat4j.sdk.domain.Filter;
 import de.siegmar.billomat4j.sdk.domain.creditnote.CreditNote;
@@ -42,8 +44,6 @@ import de.siegmar.billomat4j.sdk.domain.creditnote.CreditNoteTag;
 import de.siegmar.billomat4j.sdk.domain.creditnote.CreditNoteTags;
 import de.siegmar.billomat4j.sdk.domain.creditnote.CreditNotes;
 import de.siegmar.billomat4j.sdk.service.CreditNoteService;
-
-import org.apache.commons.lang3.Validate;
 
 public class CreditNoteServiceImpl extends AbstractService implements CreditNoteService {
 

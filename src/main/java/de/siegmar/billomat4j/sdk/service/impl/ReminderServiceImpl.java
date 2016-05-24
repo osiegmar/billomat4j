@@ -22,18 +22,18 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
-import de.siegmar.billomat4j.sdk.domain.reminder.ReminderFilter;
-import de.siegmar.billomat4j.sdk.domain.reminder.ReminderTags;
+import org.apache.commons.lang3.Validate;
+
 import de.siegmar.billomat4j.sdk.domain.Email;
 import de.siegmar.billomat4j.sdk.domain.reminder.Reminder;
+import de.siegmar.billomat4j.sdk.domain.reminder.ReminderFilter;
 import de.siegmar.billomat4j.sdk.domain.reminder.ReminderItem;
 import de.siegmar.billomat4j.sdk.domain.reminder.ReminderItems;
 import de.siegmar.billomat4j.sdk.domain.reminder.ReminderPdf;
 import de.siegmar.billomat4j.sdk.domain.reminder.ReminderTag;
+import de.siegmar.billomat4j.sdk.domain.reminder.ReminderTags;
 import de.siegmar.billomat4j.sdk.domain.reminder.Reminders;
 import de.siegmar.billomat4j.sdk.service.ReminderService;
-
-import org.apache.commons.lang3.Validate;
 
 public class ReminderServiceImpl extends AbstractService implements ReminderService {
 

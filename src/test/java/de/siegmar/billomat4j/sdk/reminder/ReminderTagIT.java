@@ -23,8 +23,8 @@ import java.util.Date;
 import de.siegmar.billomat4j.sdk.AbstractTagIT;
 import de.siegmar.billomat4j.sdk.domain.client.Client;
 import de.siegmar.billomat4j.sdk.domain.invoice.Invoice;
-import de.siegmar.billomat4j.sdk.domain.reminder.ReminderTag;
 import de.siegmar.billomat4j.sdk.domain.reminder.Reminder;
+import de.siegmar.billomat4j.sdk.domain.reminder.ReminderTag;
 
 public class ReminderTagIT extends AbstractTagIT<ReminderTag> {
 

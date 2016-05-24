@@ -25,12 +25,12 @@ import static org.testng.Assert.assertTrue;
 
 import java.util.List;
 
+import org.testng.annotations.Test;
+
 import de.siegmar.billomat4j.sdk.domain.AbstractPropertyValue;
 import de.siegmar.billomat4j.sdk.domain.settings.AbstractProperty;
 import de.siegmar.billomat4j.sdk.domain.types.PropertyType;
 import de.siegmar.billomat4j.sdk.service.GenericPropertyService;
-
-import org.testng.annotations.Test;
 
 public abstract class AbstractPropertyIT<P extends AbstractProperty, A extends AbstractPropertyValue>
     extends AbstractServiceIT {

@@ -25,8 +25,8 @@ import de.siegmar.billomat4j.sdk.domain.creditnote.CreditNote;
 import de.siegmar.billomat4j.sdk.domain.deliverynote.DeliveryNote;
 import de.siegmar.billomat4j.sdk.domain.invoice.Invoice;
 import de.siegmar.billomat4j.sdk.domain.offer.Offer;
-import de.siegmar.billomat4j.sdk.domain.reminder.Reminder;
 import de.siegmar.billomat4j.sdk.domain.recurring.Recurring;
+import de.siegmar.billomat4j.sdk.domain.reminder.Reminder;
 
 public class Cleanup extends AbstractServiceIT {
 

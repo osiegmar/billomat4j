@@ -25,12 +25,12 @@ import static org.testng.Assert.assertTrue;
 
 import java.util.List;
 
+import org.testng.annotations.Test;
+
 import de.siegmar.billomat4j.sdk.domain.AbstractComment;
 import de.siegmar.billomat4j.sdk.domain.ActionKey;
 import de.siegmar.billomat4j.sdk.domain.Filter;
 import de.siegmar.billomat4j.sdk.service.GenericCommentService;
-
-import org.testng.annotations.Test;
 
 public abstract class AbstractCommentIT<K extends ActionKey, C extends AbstractComment<K>, F extends Filter>
     extends AbstractServiceIT {

@@ -20,9 +20,9 @@ package de.siegmar.billomat4j.sdk.domain;
 
 import java.util.Date;
 
-import de.siegmar.billomat4j.sdk.domain.types.PaymentType;
-
 import org.apache.commons.lang3.time.DateFormatUtils;
+
+import de.siegmar.billomat4j.sdk.domain.types.PaymentType;
 
 public abstract class AbstractPaymentFilter<T extends AbstractPaymentFilter<?>> extends AbstractFilter<T> {
 

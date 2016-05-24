@@ -20,18 +20,18 @@ package de.siegmar.billomat4j.sdk.service.impl;
 
 import java.util.List;
 
+import org.apache.commons.lang3.Validate;
+
+import de.siegmar.billomat4j.sdk.domain.recurring.Recurring;
+import de.siegmar.billomat4j.sdk.domain.recurring.RecurringEmailReceiver;
 import de.siegmar.billomat4j.sdk.domain.recurring.RecurringEmailReceivers;
+import de.siegmar.billomat4j.sdk.domain.recurring.RecurringFilter;
 import de.siegmar.billomat4j.sdk.domain.recurring.RecurringItem;
 import de.siegmar.billomat4j.sdk.domain.recurring.RecurringItems;
+import de.siegmar.billomat4j.sdk.domain.recurring.RecurringTag;
 import de.siegmar.billomat4j.sdk.domain.recurring.RecurringTags;
 import de.siegmar.billomat4j.sdk.domain.recurring.Recurrings;
 import de.siegmar.billomat4j.sdk.service.RecurringService;
-import de.siegmar.billomat4j.sdk.domain.recurring.Recurring;
-import de.siegmar.billomat4j.sdk.domain.recurring.RecurringEmailReceiver;
-import de.siegmar.billomat4j.sdk.domain.recurring.RecurringFilter;
-import de.siegmar.billomat4j.sdk.domain.recurring.RecurringTag;
-
-import org.apache.commons.lang3.Validate;
 
 public class RecurringServiceImpl extends AbstractService implements RecurringService {
 

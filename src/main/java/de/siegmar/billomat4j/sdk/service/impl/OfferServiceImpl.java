@@ -20,22 +20,22 @@ package de.siegmar.billomat4j.sdk.service.impl;
 
 import java.util.List;
 
-import de.siegmar.billomat4j.sdk.domain.offer.OfferComments;
-import de.siegmar.billomat4j.sdk.domain.offer.OfferFilter;
-import de.siegmar.billomat4j.sdk.domain.offer.OfferTags;
+import org.apache.commons.lang3.Validate;
+
 import de.siegmar.billomat4j.sdk.domain.Email;
 import de.siegmar.billomat4j.sdk.domain.Filter;
 import de.siegmar.billomat4j.sdk.domain.offer.Offer;
 import de.siegmar.billomat4j.sdk.domain.offer.OfferComment;
 import de.siegmar.billomat4j.sdk.domain.offer.OfferCommentFilter;
+import de.siegmar.billomat4j.sdk.domain.offer.OfferComments;
+import de.siegmar.billomat4j.sdk.domain.offer.OfferFilter;
 import de.siegmar.billomat4j.sdk.domain.offer.OfferItem;
 import de.siegmar.billomat4j.sdk.domain.offer.OfferItems;
 import de.siegmar.billomat4j.sdk.domain.offer.OfferPdf;
 import de.siegmar.billomat4j.sdk.domain.offer.OfferTag;
+import de.siegmar.billomat4j.sdk.domain.offer.OfferTags;
 import de.siegmar.billomat4j.sdk.domain.offer.Offers;
 import de.siegmar.billomat4j.sdk.service.OfferService;
-
-import org.apache.commons.lang3.Validate;
 
 public class OfferServiceImpl extends AbstractService implements OfferService {
 

@@ -20,7 +20,6 @@ package de.siegmar.billomat4j.sdk.service;
 
 import java.util.List;
 
-import de.siegmar.billomat4j.sdk.service.impl.ServiceException;
 import de.siegmar.billomat4j.sdk.domain.AbstractComment;
 import de.siegmar.billomat4j.sdk.domain.ActionKey;
 import de.siegmar.billomat4j.sdk.domain.Filter;
@@ -33,7 +32,7 @@ public interface GenericCommentService<K extends ActionKey, C extends AbstractCo
      * @param commentFilter
      *            comment filter, may be {@code null} to find unfiltered
      * @return comments found by filter criteria or an empty list if no comments were found - never {@code null}
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     List<C> findComments(int ownerId, F commentFilter);
@@ -44,7 +43,7 @@ public interface GenericCommentService<K extends ActionKey, C extends AbstractCo
      * @param commentId
      *            the comment's id
      * @return the comment or {@code null} if not found
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     C getCommentById(int commentId);
@@ -54,7 +53,7 @@ public interface GenericCommentService<K extends ActionKey, C extends AbstractCo
      *            the comment to create, must not be {@code null}
      * @throws NullPointerException
      *             if comment is null
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void createComment(C comment);
@@ -62,7 +61,7 @@ public interface GenericCommentService<K extends ActionKey, C extends AbstractCo
     /**
      * @param commentId
      *            the id of the comment to be deleted
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void deleteComment(int commentId);

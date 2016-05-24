@@ -18,10 +18,10 @@
  */
 package de.siegmar.billomat4j.sdk.deliverynote;
 
-import de.siegmar.billomat4j.sdk.domain.deliverynote.DeliveryNote;
-import de.siegmar.billomat4j.sdk.domain.deliverynote.DeliveryNoteItem;
 import de.siegmar.billomat4j.sdk.AbstractItemIT;
 import de.siegmar.billomat4j.sdk.domain.client.Client;
+import de.siegmar.billomat4j.sdk.domain.deliverynote.DeliveryNote;
+import de.siegmar.billomat4j.sdk.domain.deliverynote.DeliveryNoteItem;
 
 
 public class DeliveryNoteItemIT extends AbstractItemIT<DeliveryNoteItem> {

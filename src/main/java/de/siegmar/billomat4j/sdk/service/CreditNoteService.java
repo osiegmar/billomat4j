@@ -20,13 +20,10 @@ package de.siegmar.billomat4j.sdk.service;
 
 import java.util.List;
 
+import de.siegmar.billomat4j.sdk.domain.Email;
 import de.siegmar.billomat4j.sdk.domain.creditnote.CreditNote;
 import de.siegmar.billomat4j.sdk.domain.creditnote.CreditNoteActionKey;
 import de.siegmar.billomat4j.sdk.domain.creditnote.CreditNoteComment;
-import de.siegmar.billomat4j.sdk.domain.creditnote.CreditNotePdf;
-import de.siegmar.billomat4j.sdk.domain.creditnote.CreditNoteStatus;
-import de.siegmar.billomat4j.sdk.service.impl.ServiceException;
-import de.siegmar.billomat4j.sdk.domain.Email;
 import de.siegmar.billomat4j.sdk.domain.creditnote.CreditNoteCommentFilter;
 import de.siegmar.billomat4j.sdk.domain.creditnote.CreditNoteFilter;
 import de.siegmar.billomat4j.sdk.domain.creditnote.CreditNoteGroup;
@@ -34,6 +31,7 @@ import de.siegmar.billomat4j.sdk.domain.creditnote.CreditNoteGroupFilter;
 import de.siegmar.billomat4j.sdk.domain.creditnote.CreditNoteItem;
 import de.siegmar.billomat4j.sdk.domain.creditnote.CreditNotePayment;
 import de.siegmar.billomat4j.sdk.domain.creditnote.CreditNotePaymentFilter;
+import de.siegmar.billomat4j.sdk.domain.creditnote.CreditNotePdf;
 import de.siegmar.billomat4j.sdk.domain.creditnote.CreditNoteTag;
 
 /**
@@ -55,7 +53,7 @@ public interface CreditNoteService extends
      *            credit note filter, may be {@code null} to find unfiltered
      * @return credit notes found by filter criteria or an empty list if no credit notes were found - never
      *         {@code null}
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     List<CreditNote> findCreditNotes(CreditNoteFilter creditNoteFilter);
@@ -68,7 +66,7 @@ public interface CreditNoteService extends
      * @return grouped credit note list or an empty list if no credit notes were found - never {@code null}
      * @throws NullPointerException
      *             if creditNoteGroupFilter is null
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     List<CreditNoteGroup> getGroupedCreditNotes(CreditNoteGroupFilter creditNoteGroupFilter,
@@ -80,7 +78,7 @@ public interface CreditNoteService extends
      * @param creditNoteId
      *            the credit note's id
      * @return the credit note or {@code null} if not found
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     CreditNote getCreditNoteById(int creditNoteId);
@@ -95,7 +93,7 @@ public interface CreditNoteService extends
      *             if creditNoteNumber is null
      * @throws IllegalArgumentException
      *             if creditNoteNumber is empty
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     CreditNote getCreditNoteByNumber(String creditNoteNumber);
@@ -105,7 +103,7 @@ public interface CreditNoteService extends
      *            the credit note to create, must not be {@code null}
      * @throws NullPointerException
      *             if creditNote is null
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void createCreditNote(CreditNote creditNote);
@@ -115,7 +113,7 @@ public interface CreditNoteService extends
      *            the credit note to update, must not be {@code null}
      * @throws NullPointerException
      *             if creditNote is null
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void updateCreditNote(CreditNote creditNote);
@@ -123,7 +121,7 @@ public interface CreditNoteService extends
     /**
      * @param creditNoteId
      *            the id of the credit note to be deleted
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void deleteCreditNote(int creditNoteId);
@@ -132,7 +130,7 @@ public interface CreditNoteService extends
      * @param creditNoteId
      *            the id of the credit note to get the PDF for
      * @return the credit note PDF or {@code null} if not found
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      * @see #getCreditNoteSignedPdf(int)
      */
@@ -142,7 +140,7 @@ public interface CreditNoteService extends
      * @param creditNoteId
      *            the id of the credit note to get the signed PDF for
      * @return the signed credit note PDF or {@code null} if not found
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      * @see #uploadCreditNoteSignedPdf(int, byte[])
      * @see #getCreditNotePdf(int)
@@ -150,13 +148,13 @@ public interface CreditNoteService extends
     CreditNotePdf getCreditNoteSignedPdf(int creditNoteId);
 
     /**
-     * Sets the credit note status to {@link CreditNoteStatus#COMPLETED}.
+     * Sets the credit note status to {@link de.siegmar.billomat4j.sdk.domain.creditnote.CreditNoteStatus#OPEN}.
      *
      * @param creditNoteId
      *            the id of the credit note to update
      * @param templateId
      *            the id of the template to use for the resulting document or {@code null} of no template should be used
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void completeCreditNote(int creditNoteId, Integer templateId);
@@ -166,7 +164,7 @@ public interface CreditNoteService extends
      *            the id of the credit note to upload the signed PDF for
      * @param pdf
      *            the signed PDF as binary data (must not be {@code null})
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      * @throws NullPointerException
      *             if pdf is null
@@ -181,7 +179,7 @@ public interface CreditNoteService extends
      *            the email configuration
      * @throws NullPointerException
      *             if creditNoteEmail is null
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void sendCreditNoteViaEmail(int creditNoteId, Email creditNoteEmail);

@@ -25,11 +25,11 @@ import static org.testng.Assert.assertTrue;
 
 import java.util.List;
 
+import org.testng.annotations.Test;
+
 import de.siegmar.billomat4j.sdk.AbstractServiceIT;
 import de.siegmar.billomat4j.sdk.domain.user.User;
 import de.siegmar.billomat4j.sdk.domain.user.UserFilter;
-
-import org.testng.annotations.Test;
 
 public class UserServiceIT extends AbstractServiceIT {
 

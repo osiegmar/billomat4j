@@ -20,12 +20,11 @@ package de.siegmar.billomat4j.sdk.service;
 
 import java.util.List;
 
-import de.siegmar.billomat4j.sdk.domain.article.ArticlePropertyValue;
 import de.siegmar.billomat4j.sdk.domain.article.Article;
 import de.siegmar.billomat4j.sdk.domain.article.ArticleFilter;
+import de.siegmar.billomat4j.sdk.domain.article.ArticlePropertyValue;
 import de.siegmar.billomat4j.sdk.domain.article.ArticleTag;
 import de.siegmar.billomat4j.sdk.domain.settings.ArticleProperty;
-import de.siegmar.billomat4j.sdk.service.impl.ServiceException;
 
 /**
  * @see http://www.billomat.com/api/artikel/
@@ -42,7 +41,7 @@ public interface ArticleService extends
      * @param articleFilter
      *            article filter, may be {@code null} to find unfiltered
      * @return articles found by filter criteria or an empty list if no articles were found - never {@code null}
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     List<Article> findArticles(ArticleFilter articleFilter);
@@ -53,7 +52,7 @@ public interface ArticleService extends
      * @param articleId
      *            the article's id
      * @return the article or {@code null} if not found
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     Article getArticleById(int articleId);
@@ -68,7 +67,7 @@ public interface ArticleService extends
      *             if articleNumber is null
      * @throws IllegalArgumentException
      *             if articleNumber is empty
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     Article getArticleByNumber(String articleNumber);
@@ -78,7 +77,7 @@ public interface ArticleService extends
      *            the article to create, must not be {@code null}
      * @throws NullPointerException
      *             if article is null
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void createArticle(Article article);
@@ -88,7 +87,7 @@ public interface ArticleService extends
      *            the article to update, must not be {@code null}
      * @throws NullPointerException
      *             if article is null
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void updateArticle(Article article);
@@ -96,7 +95,7 @@ public interface ArticleService extends
     /**
      * @param articleId
      *            the id of the article to be deleted
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void deleteArticle(int articleId);

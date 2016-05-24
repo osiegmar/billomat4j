@@ -20,9 +20,9 @@ package de.siegmar.billomat4j.sdk;
 
 import static org.testng.Assert.assertEquals;
 
-import de.siegmar.billomat4j.sdk.service.GenericCustomFieldService;
-
 import org.testng.annotations.Test;
+
+import de.siegmar.billomat4j.sdk.service.GenericCustomFieldService;
 
 public abstract class AbstractCustomFieldServiceIT extends AbstractServiceIT {
 

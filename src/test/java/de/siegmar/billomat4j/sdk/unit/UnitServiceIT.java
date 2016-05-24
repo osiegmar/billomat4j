@@ -26,12 +26,12 @@ import static org.testng.Assert.assertTrue;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.Test;
+
 import de.siegmar.billomat4j.sdk.AbstractServiceIT;
 import de.siegmar.billomat4j.sdk.domain.unit.Unit;
 import de.siegmar.billomat4j.sdk.domain.unit.UnitFilter;
-
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.Test;
 
 public class UnitServiceIT extends AbstractServiceIT {
 

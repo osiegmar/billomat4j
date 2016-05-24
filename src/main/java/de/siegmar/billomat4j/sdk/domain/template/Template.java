@@ -18,10 +18,10 @@
  */
 package de.siegmar.billomat4j.sdk.domain.template;
 
-import de.siegmar.billomat4j.sdk.domain.AbstractMeta;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
+
+import de.siegmar.billomat4j.sdk.domain.AbstractMeta;
 
 @JsonRootName("template")
 public class Template extends AbstractMeta {

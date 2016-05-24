@@ -27,12 +27,12 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
+import org.testng.annotations.Test;
+
 import de.siegmar.billomat4j.sdk.domain.AbstractPayment;
 import de.siegmar.billomat4j.sdk.domain.AbstractPaymentFilter;
 import de.siegmar.billomat4j.sdk.domain.types.PaymentType;
 import de.siegmar.billomat4j.sdk.service.GenericPaymentService;
-
-import org.testng.annotations.Test;
 
 public abstract class AbstractPaymentIT<P extends AbstractPayment, F extends AbstractPaymentFilter<?>>
     extends AbstractServiceIT {

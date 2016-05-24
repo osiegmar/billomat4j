@@ -18,9 +18,9 @@
  */
 package de.siegmar.billomat4j.sdk.domain.offer;
 
-import de.siegmar.billomat4j.sdk.domain.AbstractTag;
-
 import com.fasterxml.jackson.annotation.JsonRootName;
+
+import de.siegmar.billomat4j.sdk.domain.AbstractTag;
 
 @JsonRootName("offer-tag")
 public class OfferTag extends AbstractTag {

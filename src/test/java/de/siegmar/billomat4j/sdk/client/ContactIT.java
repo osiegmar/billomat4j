@@ -23,13 +23,13 @@ import static org.testng.Assert.assertNotNull;
 
 import java.util.List;
 
-import de.siegmar.billomat4j.sdk.AbstractServiceIT;
-import de.siegmar.billomat4j.sdk.domain.client.Client;
-import de.siegmar.billomat4j.sdk.domain.client.Contact;
-
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+
+import de.siegmar.billomat4j.sdk.AbstractServiceIT;
+import de.siegmar.billomat4j.sdk.domain.client.Client;
+import de.siegmar.billomat4j.sdk.domain.client.Contact;
 
 public class ContactIT extends AbstractServiceIT {
 

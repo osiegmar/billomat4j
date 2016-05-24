@@ -18,8 +18,8 @@
  */
 package de.siegmar.billomat4j.sdk.unit;
 
-import de.siegmar.billomat4j.sdk.domain.unit.Unit;
 import de.siegmar.billomat4j.sdk.AbstractCustomFieldServiceIT;
+import de.siegmar.billomat4j.sdk.domain.unit.Unit;
 
 
 public class UnitCustomFieldIT extends AbstractCustomFieldServiceIT {

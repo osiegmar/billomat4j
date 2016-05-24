@@ -21,11 +21,11 @@ package de.siegmar.billomat4j.sdk.domain.article;
 import java.math.BigDecimal;
 import java.util.Currency;
 
-import de.siegmar.billomat4j.sdk.domain.AbstractMeta;
-import de.siegmar.billomat4j.sdk.json.Views;
-
 import com.fasterxml.jackson.annotation.JsonRootName;
 import com.fasterxml.jackson.annotation.JsonView;
+
+import de.siegmar.billomat4j.sdk.domain.AbstractMeta;
+import de.siegmar.billomat4j.sdk.json.Views;
 
 @JsonRootName("article")
 public class Article extends AbstractMeta {

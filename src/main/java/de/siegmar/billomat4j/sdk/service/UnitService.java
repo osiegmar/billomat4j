@@ -22,7 +22,6 @@ import java.util.List;
 
 import de.siegmar.billomat4j.sdk.domain.unit.Unit;
 import de.siegmar.billomat4j.sdk.domain.unit.UnitFilter;
-import de.siegmar.billomat4j.sdk.service.impl.ServiceException;
 
 /**
  * @see http://www.billomat.com/api/einheiten/
@@ -33,7 +32,7 @@ public interface UnitService extends GenericCustomFieldService {
      * @param unitFilter
      *            unit filter, may be {@code null} to find unfiltered
      * @return units found by filter criteria or an empty list if no units were found - never {@code null}
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     List<Unit> findUnits(UnitFilter unitFilter);
@@ -44,7 +43,7 @@ public interface UnitService extends GenericCustomFieldService {
      * @param unitId
      *            the unit's id
      * @return the unit or {@code null} if not found
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     Unit getUnitById(int unitId);
@@ -54,7 +53,7 @@ public interface UnitService extends GenericCustomFieldService {
      *            the unit to create, must not be {@code null}
      * @throws NullPointerException
      *             if unit is null
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void createUnit(Unit unit);
@@ -64,7 +63,7 @@ public interface UnitService extends GenericCustomFieldService {
      *            the unit to update, must not be {@code null}
      * @throws NullPointerException
      *             if unit is null
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void updateUnit(Unit unit);
@@ -72,7 +71,7 @@ public interface UnitService extends GenericCustomFieldService {
     /**
      * @param unitId
      *            the id of the unit to be deleted
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void deleteUnit(int unitId);

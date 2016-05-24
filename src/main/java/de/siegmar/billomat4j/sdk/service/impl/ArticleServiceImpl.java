@@ -20,6 +20,8 @@ package de.siegmar.billomat4j.sdk.service.impl;
 
 import java.util.List;
 
+import org.apache.commons.lang3.Validate;
+
 import de.siegmar.billomat4j.sdk.domain.article.Article;
 import de.siegmar.billomat4j.sdk.domain.article.ArticleFilter;
 import de.siegmar.billomat4j.sdk.domain.article.ArticlePropertyValue;
@@ -27,11 +29,9 @@ import de.siegmar.billomat4j.sdk.domain.article.ArticlePropertyValues;
 import de.siegmar.billomat4j.sdk.domain.article.ArticleTag;
 import de.siegmar.billomat4j.sdk.domain.article.ArticleTags;
 import de.siegmar.billomat4j.sdk.domain.article.Articles;
+import de.siegmar.billomat4j.sdk.domain.settings.ArticleProperties;
 import de.siegmar.billomat4j.sdk.domain.settings.ArticleProperty;
 import de.siegmar.billomat4j.sdk.service.ArticleService;
-import de.siegmar.billomat4j.sdk.domain.settings.ArticleProperties;
-
-import org.apache.commons.lang3.Validate;
 
 public class ArticleServiceImpl extends AbstractService implements ArticleService {
 

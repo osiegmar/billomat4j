@@ -18,9 +18,9 @@
  */
 package de.siegmar.billomat4j.sdk.invoice;
 
-import de.siegmar.billomat4j.sdk.domain.invoice.Invoice;
 import de.siegmar.billomat4j.sdk.AbstractTagIT;
 import de.siegmar.billomat4j.sdk.domain.client.Client;
+import de.siegmar.billomat4j.sdk.domain.invoice.Invoice;
 import de.siegmar.billomat4j.sdk.domain.invoice.InvoiceTag;
 
 public class InvoiceTagIT extends AbstractTagIT<InvoiceTag> {

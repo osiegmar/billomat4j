@@ -20,12 +20,12 @@ package de.siegmar.billomat4j.sdk.domain.settings;
 
 import java.math.BigDecimal;
 
-import de.siegmar.billomat4j.sdk.domain.AbstractIdentifiable;
-import de.siegmar.billomat4j.sdk.json.Views;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import com.fasterxml.jackson.annotation.JsonView;
+
+import de.siegmar.billomat4j.sdk.domain.AbstractIdentifiable;
+import de.siegmar.billomat4j.sdk.json.Views;
 
 @JsonRootName("tax")
 public class Tax extends AbstractIdentifiable {

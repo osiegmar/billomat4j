@@ -21,16 +21,16 @@ package de.siegmar.billomat4j.sdk.service.impl;
 import java.io.IOException;
 import java.util.List;
 
-import de.siegmar.billomat4j.sdk.domain.settings.Tax;
+import org.apache.commons.lang3.Validate;
+
 import de.siegmar.billomat4j.sdk.domain.settings.CountryTax;
 import de.siegmar.billomat4j.sdk.domain.settings.CountryTaxes;
 import de.siegmar.billomat4j.sdk.domain.settings.ReminderText;
 import de.siegmar.billomat4j.sdk.domain.settings.ReminderTexts;
 import de.siegmar.billomat4j.sdk.domain.settings.Settings;
+import de.siegmar.billomat4j.sdk.domain.settings.Tax;
 import de.siegmar.billomat4j.sdk.domain.settings.Taxes;
 import de.siegmar.billomat4j.sdk.service.SettingsService;
-
-import org.apache.commons.lang3.Validate;
 
 public class SettingsServiceImpl extends AbstractService implements SettingsService {
 

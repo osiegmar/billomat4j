@@ -18,9 +18,9 @@
  */
 package de.siegmar.billomat4j.sdk.domain.invoice;
 
-import de.siegmar.billomat4j.sdk.domain.AbstractPayment;
-
 import com.fasterxml.jackson.annotation.JsonRootName;
+
+import de.siegmar.billomat4j.sdk.domain.AbstractPayment;
 
 @JsonRootName("invoice-payment")
 public class InvoicePayment extends AbstractPayment {

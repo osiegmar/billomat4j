@@ -20,20 +20,20 @@ package de.siegmar.billomat4j.sdk.service.impl;
 
 import java.util.List;
 
-import de.siegmar.billomat4j.sdk.domain.client.ClientTags;
-import de.siegmar.billomat4j.sdk.service.ClientService;
+import org.apache.commons.lang3.Validate;
+
 import de.siegmar.billomat4j.sdk.domain.client.Client;
 import de.siegmar.billomat4j.sdk.domain.client.ClientFilter;
 import de.siegmar.billomat4j.sdk.domain.client.ClientPropertyValue;
 import de.siegmar.billomat4j.sdk.domain.client.ClientPropertyValues;
 import de.siegmar.billomat4j.sdk.domain.client.ClientTag;
+import de.siegmar.billomat4j.sdk.domain.client.ClientTags;
 import de.siegmar.billomat4j.sdk.domain.client.Clients;
 import de.siegmar.billomat4j.sdk.domain.client.Contact;
 import de.siegmar.billomat4j.sdk.domain.client.Contacts;
 import de.siegmar.billomat4j.sdk.domain.settings.ClientProperties;
 import de.siegmar.billomat4j.sdk.domain.settings.ClientProperty;
-
-import org.apache.commons.lang3.Validate;
+import de.siegmar.billomat4j.sdk.service.ClientService;
 
 public class ClientServiceImpl extends AbstractService implements ClientService {
 

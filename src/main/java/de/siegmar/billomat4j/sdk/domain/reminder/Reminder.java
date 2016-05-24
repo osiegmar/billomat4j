@@ -21,14 +21,14 @@ package de.siegmar.billomat4j.sdk.domain.reminder;
 import java.math.BigDecimal;
 import java.util.Date;
 
-import de.siegmar.billomat4j.sdk.json.MyDateSerializer;
-import de.siegmar.billomat4j.sdk.domain.AbstractMeta;
-
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+import de.siegmar.billomat4j.sdk.domain.AbstractMeta;
+import de.siegmar.billomat4j.sdk.json.MyDateSerializer;
 
 @JsonRootName("reminder")
 public class Reminder extends AbstractMeta {

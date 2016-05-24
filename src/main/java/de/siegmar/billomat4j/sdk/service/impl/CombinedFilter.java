@@ -21,9 +21,9 @@ package de.siegmar.billomat4j.sdk.service.impl;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import de.siegmar.billomat4j.sdk.domain.Filter;
-
 import org.apache.commons.lang3.Validate;
+
+import de.siegmar.billomat4j.sdk.domain.Filter;
 
 class CombinedFilter implements Filter {
 

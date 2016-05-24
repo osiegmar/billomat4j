@@ -18,9 +18,9 @@
  */
 package de.siegmar.billomat4j.sdk.domain.deliverynote;
 
-import de.siegmar.billomat4j.sdk.domain.AbstractInvoiceItem;
-
 import com.fasterxml.jackson.annotation.JsonRootName;
+
+import de.siegmar.billomat4j.sdk.domain.AbstractInvoiceItem;
 
 @JsonRootName("delivery-note-item")
 public class DeliveryNoteItem extends AbstractInvoiceItem {

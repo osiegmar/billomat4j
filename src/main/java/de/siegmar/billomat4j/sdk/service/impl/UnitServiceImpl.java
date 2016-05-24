@@ -20,12 +20,12 @@ package de.siegmar.billomat4j.sdk.service.impl;
 
 import java.util.List;
 
+import org.apache.commons.lang3.Validate;
+
 import de.siegmar.billomat4j.sdk.domain.unit.Unit;
 import de.siegmar.billomat4j.sdk.domain.unit.UnitFilter;
 import de.siegmar.billomat4j.sdk.domain.unit.Units;
 import de.siegmar.billomat4j.sdk.service.UnitService;
-
-import org.apache.commons.lang3.Validate;
 
 public class UnitServiceImpl extends AbstractService implements UnitService {
 

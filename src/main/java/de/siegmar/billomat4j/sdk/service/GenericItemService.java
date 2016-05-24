@@ -21,7 +21,6 @@ package de.siegmar.billomat4j.sdk.service;
 import java.util.List;
 
 import de.siegmar.billomat4j.sdk.domain.AbstractItem;
-import de.siegmar.billomat4j.sdk.service.impl.ServiceException;
 
 public interface GenericItemService<I extends AbstractItem> {
 
@@ -29,7 +28,7 @@ public interface GenericItemService<I extends AbstractItem> {
      * @param ownerId
      *            the id of owning entity
      * @return items found by filter criteria or an empty list if no items were found - never {@code null}
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     List<I> getItems(int ownerId);
@@ -40,7 +39,7 @@ public interface GenericItemService<I extends AbstractItem> {
      * @param itemId
      *            the item's id
      * @return the item or {@code null} if not found
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     I getItemById(int itemId);
@@ -50,7 +49,7 @@ public interface GenericItemService<I extends AbstractItem> {
      *            the item to create, must not be {@code null}
      * @throws NullPointerException
      *             if item is null
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void createItem(I item);
@@ -60,7 +59,7 @@ public interface GenericItemService<I extends AbstractItem> {
      *            the item to update, must not be {@code null}
      * @throws NullPointerException
      *             if item is null
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void updateItem(I item);
@@ -68,7 +67,7 @@ public interface GenericItemService<I extends AbstractItem> {
     /**
      * @param id
      *            the id of the item to be deleted
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void deleteItem(int itemId);

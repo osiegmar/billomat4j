@@ -20,9 +20,9 @@ package de.siegmar.billomat4j.sdk.domain;
 
 import java.util.Date;
 
-import de.siegmar.billomat4j.sdk.json.Views;
-
 import com.fasterxml.jackson.annotation.JsonView;
+
+import de.siegmar.billomat4j.sdk.json.Views;
 
 public abstract class AbstractMeta extends AbstractIdentifiable {
 

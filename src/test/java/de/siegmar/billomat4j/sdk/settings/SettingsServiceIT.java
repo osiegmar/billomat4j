@@ -25,13 +25,13 @@ import static org.testng.Assert.assertTrue;
 
 import java.math.BigDecimal;
 
-import de.siegmar.billomat4j.sdk.domain.settings.Tax;
+import org.testng.annotations.Test;
+
 import de.siegmar.billomat4j.sdk.AbstractServiceIT;
 import de.siegmar.billomat4j.sdk.domain.settings.CountryTax;
 import de.siegmar.billomat4j.sdk.domain.settings.ReminderText;
 import de.siegmar.billomat4j.sdk.domain.settings.Settings;
-
-import org.testng.annotations.Test;
+import de.siegmar.billomat4j.sdk.domain.settings.Tax;
 
 public class SettingsServiceIT extends AbstractServiceIT {
 

@@ -19,8 +19,8 @@
 package de.siegmar.billomat4j.sdk.creditnote;
 
 import de.siegmar.billomat4j.sdk.AbstractPaymentIT;
-import de.siegmar.billomat4j.sdk.domain.creditnote.CreditNote;
 import de.siegmar.billomat4j.sdk.domain.client.Client;
+import de.siegmar.billomat4j.sdk.domain.creditnote.CreditNote;
 import de.siegmar.billomat4j.sdk.domain.creditnote.CreditNotePayment;
 import de.siegmar.billomat4j.sdk.domain.creditnote.CreditNotePaymentFilter;
 import de.siegmar.billomat4j.sdk.domain.types.PaymentType;

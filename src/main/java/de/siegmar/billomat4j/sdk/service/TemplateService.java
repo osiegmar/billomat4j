@@ -23,7 +23,6 @@ import java.util.List;
 import de.siegmar.billomat4j.sdk.domain.template.ImageFormat;
 import de.siegmar.billomat4j.sdk.domain.template.Template;
 import de.siegmar.billomat4j.sdk.domain.template.TemplateFilter;
-import de.siegmar.billomat4j.sdk.service.impl.ServiceException;
 
 /**
  * @see http://www.billomat.com/api/vorlagen/
@@ -34,7 +33,7 @@ public interface TemplateService extends GenericCustomFieldService {
      * @param templateFilter
      *            template filter, may be {@code null} to find unfiltered
      * @return templates found by filter criteria or an empty list if no templates were found - never {@code null}
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     List<Template> findTemplates(TemplateFilter templateFilter);
@@ -45,7 +44,7 @@ public interface TemplateService extends GenericCustomFieldService {
      * @param templateId
      *            the template's id
      * @return the template or {@code null} if not found
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     Template getTemplateById(int templateId);
@@ -55,7 +54,7 @@ public interface TemplateService extends GenericCustomFieldService {
      *            the template to create, must not be {@code null}
      * @throws NullPointerException
      *             if template is null
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void createTemplate(Template template);
@@ -65,7 +64,7 @@ public interface TemplateService extends GenericCustomFieldService {
      *            the template to update, must not be {@code null}
      * @throws NullPointerException
      *             if template is null
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void updateTemplate(Template template);
@@ -73,7 +72,7 @@ public interface TemplateService extends GenericCustomFieldService {
     /**
      * @param templateId
      *            the id of the template to be deleted
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void deleteTemplate(int templateId);
@@ -84,7 +83,7 @@ public interface TemplateService extends GenericCustomFieldService {
      * @param imageFormat
      *            the image file format this method should render
      * @return the template preview as binary data or {@code null} if template couldn't be found
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     byte[] getTemplatePreview(int templateId, ImageFormat imageFormat);

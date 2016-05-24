@@ -21,13 +21,13 @@ package de.siegmar.billomat4j.sdk.service.impl;
 import java.io.IOException;
 import java.util.List;
 
+import org.apache.commons.lang3.Validate;
+
 import de.siegmar.billomat4j.sdk.domain.template.ImageFormat;
 import de.siegmar.billomat4j.sdk.domain.template.Template;
 import de.siegmar.billomat4j.sdk.domain.template.TemplateFilter;
 import de.siegmar.billomat4j.sdk.domain.template.Templates;
 import de.siegmar.billomat4j.sdk.service.TemplateService;
-
-import org.apache.commons.lang3.Validate;
 
 public class TemplateServiceImpl extends AbstractService implements TemplateService {
 

@@ -20,22 +20,22 @@ package de.siegmar.billomat4j.sdk.service.impl;
 
 import java.util.List;
 
-import de.siegmar.billomat4j.sdk.domain.deliverynote.DeliveryNote;
-import de.siegmar.billomat4j.sdk.domain.deliverynote.DeliveryNoteComment;
-import de.siegmar.billomat4j.sdk.domain.deliverynote.DeliveryNoteItem;
-import de.siegmar.billomat4j.sdk.domain.deliverynote.DeliveryNotes;
+import org.apache.commons.lang3.Validate;
+
 import de.siegmar.billomat4j.sdk.domain.Email;
 import de.siegmar.billomat4j.sdk.domain.Filter;
+import de.siegmar.billomat4j.sdk.domain.deliverynote.DeliveryNote;
+import de.siegmar.billomat4j.sdk.domain.deliverynote.DeliveryNoteComment;
 import de.siegmar.billomat4j.sdk.domain.deliverynote.DeliveryNoteCommentFilter;
 import de.siegmar.billomat4j.sdk.domain.deliverynote.DeliveryNoteComments;
 import de.siegmar.billomat4j.sdk.domain.deliverynote.DeliveryNoteFilter;
+import de.siegmar.billomat4j.sdk.domain.deliverynote.DeliveryNoteItem;
 import de.siegmar.billomat4j.sdk.domain.deliverynote.DeliveryNoteItems;
 import de.siegmar.billomat4j.sdk.domain.deliverynote.DeliveryNotePdf;
 import de.siegmar.billomat4j.sdk.domain.deliverynote.DeliveryNoteTag;
 import de.siegmar.billomat4j.sdk.domain.deliverynote.DeliveryNoteTags;
+import de.siegmar.billomat4j.sdk.domain.deliverynote.DeliveryNotes;
 import de.siegmar.billomat4j.sdk.service.DeliveryNoteService;
-
-import org.apache.commons.lang3.Validate;
 
 public class DeliveryNoteServiceImpl extends AbstractService implements DeliveryNoteService {
 

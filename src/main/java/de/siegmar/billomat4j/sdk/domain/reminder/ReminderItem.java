@@ -20,9 +20,9 @@ package de.siegmar.billomat4j.sdk.domain.reminder;
 
 import java.math.BigDecimal;
 
-import de.siegmar.billomat4j.sdk.domain.AbstractItem;
-
 import com.fasterxml.jackson.annotation.JsonRootName;
+
+import de.siegmar.billomat4j.sdk.domain.AbstractItem;
 
 @JsonRootName("reminder-item")
 public class ReminderItem extends AbstractItem {

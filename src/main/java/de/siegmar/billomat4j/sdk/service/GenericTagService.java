@@ -20,7 +20,6 @@ package de.siegmar.billomat4j.sdk.service;
 
 import java.util.List;
 
-import de.siegmar.billomat4j.sdk.service.impl.ServiceException;
 import de.siegmar.billomat4j.sdk.domain.AbstractTag;
 
 public interface GenericTagService<T extends AbstractTag> {
@@ -31,7 +30,7 @@ public interface GenericTagService<T extends AbstractTag> {
      * @param ownerId
      *            the id of the tags owner object
      * @return all found tags or an empty list if no tags were found - never {@code null}
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     List<T> getTags(Integer ownerId);
@@ -42,7 +41,7 @@ public interface GenericTagService<T extends AbstractTag> {
      * @param tagId
      *            the tags id
      * @return the tag or {@code null} if not found
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     T getTagById(int tagId);
@@ -52,7 +51,7 @@ public interface GenericTagService<T extends AbstractTag> {
      *            the tag to create, must not be {@code null}
      * @throws NullPointerException
      *             if tag is null
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void createTag(T tag);
@@ -60,7 +59,7 @@ public interface GenericTagService<T extends AbstractTag> {
     /**
      * @param tagId
      *            the id of the tag to be deleted
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void deleteTag(int tagId);

@@ -18,9 +18,9 @@
  */
 package de.siegmar.billomat4j.sdk.domain.creditnote;
 
-import de.siegmar.billomat4j.sdk.domain.AbstractTag;
-
 import com.fasterxml.jackson.annotation.JsonRootName;
+
+import de.siegmar.billomat4j.sdk.domain.AbstractTag;
 
 @JsonRootName("credit-note-tag")
 public class CreditNoteTag extends AbstractTag {

@@ -22,7 +22,6 @@ import java.util.List;
 
 import de.siegmar.billomat4j.sdk.domain.AbstractPayment;
 import de.siegmar.billomat4j.sdk.domain.AbstractPaymentFilter;
-import de.siegmar.billomat4j.sdk.service.impl.ServiceException;
 
 public interface GenericPaymentService<P extends AbstractPayment, F extends AbstractPaymentFilter<?>> {
 
@@ -30,7 +29,7 @@ public interface GenericPaymentService<P extends AbstractPayment, F extends Abst
      * @param paymentFilter
      *            payment filter, may be {@code null} to find unfiltered
      * @return payments found by filter criteria or an empty list if no payments were found - never {@code null}
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     List<P> findPayments(F paymentFilter);
@@ -41,7 +40,7 @@ public interface GenericPaymentService<P extends AbstractPayment, F extends Abst
      * @param paymentId
      *            the payment's id
      * @return the payment or {@code null} if not found
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     P getPaymentById(int paymentId);
@@ -51,7 +50,7 @@ public interface GenericPaymentService<P extends AbstractPayment, F extends Abst
      *            the payment to create, must not be {@code null}
      * @throws NullPointerException
      *             if payment is null
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void createPayment(P payment);
@@ -59,7 +58,7 @@ public interface GenericPaymentService<P extends AbstractPayment, F extends Abst
     /**
      * @param paymentId
      *            the id of the payment to be deleted
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void deletePayment(int paymentId);

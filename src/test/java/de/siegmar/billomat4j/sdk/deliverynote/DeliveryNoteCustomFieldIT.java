@@ -18,9 +18,9 @@
  */
 package de.siegmar.billomat4j.sdk.deliverynote;
 
-import de.siegmar.billomat4j.sdk.domain.deliverynote.DeliveryNote;
 import de.siegmar.billomat4j.sdk.AbstractCustomFieldServiceIT;
 import de.siegmar.billomat4j.sdk.domain.client.Client;
+import de.siegmar.billomat4j.sdk.domain.deliverynote.DeliveryNote;
 
 public class DeliveryNoteCustomFieldIT extends AbstractCustomFieldServiceIT {
 

@@ -22,7 +22,6 @@ import java.util.List;
 
 import de.siegmar.billomat4j.sdk.domain.AbstractPropertyValue;
 import de.siegmar.billomat4j.sdk.domain.settings.AbstractProperty;
-import de.siegmar.billomat4j.sdk.service.impl.ServiceException;
 
 public interface GenericPropertyService<P extends AbstractProperty, V extends AbstractPropertyValue> {
 
@@ -30,7 +29,7 @@ public interface GenericPropertyService<P extends AbstractProperty, V extends Ab
 
     /**
      * @return all configured properties or an empty list if no properties were configured - never {@code null}
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     List<P> getProperties();
@@ -41,7 +40,7 @@ public interface GenericPropertyService<P extends AbstractProperty, V extends Ab
      * @param propertyId
      *            the property's id
      * @return the property or {@code null} if not found
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     P getPropertyById(int propertyId);
@@ -51,7 +50,7 @@ public interface GenericPropertyService<P extends AbstractProperty, V extends Ab
      *            the property to create, must not be {@code null}
      * @throws NullPointerException
      *             if property is null
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void createProperty(P property);
@@ -61,7 +60,7 @@ public interface GenericPropertyService<P extends AbstractProperty, V extends Ab
      *            the property to update, must not be {@code null}
      * @throws NullPointerException
      *             if property is null
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void updateProperty(P property);
@@ -69,7 +68,7 @@ public interface GenericPropertyService<P extends AbstractProperty, V extends Ab
     /**
      * @param propertyId
      *            the id of the property to be deleted
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void deleteProperty(int propertyId);
@@ -81,7 +80,7 @@ public interface GenericPropertyService<P extends AbstractProperty, V extends Ab
      *            the id of the propery value owning object
      * @return the property values for the specified owner or an empty list if no property values were found - never
      *         {@code null}
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     List<V> getPropertyValues(int ownerId);
@@ -92,7 +91,7 @@ public interface GenericPropertyService<P extends AbstractProperty, V extends Ab
      * @param propertyValueId
      *            the property value's id
      * @return the property value or {@code null} if not found
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     V getPropertyValueById(int propertyValueId);
@@ -102,7 +101,7 @@ public interface GenericPropertyService<P extends AbstractProperty, V extends Ab
      *            the property value to create, must not be {@code null}
      * @throws NullPointerException
      *             if propertyValue is null
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void createPropertyValue(V propertyValue);

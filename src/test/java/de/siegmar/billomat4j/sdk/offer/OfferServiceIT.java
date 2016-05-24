@@ -28,7 +28,11 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.Test;
+
 import de.siegmar.billomat4j.sdk.AbstractServiceIT;
+import de.siegmar.billomat4j.sdk.domain.Email;
 import de.siegmar.billomat4j.sdk.domain.EmailRecipients;
 import de.siegmar.billomat4j.sdk.domain.client.Client;
 import de.siegmar.billomat4j.sdk.domain.offer.Offer;
@@ -37,11 +41,7 @@ import de.siegmar.billomat4j.sdk.domain.offer.OfferItem;
 import de.siegmar.billomat4j.sdk.domain.offer.OfferStatus;
 import de.siegmar.billomat4j.sdk.domain.template.Template;
 import de.siegmar.billomat4j.sdk.domain.template.TemplateFormat;
-import de.siegmar.billomat4j.sdk.domain.Email;
 import de.siegmar.billomat4j.sdk.domain.template.TemplateType;
-
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.Test;
 
 public class OfferServiceIT extends AbstractServiceIT {
 

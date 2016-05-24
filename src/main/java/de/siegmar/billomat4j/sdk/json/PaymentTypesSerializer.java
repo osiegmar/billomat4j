@@ -20,13 +20,13 @@ package de.siegmar.billomat4j.sdk.json;
 
 import java.io.IOException;
 
-import de.siegmar.billomat4j.sdk.domain.types.PaymentType;
-
 import org.apache.commons.lang3.StringUtils;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonSerializer;
 import com.fasterxml.jackson.databind.SerializerProvider;
+
+import de.siegmar.billomat4j.sdk.domain.types.PaymentType;
 
 public class PaymentTypesSerializer extends JsonSerializer<PaymentType[]> {
 

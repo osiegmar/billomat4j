@@ -20,6 +20,7 @@ package de.siegmar.billomat4j.sdk.service;
 
 import java.util.List;
 
+import de.siegmar.billomat4j.sdk.domain.Email;
 import de.siegmar.billomat4j.sdk.domain.invoice.Invoice;
 import de.siegmar.billomat4j.sdk.domain.invoice.InvoiceActionKey;
 import de.siegmar.billomat4j.sdk.domain.invoice.InvoiceComment;
@@ -31,9 +32,6 @@ import de.siegmar.billomat4j.sdk.domain.invoice.InvoiceItem;
 import de.siegmar.billomat4j.sdk.domain.invoice.InvoicePayment;
 import de.siegmar.billomat4j.sdk.domain.invoice.InvoicePaymentFilter;
 import de.siegmar.billomat4j.sdk.domain.invoice.InvoicePdf;
-import de.siegmar.billomat4j.sdk.domain.invoice.InvoiceStatus;
-import de.siegmar.billomat4j.sdk.service.impl.ServiceException;
-import de.siegmar.billomat4j.sdk.domain.Email;
 import de.siegmar.billomat4j.sdk.domain.invoice.InvoiceTag;
 
 /**
@@ -55,7 +53,7 @@ public interface InvoiceService extends
      *            invoice filter, may be {@code null} to find unfiltered
      * @return invoices found by filter criteria or an empty list if no invoices were found - never
      *         {@code null}
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     List<Invoice> findInvoices(InvoiceFilter invoiceFilter);
@@ -68,7 +66,7 @@ public interface InvoiceService extends
      * @return grouped invoice list or an empty list if no invoices were found - never {@code null}
      * @throws NullPointerException
      *             if invoiceGroupFilter is null
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     List<InvoiceGroup> getGroupedInvoices(InvoiceGroupFilter invoiceGroupFilter, InvoiceFilter invoiceFilter);
@@ -79,7 +77,7 @@ public interface InvoiceService extends
      * @param invoiceId
      *            the invoice's id
      * @return the invoice or {@code null} if not found
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     Invoice getInvoiceById(int invoiceId);
@@ -94,7 +92,7 @@ public interface InvoiceService extends
      *             if invoiceNumber is null
      * @throws IllegalArgumentException
      *             if invoiceNumber is empty
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     Invoice getInvoiceByNumber(String invoiceNumber);
@@ -104,7 +102,7 @@ public interface InvoiceService extends
      *            the invoice to create, must not be {@code null}
      * @throws NullPointerException
      *             if invoice is null
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void createInvoice(Invoice invoice);
@@ -114,7 +112,7 @@ public interface InvoiceService extends
      *            the invoice to update, must not be {@code null}
      * @throws NullPointerException
      *             if invoice is null
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void updateInvoice(Invoice invoice);
@@ -122,7 +120,7 @@ public interface InvoiceService extends
     /**
      * @param invoiceId
      *            the id of the invoice to be deleted
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void deleteInvoice(int invoiceId);
@@ -131,7 +129,7 @@ public interface InvoiceService extends
      * @param invoiceId
      *            the id of the invoice to get the PDF for
      * @return the invoice PDF or {@code null} if not found
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     InvoicePdf getInvoicePdf(int invoiceId);
@@ -140,7 +138,7 @@ public interface InvoiceService extends
      * @param invoiceId
      *            the id of the invoice to get the signed PDF for
      * @return the signed invoice PDF or {@code null} if not found
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      * @see #uploadInvoiceSignedPdf(int, byte[])
      * @see #getInvoicePdf(int)
@@ -148,13 +146,14 @@ public interface InvoiceService extends
     InvoicePdf getInvoiceSignedPdf(int invoiceId);
 
     /**
-     * Sets the invoice status to {@link InvoiceStatus#COMPLETED}.
+     * Sets the invoice status to {@link de.siegmar.billomat4j.sdk.domain.invoice.InvoiceStatus#OPEN}
+     * or {@link de.siegmar.billomat4j.sdk.domain.invoice.InvoiceStatus#OVERDUE}.
      *
      * @param invoiceId
      *            the id of the invoice to update
      * @param templateId
      *            the id of the template to use for the resulting document or {@code null} of no template should be used
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void completeInvoice(int invoiceId, Integer templateId);
@@ -164,7 +163,7 @@ public interface InvoiceService extends
      *            the id of the invoice to upload the signed PDF for
      * @param pdf
      *            the signed PDF as binary data (must not be {@code null})
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      * @throws NullPointerException
      *             if pdf is null
@@ -179,17 +178,17 @@ public interface InvoiceService extends
      *            the email configuration
      * @throws NullPointerException
      *             if invoiceEmail is null
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void sendInvoiceViaEmail(int invoiceId, Email invoiceEmail);
 
     /**
-     * Sets the invoice status to {@link InvoiceStatus#CANCELED}.
+     * Sets the invoice status to {@link de.siegmar.billomat4j.sdk.domain.invoice.InvoiceStatus#CANCELED}.
      *
      * @param invoiceId
      *            the id of the invoice to update
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void cancelInvoice(int invoiceId);

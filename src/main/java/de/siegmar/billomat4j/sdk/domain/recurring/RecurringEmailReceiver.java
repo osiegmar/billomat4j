@@ -18,10 +18,10 @@
  */
 package de.siegmar.billomat4j.sdk.domain.recurring;
 
+import com.fasterxml.jackson.annotation.JsonRootName;
+
 import de.siegmar.billomat4j.sdk.domain.AbstractIdentifiable;
 import de.siegmar.billomat4j.sdk.domain.types.RecipientType;
-
-import com.fasterxml.jackson.annotation.JsonRootName;
 
 @JsonRootName("recurring-email-receiver")
 public class RecurringEmailReceiver extends AbstractIdentifiable {

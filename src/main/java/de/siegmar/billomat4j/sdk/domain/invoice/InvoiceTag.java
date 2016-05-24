@@ -18,9 +18,9 @@
  */
 package de.siegmar.billomat4j.sdk.domain.invoice;
 
-import de.siegmar.billomat4j.sdk.domain.AbstractTag;
-
 import com.fasterxml.jackson.annotation.JsonRootName;
+
+import de.siegmar.billomat4j.sdk.domain.AbstractTag;
 
 @JsonRootName("invoice-tag")
 public class InvoiceTag extends AbstractTag {

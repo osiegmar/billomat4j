@@ -20,14 +20,14 @@ package de.siegmar.billomat4j.sdk;
 
 import java.util.Date;
 
+import org.apache.commons.lang3.time.DateUtils;
+
 import de.siegmar.billomat4j.sdk.domain.invoice.Invoice;
 import de.siegmar.billomat4j.sdk.domain.invoice.InvoiceFilter;
 import de.siegmar.billomat4j.sdk.domain.invoice.InvoiceStatus;
-import de.siegmar.billomat4j.sdk.service.impl.InvoiceServiceImpl;
 import de.siegmar.billomat4j.sdk.service.InvoiceService;
 import de.siegmar.billomat4j.sdk.service.impl.BillomatConfiguration;
-
-import org.apache.commons.lang3.time.DateUtils;
+import de.siegmar.billomat4j.sdk.service.impl.InvoiceServiceImpl;
 
 public class Example {
 

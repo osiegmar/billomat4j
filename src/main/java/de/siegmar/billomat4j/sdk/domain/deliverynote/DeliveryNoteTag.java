@@ -18,9 +18,9 @@
  */
 package de.siegmar.billomat4j.sdk.domain.deliverynote;
 
-import de.siegmar.billomat4j.sdk.domain.AbstractTag;
-
 import com.fasterxml.jackson.annotation.JsonRootName;
+
+import de.siegmar.billomat4j.sdk.domain.AbstractTag;
 
 @JsonRootName("delivery-note-tag")
 public class DeliveryNoteTag extends AbstractTag {

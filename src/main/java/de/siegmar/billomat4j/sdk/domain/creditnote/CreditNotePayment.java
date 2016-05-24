@@ -18,9 +18,9 @@
  */
 package de.siegmar.billomat4j.sdk.domain.creditnote;
 
-import de.siegmar.billomat4j.sdk.domain.AbstractPayment;
-
 import com.fasterxml.jackson.annotation.JsonRootName;
+
+import de.siegmar.billomat4j.sdk.domain.AbstractPayment;
 
 @JsonRootName("credit-note-payment")
 public class CreditNotePayment extends AbstractPayment {

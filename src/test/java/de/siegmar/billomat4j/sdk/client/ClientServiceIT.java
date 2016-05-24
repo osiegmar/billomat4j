@@ -26,12 +26,12 @@ import static org.testng.Assert.assertTrue;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.Test;
+
 import de.siegmar.billomat4j.sdk.AbstractServiceIT;
 import de.siegmar.billomat4j.sdk.domain.client.Client;
 import de.siegmar.billomat4j.sdk.domain.client.ClientFilter;
-
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.Test;
 
 public class ClientServiceIT extends AbstractServiceIT {
 

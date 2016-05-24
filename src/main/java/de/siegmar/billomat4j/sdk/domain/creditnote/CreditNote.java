@@ -22,16 +22,16 @@ import java.math.BigDecimal;
 import java.util.Currency;
 import java.util.Date;
 
-import de.siegmar.billomat4j.sdk.domain.AbstractMeta;
-import de.siegmar.billomat4j.sdk.domain.Taxes;
-import de.siegmar.billomat4j.sdk.json.MyDateSerializer;
-import de.siegmar.billomat4j.sdk.json.Views;
-
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
+import de.siegmar.billomat4j.sdk.domain.AbstractMeta;
+import de.siegmar.billomat4j.sdk.domain.Taxes;
+import de.siegmar.billomat4j.sdk.json.MyDateSerializer;
+import de.siegmar.billomat4j.sdk.json.Views;
 
 @JsonRootName("credit-note")
 public class CreditNote extends AbstractMeta {

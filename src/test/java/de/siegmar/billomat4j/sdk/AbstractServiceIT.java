@@ -24,36 +24,36 @@ import java.io.InputStream;
 import java.net.URISyntaxException;
 import java.util.Properties;
 
+import org.apache.commons.io.FileUtils;
+
 import de.siegmar.billomat4j.sdk.service.ArticleService;
 import de.siegmar.billomat4j.sdk.service.ClientService;
-import de.siegmar.billomat4j.sdk.service.CreditNoteService;
-import de.siegmar.billomat4j.sdk.service.RecurringService;
-import de.siegmar.billomat4j.sdk.service.SettingsService;
-import de.siegmar.billomat4j.sdk.service.UserService;
-import de.siegmar.billomat4j.sdk.service.impl.ArticleServiceImpl;
-import de.siegmar.billomat4j.sdk.service.impl.ClientServiceImpl;
-import de.siegmar.billomat4j.sdk.service.impl.DeliveryNoteServiceImpl;
-import de.siegmar.billomat4j.sdk.service.impl.InvoiceServiceImpl;
-import de.siegmar.billomat4j.sdk.service.impl.OfferServiceImpl;
-import de.siegmar.billomat4j.sdk.service.impl.ReminderServiceImpl;
-import de.siegmar.billomat4j.sdk.service.impl.SettingsServiceImpl;
-import de.siegmar.billomat4j.sdk.service.impl.UnitServiceImpl;
-import de.siegmar.billomat4j.sdk.template.TemplateServiceIT;
 import de.siegmar.billomat4j.sdk.service.ConfirmationService;
+import de.siegmar.billomat4j.sdk.service.CreditNoteService;
 import de.siegmar.billomat4j.sdk.service.DeliveryNoteService;
 import de.siegmar.billomat4j.sdk.service.InvoiceService;
 import de.siegmar.billomat4j.sdk.service.OfferService;
+import de.siegmar.billomat4j.sdk.service.RecurringService;
 import de.siegmar.billomat4j.sdk.service.ReminderService;
+import de.siegmar.billomat4j.sdk.service.SettingsService;
 import de.siegmar.billomat4j.sdk.service.TemplateService;
 import de.siegmar.billomat4j.sdk.service.UnitService;
+import de.siegmar.billomat4j.sdk.service.UserService;
+import de.siegmar.billomat4j.sdk.service.impl.ArticleServiceImpl;
 import de.siegmar.billomat4j.sdk.service.impl.BillomatConfiguration;
+import de.siegmar.billomat4j.sdk.service.impl.ClientServiceImpl;
 import de.siegmar.billomat4j.sdk.service.impl.ConfirmationServiceImpl;
 import de.siegmar.billomat4j.sdk.service.impl.CreditNoteServiceImpl;
+import de.siegmar.billomat4j.sdk.service.impl.DeliveryNoteServiceImpl;
+import de.siegmar.billomat4j.sdk.service.impl.InvoiceServiceImpl;
+import de.siegmar.billomat4j.sdk.service.impl.OfferServiceImpl;
 import de.siegmar.billomat4j.sdk.service.impl.RecurringServiceImpl;
+import de.siegmar.billomat4j.sdk.service.impl.ReminderServiceImpl;
+import de.siegmar.billomat4j.sdk.service.impl.SettingsServiceImpl;
 import de.siegmar.billomat4j.sdk.service.impl.TemplateServiceImpl;
+import de.siegmar.billomat4j.sdk.service.impl.UnitServiceImpl;
 import de.siegmar.billomat4j.sdk.service.impl.UserServiceImpl;
-
-import org.apache.commons.io.FileUtils;
+import de.siegmar.billomat4j.sdk.template.TemplateServiceIT;
 
 public abstract class AbstractServiceIT {
 

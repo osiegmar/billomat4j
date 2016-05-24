@@ -18,9 +18,9 @@
  */
 package de.siegmar.billomat4j.sdk.creditnote;
 
-import de.siegmar.billomat4j.sdk.domain.creditnote.CreditNote;
 import de.siegmar.billomat4j.sdk.AbstractTagIT;
 import de.siegmar.billomat4j.sdk.domain.client.Client;
+import de.siegmar.billomat4j.sdk.domain.creditnote.CreditNote;
 import de.siegmar.billomat4j.sdk.domain.creditnote.CreditNoteTag;
 
 

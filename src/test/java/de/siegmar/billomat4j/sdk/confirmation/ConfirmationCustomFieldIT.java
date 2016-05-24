@@ -18,8 +18,8 @@
  */
 package de.siegmar.billomat4j.sdk.confirmation;
 
-import de.siegmar.billomat4j.sdk.domain.client.Client;
 import de.siegmar.billomat4j.sdk.AbstractCustomFieldServiceIT;
+import de.siegmar.billomat4j.sdk.domain.client.Client;
 import de.siegmar.billomat4j.sdk.domain.confirmation.Confirmation;
 
 public class ConfirmationCustomFieldIT extends AbstractCustomFieldServiceIT {

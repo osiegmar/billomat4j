@@ -20,17 +20,15 @@ package de.siegmar.billomat4j.sdk.service;
 
 import java.util.List;
 
-import de.siegmar.billomat4j.sdk.domain.confirmation.ConfirmationCommentFilter;
-import de.siegmar.billomat4j.sdk.domain.confirmation.ConfirmationFilter;
-import de.siegmar.billomat4j.sdk.domain.confirmation.ConfirmationItem;
-import de.siegmar.billomat4j.sdk.domain.confirmation.ConfirmationStatus;
-import de.siegmar.billomat4j.sdk.domain.confirmation.ConfirmationTag;
-import de.siegmar.billomat4j.sdk.service.impl.ServiceException;
 import de.siegmar.billomat4j.sdk.domain.Email;
 import de.siegmar.billomat4j.sdk.domain.confirmation.Confirmation;
 import de.siegmar.billomat4j.sdk.domain.confirmation.ConfirmationActionKey;
 import de.siegmar.billomat4j.sdk.domain.confirmation.ConfirmationComment;
+import de.siegmar.billomat4j.sdk.domain.confirmation.ConfirmationCommentFilter;
+import de.siegmar.billomat4j.sdk.domain.confirmation.ConfirmationFilter;
+import de.siegmar.billomat4j.sdk.domain.confirmation.ConfirmationItem;
 import de.siegmar.billomat4j.sdk.domain.confirmation.ConfirmationPdf;
+import de.siegmar.billomat4j.sdk.domain.confirmation.ConfirmationTag;
 
 /**
  * @see http://www.billomat.com/api/auftragsbestaetigungen/
@@ -49,7 +47,7 @@ public interface ConfirmationService extends
      *            confirmation filter, may be {@code null} to find unfiltered
      * @return confirmations found by filter criteria or an empty list if no confirmations were found - never
      *         {@code null}
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     List<Confirmation> findConfirmations(ConfirmationFilter confirmationFilter);
@@ -60,7 +58,7 @@ public interface ConfirmationService extends
      * @param confirmationId
      *            the confirmation's id
      * @return the confirmation or {@code null} if not found
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     Confirmation getConfirmationById(int confirmationId);
@@ -75,7 +73,7 @@ public interface ConfirmationService extends
      *             if confirmationNumber is null
      * @throws IllegalArgumentException
      *             if confirmationNumber is empty
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     Confirmation getConfirmationByNumber(String confirmationNumber);
@@ -85,7 +83,7 @@ public interface ConfirmationService extends
      *            the confirmation to create, must not be {@code null}
      * @throws NullPointerException
      *             if confirmation is null
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void createConfirmation(Confirmation confirmation);
@@ -95,7 +93,7 @@ public interface ConfirmationService extends
      *            the confirmation to update, must not be {@code null}
      * @throws NullPointerException
      *             if confirmation is null
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void updateConfirmation(Confirmation confirmation);
@@ -103,7 +101,7 @@ public interface ConfirmationService extends
     /**
      * @param confirmationId
      *            the id of the confirmation to be deleted
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void deleteConfirmation(int confirmationId);
@@ -112,20 +110,20 @@ public interface ConfirmationService extends
      * @param confirmationId
      *            the id of the confirmation to get the PDF for
      * @return the confirmation PDF or {@code null} if not found
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     ConfirmationPdf getConfirmationPdf(int confirmationId);
 
     /**
      * Sets the confirmation status to
-     * {@link ConfirmationStatus#COMPLETED}.
+     * {@link de.siegmar.billomat4j.sdk.domain.confirmation.ConfirmationStatus#COMPLETED}.
      *
      * @param confirmationId
      *            the id of the confirmation to update
      * @param templateId
      *            the id of the template to use for the resulting document or {@code null} of no template should be used
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void completeConfirmation(int confirmationId, Integer templateId);
@@ -137,29 +135,29 @@ public interface ConfirmationService extends
      *            the email configuration
      * @throws NullPointerException
      *             if confirmationEmail is null
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void sendConfirmationViaEmail(int confirmationId, Email confirmationEmail);
 
     /**
      * Sets the confirmation status to
-     * {@link ConfirmationStatus#CANCELED}.
+     * {@link de.siegmar.billomat4j.sdk.domain.confirmation.ConfirmationStatus#CANCELED}.
      *
      * @param confirmationId
      *            the id of the confirmation to update
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void cancelConfirmation(int confirmationId);
 
     /**
-     * Sets the confirmation status to {@link ConfirmationStatus#CLEARED}
+     * Sets the confirmation status to {@link de.siegmar.billomat4j.sdk.domain.confirmation.ConfirmationStatus#CLEARED}
      * .
      *
      * @param confirmationId
      *            the id of the confirmation to update
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void clearConfirmation(int confirmationId);
@@ -169,7 +167,7 @@ public interface ConfirmationService extends
      *
      * @param confirmationId
      *            the id of the confirmation to update
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void unclearConfirmation(int confirmationId);

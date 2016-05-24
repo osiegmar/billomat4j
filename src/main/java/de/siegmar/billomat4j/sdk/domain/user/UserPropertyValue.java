@@ -18,9 +18,9 @@
  */
 package de.siegmar.billomat4j.sdk.domain.user;
 
-import de.siegmar.billomat4j.sdk.domain.AbstractPropertyValue;
-
 import com.fasterxml.jackson.annotation.JsonRootName;
+
+import de.siegmar.billomat4j.sdk.domain.AbstractPropertyValue;
 
 @JsonRootName("user-property-value")
 public class UserPropertyValue extends AbstractPropertyValue {

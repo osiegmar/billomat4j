@@ -21,10 +21,10 @@ package de.siegmar.billomat4j.sdk.domain.user;
 import java.util.Locale;
 import java.util.TimeZone;
 
+import com.fasterxml.jackson.annotation.JsonRootName;
+
 import de.siegmar.billomat4j.sdk.domain.AbstractMeta;
 import de.siegmar.billomat4j.sdk.domain.types.SalutationType;
-
-import com.fasterxml.jackson.annotation.JsonRootName;
 
 @JsonRootName("user")
 public class User extends AbstractMeta {

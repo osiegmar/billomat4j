@@ -21,13 +21,11 @@ package de.siegmar.billomat4j.sdk.service;
 import java.util.List;
 
 import de.siegmar.billomat4j.sdk.domain.Email;
+import de.siegmar.billomat4j.sdk.domain.reminder.Reminder;
 import de.siegmar.billomat4j.sdk.domain.reminder.ReminderFilter;
 import de.siegmar.billomat4j.sdk.domain.reminder.ReminderItem;
 import de.siegmar.billomat4j.sdk.domain.reminder.ReminderPdf;
-import de.siegmar.billomat4j.sdk.domain.reminder.ReminderStatus;
 import de.siegmar.billomat4j.sdk.domain.reminder.ReminderTag;
-import de.siegmar.billomat4j.sdk.service.impl.ServiceException;
-import de.siegmar.billomat4j.sdk.domain.reminder.Reminder;
 
 /**
  * @see http://www.billomat.com/api/mahnungen/
@@ -44,7 +42,7 @@ public interface ReminderService extends
      *            reminder filter, may be {@code null} to find unfiltered
      * @return reminders found by filter criteria or an empty list if no reminders were found - never
      *         {@code null}
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     List<Reminder> findReminders(ReminderFilter reminderFilter);
@@ -55,7 +53,7 @@ public interface ReminderService extends
      * @param reminderId
      *            the reminder's id
      * @return the reminder or {@code null} if not found
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     Reminder getReminderById(int reminderId);
@@ -65,7 +63,7 @@ public interface ReminderService extends
      *            the reminder to create, must not be {@code null}
      * @throws NullPointerException
      *             if reminder is null
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void createReminder(Reminder reminder);
@@ -75,7 +73,7 @@ public interface ReminderService extends
      *            the reminder to update, must not be {@code null}
      * @throws NullPointerException
      *             if reminder is null
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void updateReminder(Reminder reminder);
@@ -83,7 +81,7 @@ public interface ReminderService extends
     /**
      * @param reminderId
      *            the id of the reminder to be deleted
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void deleteReminder(int reminderId);
@@ -92,7 +90,7 @@ public interface ReminderService extends
      * @param reminderId
      *            the id of the reminder to get the PDF for
      * @return the reminder PDF or {@code null} if not found
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     ReminderPdf getReminderPdf(int reminderId);
@@ -101,7 +99,7 @@ public interface ReminderService extends
      * @param reminderId
      *            the id of the reminder to get the signed PDF for
      * @return the signed reminder PDF or {@code null} if not found
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      * @see #uploadReminderSignedPdf(int, byte[])
      * @see #getReminderPdf(int)
@@ -109,13 +107,14 @@ public interface ReminderService extends
     ReminderPdf getReminderSignedPdf(int reminderId);
 
     /**
-     * Sets the reminder status to {@link ReminderStatus#COMPLETED}.
+     * Sets the reminder status to {@link de.siegmar.billomat4j.sdk.domain.reminder.ReminderStatus#OPEN}
+     * or {@link de.siegmar.billomat4j.sdk.domain.reminder.ReminderStatus#OVERDUE}.
      *
      * @param reminderId
      *            the id of the reminder to update
      * @param templateId
      *            the id of the template to use for the resulting document or {@code null} of no template should be used
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void completeReminder(int reminderId, Integer templateId);
@@ -125,7 +124,7 @@ public interface ReminderService extends
      *            the id of the reminder to upload the signed PDF for
      * @param pdf
      *            the signed PDF as binary data (must not be {@code null})
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      * @throws NullPointerException
      *             if pdf is null
@@ -140,17 +139,17 @@ public interface ReminderService extends
      *            the email configuration
      * @throws NullPointerException
      *             if reminderEmail is null
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void sendReminderViaEmail(int reminderId, Email reminderEmail);
 
     /**
-     * Sets the reminder status to {@link ReminderStatus#CANCELED}.
+     * Sets the reminder status to {@link de.siegmar.billomat4j.sdk.domain.reminder.ReminderStatus#CANCELED}.
      *
      * @param reminderId
      *            the id of the reminder to update
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void cancelReminder(int reminderId);

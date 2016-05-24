@@ -22,15 +22,15 @@ import java.math.BigDecimal;
 import java.util.Currency;
 import java.util.Date;
 
-import de.siegmar.billomat4j.sdk.domain.types.SupplyDateType;
-import de.siegmar.billomat4j.sdk.domain.AbstractMeta;
-import de.siegmar.billomat4j.sdk.domain.Taxes;
-import de.siegmar.billomat4j.sdk.domain.types.PaymentType;
-import de.siegmar.billomat4j.sdk.json.Views;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import com.fasterxml.jackson.annotation.JsonView;
+
+import de.siegmar.billomat4j.sdk.domain.AbstractMeta;
+import de.siegmar.billomat4j.sdk.domain.Taxes;
+import de.siegmar.billomat4j.sdk.domain.types.PaymentType;
+import de.siegmar.billomat4j.sdk.domain.types.SupplyDateType;
+import de.siegmar.billomat4j.sdk.json.Views;
 
 @JsonRootName("invoice")
 public class Invoice extends AbstractMeta {

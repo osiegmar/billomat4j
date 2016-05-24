@@ -29,22 +29,22 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.Test;
+
 import de.siegmar.billomat4j.sdk.AbstractServiceIT;
-import de.siegmar.billomat4j.sdk.domain.invoice.Invoice;
-import de.siegmar.billomat4j.sdk.domain.reminder.ReminderFilter;
-import de.siegmar.billomat4j.sdk.domain.reminder.ReminderPdf;
-import de.siegmar.billomat4j.sdk.domain.template.Template;
-import de.siegmar.billomat4j.sdk.domain.template.TemplateFormat;
 import de.siegmar.billomat4j.sdk.domain.Email;
 import de.siegmar.billomat4j.sdk.domain.EmailRecipients;
 import de.siegmar.billomat4j.sdk.domain.client.Client;
+import de.siegmar.billomat4j.sdk.domain.invoice.Invoice;
 import de.siegmar.billomat4j.sdk.domain.reminder.Reminder;
+import de.siegmar.billomat4j.sdk.domain.reminder.ReminderFilter;
 import de.siegmar.billomat4j.sdk.domain.reminder.ReminderItem;
+import de.siegmar.billomat4j.sdk.domain.reminder.ReminderPdf;
 import de.siegmar.billomat4j.sdk.domain.reminder.ReminderStatus;
+import de.siegmar.billomat4j.sdk.domain.template.Template;
+import de.siegmar.billomat4j.sdk.domain.template.TemplateFormat;
 import de.siegmar.billomat4j.sdk.domain.template.TemplateType;
-
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.Test;
 
 public class ReminderServiceIT extends AbstractServiceIT {
 

@@ -20,11 +20,11 @@ package de.siegmar.billomat4j.sdk.domain.client;
 
 import java.math.BigDecimal;
 
-import de.siegmar.billomat4j.sdk.domain.AbstractMeta;
-import de.siegmar.billomat4j.sdk.json.Views;
-
 import com.fasterxml.jackson.annotation.JsonRootName;
 import com.fasterxml.jackson.annotation.JsonView;
+
+import de.siegmar.billomat4j.sdk.domain.AbstractMeta;
+import de.siegmar.billomat4j.sdk.json.Views;
 
 @JsonRootName("client")
 public class Client extends AbstractMeta {

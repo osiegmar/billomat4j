@@ -20,7 +20,10 @@ package de.siegmar.billomat4j.sdk.service.impl;
 
 import java.util.List;
 
+import org.apache.commons.lang3.Validate;
+
 import de.siegmar.billomat4j.sdk.domain.Email;
+import de.siegmar.billomat4j.sdk.domain.Filter;
 import de.siegmar.billomat4j.sdk.domain.confirmation.Confirmation;
 import de.siegmar.billomat4j.sdk.domain.confirmation.ConfirmationComment;
 import de.siegmar.billomat4j.sdk.domain.confirmation.ConfirmationCommentFilter;
@@ -33,9 +36,6 @@ import de.siegmar.billomat4j.sdk.domain.confirmation.ConfirmationTag;
 import de.siegmar.billomat4j.sdk.domain.confirmation.ConfirmationTags;
 import de.siegmar.billomat4j.sdk.domain.confirmation.Confirmations;
 import de.siegmar.billomat4j.sdk.service.ConfirmationService;
-import de.siegmar.billomat4j.sdk.domain.Filter;
-
-import org.apache.commons.lang3.Validate;
 
 public class ConfirmationServiceImpl extends AbstractService implements ConfirmationService {
 

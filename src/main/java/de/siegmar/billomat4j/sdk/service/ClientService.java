@@ -26,7 +26,6 @@ import de.siegmar.billomat4j.sdk.domain.client.ClientPropertyValue;
 import de.siegmar.billomat4j.sdk.domain.client.ClientTag;
 import de.siegmar.billomat4j.sdk.domain.client.Contact;
 import de.siegmar.billomat4j.sdk.domain.settings.ClientProperty;
-import de.siegmar.billomat4j.sdk.service.impl.ServiceException;
 
 /**
  * @see http://www.billomat.com/api/kunden/
@@ -43,7 +42,7 @@ public interface ClientService extends
     /**
      * @see http://www.billomat.com/api/account/
      * @return the Billomat account as a client
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     Client getMySelf();
@@ -52,7 +51,7 @@ public interface ClientService extends
      * @param clientFilter
      *            client filter, may be {@code null} to find unfiltered
      * @return clients found by filter criteria or an empty list if no clients were found - never {@code null}
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     List<Client> findClients(ClientFilter clientFilter);
@@ -63,7 +62,7 @@ public interface ClientService extends
      * @param clientId
      *            the client's id
      * @return the client or {@code null} if not found
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     Client getClientById(int clientId);
@@ -78,7 +77,7 @@ public interface ClientService extends
      *             if clientNumber is null
      * @throws IllegalArgumentException
      *             if clientNumber is empty
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     Client getClientByNumber(String clientNumber);
@@ -88,7 +87,7 @@ public interface ClientService extends
      *            the client to create, must not be {@code null}
      * @throws NullPointerException
      *             if client is null
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void createClient(Client client);
@@ -98,7 +97,7 @@ public interface ClientService extends
      *            the client to update, must not be {@code null}
      * @throws NullPointerException
      *             if client is null
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void updateClient(Client client);
@@ -106,7 +105,7 @@ public interface ClientService extends
     /**
      * @param clientId
      *            the id of the client to be deleted
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void deleteClient(int clientId);
@@ -115,7 +114,7 @@ public interface ClientService extends
      * @param clientId
      *            the id of the client the contacts belong to
      * @return all contacts for the specified client or an empty list if no contacts were found - never {@code null}
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     List<Contact> findContacts(int clientId);
@@ -126,7 +125,7 @@ public interface ClientService extends
      * @param contactId
      *            the contact's id
      * @return the contact or {@code null} if not found
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     Contact getContact(int contactId);
@@ -136,7 +135,7 @@ public interface ClientService extends
      *            the contact to create, must not be {@code null}
      * @throws NullPointerException
      *             if contact is null
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void createContact(Contact contact);
@@ -146,7 +145,7 @@ public interface ClientService extends
      *            the contact to update, must not be {@code null}
      * @throws NullPointerException
      *             if contact is null
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void updateContact(Contact contact);
@@ -154,7 +153,7 @@ public interface ClientService extends
     /**
      * @param contactId
      *            the id of the contact to be deleted
-     * @throws ServiceException
+     * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service
      */
     void deleteContact(int contactId);

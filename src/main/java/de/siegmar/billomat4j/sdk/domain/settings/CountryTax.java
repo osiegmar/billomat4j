@@ -18,9 +18,9 @@
  */
 package de.siegmar.billomat4j.sdk.domain.settings;
 
-import de.siegmar.billomat4j.sdk.domain.AbstractIdentifiable;
-
 import com.fasterxml.jackson.annotation.JsonRootName;
+
+import de.siegmar.billomat4j.sdk.domain.AbstractIdentifiable;
 
 @JsonRootName("country-tax")
 public class CountryTax extends AbstractIdentifiable {

@@ -23,14 +23,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import de.siegmar.billomat4j.sdk.domain.AbstractDocumentPdf;
-import de.siegmar.billomat4j.sdk.domain.DocumentComplete;
-import de.siegmar.billomat4j.sdk.domain.Identifiable;
-import de.siegmar.billomat4j.sdk.domain.Pageable;
-import de.siegmar.billomat4j.sdk.domain.Email;
-import de.siegmar.billomat4j.sdk.domain.Filter;
-import de.siegmar.billomat4j.sdk.domain.WrappedRecord;
-
 import org.apache.commons.lang3.Validate;
 
 import com.fasterxml.jackson.databind.JsonNode;
@@ -38,6 +30,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectReader;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+
+import de.siegmar.billomat4j.sdk.domain.AbstractDocumentPdf;
+import de.siegmar.billomat4j.sdk.domain.DocumentComplete;
+import de.siegmar.billomat4j.sdk.domain.Email;
+import de.siegmar.billomat4j.sdk.domain.Filter;
+import de.siegmar.billomat4j.sdk.domain.Identifiable;
+import de.siegmar.billomat4j.sdk.domain.Pageable;
+import de.siegmar.billomat4j.sdk.domain.WrappedRecord;
 
 // CSOFF: ClassFanOutComplexity
 abstract class AbstractService {
@@ -55,7 +55,8 @@ abstract class AbstractService {
     }
 
     protected <T extends Pageable<E>, E> List<E> getAllPagesFromResource(final String resource,
-                                                                         final Class<T> wrapperClass, final Filter filter) {
+                                                                         final Class<T> wrapperClass,
+                                                                         final Filter filter) {
 
         final Pager<T, E> pager = new Pager<>(wrapperClass, requestHelper, objectReader);
         return pager.getAll(resource, filter);
