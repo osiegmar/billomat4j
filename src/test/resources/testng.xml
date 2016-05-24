@@ -2,75 +2,75 @@
 <suite name="All Integration Tests">
     <test name="Comment">
         <classes>
-            <class name="net.siegmar.billomat4j.sdk.confirmation.ConfirmationCommentIT" />
-            <class name="net.siegmar.billomat4j.sdk.creditnote.CreditNoteCommentIT" />
-            <class name="net.siegmar.billomat4j.sdk.deliverynote.DeliveryNoteCommentIT" />
-            <class name="net.siegmar.billomat4j.sdk.invoice.InvoiceCommentIT" />
-            <class name="net.siegmar.billomat4j.sdk.offer.OfferCommentIT" />
+            <class name="de.siegmar.billomat4j.sdk.confirmation.ConfirmationCommentIT" />
+            <class name="de.siegmar.billomat4j.sdk.creditnote.CreditNoteCommentIT" />
+            <class name="de.siegmar.billomat4j.sdk.deliverynote.DeliveryNoteCommentIT" />
+            <class name="de.siegmar.billomat4j.sdk.invoice.InvoiceCommentIT" />
+            <class name="de.siegmar.billomat4j.sdk.offer.OfferCommentIT" />
         </classes>
     </test>
     <test name="CustomField">
         <classes>
-            <class name="net.siegmar.billomat4j.sdk.article.ArticleCustomFieldIT" />
-            <class name="net.siegmar.billomat4j.sdk.client.ClientCustomFieldIT" />
-            <class name="net.siegmar.billomat4j.sdk.confirmation.ConfirmationCustomFieldIT" />
-            <class name="net.siegmar.billomat4j.sdk.creditnote.CreditNoteCustomFieldIT" />
-            <class name="net.siegmar.billomat4j.sdk.deliverynote.DeliveryNoteCustomFieldIT" />
-            <class name="net.siegmar.billomat4j.sdk.invoice.InvoiceCustomFieldIT" />
-            <class name="net.siegmar.billomat4j.sdk.offer.OfferCustomFieldIT" />
-            <class name="net.siegmar.billomat4j.sdk.recurring.RecurringCustomFieldIT" />
-            <class name="net.siegmar.billomat4j.sdk.reminder.ReminderCustomFieldIT" />
-            <class name="net.siegmar.billomat4j.sdk.template.TemplateCustomFieldIT" />
-            <class name="net.siegmar.billomat4j.sdk.unit.UnitCustomFieldIT" />
-            <class name="net.siegmar.billomat4j.sdk.user.UserCustomFieldIT" />
+            <class name="de.siegmar.billomat4j.sdk.article.ArticleCustomFieldIT" />
+            <class name="de.siegmar.billomat4j.sdk.client.ClientCustomFieldIT" />
+            <class name="de.siegmar.billomat4j.sdk.confirmation.ConfirmationCustomFieldIT" />
+            <class name="de.siegmar.billomat4j.sdk.creditnote.CreditNoteCustomFieldIT" />
+            <class name="de.siegmar.billomat4j.sdk.deliverynote.DeliveryNoteCustomFieldIT" />
+            <class name="de.siegmar.billomat4j.sdk.invoice.InvoiceCustomFieldIT" />
+            <class name="de.siegmar.billomat4j.sdk.offer.OfferCustomFieldIT" />
+            <class name="de.siegmar.billomat4j.sdk.recurring.RecurringCustomFieldIT" />
+            <class name="de.siegmar.billomat4j.sdk.reminder.ReminderCustomFieldIT" />
+            <class name="de.siegmar.billomat4j.sdk.template.TemplateCustomFieldIT" />
+            <class name="de.siegmar.billomat4j.sdk.unit.UnitCustomFieldIT" />
+            <class name="de.siegmar.billomat4j.sdk.user.UserCustomFieldIT" />
         </classes>
     </test>
     <test name="Item">
         <classes>
-            <class name="net.siegmar.billomat4j.sdk.confirmation.ConfirmationItemIT" />
-            <class name="net.siegmar.billomat4j.sdk.creditnote.CreditNoteItemIT" />
-            <class name="net.siegmar.billomat4j.sdk.deliverynote.DeliveryNoteItemIT" />
-            <class name="net.siegmar.billomat4j.sdk.invoice.InvoiceItemIT" />
-            <class name="net.siegmar.billomat4j.sdk.offer.OfferItemIT" />
-            <class name="net.siegmar.billomat4j.sdk.recurring.RecurringItemIT" />
-            <class name="net.siegmar.billomat4j.sdk.reminder.ReminderItemIT" />
+            <class name="de.siegmar.billomat4j.sdk.confirmation.ConfirmationItemIT" />
+            <class name="de.siegmar.billomat4j.sdk.creditnote.CreditNoteItemIT" />
+            <class name="de.siegmar.billomat4j.sdk.deliverynote.DeliveryNoteItemIT" />
+            <class name="de.siegmar.billomat4j.sdk.invoice.InvoiceItemIT" />
+            <class name="de.siegmar.billomat4j.sdk.offer.OfferItemIT" />
+            <class name="de.siegmar.billomat4j.sdk.recurring.RecurringItemIT" />
+            <class name="de.siegmar.billomat4j.sdk.reminder.ReminderItemIT" />
         </classes>
     </test>
     <test name="Payment">
         <classes>
-            <class name="net.siegmar.billomat4j.sdk.creditnote.CreditNotePaymentIT" />
-            <class name="net.siegmar.billomat4j.sdk.invoice.InvoicePaymentIT" />
+            <class name="de.siegmar.billomat4j.sdk.creditnote.CreditNotePaymentIT" />
+            <class name="de.siegmar.billomat4j.sdk.invoice.InvoicePaymentIT" />
         </classes>
     </test>
     <test name="Tag">
         <classes>
-            <class name="net.siegmar.billomat4j.sdk.article.ArticleTagIT" />
-            <class name="net.siegmar.billomat4j.sdk.client.ClientTagIT" />
-            <class name="net.siegmar.billomat4j.sdk.confirmation.ConfirmationTagIT" />
-            <class name="net.siegmar.billomat4j.sdk.creditnote.CreditNoteTagIT" />
-            <class name="net.siegmar.billomat4j.sdk.deliverynote.DeliveryNoteTagIT" />
-            <class name="net.siegmar.billomat4j.sdk.invoice.InvoiceTagIT" />
-            <class name="net.siegmar.billomat4j.sdk.offer.OfferTagIT" />
-            <class name="net.siegmar.billomat4j.sdk.recurring.RecurringTagIT" />
-            <class name="net.siegmar.billomat4j.sdk.reminder.ReminderTagIT" />
+            <class name="de.siegmar.billomat4j.sdk.article.ArticleTagIT" />
+            <class name="de.siegmar.billomat4j.sdk.client.ClientTagIT" />
+            <class name="de.siegmar.billomat4j.sdk.confirmation.ConfirmationTagIT" />
+            <class name="de.siegmar.billomat4j.sdk.creditnote.CreditNoteTagIT" />
+            <class name="de.siegmar.billomat4j.sdk.deliverynote.DeliveryNoteTagIT" />
+            <class name="de.siegmar.billomat4j.sdk.invoice.InvoiceTagIT" />
+            <class name="de.siegmar.billomat4j.sdk.offer.OfferTagIT" />
+            <class name="de.siegmar.billomat4j.sdk.recurring.RecurringTagIT" />
+            <class name="de.siegmar.billomat4j.sdk.reminder.ReminderTagIT" />
         </classes>
     </test>
     <test name="Service">
         <classes>
-            <class name="net.siegmar.billomat4j.sdk.article.ArticleServiceIT" />
-            <class name="net.siegmar.billomat4j.sdk.client.ClientServiceIT" />
-            <class name="net.siegmar.billomat4j.sdk.client.ContactIT" />
-            <class name="net.siegmar.billomat4j.sdk.confirmation.ConfirmationServiceIT" />
-            <class name="net.siegmar.billomat4j.sdk.creditnote.CreditNoteServiceIT" />
-            <class name="net.siegmar.billomat4j.sdk.deliverynote.DeliveryNoteServiceIT" />
-            <class name="net.siegmar.billomat4j.sdk.invoice.InvoiceServiceIT" />
-            <class name="net.siegmar.billomat4j.sdk.offer.OfferServiceIT" />
-            <class name="net.siegmar.billomat4j.sdk.recurring.RecurringServiceIT" />
-            <class name="net.siegmar.billomat4j.sdk.reminder.ReminderServiceIT" />
-            <class name="net.siegmar.billomat4j.sdk.settings.SettingsServiceIT" />
-            <class name="net.siegmar.billomat4j.sdk.template.TemplateServiceIT" />
-            <class name="net.siegmar.billomat4j.sdk.unit.UnitServiceIT" />
-            <class name="net.siegmar.billomat4j.sdk.user.UserServiceIT" />
+            <class name="de.siegmar.billomat4j.sdk.article.ArticleServiceIT" />
+            <class name="de.siegmar.billomat4j.sdk.client.ClientServiceIT" />
+            <class name="de.siegmar.billomat4j.sdk.client.ContactIT" />
+            <class name="de.siegmar.billomat4j.sdk.confirmation.ConfirmationServiceIT" />
+            <class name="de.siegmar.billomat4j.sdk.creditnote.CreditNoteServiceIT" />
+            <class name="de.siegmar.billomat4j.sdk.deliverynote.DeliveryNoteServiceIT" />
+            <class name="de.siegmar.billomat4j.sdk.invoice.InvoiceServiceIT" />
+            <class name="de.siegmar.billomat4j.sdk.offer.OfferServiceIT" />
+            <class name="de.siegmar.billomat4j.sdk.recurring.RecurringServiceIT" />
+            <class name="de.siegmar.billomat4j.sdk.reminder.ReminderServiceIT" />
+            <class name="de.siegmar.billomat4j.sdk.settings.SettingsServiceIT" />
+            <class name="de.siegmar.billomat4j.sdk.template.TemplateServiceIT" />
+            <class name="de.siegmar.billomat4j.sdk.unit.UnitServiceIT" />
+            <class name="de.siegmar.billomat4j.sdk.user.UserServiceIT" />
         </classes>
     </test>
 </suite>

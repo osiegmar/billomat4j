@@ -1,5 +1,6 @@
 ## 1.1.0 (2016-??-??)
 
+* Renamed package from net.siegmar to de.siegmar (preparation for maven central)
 * Fixed an issue that made stopping of Recurrings impossible
 * Added support for registered Apps (appId / appSecret headers)
 * Added payment types INVOICE_CORRECTION and CHECK

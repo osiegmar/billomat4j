@@ -3,7 +3,7 @@ apply plugin: 'eclipse'
 apply plugin: 'checkstyle'
 apply plugin: 'maven'
 
-group = 'net.siegmar.billomat4j'
+group = 'de.siegmar.billomat4j'
 archivesBaseName = 'billomat4j-sdk'
 version = '1.0.6-SNAPSHOT'
 
