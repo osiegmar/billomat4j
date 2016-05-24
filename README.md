@@ -40,23 +40,24 @@ Example
 
 This example fetches all paid invoices for the last 30 days and prints them out. This file is also part of this project - see src/test/java/net/siegmar/billomat4j/sdk/Example.java
 
-    BillomatConfiguration billomatConfiguration = new BillomatConfiguration();
-    billomatConfiguration.setBillomatId("<billomatId>");
-    billomatConfiguration.setApiKey("<apiKey>");
+```java
+BillomatConfiguration billomatConfiguration = new BillomatConfiguration();
+billomatConfiguration.setBillomatId("<billomatId>");
+billomatConfiguration.setApiKey("<apiKey>");
 
-    InvoiceService invoiceService = new InvoiceServiceImpl(billomatConfiguration);
+InvoiceService invoiceService = new InvoiceServiceImpl(billomatConfiguration);
 
-    System.out.println("Paid invoices for the last 30 days:");
+System.out.println("Paid invoices for the last 30 days:");
 
-    InvoiceFilter invoiceFilter = new InvoiceFilter()
-        .byFrom(DateUtils.addDays(new Date(), -30))
-        .byTo(new Date())
-        .byStatus(InvoiceStatus.PAID);
+InvoiceFilter invoiceFilter = new InvoiceFilter()
+    .byFrom(DateUtils.addDays(new Date(), -30))
+    .byTo(new Date())
+    .byStatus(InvoiceStatus.PAID);
 
-    for (Invoice invoice : invoiceService.findInvoices(invoiceFilter)) {
-        System.out.println("Invoice " + invoice.getInvoiceNumber() + ": " + invoice.getTotalNet());
-    }
-
+for (Invoice invoice : invoiceService.findInvoices(invoiceFilter)) {
+    System.out.println("Invoice " + invoice.getInvoiceNumber() + ": " + invoice.getTotalNet());
+}
+```
 
 Testing
 -------
@@ -65,15 +66,19 @@ Testing
 
 Create a file "src/test/resources/billomat.properties" with this content:
 
-    billomatId = <your-billomat-id>
-    billomatApiKey = <your-billomat-api-key>
-    email = <your-email-address>
+```
+billomatId = <your-billomat-id>
+billomatApiKey = <your-billomat-api-key>
+email = <your-email-address>
+```
 
 The email address is required for sending test documents (like invoices).
 
 Run the integration test suite by invoking:
 
-    ./gradlew integrationTest
+```
+./gradlew integrationTest
+```
 
 
 Contribution
