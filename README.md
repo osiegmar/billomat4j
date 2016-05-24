@@ -4,6 +4,30 @@ billomat4j
 Java Software Development Kit for the [Billomat](http://www.billomat.com/) [API](http://www.billomat.com/api).
 
 
+Latest release
+--------------
+
+The most recent release is 1.0.1, released March 20, 2016.
+
+To add a dependency using Maven, use the following:
+
+```xml
+<dependency>
+    <groupId>de.siegmar</groupId>
+    <artifactId>billomat4j</artifactId>
+    <version>1.1.0</version>
+</dependency>
+```
+
+To add a dependency using Gradle:
+
+```gradle
+dependencies {
+    compile 'de.siegmar:billomat4j:1.1.0'
+}
+```
+
+
 Requirements
 ------------
 
@@ -11,28 +35,6 @@ Requirements
 - Apache Commons Lang
 - Jackson JSON Processor
 - SLF4J
-
-
-Build
------
-
-If you're not already familiar with [Gradle](http://www.gradle.org/), here are the basics to build billomat4j.
-
-To import this project to eclipse, run this first:
-
-    ./gradlew eclipse
-
-Then all required configuration files are created and you can import the project in eclipse.
-
-
-To build a .jar file run this:
-
-    ./gradlew assemble
-
-The .jar file will be created in the directory "build/libs/".
-
-
-If you're on Windows, you have to use the gradlew.bat batch script instead of the gradlew Unix/Linux shell script. 
 
 
 Example
@@ -108,4 +110,3 @@ GNU Lesser General Public License for more details.
 
 You should have received a copy of the GNU Lesser General Public License
 along with Billomat4J.  If not, see <http://www.gnu.org/licenses/>.
-
