@@ -58,11 +58,11 @@ public abstract class AbstractDocumentPdf extends AbstractMeta {
     }
 
     public byte[] getBase64file() {
-        return base64file;
+        return base64file.clone();
     }
 
     public void setBase64file(final byte[] base64file) {
-        this.base64file = base64file;
+        this.base64file = base64file.clone();
     }
 
     public void saveTo(final File target) throws IOException {

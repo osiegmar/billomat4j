@@ -55,6 +55,7 @@ import de.siegmar.billomat4j.sdk.service.impl.UnitServiceImpl;
 import de.siegmar.billomat4j.sdk.service.impl.UserServiceImpl;
 import de.siegmar.billomat4j.sdk.template.TemplateServiceIT;
 
+@SuppressWarnings("checkstyle:classfanoutcomplexity")
 public abstract class AbstractServiceIT {
 
     private static final Properties PROPERTIES;

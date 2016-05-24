@@ -35,11 +35,11 @@ import de.siegmar.billomat4j.sdk.domain.creditnote.CreditNotePdf;
 import de.siegmar.billomat4j.sdk.domain.creditnote.CreditNoteTag;
 
 /**
- * @see http://www.billomat.com/api/gutschriften/
- * @see http://www.billomat.com/api/gutschriften/positionen/
- * @see http://www.billomat.com/api/gutschriften/kommentare-und-historie-3/
- * @see http://www.billomat.com/api/gutschriften/zahlungen/
- * @see http://www.billomat.com/api/gutschriften/schlagworte/
+ * @see <a href="http://www.billomat.com/api/gutschriften/">API Gutschriften</a>
+ * @see <a href="http://www.billomat.com/api/gutschriften/positionen/">API Gutschriften/Positionen</a>
+ * @see <a href="http://www.billomat.com/api/gutschriften/kommentare-und-historie-3/">API Gutschriften/Kommentare</a>
+ * @see <a href="http://www.billomat.com/api/gutschriften/zahlungen/">API Gutschriften/Zahlungen</a>
+ * @see <a href="http://www.billomat.com/api/gutschriften/schlagworte/">API Gutschriften/Schlagworte</a>
  */
 public interface CreditNoteService extends
     GenericCustomFieldService,

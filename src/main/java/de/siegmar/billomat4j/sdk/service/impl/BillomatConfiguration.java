@@ -27,6 +27,7 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.PropertyNamingStrategy;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.module.SimpleModule;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import de.siegmar.billomat4j.sdk.domain.types.PaymentType;
 import de.siegmar.billomat4j.sdk.json.CustomBooleanDeserializer;
@@ -34,6 +35,7 @@ import de.siegmar.billomat4j.sdk.json.PaymentTypesDeserializer;
 import de.siegmar.billomat4j.sdk.json.PaymentTypesSerializer;
 import de.siegmar.billomat4j.sdk.json.Views;
 
+@SuppressWarnings("checkstyle:classdataabstractioncoupling")
 public class BillomatConfiguration {
 
     private static final String GROUP_ID = "de.siegmar";
@@ -129,8 +131,10 @@ public class BillomatConfiguration {
         requestHelper = new RequestHelper(this);
 
         final ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.setPropertyNamingStrategy(PropertyNamingStrategy.CAMEL_CASE_TO_LOWER_CASE_WITH_UNDERSCORES);
+        objectMapper.setPropertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE);
         objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+
+        objectMapper.registerModule(new JavaTimeModule());
 
         objectMapper.registerModule(
                 new SimpleModule("CustomBooleanDeserializer",

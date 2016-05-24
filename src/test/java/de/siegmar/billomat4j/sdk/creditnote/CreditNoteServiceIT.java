@@ -25,6 +25,7 @@ import static org.testng.Assert.assertNull;
 import static org.testng.Assert.assertTrue;
 
 import java.math.BigDecimal;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -184,9 +185,10 @@ public class CreditNoteServiceIT extends AbstractServiceIT {
     public void uploadSignedPdf() {
         final CreditNote creditNote = createCreditNote(1);
         creditNoteService.completeCreditNote(creditNote.getId(), null);
-        creditNoteService.uploadCreditNoteSignedPdf(creditNote.getId(), "dummy".getBytes());
+        creditNoteService.uploadCreditNoteSignedPdf(creditNote.getId(), "dummy".getBytes(StandardCharsets.US_ASCII));
 
-        assertEquals(creditNoteService.getCreditNoteSignedPdf(creditNote.getId()).getBase64file(), "dummy".getBytes());
+        assertEquals(creditNoteService.getCreditNoteSignedPdf(creditNote.getId()).getBase64file(),
+            "dummy".getBytes(StandardCharsets.US_ASCII));
     }
 
     @Test

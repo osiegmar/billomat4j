@@ -19,18 +19,16 @@
 package de.siegmar.billomat4j.sdk.domain.deliverynote;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Currency;
-import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import com.fasterxml.jackson.annotation.JsonView;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import de.siegmar.billomat4j.sdk.domain.AbstractMeta;
 import de.siegmar.billomat4j.sdk.domain.Taxes;
-import de.siegmar.billomat4j.sdk.json.MyDateSerializer;
 import de.siegmar.billomat4j.sdk.json.Views;
 
 @JsonRootName("delivery-note")
@@ -45,9 +43,8 @@ public class DeliveryNote extends AbstractMeta {
     private String numberPre;
     private DeliveryNoteStatus status;
 
-    @JsonSerialize(using = MyDateSerializer.class)
     @JsonInclude(Include.NON_NULL)
-    private Date date;
+    private LocalDate date;
 
     private String address;
     private String label;
@@ -103,11 +100,11 @@ public class DeliveryNote extends AbstractMeta {
         this.status = status;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(final Date date) {
+    public void setDate(final LocalDate date) {
         this.date = date;
     }
 

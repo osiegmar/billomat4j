@@ -19,16 +19,14 @@
 package de.siegmar.billomat4j.sdk.domain.reminder;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import de.siegmar.billomat4j.sdk.domain.AbstractMeta;
-import de.siegmar.billomat4j.sdk.json.MyDateSerializer;
 
 @JsonRootName("reminder")
 public class Reminder extends AbstractMeta {
@@ -39,15 +37,14 @@ public class Reminder extends AbstractMeta {
     private Integer reminderLevel;
     private String reminderLevelName;
 
-    @JsonSerialize(using = MyDateSerializer.class)
     @JsonInclude(Include.NON_NULL)
-    private Date date;
+    private LocalDate date;
 
     private String label;
     private String subject;
     private String intro;
     private String note;
-    private Date dueDate;
+    private LocalDate dueDate;
     private BigDecimal totalGross;
     private ReminderItems reminderItems;
 
@@ -94,11 +91,11 @@ public class Reminder extends AbstractMeta {
         this.reminderLevelName = reminderLevelName;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(final Date date) {
+    public void setDate(final LocalDate date) {
         this.date = date;
     }
 
@@ -134,11 +131,11 @@ public class Reminder extends AbstractMeta {
         this.note = note;
     }
 
-    public Date getDueDate() {
+    public LocalDate getDueDate() {
         return dueDate;
     }
 
-    public void setDueDate(final Date dueDate) {
+    public void setDueDate(final LocalDate dueDate) {
         this.dueDate = dueDate;
     }
 

@@ -25,7 +25,7 @@ import de.siegmar.billomat4j.sdk.domain.template.Template;
 import de.siegmar.billomat4j.sdk.domain.template.TemplateFilter;
 
 /**
- * @see http://www.billomat.com/api/vorlagen/
+ * @see <a href="http://www.billomat.com/api/vorlagen/">API Vorlagen</a>
  */
 public interface TemplateService extends GenericCustomFieldService {
 

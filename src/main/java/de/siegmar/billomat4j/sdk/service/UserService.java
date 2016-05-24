@@ -26,9 +26,9 @@ import de.siegmar.billomat4j.sdk.domain.user.UserFilter;
 import de.siegmar.billomat4j.sdk.domain.user.UserPropertyValue;
 
 /**
- * @see http://www.billomat.com/api/benutzer/
- * @see http://www.billomat.com/api/benutzer/attribute/
- * @see http://www.billomat.com/api/einstellungen/benutzer-attribute/
+ * @see <a href="http://www.billomat.com/api/benutzer/">API Benutzer</a>
+ * @see <a href="http://www.billomat.com/api/benutzer/attribute/">API Benutzerattribute</a>
+ * @see <a href="http://www.billomat.com/api/einstellungen/benutzer-attribute/">API Benutzerattribute/Einstellungen</a>
  */
 public interface UserService extends
     GenericCustomFieldService,

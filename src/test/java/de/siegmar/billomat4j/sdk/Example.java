@@ -18,9 +18,7 @@
  */
 package de.siegmar.billomat4j.sdk;
 
-import java.util.Date;
-
-import org.apache.commons.lang3.time.DateUtils;
+import java.time.LocalDate;
 
 import de.siegmar.billomat4j.sdk.domain.invoice.Invoice;
 import de.siegmar.billomat4j.sdk.domain.invoice.InvoiceFilter;
@@ -29,6 +27,11 @@ import de.siegmar.billomat4j.sdk.service.InvoiceService;
 import de.siegmar.billomat4j.sdk.service.impl.BillomatConfiguration;
 import de.siegmar.billomat4j.sdk.service.impl.InvoiceServiceImpl;
 
+@SuppressWarnings({
+    "checkstyle:hideutilityclassconstructor",
+    "checkstyle:uncommentedmain",
+    "checkstyle:magicnumber"
+    })
 public class Example {
 
     public static void main(final String[] args) {
@@ -45,8 +48,8 @@ public class Example {
         System.out.println("Paid invoices for the last 30 days:");
 
         final InvoiceFilter invoiceFilter = new InvoiceFilter()
-            .byFrom(DateUtils.addDays(new Date(), -30))
-            .byTo(new Date())
+            .byFrom(LocalDate.now().minusDays(30))
+            .byTo(LocalDate.now())
             .byStatus(InvoiceStatus.PAID);
 
         for (final Invoice invoice : invoiceService.findInvoices(invoiceFilter)) {

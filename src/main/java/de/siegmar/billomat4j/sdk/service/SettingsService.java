@@ -26,10 +26,11 @@ import de.siegmar.billomat4j.sdk.domain.settings.Settings;
 import de.siegmar.billomat4j.sdk.domain.settings.Tax;
 
 /**
- * @see http://www.billomat.com/api/einstellungen/
- * @see http://www.billomat.com/api/einstellungen/steuersaetze/
- * @see http://www.billomat.com/api/einstellungen/steuerfreie-laender/
- * @see http://www.billomat.com/api/einstellungen/mahnstufen/
+ * @see <a href="http://www.billomat.com/api/einstellungen/">API Einstellungen</a>
+ * @see <a href="http://www.billomat.com/api/einstellungen/steuersaetze/">API Einstellungen/Steuersätze</a>
+ * @see <a href="http://www.billomat.com/api/einstellungen/steuerfreie-laender/">
+ *     API Einstellungen/Steuerfreie Länder</a>
+ * @see <a href="http://www.billomat.com/api/einstellungen/mahnstufen/">API Einstellungen/Mahnstufen</a>
  */
 public interface SettingsService {
 

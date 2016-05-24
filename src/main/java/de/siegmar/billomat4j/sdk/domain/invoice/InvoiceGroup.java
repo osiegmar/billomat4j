@@ -19,16 +19,14 @@
 package de.siegmar.billomat4j.sdk.domain.invoice;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import de.siegmar.billomat4j.sdk.domain.AbstractIdentifiable;
-import de.siegmar.billomat4j.sdk.json.MyDateSerializer;
 
 @JsonRootName("invoice-group")
 public class InvoiceGroup extends AbstractIdentifiable {
@@ -38,9 +36,8 @@ public class InvoiceGroup extends AbstractIdentifiable {
     private Integer clientId;
     private InvoiceStatus status;
 
-    @JsonSerialize(using = MyDateSerializer.class)
     @JsonInclude(Include.NON_NULL)
-    private Date day;
+    private LocalDate day;
 
     private String week;
     private String month;
@@ -81,11 +78,11 @@ public class InvoiceGroup extends AbstractIdentifiable {
         this.status = status;
     }
 
-    public Date getDay() {
+    public LocalDate getDay() {
         return day;
     }
 
-    public void setDay(final Date day) {
+    public void setDay(final LocalDate day) {
         this.day = day;
     }
 

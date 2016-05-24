@@ -9,7 +9,7 @@ group = 'de.siegmar'
 archivesBaseName = 'billomat4j'
 version = '1.1.0-SNAPSHOT'
 
-sourceCompatibility = 1.7
+sourceCompatibility = 1.8
 
 compileJava.options.encoding = 'UTF-8'
 
@@ -18,12 +18,13 @@ repositories {
 }
 
 dependencies {
-    compile('org.apache.commons:commons-lang3:3.1')
-    compile('com.fasterxml.jackson.core:jackson-databind:2.2.3')
-    compile('org.slf4j:slf4j-api:1.7.5')
-    testCompile('ch.qos.logback:logback-classic:1.0.13')
-    testCompile('commons-io:commons-io:2.4')
-    testCompile('org.testng:testng:6.8.7')
+    compile('org.apache.commons:commons-lang3:3.4')
+    compile('com.fasterxml.jackson.core:jackson-databind:2.7.4')
+    compile('com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.7.4')
+    compile('org.slf4j:slf4j-api:1.7.21')
+    testCompile('ch.qos.logback:logback-classic:1.1.7')
+    testCompile('commons-io:commons-io:2.5')
+    testCompile('org.testng:testng:6.9.10')
 }
 
 processResources {

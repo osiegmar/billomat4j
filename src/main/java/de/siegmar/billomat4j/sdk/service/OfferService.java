@@ -31,10 +31,10 @@ import de.siegmar.billomat4j.sdk.domain.offer.OfferPdf;
 import de.siegmar.billomat4j.sdk.domain.offer.OfferTag;
 
 /**
- * @see http://www.billomat.com/api/angebote/
- * @see http://www.billomat.com/api/angebote/positionen/
- * @see http://www.billomat.com/api/angebote/kommentare-und-historie-4/
- * @see http://www.billomat.com/api/angebote/schlagworte/
+ * @see <a href="http://www.billomat.com/api/angebote/">API Angebote</a>
+ * @see <a href="http://www.billomat.com/api/angebote/positionen/">API Angebote/Positionen</a>
+ * @see <a href="http://www.billomat.com/api/angebote/kommentare-und-historie-4/">API Angebote/Kommentare</a>
+ * @see <a href="http://www.billomat.com/api/angebote/schlagworte/">API Angebote/Schlagworte</a>
  */
 public interface OfferService extends
     GenericCustomFieldService,

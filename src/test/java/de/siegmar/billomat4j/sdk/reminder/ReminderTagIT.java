@@ -18,7 +18,7 @@
  */
 package de.siegmar.billomat4j.sdk.reminder;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import de.siegmar.billomat4j.sdk.AbstractTagIT;
 import de.siegmar.billomat4j.sdk.domain.client.Client;
@@ -41,7 +41,7 @@ public class ReminderTagIT extends AbstractTagIT<ReminderTag> {
         // Create invoice
         final Invoice invoice = new Invoice();
         invoice.setClientId(client.getId());
-        invoice.setDueDate(new Date());
+        invoice.setDueDate(LocalDate.now());
         invoiceService.createInvoice(invoice);
         invoiceService.completeInvoice(invoice.getId(), null);
 

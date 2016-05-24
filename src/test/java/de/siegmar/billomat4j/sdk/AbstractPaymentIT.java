@@ -24,7 +24,7 @@ import static org.testng.Assert.assertNull;
 import static org.testng.Assert.assertTrue;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.testng.annotations.Test;
@@ -53,7 +53,7 @@ public abstract class AbstractPaymentIT<P extends AbstractPayment, F extends Abs
 
             final P payment = buildPayment(ownerId);
             payment.setPaymentType(PaymentType.CASH);
-            payment.setDate(new Date());
+            payment.setDate(LocalDate.now());
             payment.setAmount(new BigDecimal("22.50"));
             service.createPayment(payment);
             assertNotNull(payment.getId());

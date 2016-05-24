@@ -27,9 +27,9 @@ import de.siegmar.billomat4j.sdk.domain.recurring.RecurringItem;
 import de.siegmar.billomat4j.sdk.domain.recurring.RecurringTag;
 
 /**
- * @see http://www.billomat.com/api/abo-rechnungen/
- * @see http://www.billomat.com/api/abo-rechnungen/positionen/
- * @see http://www.billomat.com/api/abo-rechnungen/schlagworte/
+ * @see <a href="http://www.billomat.com/api/abo-rechnungen/">API Rechnungen</a>
+ * @see <a href="http://www.billomat.com/api/abo-rechnungen/positionen/">API Rechnungen/Positionen</a>
+ * @see <a href="http://www.billomat.com/api/abo-rechnungen/schlagworte/">API Rechnungen/Schlagworte</a>
  */
 public interface RecurringService extends
     GenericCustomFieldService,

@@ -65,7 +65,7 @@ public interface GenericItemService<I extends AbstractItem> {
     void updateItem(I item);
 
     /**
-     * @param id
+     * @param itemId
      *            the id of the item to be deleted
      * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service

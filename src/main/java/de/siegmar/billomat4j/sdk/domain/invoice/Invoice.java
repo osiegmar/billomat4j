@@ -19,8 +19,8 @@
 package de.siegmar.billomat4j.sdk.domain.invoice;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Currency;
-import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
@@ -43,17 +43,17 @@ public class Invoice extends AbstractMeta {
     private Integer number;
     private String numberPre;
     private InvoiceStatus status;
-    private Date date;
+    private LocalDate date;
     private String supplyDate;
     private SupplyDateType supplyDateType;
-    private Date dueDate;
+    private LocalDate dueDate;
 
     @JsonView(Views.NonSerialize.class)
     private Integer dueDays;
 
     private String address;
     private BigDecimal discountRate;
-    private Date discountDate;
+    private LocalDate discountDate;
     private Integer discountDays;
     private BigDecimal discountAmount;
     private String label;
@@ -118,11 +118,11 @@ public class Invoice extends AbstractMeta {
         this.status = status;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(final Date date) {
+    public void setDate(final LocalDate date) {
         this.date = date;
     }
 
@@ -142,11 +142,11 @@ public class Invoice extends AbstractMeta {
         this.supplyDateType = supplyDateType;
     }
 
-    public Date getDueDate() {
+    public LocalDate getDueDate() {
         return dueDate;
     }
 
-    public void setDueDate(final Date dueDate) {
+    public void setDueDate(final LocalDate dueDate) {
         this.dueDate = dueDate;
     }
 
@@ -170,11 +170,11 @@ public class Invoice extends AbstractMeta {
         this.discountRate = discountRate;
     }
 
-    public Date getDiscountDate() {
+    public LocalDate getDiscountDate() {
         return discountDate;
     }
 
-    public void setDiscountDate(final Date discountDate) {
+    public void setDiscountDate(final LocalDate discountDate) {
         this.discountDate = discountDate;
     }
 
@@ -283,7 +283,7 @@ public class Invoice extends AbstractMeta {
     }
 
     public PaymentType[] getPaymentTypes() {
-        return paymentTypes;
+        return paymentTypes != null ? paymentTypes.clone() : null;
     }
 
     public void setPaymentTypes(final PaymentType... paymentTypes) {

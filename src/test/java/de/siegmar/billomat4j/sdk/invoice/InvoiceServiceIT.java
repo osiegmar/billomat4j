@@ -25,6 +25,7 @@ import static org.testng.Assert.assertNull;
 import static org.testng.Assert.assertTrue;
 
 import java.math.BigDecimal;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -182,9 +183,10 @@ public class InvoiceServiceIT extends AbstractServiceIT {
     public void uploadSignedPdf() {
         final Invoice invoice = createInvoice(1);
         invoiceService.completeInvoice(invoice.getId(), null);
-        invoiceService.uploadInvoiceSignedPdf(invoice.getId(), "dummy".getBytes());
+        invoiceService.uploadInvoiceSignedPdf(invoice.getId(), "dummy".getBytes(StandardCharsets.US_ASCII));
 
-        assertEquals(invoiceService.getInvoiceSignedPdf(invoice.getId()).getBase64file(), "dummy".getBytes());
+        assertEquals(invoiceService.getInvoiceSignedPdf(invoice.getId()).getBase64file(),
+            "dummy".getBytes(StandardCharsets.US_ASCII));
     }
 
     @Test

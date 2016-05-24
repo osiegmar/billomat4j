@@ -49,7 +49,7 @@ public class SettingsServiceImpl extends AbstractService implements SettingsServ
     public Settings getSettings() {
         try {
             final byte[] data = requestHelper.get(RESOURCE, null, null, null);
-            return objectReader.withType(Settings.class).readValue(data);
+            return objectReader.forType(Settings.class).readValue(data);
         } catch (final IOException e) {
             throw new ServiceException(e);
         }
@@ -60,7 +60,7 @@ public class SettingsServiceImpl extends AbstractService implements SettingsServ
         try {
             final byte[] requestData = objectWriter.writeValueAsBytes(Validate.notNull(settings));
             final byte[] responseData = requestHelper.put(RESOURCE, null, null, requestData);
-            objectReader.withType(Settings.class).withValueToUpdate(settings).readValue(responseData);
+            objectReader.forType(Settings.class).withValueToUpdate(settings).readValue(responseData);
         } catch (final IOException e) {
             throw new ServiceException(e);
         }

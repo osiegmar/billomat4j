@@ -25,8 +25,9 @@ import static org.testng.Assert.assertNull;
 import static org.testng.Assert.assertTrue;
 
 import java.math.BigDecimal;
+import java.nio.charset.StandardCharsets;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.testng.annotations.AfterMethod;
@@ -159,9 +160,10 @@ public class ReminderServiceIT extends AbstractServiceIT {
     public void uploadSignedPdf() {
         final Reminder reminder = createReminder(1);
         reminderService.completeReminder(reminder.getId(), null);
-        reminderService.uploadReminderSignedPdf(reminder.getId(), "dummy".getBytes());
+        reminderService.uploadReminderSignedPdf(reminder.getId(), "dummy".getBytes(StandardCharsets.US_ASCII));
 
-        assertEquals(reminderService.getReminderSignedPdf(reminder.getId()).getBase64file(), "dummy".getBytes());
+        assertEquals(reminderService.getReminderSignedPdf(reminder.getId()).getBase64file(),
+            "dummy".getBytes(StandardCharsets.US_ASCII));
     }
 
     @Test
@@ -204,7 +206,7 @@ public class ReminderServiceIT extends AbstractServiceIT {
         final Invoice invoice = new Invoice();
         invoice.setClientId(client.getId());
         invoice.setNumber(number);
-        invoice.setDueDate(new Date());
+        invoice.setDueDate(LocalDate.now());
         invoiceService.createInvoice(invoice);
         invoiceService.completeInvoice(invoice.getId(), null);
 

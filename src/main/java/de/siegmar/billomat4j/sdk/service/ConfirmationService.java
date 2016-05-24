@@ -31,10 +31,12 @@ import de.siegmar.billomat4j.sdk.domain.confirmation.ConfirmationPdf;
 import de.siegmar.billomat4j.sdk.domain.confirmation.ConfirmationTag;
 
 /**
- * @see http://www.billomat.com/api/auftragsbestaetigungen/
- * @see http://www.billomat.com/api/auftragsbestaetigungen/positionen/
- * @see http://www.billomat.com/api/auftragsbestaetigungen/kommentare-und-historie-2/
- * @see http://www.billomat.com/api/auftragsbestaetigungen/schlagworte/
+ * @see <a href="http://www.billomat.com/api/auftragsbestaetigungen/">API Auftragsbestätigung</a>
+ * @see <a href="http://www.billomat.com/api/auftragsbestaetigungen/positionen/">API Auftragsbestätigung/Positionen</a>
+ * @see <a href="http://www.billomat.com/api/auftragsbestaetigungen/kommentare-und-historie-2/">
+ *     API Auftragsbestätigung/Kommentare</a>
+ * @see <a href="http://www.billomat.com/api/auftragsbestaetigungen/schlagworte/">
+ *     API Auftragsbestätigung/Schlagworte</a>
  */
 public interface ConfirmationService extends
     GenericCustomFieldService,

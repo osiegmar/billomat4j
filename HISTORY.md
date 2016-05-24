@@ -4,6 +4,9 @@
 * Fixed an issue that made stopping of Recurrings impossible
 * Added support for registered Apps (appId / appSecret headers)
 * Added payment types INVOICE_CORRECTION and CHECK
+* Updated to Java 8 (new time api)
+* Updated dependencies
+
 
 ## 1.0.5 (2013-10-03)
 

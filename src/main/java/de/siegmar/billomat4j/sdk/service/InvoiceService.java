@@ -35,11 +35,11 @@ import de.siegmar.billomat4j.sdk.domain.invoice.InvoicePdf;
 import de.siegmar.billomat4j.sdk.domain.invoice.InvoiceTag;
 
 /**
- * @see http://www.billomat.com/api/rechnungen/
- * @see http://www.billomat.com/api/rechnungen/positionen/
- * @see http://www.billomat.com/api/rechnungen/kommentare-und-historie-5/
- * @see http://www.billomat.com/api/rechnungen/zahlungen/
- * @see http://www.billomat.com/api/rechnungen/schlagworte/
+ * @see <a href="http://www.billomat.com/api/rechnungen/">API Rechnungen</a>
+ * @see <a href="http://www.billomat.com/api/rechnungen/positionen/">API Rechnungen/Positionen</a>
+ * @see <a href="http://www.billomat.com/api/rechnungen/kommentare-und-historie-5/">API Rechnungen/Kommentare</a>
+ * @see <a href="http://www.billomat.com/api/rechnungen/zahlungen/">API Rechnungen/Zahlungen</a>
+ * @see <a href="http://www.billomat.com/api/rechnungen/schlagworte/">API Rechnungen/Schlagworte</a>
  */
 public interface InvoiceService extends
     GenericCustomFieldService,

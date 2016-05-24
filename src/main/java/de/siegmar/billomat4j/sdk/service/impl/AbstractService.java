@@ -72,7 +72,7 @@ abstract class AbstractService {
 
         try {
             final byte[] data = requestHelper.get(resource, null, null, params);
-            final WrappedRecord<E> wrapper = objectReader.withType(wrapperClass).readValue(data);
+            final WrappedRecord<E> wrapper = objectReader.forType(wrapperClass).readValue(data);
             return wrapper.getEntries();
         } catch (final IOException e) {
             throw new ServiceException(e);
@@ -89,7 +89,7 @@ abstract class AbstractService {
             if (data == null) {
                 return null;
             }
-            return objectReader.withType(wrapperClass).readValue(data);
+            return objectReader.forType(wrapperClass).readValue(data);
         } catch (final IOException e) {
             throw new ServiceException(e);
         }
@@ -160,7 +160,7 @@ abstract class AbstractService {
 
         try {
             final byte[] data = requestHelper.get(resource, Integer.toString(id), "pdf", filter);
-            return objectReader.withType(clazz).readValue(data);
+            return objectReader.forType(clazz).readValue(data);
         } catch (final IOException e) {
             throw new ServiceException(e);
         }

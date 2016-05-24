@@ -27,10 +27,10 @@ import de.siegmar.billomat4j.sdk.domain.article.ArticleTag;
 import de.siegmar.billomat4j.sdk.domain.settings.ArticleProperty;
 
 /**
- * @see http://www.billomat.com/api/artikel/
- * @see http://www.billomat.com/api/artikel/attribute/
- * @see http://www.billomat.com/api/artikel/schlagworte/
- * @see http://www.billomat.com/api/einstellungen/artikel-attribute/
+ * @see <a href="http://www.billomat.com/api/artikel/">API Artikel</a>
+ * @see <a href="http://www.billomat.com/api/artikel/attribute/">API Artikel/Attribute</a>
+ * @see <a href="http://www.billomat.com/api/artikel/schlagworte/">API Artikel/Schlagworte</a>
+ * @see <a href="http://www.billomat.com/api/einstellungen/artikel-attribute/">API Artikel/Attribute/Einstellungen</a>
  */
 public interface ArticleService extends
     GenericCustomFieldService,

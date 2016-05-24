@@ -31,7 +31,7 @@ dependencies {
 Requirements
 ------------
 
-- Java 7
+- Java 8
 - Apache Commons Lang
 - Jackson JSON Processor
 - SLF4J

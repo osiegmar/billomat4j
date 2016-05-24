@@ -19,19 +19,17 @@
 package de.siegmar.billomat4j.sdk.domain.recurring;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Currency;
-import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import de.siegmar.billomat4j.sdk.domain.AbstractMeta;
 import de.siegmar.billomat4j.sdk.domain.types.PaymentType;
 import de.siegmar.billomat4j.sdk.domain.types.SupplyDateType;
-import de.siegmar.billomat4j.sdk.json.MyDateSerializer;
 
 @JsonRootName("recurring")
 public class Recurring extends AbstractMeta {
@@ -59,20 +57,16 @@ public class Recurring extends AbstractMeta {
     private Integer cycleNumber;
     private Integer contactId;
 
-    @JsonSerialize(using = MyDateSerializer.class)
     @JsonInclude(Include.NON_NULL)
-    private Date startDate;
+    private LocalDate startDate;
 
-    @JsonSerialize(using = MyDateSerializer.class)
     @JsonInclude(Include.NON_NULL)
-    private Date endDate;
+    private LocalDate endDate;
 
-    @JsonSerialize(using = MyDateSerializer.class)
     @JsonInclude(Include.NON_NULL)
-    private Date lastCreationDate;
+    private LocalDate lastCreationDate;
 
-    @JsonSerialize(using = MyDateSerializer.class)
-    private Date nextCreationDate;
+    private LocalDate nextCreationDate;
 
     private Integer iterations;
     private Integer counter;
@@ -222,7 +216,7 @@ public class Recurring extends AbstractMeta {
     }
 
     public PaymentType[] getPaymentTypes() {
-        return paymentTypes;
+        return paymentTypes != null ? paymentTypes.clone() : null;
     }
 
     public void setPaymentTypes(final PaymentType... paymentTypes) {
@@ -253,35 +247,35 @@ public class Recurring extends AbstractMeta {
         this.hour = hour;
     }
 
-    public Date getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(final Date startDate) {
+    public void setStartDate(final LocalDate startDate) {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(final Date endDate) {
+    public void setEndDate(final LocalDate endDate) {
         this.endDate = endDate;
     }
 
-    public Date getLastCreationDate() {
+    public LocalDate getLastCreationDate() {
         return lastCreationDate;
     }
 
-    public void setLastCreationDate(final Date lastCreationDate) {
+    public void setLastCreationDate(final LocalDate lastCreationDate) {
         this.lastCreationDate = lastCreationDate;
     }
 
-    public Date getNextCreationDate() {
+    public LocalDate getNextCreationDate() {
         return nextCreationDate;
     }
 
-    public void setNextCreationDate(final Date nextCreationDate) {
+    public void setNextCreationDate(final LocalDate nextCreationDate) {
         this.nextCreationDate = nextCreationDate;
     }
 

@@ -28,9 +28,9 @@ import de.siegmar.billomat4j.sdk.domain.reminder.ReminderPdf;
 import de.siegmar.billomat4j.sdk.domain.reminder.ReminderTag;
 
 /**
- * @see http://www.billomat.com/api/mahnungen/
- * @see http://www.billomat.com/api/mahnungen/positionen/
- * @see http://www.billomat.com/api/mahnungen/schlagworte/
+ * @see <a href="http://www.billomat.com/api/mahnungen/">API Mahnungen</a>
+ * @see <a href="http://www.billomat.com/api/mahnungen/positionen/">API Mahnungen/Positionen</a>
+ * @see <a href="http://www.billomat.com/api/mahnungen/schlagworte/">API Mahnungen/Schlagworte</a>
  */
 public interface ReminderService extends
     GenericCustomFieldService,

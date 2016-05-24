@@ -19,16 +19,14 @@
 package de.siegmar.billomat4j.sdk.domain;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonView;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import de.siegmar.billomat4j.sdk.domain.types.PaymentType;
-import de.siegmar.billomat4j.sdk.json.MyDateSerializer;
 import de.siegmar.billomat4j.sdk.json.Views;
 
 public abstract class AbstractPayment extends AbstractMeta {
@@ -36,9 +34,8 @@ public abstract class AbstractPayment extends AbstractMeta {
     @JsonView(Views.NonSerialize.class)
     private Integer userId;
 
-    @JsonSerialize(using = MyDateSerializer.class)
     @JsonInclude(Include.NON_NULL)
-    private Date date;
+    private LocalDate date;
 
     private BigDecimal amount;
     private String comment;
@@ -52,11 +49,11 @@ public abstract class AbstractPayment extends AbstractMeta {
         return userId;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(final Date date) {
+    public void setDate(final LocalDate date) {
         this.date = date;
     }
 

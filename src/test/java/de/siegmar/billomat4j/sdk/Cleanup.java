@@ -27,7 +27,13 @@ import de.siegmar.billomat4j.sdk.domain.invoice.Invoice;
 import de.siegmar.billomat4j.sdk.domain.offer.Offer;
 import de.siegmar.billomat4j.sdk.domain.recurring.Recurring;
 import de.siegmar.billomat4j.sdk.domain.reminder.Reminder;
+import de.siegmar.billomat4j.sdk.domain.template.Template;
 
+@SuppressWarnings({
+    "checkstyle:uncommentedmain",
+    "checkstyle:npathcomplexity",
+    "checkstyle:cyclomaticcomplexity"
+    })
 public class Cleanup extends AbstractServiceIT {
 
     public static void main(final String[] args) {
@@ -37,6 +43,10 @@ public class Cleanup extends AbstractServiceIT {
     private void cleanup() {
         for (final Confirmation confirmation : confirmationService.findConfirmations(null)) {
             confirmationService.deleteConfirmation(confirmation.getId());
+        }
+
+        for (final Template template : templateService.findTemplates(null)) {
+            templateService.deleteTemplate(template.getId());
         }
 
         for (final CreditNote creditNote : creditNoteService.findCreditNotes(null)) {

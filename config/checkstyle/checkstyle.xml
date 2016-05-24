@@ -41,6 +41,7 @@
         <property name="cacheFile" value="build/checkstyle-cachefile"/>
 
         <module name="FileContentsHolder"/>
+        <module name="SuppressWarningsHolder"/>
 
         <!-- Annotations -->
         <module name="AnnotationUseStyle"/>
@@ -129,7 +130,7 @@
         <module name="FallThrough">
             <property name="severity" value="warning"/>
         </module>
-        <!--  
+        <!--
         <module name="MultipleStringLiterals">
             <property name="severity" value="warning"/>
             <property name="ignoreStringsRegexp" value='^(("")|(", "))$'/>
@@ -287,11 +288,7 @@
 
     </module>
 
-    <module name="SuppressionCommentFilter">
-        <property name="offCommentFormat" value="CSOFF\: ([\w\|]+)"/>
-        <property name="onCommentFormat" value="CSON\: ([\w\|]+)"/>
-        <property name="checkFormat" value="$1"/>
-    </module>
+    <module name="SuppressWarningsFilter"/>
 
     <module name="SuppressionFilter">
         <property name="file" value="config/checkstyle/suppressions.xml"/>

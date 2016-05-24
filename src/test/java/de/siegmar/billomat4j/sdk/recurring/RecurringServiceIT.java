@@ -25,11 +25,10 @@ import static org.testng.Assert.assertNull;
 import static org.testng.Assert.assertTrue;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-import org.apache.commons.lang3.time.DateUtils;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
@@ -147,7 +146,7 @@ public class RecurringServiceIT extends AbstractServiceIT {
 
         final Recurring recurring = new Recurring();
         recurring.setClientId(client.getId());
-        recurring.setNextCreationDate(DateUtils.addYears(new Date(), 1));
+        recurring.setNextCreationDate(LocalDate.now().plusYears(1));
         recurring.setCycle(RecurringCycle.YEARLY);
         recurring.setPaymentTypes(paymentType);
 

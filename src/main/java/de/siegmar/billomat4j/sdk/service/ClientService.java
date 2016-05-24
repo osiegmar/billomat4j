@@ -28,11 +28,11 @@ import de.siegmar.billomat4j.sdk.domain.client.Contact;
 import de.siegmar.billomat4j.sdk.domain.settings.ClientProperty;
 
 /**
- * @see http://www.billomat.com/api/kunden/
- * @see http://www.billomat.com/api/kunden/attribute/
- * @see http://www.billomat.com/api/kunden/schlagworte/
- * @see http://www.billomat.com/api/einstellungen/kunden-attribute/
- * @see http://www.billomat.com/api/kunden/kontakte
+ * @see <a href="http://www.billomat.com/api/kunden/">API Kunden</a>
+ * @see <a href="http://www.billomat.com/api/kunden/attribute/">API Kunden/Attribute</a>
+ * @see <a href="http://www.billomat.com/api/kunden/schlagworte/">API Kunden/Schlagworte</a>
+ * @see <a href="http://www.billomat.com/api/einstellungen/kunden-attribute/">API Kunden/Attribute/Einstellungen</a>
+ * @see <a href="http://www.billomat.com/api/kunden/kontakte">API Kunden/Kontakte</a>
  */
 public interface ClientService extends
     GenericCustomFieldService,
@@ -40,7 +40,7 @@ public interface ClientService extends
     GenericTagService<ClientTag> {
 
     /**
-     * @see http://www.billomat.com/api/account/
+     * @see <a href="http://www.billomat.com/api/account/">API Account</a>
      * @return the Billomat account as a client
      * @throws de.siegmar.billomat4j.sdk.service.impl.ServiceException
      *             if an error occured while accessing the web service

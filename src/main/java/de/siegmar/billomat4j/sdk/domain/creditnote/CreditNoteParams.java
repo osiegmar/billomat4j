@@ -18,16 +18,13 @@
  */
 package de.siegmar.billomat4j.sdk.domain.creditnote;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonRootName;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-
-import de.siegmar.billomat4j.sdk.json.MyDateSerializer;
 
 @JsonRootName("credit-note-params")
 public class CreditNoteParams {
@@ -35,13 +32,11 @@ public class CreditNoteParams {
     private Integer clientId;
     private CreditNoteStatus status;
 
-    @JsonSerialize(using = MyDateSerializer.class)
     @JsonInclude(Include.NON_NULL)
-    private Date from;
+    private LocalDate from;
 
-    @JsonSerialize(using = MyDateSerializer.class)
     @JsonInclude(Include.NON_NULL)
-    private Date to;
+    private LocalDate to;
 
     public Integer getClientId() {
         return clientId;
@@ -59,19 +54,19 @@ public class CreditNoteParams {
         this.status = status;
     }
 
-    public Date getFrom() {
+    public LocalDate getFrom() {
         return from;
     }
 
-    public void setFrom(final Date from) {
+    public void setFrom(final LocalDate from) {
         this.from = from;
     }
 
-    public Date getTo() {
+    public LocalDate getTo() {
         return to;
     }
 
-    public void setTo(final Date to) {
+    public void setTo(final LocalDate to) {
         this.to = to;
     }
 

@@ -31,10 +31,10 @@ import de.siegmar.billomat4j.sdk.domain.deliverynote.DeliveryNotePdf;
 import de.siegmar.billomat4j.sdk.domain.deliverynote.DeliveryNoteTag;
 
 /**
- * @see http://www.billomat.com/api/lieferscheine/
- * @see http://www.billomat.com/api/lieferscheine/positionen/
- * @see http://www.billomat.com/api/lieferscheine/kommentare-und-historie/
- * @see http://www.billomat.com/api/lieferscheine/schlagworte/
+ * @see <a href="http://www.billomat.com/api/lieferscheine/">API Lieferscheine</a>
+ * @see <a href="http://www.billomat.com/api/lieferscheine/positionen/">API Lieferscheine/Positionen</a>
+ * @see <a href="http://www.billomat.com/api/lieferscheine/kommentare-und-historie/">API Lieferscheine/Kommentare</a>
+ * @see <a href="http://www.billomat.com/api/lieferscheine/schlagworte/">API Lieferscheine/Schlagworte</a>
  */
 public interface DeliveryNoteService extends
     GenericCustomFieldService,

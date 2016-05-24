@@ -49,11 +49,11 @@ public class EmailAttachment {
     }
 
     public byte[] getData() {
-        return data;
+        return data.clone();
     }
 
     public void setData(final byte[] data) {
-        this.data = data;
+        this.data = data.clone();
     }
 
 }

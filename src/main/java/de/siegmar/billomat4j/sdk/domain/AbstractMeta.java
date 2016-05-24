@@ -18,7 +18,7 @@
  */
 package de.siegmar.billomat4j.sdk.domain;
 
-import java.util.Date;
+import java.time.ZonedDateTime;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
@@ -27,9 +27,9 @@ import de.siegmar.billomat4j.sdk.json.Views;
 public abstract class AbstractMeta extends AbstractIdentifiable {
 
     @JsonView(Views.NonSerialize.class)
-    private Date created;
+    private ZonedDateTime created;
 
-    public Date getCreated() {
+    public ZonedDateTime getCreated() {
         return created;
     }
 

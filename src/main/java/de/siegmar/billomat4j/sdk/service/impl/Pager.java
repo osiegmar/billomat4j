@@ -100,7 +100,7 @@ class Pager<T extends Pageable<E>, E> {
             if (data == null) {
                 return null;
             }
-            return objectReader.withType(clazz).readValue(data);
+            return objectReader.forType(clazz).readValue(data);
         } catch (final IOException e) {
             throw new ServiceException(e);
         }

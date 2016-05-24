@@ -58,11 +58,11 @@ public class Template extends AbstractMeta {
     }
 
     public byte[] getTemplateFile() {
-        return templateFile;
+        return templateFile.clone();
     }
 
     public void setTemplateFile(final byte[] templateFile) {
-        this.templateFile = templateFile;
+        this.templateFile = templateFile.clone();
     }
 
 }
