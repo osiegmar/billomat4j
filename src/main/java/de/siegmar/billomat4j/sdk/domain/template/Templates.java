@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Oliver Siegmar <oliver@siegmar.net>
+ * Copyright 2012 Oliver Siegmar
  *
  * This file is part of Billomat4J.
  *
