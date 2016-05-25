@@ -43,7 +43,7 @@ Requirements
 Example
 -------
 
-This example fetches all paid invoices for the last 30 days and prints them out. This file is also part of this project - see src/test/java/net/siegmar/billomat4j/sdk/Example.java
+This example fetches all paid invoices for the last 30 days and prints them out. This file is also part of this project - see src/test/java/de/siegmar/billomat4j/Example.java
 
 ```java
 BillomatConfiguration billomatConfiguration = new BillomatConfiguration();
