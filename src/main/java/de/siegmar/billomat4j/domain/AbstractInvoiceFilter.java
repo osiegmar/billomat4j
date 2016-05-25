@@ -19,8 +19,7 @@
 package de.siegmar.billomat4j.domain;
 
 import java.time.LocalDate;
-
-import org.apache.commons.lang3.time.DateFormatUtils;
+import java.time.format.DateTimeFormatter;
 
 public abstract class AbstractInvoiceFilter<T extends AbstractInvoiceFilter<T>> extends AbstractFilter<T> {
 
@@ -33,11 +32,11 @@ public abstract class AbstractInvoiceFilter<T extends AbstractInvoiceFilter<T>> 
     }
 
     public T byFrom(final LocalDate from) {
-        return add("from", DateFormatUtils.ISO_DATE_FORMAT.format(from));
+        return add("from", DateTimeFormatter.ISO_DATE.format(from));
     }
 
     public T byTo(final LocalDate to) {
-        return add("to", DateFormatUtils.ISO_DATE_FORMAT.format(to));
+        return add("to", DateTimeFormatter.ISO_DATE.format(to));
     }
 
     public T byLabel(final String label) {

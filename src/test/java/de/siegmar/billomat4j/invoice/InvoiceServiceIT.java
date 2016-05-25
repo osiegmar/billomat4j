@@ -26,6 +26,7 @@ import static org.testng.Assert.assertTrue;
 
 import java.math.BigDecimal;
 import java.nio.charset.StandardCharsets;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -71,8 +72,22 @@ public class InvoiceServiceIT extends AbstractServiceIT {
     }
 
     @Test
-    public void findFiltered() {
+    public void findFilteredByNumber() {
         final InvoiceFilter invoiceFilter = new InvoiceFilter().byInvoiceNumber("1");
+        List<Invoice> invoices = invoiceService.findInvoices(invoiceFilter);
+        assertTrue(invoices.isEmpty());
+
+        final Invoice invoice1 = createInvoice(1);
+        createInvoice(2);
+
+        invoices = invoiceService.findInvoices(invoiceFilter);
+        assertEquals(invoices.size(), 1);
+        assertEquals(invoices.get(0).getId(), invoice1.getId());
+    }
+
+    @Test
+    public void findFilteredByDate() {
+        final InvoiceFilter invoiceFilter = new InvoiceFilter().byFrom(LocalDate.now());
         List<Invoice> invoices = invoiceService.findInvoices(invoiceFilter);
         assertTrue(invoices.isEmpty());
 

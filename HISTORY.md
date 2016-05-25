@@ -1,3 +1,7 @@
+## 1.1.1 (2016-05-25)
+
+* Fixed filtering by date (regression in 1.1.0)
+
 ## 1.1.0 (2016-05-25)
 
 * Renamed package from net.siegmar to de.siegmar (preparation for maven central)
@@ -6,7 +10,6 @@
 * Added payment types INVOICE_CORRECTION and CHECK
 * Updated to Java 8 (new time api)
 * Updated dependencies
-
 
 ## 1.0.5 (2013-10-03)
 
