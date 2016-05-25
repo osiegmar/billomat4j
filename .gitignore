@@ -1,10 +1,13 @@
-.idea
-*.iml
-.classpath
-.project
-.settings
-.gradle
+# Gradle
+.gradle/
+build/
 gradle.properties
-/build
-/bin
-/test-output
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Mac
+.DS_Store
