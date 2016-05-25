@@ -4,7 +4,7 @@ billomat4j
 [![Build Status](https://api.travis-ci.org/osiegmar/billomat4j.svg)](https://travis-ci.org/osiegmar/billomat4j)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/de.siegmar/billomat4j/badge.svg)](https://maven-badges.herokuapp.com/maven-central/de.siegmar/billomat4j)
 
-Java Software Development Kit for the [Billomat](http://www.billomat.com/) [API](http://www.billomat.com/api).
+Java Software Development Kit for the [Billomat API](http://www.billomat.com/api).
 
 
 Latest release
@@ -43,7 +43,8 @@ Requirements
 Example
 -------
 
-This example fetches all paid invoices for the last 30 days and prints them out. This file is also part of this project - see src/test/java/de/siegmar/billomat4j/Example.java
+This example fetches all paid invoices for the last 30 days and prints them out.
+This file is also part of this project - see src/test/java/de/siegmar/billomat4j/Example.java
 
 ```java
 BillomatConfiguration billomatConfiguration = new BillomatConfiguration();
@@ -55,8 +56,8 @@ InvoiceService invoiceService = new InvoiceServiceImpl(billomatConfiguration);
 System.out.println("Paid invoices for the last 30 days:");
 
 InvoiceFilter invoiceFilter = new InvoiceFilter()
-    .byFrom(DateUtils.addDays(new Date(), -30))
-    .byTo(new Date())
+    .byFrom(LocalDate.now().minusDays(30))
+    .byTo(LocalDate.now())
     .byStatus(InvoiceStatus.PAID);
 
 for (Invoice invoice : invoiceService.findInvoices(invoiceFilter)) {
@@ -67,7 +68,9 @@ for (Invoice invoice : invoiceService.findInvoices(invoiceFilter)) {
 Testing
 -------
 
-**WARNING**: Do not run the integration tests with your regular Billomat account. The tests will wipe out all your invoices, clients and so on. Ask the Billomat-Team for a dedicated Test-User!
+**WARNING**: Do not run the integration tests with your regular Billomat account.
+The tests will wipe out all your invoices, clients and so on.
+Ask the Billomat-Team for a dedicated Test-User!
 
 Create a file "src/test/resources/billomat.properties" with this content:
 
