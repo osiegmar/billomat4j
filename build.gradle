@@ -27,7 +27,7 @@ dependencies {
 }
 
 processResources {
-    expand(version: version)
+    expand(project.properties)
 }
 
 task integrationTest(type: Test, dependsOn: "test") {
