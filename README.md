@@ -1,13 +1,16 @@
 billomat4j
 ==========
 
+[![Build Status](https://api.travis-ci.org/osiegmar/billomat4j.svg)](https://travis-ci.org/osiegmar/billomat4j)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/de.siegmar/billomat4j/badge.svg)](https://maven-badges.herokuapp.com/maven-central/de.siegmar/billomat4j)
+
 Java Software Development Kit for the [Billomat](http://www.billomat.com/) [API](http://www.billomat.com/api).
 
 
 Latest release
 --------------
 
-The most recent release is 1.0.1, released March 20, 2016.
+The most recent release is 1.1.0, released May 25, 2016.
 
 To add a dependency using Maven, use the following:
 

@@ -1,4 +1,4 @@
-## 1.1.0 (2016-??-??)
+## 1.1.0 (2016-05-25)
 
 * Renamed package from net.siegmar to de.siegmar (preparation for maven central)
 * Fixed an issue that made stopping of Recurrings impossible
