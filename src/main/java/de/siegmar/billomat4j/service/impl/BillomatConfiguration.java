@@ -131,7 +131,7 @@ public class BillomatConfiguration {
         requestHelper = new RequestHelper(this);
 
         final ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.setPropertyNamingStrategy(PropertyNamingStrategy.SNAKE_CASE);
+        objectMapper.setPropertyNamingStrategy(PropertyNamingStrategy.CAMEL_CASE_TO_LOWER_CASE_WITH_UNDERSCORES);
         objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
 
         objectMapper.registerModule(new JavaTimeModule());

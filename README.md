@@ -10,7 +10,7 @@ Java Software Development Kit for the [Billomat API](http://www.billomat.com/api
 Latest release
 --------------
 
-The most recent release is 1.1.1, released May 25, 2016.
+The most recent release is 1.1.3, released May 26, 2016.
 
 To add a dependency using Maven, use the following:
 
@@ -18,7 +18,7 @@ To add a dependency using Maven, use the following:
 <dependency>
     <groupId>de.siegmar</groupId>
     <artifactId>billomat4j</artifactId>
-    <version>1.1.2</version>
+    <version>1.1.3</version>
 </dependency>
 ```
 
@@ -26,7 +26,7 @@ To add a dependency using Gradle:
 
 ```gradle
 dependencies {
-    compile 'de.siegmar:billomat4j:1.1.2'
+    compile 'de.siegmar:billomat4j:1.1.3'
 }
 ```
 

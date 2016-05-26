@@ -1,3 +1,7 @@
+## 1.1.3 (2016-05-26)
+
+* Lowered the Jackson dependency to support version 2.6 and 2.7
+
 ## 1.1.2 (2016-05-26)
 
 * Added RecurringAction MAIL (wasn't documented in API so far)
