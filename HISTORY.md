@@ -1,3 +1,7 @@
+## 1.1.2 (2016-05-26)
+
+* Added RecurringAction MAIL (wasn't documented in API so far)
+
 ## 1.1.1 (2016-05-25)
 
 * Fixed filtering by date (regression in 1.1.0)

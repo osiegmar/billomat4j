@@ -22,6 +22,7 @@ public enum RecurringAction {
 
     CREATE,
     COMPLETE,
-    EMAIL
+    EMAIL,
+    MAIL
 
 }

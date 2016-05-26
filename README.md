@@ -18,7 +18,7 @@ To add a dependency using Maven, use the following:
 <dependency>
     <groupId>de.siegmar</groupId>
     <artifactId>billomat4j</artifactId>
-    <version>1.1.1</version>
+    <version>1.1.2</version>
 </dependency>
 ```
 
@@ -26,7 +26,7 @@ To add a dependency using Gradle:
 
 ```gradle
 dependencies {
-    compile 'de.siegmar:billomat4j:1.1.1'
+    compile 'de.siegmar:billomat4j:1.1.2'
 }
 ```
 
