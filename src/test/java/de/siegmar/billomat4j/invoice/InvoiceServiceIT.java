@@ -87,16 +87,19 @@ public class InvoiceServiceIT extends AbstractServiceIT {
 
     @Test
     public void findFilteredByDate() {
-        final InvoiceFilter invoiceFilter = new InvoiceFilter().byFrom(LocalDate.now());
+        final InvoiceFilter invoiceFilter = new InvoiceFilter().byTo(LocalDate.now());
         List<Invoice> invoices = invoiceService.findInvoices(invoiceFilter);
         assertTrue(invoices.isEmpty());
 
         final Invoice invoice1 = createInvoice(1);
-        createInvoice(2);
 
         invoices = invoiceService.findInvoices(invoiceFilter);
         assertEquals(invoices.size(), 1);
         assertEquals(invoices.get(0).getId(), invoice1.getId());
+
+        final InvoiceFilter yesterdayFilter = new InvoiceFilter().byTo(LocalDate.now().minusDays(1));
+        invoices = invoiceService.findInvoices(yesterdayFilter);
+        assertTrue(invoices.isEmpty());
     }
 
     @Test
