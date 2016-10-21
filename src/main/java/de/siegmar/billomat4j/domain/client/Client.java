@@ -71,6 +71,7 @@ public class Client extends AbstractMeta {
     private Integer priceGroup;
     private String note;
     private Boolean archived;
+    private String customerportalUrl;
 
     @JsonView(Views.NonSerialize.class)
     private BigDecimal revenueGross;
@@ -402,4 +403,11 @@ public class Client extends AbstractMeta {
         this.archived = archived;
     }
 
+    public String getCustomerportalUrl() {
+        return customerportalUrl;
+    }
+
+    public void setCustomerportalUrl(final String customerportalUrl) {
+        this.customerportalUrl = customerportalUrl;
+    }
 }
