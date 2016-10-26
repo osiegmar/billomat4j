@@ -47,6 +47,7 @@ public class Reminder extends AbstractMeta {
     private LocalDate dueDate;
     private BigDecimal totalGross;
     private ReminderItems reminderItems;
+    private String customerportalUrl;
 
     @JsonProperty("is_old")
     private Boolean old;
@@ -171,4 +172,11 @@ public class Reminder extends AbstractMeta {
         reminderItems.getReminderItems().add(reminderItem);
     }
 
+    public String getCustomerportalUrl() {
+        return customerportalUrl;
+    }
+
+    public void setCustomerportalUrl(final String customerportalUrl) {
+        this.customerportalUrl = customerportalUrl;
+    }
 }

@@ -65,6 +65,7 @@ public class Confirmation extends AbstractMeta {
     private Integer offerId;
     private ConfirmationItems confirmationItems;
     private Integer contactId;
+    private String customerportalUrl;
 
     public Integer getClientId() {
         return clientId;
@@ -246,4 +247,11 @@ public class Confirmation extends AbstractMeta {
         this.contactId = contactId;
     }
 
+    public String getCustomerportalUrl() {
+        return customerportalUrl;
+    }
+
+    public void setCustomerportalUrl(final String customerportalUrl) {
+        this.customerportalUrl = customerportalUrl;
+    }
 }

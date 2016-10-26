@@ -72,6 +72,7 @@ public class Invoice extends AbstractMeta {
     private Integer confirmationId;
     private Integer recurringId;
     private Integer contactId;
+    private String customerportalUrl;
 
     @JsonView(Views.NonSerialize.class)
     private BigDecimal paidAmount;
@@ -345,4 +346,11 @@ public class Invoice extends AbstractMeta {
         return openAmount;
     }
 
+    public String getCustomerportalUrl() {
+        return customerportalUrl;
+    }
+
+    public void setCustomerportalUrl(final String customerportalUrl) {
+        this.customerportalUrl = customerportalUrl;
+    }
 }
