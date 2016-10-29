@@ -18,11 +18,13 @@
  */
 package de.siegmar.billomat4j.reminder;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import de.siegmar.billomat4j.AbstractCustomFieldServiceIT;
 import de.siegmar.billomat4j.domain.client.Client;
 import de.siegmar.billomat4j.domain.invoice.Invoice;
+import de.siegmar.billomat4j.domain.invoice.InvoiceItem;
 import de.siegmar.billomat4j.domain.reminder.Reminder;
 
 
@@ -42,6 +44,10 @@ public class ReminderCustomFieldIT extends AbstractCustomFieldServiceIT {
         invoice.setClientId(client.getId());
         invoice.setIntro("InvoiceCustomFieldTest");
         invoice.setDueDate(LocalDate.now());
+        final InvoiceItem invoiceItem = new InvoiceItem();
+        invoiceItem.setUnitPrice(BigDecimal.ONE);
+        invoiceItem.setQuantity(BigDecimal.ONE);
+        invoice.addInvoiceItem(invoiceItem);
         invoiceService.createInvoice(invoice);
         invoiceService.completeInvoice(invoice.getId(), null);
 
