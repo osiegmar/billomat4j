@@ -63,6 +63,7 @@ public class DeliveryNote extends AbstractMeta {
     private Integer invoiceId;
     private DeliveryNoteItems deliveryNoteItems;
     private Integer contactId;
+    private String customerportalUrl;
 
     public Integer getClientId() {
         return clientId;
@@ -252,4 +253,11 @@ public class DeliveryNote extends AbstractMeta {
         this.contactId = contactId;
     }
 
+    public String getCustomerportalUrl() {
+        return customerportalUrl;
+    }
+
+    public void setCustomerportalUrl(final String customerportalUrl) {
+        this.customerportalUrl = customerportalUrl;
+    }
 }

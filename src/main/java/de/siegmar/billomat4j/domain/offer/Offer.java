@@ -60,6 +60,7 @@ public class Offer extends AbstractMeta {
     private BigDecimal quote;
     private Taxes taxes;
     private Integer contactId;
+    private String customerportalUrl;
 
     @JsonInclude(Include.NON_NULL)
     private LocalDate validityDate;
@@ -238,4 +239,11 @@ public class Offer extends AbstractMeta {
         this.contactId = contactId;
     }
 
+    public String getCustomerportalUrl() {
+        return customerportalUrl;
+    }
+
+    public void setCustomerportalUrl(final String customerportalUrl) {
+        this.customerportalUrl = customerportalUrl;
+    }
 }
