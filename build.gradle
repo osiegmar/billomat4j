@@ -78,7 +78,7 @@ if (hasProperty('ossrhUsername')) {
                 }
 
                 pom.project {
-                    name 'FastCSV'
+                    name 'Billomat4J'
                     packaging 'jar'
                     description 'Java Software Development Kit for the Billomat API.'
                     url 'https://github.com/osiegmar/billomat4j'
