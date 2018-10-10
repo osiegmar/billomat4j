@@ -23,6 +23,7 @@ import static org.testng.Assert.assertFalse;
 import static org.testng.Assert.assertNotNull;
 import static org.testng.Assert.assertTrue;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -194,6 +195,17 @@ public class ClientServiceIT extends AbstractServiceIT {
         client.setArchived(true);
         clientService.updateClient(client);
         assertTrue(client.getArchived());
+    }
+
+    @Test
+    public void setSepaMandate() {
+        final String sepaMandateNr = "DRSTE3452TZERTS89ZUTZBVS67";
+        final LocalDate sepaDate = LocalDate.of(2018, 10, 10);
+        final Client client = buildClient("Sepa Company");
+        client.setSepaMandate(sepaMandateNr);
+        client.setSepaMandateDate(sepaDate);
+        clientService.createClient(client);
+        assertNotNull(client.getId());
     }
 
 }
