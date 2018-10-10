@@ -206,6 +206,8 @@ public class ClientServiceIT extends AbstractServiceIT {
         client.setSepaMandateDate(sepaDate);
         clientService.createClient(client);
         assertNotNull(client.getId());
+        assertEquals(client.getSepaMandate(), sepaMandateNr);
+        assertEquals(client.getSepaMandateDate(), sepaDate);
     }
 
 }
