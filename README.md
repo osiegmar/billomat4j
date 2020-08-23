@@ -1,7 +1,7 @@
 billomat4j
 ==========
 
-[![Build Status](https://api.travis-ci.org/osiegmar/billomat4j.svg)](https://travis-ci.org/osiegmar/billomat4j)
+[![Build Status](https://travis-ci.org/osiegmar/billomat4j.svg?branch=master)](https://travis-ci.org/osiegmar/billomat4j)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/de.siegmar/billomat4j/badge.svg)](https://maven-badges.herokuapp.com/maven-central/de.siegmar/billomat4j)
 
 Java Software Development Kit for the [Billomat API](http://www.billomat.com/api).
