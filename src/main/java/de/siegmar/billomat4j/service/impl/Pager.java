@@ -16,6 +16,7 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with Billomat4J.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 package de.siegmar.billomat4j.service.impl;
 
 import java.io.IOException;
@@ -44,7 +45,7 @@ class Pager<T extends Pageable<E>, E> {
     private final ObjectReader objectReader;
     private int pageSize = DEFAULT_SDK_PAGE_SIZE;
 
-    public Pager(final Class<T> clazz, final RequestHelper requestHelper, final ObjectReader objectReader) {
+    Pager(final Class<T> clazz, final RequestHelper requestHelper, final ObjectReader objectReader) {
         this.clazz = clazz;
         this.requestHelper = requestHelper;
         this.objectReader = objectReader;
@@ -84,8 +85,8 @@ class Pager<T extends Pageable<E>, E> {
 
             if (page == 1 && recordWrapper.getTotal() > recordWrapper.getPerPage()) {
                 pages = (int) Math.ceil((float) recordWrapper.getTotal() / (float) recordWrapper.getPerPage());
-                LOG.debug("Result consists of {} pages ({} records in total, up to {} records per page) - " +
-                        "continue fetching...", pages, recordWrapper.getTotal(), recordWrapper.getPerPage());
+                LOG.debug("Result consists of {} pages ({} records in total, up to {} records per page) - "
+                    + "continue fetching...", pages, recordWrapper.getTotal(), recordWrapper.getPerPage());
             }
         } while (pages > page++);
 

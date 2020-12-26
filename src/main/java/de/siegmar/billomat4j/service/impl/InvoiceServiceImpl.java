@@ -16,6 +16,7 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with Billomat4J.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 package de.siegmar.billomat4j.service.impl;
 
 import java.util.Collections;
@@ -113,14 +114,14 @@ public class InvoiceServiceImpl extends AbstractService implements InvoiceServic
         return getInvoicePdf(id, null);
     }
 
+    private InvoicePdf getInvoicePdf(final int id, final Map<String, String> filter) {
+        return getPdf(RESOURCE, InvoicePdf.class, id, filter);
+    }
+
     @Override
     public InvoicePdf getInvoiceSignedPdf(final int id) {
         final Map<String, String> filter = Collections.singletonMap("type", "signed");
         return getInvoicePdf(id, filter);
-    }
-
-    private InvoicePdf getInvoicePdf(final int id, final Map<String, String> filter) {
-        return getPdf(RESOURCE, InvoicePdf.class, id, filter);
     }
 
     @Override

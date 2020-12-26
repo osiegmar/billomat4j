@@ -16,6 +16,7 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with Billomat4J.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 package de.siegmar.billomat4j.service.impl;
 
 import java.io.ByteArrayOutputStream;
@@ -54,7 +55,7 @@ class RequestHelper {
 
     private final BillomatConfiguration billomatConfiguration;
 
-    public RequestHelper(final BillomatConfiguration billomatConfiguration) {
+    RequestHelper(final BillomatConfiguration billomatConfiguration) {
         this.billomatConfiguration = billomatConfiguration;
     }
 
@@ -73,8 +74,8 @@ class RequestHelper {
         if (isError(connection)) {
             try (InputStream inputStream = connection.getErrorStream()) {
                 final byte[] result = readToByteArray(inputStream);
-                throw new ServiceException("Service error response: code=" + connection.getResponseCode() + ", data=" +
-                        new String(result, ENCODING));
+                throw new ServiceException("Service error response: code=" + connection.getResponseCode() + ", data="
+                    + new String(result, ENCODING));
             }
         }
 
@@ -132,7 +133,7 @@ class RequestHelper {
 
             connection.setRequestProperty("Content-Length", "" + data.length);
 
-            try (final OutputStream outputStream = connection.getOutputStream()) {
+            try (OutputStream outputStream = connection.getOutputStream()) {
                 outputStream.write(data);
             }
         }
@@ -143,8 +144,8 @@ class RequestHelper {
             try (InputStream inputStream = connection.getErrorStream()) {
                 final byte[] result = readToByteArray(inputStream);
                 if (result.length > 0) {
-                    throw new ServiceException("Service error response: code=" + connection.getResponseCode() +
-                        ", data=" + new String(result, ENCODING));
+                    throw new ServiceException("Service error response: code=" + connection.getResponseCode()
+                        + ", data=" + new String(result, ENCODING));
                 }
             }
         }

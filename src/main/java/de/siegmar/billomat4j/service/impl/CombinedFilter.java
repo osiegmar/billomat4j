@@ -16,6 +16,7 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with Billomat4J.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 package de.siegmar.billomat4j.service.impl;
 
 import java.util.LinkedHashMap;
@@ -29,7 +30,7 @@ class CombinedFilter implements Filter {
 
     private final Map<String, String> map;
 
-    public CombinedFilter(final Filter... filters) {
+    CombinedFilter(final Filter... filters) {
         Validate.notEmpty(filters);
 
         map = new LinkedHashMap<>(filters.length);

@@ -16,6 +16,7 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with Billomat4J.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 package de.siegmar.billomat4j;
 
 import java.time.LocalDate;
@@ -30,7 +31,8 @@ import de.siegmar.billomat4j.service.impl.InvoiceServiceImpl;
 @SuppressWarnings({
     "checkstyle:hideutilityclassconstructor",
     "checkstyle:uncommentedmain",
-    "checkstyle:magicnumber"
+    "checkstyle:magicnumber",
+    "checkstyle:regexpmultiline"
     })
 public class Example {
 

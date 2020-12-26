@@ -16,6 +16,7 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with Billomat4J.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 package de.siegmar.billomat4j.service.impl;
 
 import java.util.Collections;
@@ -27,7 +28,7 @@ class GenericFilter implements Filter {
 
     private final Map<String, String> map;
 
-    public GenericFilter(final Object key, final Object value) {
+    GenericFilter(final Object key, final Object value) {
         map = Collections.singletonMap(key.toString(), value.toString());
     }
 

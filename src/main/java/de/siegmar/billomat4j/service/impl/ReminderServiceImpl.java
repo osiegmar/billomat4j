@@ -16,6 +16,7 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with Billomat4J.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 package de.siegmar.billomat4j.service.impl;
 
 import java.util.Collections;
@@ -87,14 +88,14 @@ public class ReminderServiceImpl extends AbstractService implements ReminderServ
         return getReminderPdf(id, null);
     }
 
+    private ReminderPdf getReminderPdf(final int id, final Map<String, String> filter) {
+        return getPdf(RESOURCE, ReminderPdf.class, id, filter);
+    }
+
     @Override
     public ReminderPdf getReminderSignedPdf(final int id) {
         final Map<String, String> filter = Collections.singletonMap("type", "signed");
         return getReminderPdf(id, filter);
-    }
-
-    private ReminderPdf getReminderPdf(final int id, final Map<String, String> filter) {
-        return getPdf(RESOURCE, ReminderPdf.class, id, filter);
     }
 
     @Override

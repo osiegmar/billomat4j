@@ -16,10 +16,11 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with Billomat4J.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 package de.siegmar.billomat4j.domain;
 
 /**
- * ActionKey marker interface
+ * ActionKey marker interface.
  */
 public interface ActionKey {
 

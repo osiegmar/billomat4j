@@ -16,6 +16,7 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with Billomat4J.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 package de.siegmar.billomat4j;
 
 import static org.testng.Assert.assertEquals;
@@ -64,7 +65,9 @@ public abstract class AbstractItemIT<I extends AbstractItem> extends AbstractSer
     }
 
     protected abstract int createOwner();
+
     protected abstract void deleteOwner(int ownerId);
+
     protected abstract I buildItem(int ownerId);
 
 }

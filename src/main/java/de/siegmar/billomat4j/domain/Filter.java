@@ -16,6 +16,7 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with Billomat4J.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 package de.siegmar.billomat4j.domain;
 
 import java.util.Map;
@@ -23,6 +24,7 @@ import java.util.Map;
 public interface Filter {
 
     Map<String, String> toMap();
+
     boolean isConfigured();
 
 }

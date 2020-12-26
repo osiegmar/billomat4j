@@ -16,6 +16,7 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with Billomat4J.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 package de.siegmar.billomat4j;
 
 import static org.testng.Assert.assertEquals;
@@ -48,6 +49,7 @@ public abstract class AbstractCustomFieldServiceIT extends AbstractServiceIT {
     }
 
     protected abstract int buildOwner();
+
     protected abstract void deleteOwner(int ownerId);
 
 }

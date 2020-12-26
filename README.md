@@ -1,8 +1,9 @@
 billomat4j
 ==========
 
-[![Build Status](https://travis-ci.org/osiegmar/billomat4j.svg?branch=master)](https://travis-ci.org/osiegmar/billomat4j)
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/de.siegmar/billomat4j/badge.svg)](https://maven-badges.herokuapp.com/maven-central/de.siegmar/billomat4j)
+[![build](https://github.com/osiegmar/billomat4j/workflows/build/badge.svg?branch=master)](https://github.com/osiegmar/billomat4j/actions?query=branch%3Amaster)
+[![javadoc](https://javadoc.io/badge2/de.siegmar/billomat4j/javadoc.svg)](https://javadoc.io/doc/de.siegmar/billomat4j)
+[![Maven Central](https://img.shields.io/maven-central/v/de.siegmar/billomat4j.svg)](https://search.maven.org/search?q=g:%22de.siegmar%22%20AND%20a:%22billomat4j%22)
 
 Java Software Development Kit for the [Billomat API](http://www.billomat.com/api).
 

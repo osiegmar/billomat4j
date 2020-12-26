@@ -16,6 +16,7 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with Billomat4J.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 package de.siegmar.billomat4j;
 
 import java.io.File;
@@ -118,7 +119,7 @@ public abstract class AbstractServiceIT {
     }
 
     protected byte[] loadFile(final String name) {
-        File f;
+        final File f;
         try {
             f = new File(TemplateServiceIT.class.getResource("/" + name).toURI().toURL().getFile());
             return FileUtils.readFileToByteArray(f);

@@ -16,6 +16,7 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with Billomat4J.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 package de.siegmar.billomat4j.service.impl;
 
 import java.util.Collections;
@@ -114,14 +115,14 @@ public class CreditNoteServiceImpl extends AbstractService implements CreditNote
         return getCreditNotePdf(id, null);
     }
 
+    private CreditNotePdf getCreditNotePdf(final int id, final Map<String, String> filter) {
+        return getPdf(RESOURCE, CreditNotePdf.class, id, filter);
+    }
+
     @Override
     public CreditNotePdf getCreditNoteSignedPdf(final int id) {
         final Map<String, String> filter = Collections.singletonMap("type", "signed");
         return getCreditNotePdf(id, filter);
-    }
-
-    private CreditNotePdf getCreditNotePdf(final int id, final Map<String, String> filter) {
-        return getPdf(RESOURCE, CreditNotePdf.class, id, filter);
     }
 
     @Override
