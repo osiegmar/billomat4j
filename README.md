@@ -1,48 +1,19 @@
-billomat4j
-==========
+# billomat4j
 
 [![build](https://github.com/osiegmar/billomat4j/workflows/build/badge.svg?branch=master)](https://github.com/osiegmar/billomat4j/actions?query=branch%3Amaster)
 [![javadoc](https://javadoc.io/badge2/de.siegmar/billomat4j/javadoc.svg)](https://javadoc.io/doc/de.siegmar/billomat4j)
 [![Maven Central](https://img.shields.io/maven-central/v/de.siegmar/billomat4j.svg)](https://search.maven.org/search?q=g:%22de.siegmar%22%20AND%20a:%22billomat4j%22)
 
-Java Software Development Kit for the [Billomat API](http://www.billomat.com/api).
+Java Software Development Kit for the [Billomat API](https://www.billomat.com/api/).
 
-
-Latest release
---------------
-
-The most recent release is 1.1.3, released May 26, 2016.
-
-To add a dependency using Maven, use the following:
-
-```xml
-<dependency>
-    <groupId>de.siegmar</groupId>
-    <artifactId>billomat4j</artifactId>
-    <version>1.1.3</version>
-</dependency>
-```
-
-To add a dependency using Gradle:
-
-```gradle
-dependencies {
-    compile 'de.siegmar:billomat4j:1.1.3'
-}
-```
-
-
-Requirements
-------------
+## Requirements
 
 - Java 8
 - Apache Commons Lang
 - Jackson JSON Processor
 - SLF4J
 
-
-Example
--------
+## Example
 
 This example fetches all paid invoices for the last 30 days and prints them out.
 This file is also part of this project - see src/test/java/de/siegmar/billomat4j/Example.java
@@ -66,8 +37,7 @@ for (Invoice invoice : invoiceService.findInvoices(invoiceFilter)) {
 }
 ```
 
-Testing
--------
+## Testing
 
 **WARNING**: Do not run the integration tests with your regular Billomat account.
 The tests will wipe out all your invoices, clients and so on.
@@ -89,19 +59,7 @@ Run the integration test suite by invoking:
 ./gradlew integrationTest
 ```
 
-
-Contribution
-------------
-
-- Fork
-- Code
-- Add test(s)
-- Commit
-- Send me a pull request
-
-
-Copyright
----------
+## Copyright
 
 Copyright 2012 Oliver Siegmar
 
