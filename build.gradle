@@ -68,7 +68,7 @@ publishing {
                 licenses {
                     license {
                         name = 'GNU Lesser General Public License version 3.0'
-                        url = 'http://www.gnu.org/licenses/lgpl-3.0.txt'
+                        url = 'https://www.gnu.org/licenses/lgpl-3.0.txt'
                     }
                 }
 
