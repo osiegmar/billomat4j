@@ -20,20 +20,21 @@
 package de.siegmar.billomat4j.client;
 
 import de.siegmar.billomat4j.AbstractTagIT;
+import de.siegmar.billomat4j.ServiceHolder;
 import de.siegmar.billomat4j.domain.client.Client;
 import de.siegmar.billomat4j.domain.client.ClientTag;
 
 public class ClientTagIT extends AbstractTagIT<ClientTag> {
 
     public ClientTagIT() {
-        setService(clientService);
+        setService(ServiceHolder.CLIENT);
     }
 
     @Override
     protected int createOwner() {
         final Client client = new Client();
         client.setName("ClientTagTest Client");
-        clientService.createClient(client);
+        ServiceHolder.CLIENT.createClient(client);
 
         return client.getId();
     }
@@ -47,7 +48,7 @@ public class ClientTagIT extends AbstractTagIT<ClientTag> {
 
     @Override
     protected void deleteOwner(final int ownerId) {
-        clientService.deleteClient(ownerId);
+        ServiceHolder.CLIENT.deleteClient(ownerId);
     }
 
 }

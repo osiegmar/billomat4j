@@ -20,6 +20,7 @@
 package de.siegmar.billomat4j.client;
 
 import de.siegmar.billomat4j.AbstractPropertyIT;
+import de.siegmar.billomat4j.ServiceHolder;
 import de.siegmar.billomat4j.domain.client.Client;
 import de.siegmar.billomat4j.domain.client.ClientPropertyValue;
 import de.siegmar.billomat4j.domain.settings.ClientProperty;
@@ -27,14 +28,14 @@ import de.siegmar.billomat4j.domain.settings.ClientProperty;
 public class ClientPropertyIT extends AbstractPropertyIT<ClientProperty, ClientPropertyValue> {
 
     public ClientPropertyIT() {
-        setService(clientService);
+        setService(ServiceHolder.CLIENT);
     }
 
     @Override
     protected int createOwner() {
         final Client client = new Client();
         client.setName("ClientPropertyTest Client");
-        clientService.createClient(client);
+        ServiceHolder.CLIENT.createClient(client);
         return client.getId();
     }
 
@@ -53,7 +54,7 @@ public class ClientPropertyIT extends AbstractPropertyIT<ClientProperty, ClientP
 
     @Override
     protected void deleteOwner(final int ownerId) {
-        clientService.deleteClient(ownerId);
+        ServiceHolder.CLIENT.deleteClient(ownerId);
     }
 
 }

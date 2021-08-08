@@ -33,7 +33,7 @@ import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
-import de.siegmar.billomat4j.AbstractServiceIT;
+import de.siegmar.billomat4j.ServiceHolder;
 import de.siegmar.billomat4j.domain.client.Client;
 import de.siegmar.billomat4j.domain.recurring.Recurring;
 import de.siegmar.billomat4j.domain.recurring.RecurringCycle;
@@ -42,10 +42,14 @@ import de.siegmar.billomat4j.domain.recurring.RecurringFilter;
 import de.siegmar.billomat4j.domain.recurring.RecurringItem;
 import de.siegmar.billomat4j.domain.types.PaymentType;
 import de.siegmar.billomat4j.domain.types.RecipientType;
+import de.siegmar.billomat4j.service.ClientService;
+import de.siegmar.billomat4j.service.RecurringService;
 
-public class RecurringServiceIT extends AbstractServiceIT {
+public class RecurringServiceIT {
 
     private final List<Recurring> createdRecurrings = new ArrayList<>();
+    private final RecurringService recurringService = ServiceHolder.RECURRING;
+    private final ClientService clientService = ServiceHolder.CLIENT;
 
     // Recurring
 
@@ -121,13 +125,12 @@ public class RecurringServiceIT extends AbstractServiceIT {
         final List<RecurringEmailReceiver> recurringEmailReceivers =
                 recurringService.getRecurringEmailReceivers(recurring.getId());
 
-        assertEquals(1, recurringEmailReceivers.size());
-        assertEquals("", recurringEmailReceivers.get(0).getAddress());
+        assertTrue(recurringEmailReceivers.isEmpty());
 
         final RecurringEmailReceiver recurringEmailReceiver = new RecurringEmailReceiver();
         recurringEmailReceiver.setRecurringId(recurring.getId());
         recurringEmailReceiver.setType(RecipientType.Bcc);
-        recurringEmailReceiver.setAddress(getEmail());
+        recurringEmailReceiver.setAddress(ServiceHolder.getEmail());
 
         recurringService.createRecurringEmailReceiver(recurringEmailReceiver);
         assertNotNull(recurringEmailReceiver.getId());

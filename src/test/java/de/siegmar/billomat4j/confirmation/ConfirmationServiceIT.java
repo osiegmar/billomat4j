@@ -32,8 +32,11 @@ import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 
-import de.siegmar.billomat4j.AbstractServiceIT;
+import de.siegmar.billomat4j.ResourceLoader;
+import de.siegmar.billomat4j.ServiceHolder;
+import de.siegmar.billomat4j.TemplateSetup;
 import de.siegmar.billomat4j.domain.Email;
 import de.siegmar.billomat4j.domain.EmailRecipients;
 import de.siegmar.billomat4j.domain.client.Client;
@@ -45,10 +48,17 @@ import de.siegmar.billomat4j.domain.confirmation.ConfirmationStatus;
 import de.siegmar.billomat4j.domain.template.Template;
 import de.siegmar.billomat4j.domain.template.TemplateFormat;
 import de.siegmar.billomat4j.domain.template.TemplateType;
+import de.siegmar.billomat4j.service.ClientService;
+import de.siegmar.billomat4j.service.ConfirmationService;
+import de.siegmar.billomat4j.service.TemplateService;
 
-public class ConfirmationServiceIT extends AbstractServiceIT {
+@ExtendWith(TemplateSetup.class)
+public class ConfirmationServiceIT {
 
     private final List<Confirmation> createdConfirmations = new ArrayList<>();
+    private final ConfirmationService confirmationService = ServiceHolder.CONFIRMATION;
+    private final ClientService clientService = ServiceHolder.CLIENT;
+    private final TemplateService templateService = ServiceHolder.TEMPLATE;
 
     // Confirmation
 
@@ -144,7 +154,7 @@ public class ConfirmationServiceIT extends AbstractServiceIT {
         template.setFormat(TemplateFormat.rtf);
         template.setName("Test RTF Template");
         template.setType(TemplateType.CONFIRMATION);
-        template.setTemplateFile(loadFile("template.rtf"));
+        template.setTemplateFile(ResourceLoader.loadFile("template.rtf"));
 
         return template;
     }
@@ -165,9 +175,9 @@ public class ConfirmationServiceIT extends AbstractServiceIT {
         final Email email = new Email();
         email.setSubject("Test Confirmation Mail");
         email.setBody("Here's your confirmation");
-        email.setFrom(getEmail());
+        email.setFrom(ServiceHolder.getEmail());
         final EmailRecipients emailRecipients = new EmailRecipients();
-        emailRecipients.addTo(getEmail());
+        emailRecipients.addTo(ServiceHolder.getEmail());
         email.setRecipients(emailRecipients);
         confirmationService.sendConfirmationViaEmail(confirmation.getId(), email);
     }

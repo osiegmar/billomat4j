@@ -32,7 +32,7 @@ import org.junit.jupiter.api.Test;
 import de.siegmar.billomat4j.domain.AbstractItem;
 import de.siegmar.billomat4j.service.GenericItemService;
 
-public abstract class AbstractItemIT<I extends AbstractItem> extends AbstractServiceIT {
+public abstract class AbstractItemIT<I extends AbstractItem> {
 
     private GenericItemService<I> service;
 

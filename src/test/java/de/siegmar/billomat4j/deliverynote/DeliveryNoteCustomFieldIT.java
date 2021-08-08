@@ -20,33 +20,34 @@
 package de.siegmar.billomat4j.deliverynote;
 
 import de.siegmar.billomat4j.AbstractCustomFieldServiceIT;
+import de.siegmar.billomat4j.ServiceHolder;
 import de.siegmar.billomat4j.domain.client.Client;
 import de.siegmar.billomat4j.domain.deliverynote.DeliveryNote;
 
 public class DeliveryNoteCustomFieldIT extends AbstractCustomFieldServiceIT {
 
     public DeliveryNoteCustomFieldIT() {
-        setService(deliveryNoteService);
+        setService(ServiceHolder.DELIVERYNOTE);
     }
 
     @Override
     protected int buildOwner() {
         final Client client = new Client();
         client.setName("DeliveryNoteCustomFieldTest");
-        clientService.createClient(client);
+        ServiceHolder.CLIENT.createClient(client);
 
         final DeliveryNote deliveryNote = new DeliveryNote();
         deliveryNote.setClientId(client.getId());
         deliveryNote.setIntro("DeliveryNoteCustomFieldTest");
-        deliveryNoteService.createDeliveryNote(deliveryNote);
+        ServiceHolder.DELIVERYNOTE.createDeliveryNote(deliveryNote);
         return deliveryNote.getId();
     }
 
     @Override
     protected void deleteOwner(final int ownerId) {
-        final int clientId = deliveryNoteService.getDeliveryNoteById(ownerId).getClientId();
-        deliveryNoteService.deleteDeliveryNote(ownerId);
-        clientService.deleteClient(clientId);
+        final int clientId = ServiceHolder.DELIVERYNOTE.getDeliveryNoteById(ownerId).getClientId();
+        ServiceHolder.DELIVERYNOTE.deleteDeliveryNote(ownerId);
+        ServiceHolder.CLIENT.deleteClient(clientId);
     }
 
 }

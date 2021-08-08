@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Oliver Siegmar
+ * Copyright 2021 Oliver Siegmar
  *
  * This file is part of Billomat4J.
  *
@@ -17,29 +17,30 @@
  * along with Billomat4J.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package de.siegmar.billomat4j.unit;
+package de.siegmar.billomat4j;
 
-import de.siegmar.billomat4j.AbstractCustomFieldServiceIT;
-import de.siegmar.billomat4j.ServiceHolder;
-import de.siegmar.billomat4j.domain.unit.Unit;
+import java.io.File;
+import java.io.IOException;
+import java.io.UncheckedIOException;
+import java.net.URISyntaxException;
 
-public class UnitCustomFieldIT extends AbstractCustomFieldServiceIT {
+import org.apache.commons.io.FileUtils;
 
-    public UnitCustomFieldIT() {
-        setService(ServiceHolder.UNIT);
+public final class ResourceLoader {
+
+    private ResourceLoader() {
     }
 
-    @Override
-    protected int buildOwner() {
-        final Unit unit = new Unit();
-        unit.setName("UnitCustomFieldTest");
-        ServiceHolder.UNIT.createUnit(unit);
-        return unit.getId();
-    }
-
-    @Override
-    protected void deleteOwner(final int ownerId) {
-        ServiceHolder.UNIT.deleteUnit(ownerId);
+    public static byte[] loadFile(final String name) {
+        final File f;
+        try {
+            f = new File(ResourceLoader.class.getResource("/" + name).toURI().toURL().getFile());
+            return FileUtils.readFileToByteArray(f);
+        } catch (final URISyntaxException e) {
+            throw new IllegalStateException(e);
+        } catch (final IOException e) {
+            throw new UncheckedIOException(e);
+        }
     }
 
 }

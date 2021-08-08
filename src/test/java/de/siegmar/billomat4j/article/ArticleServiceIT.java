@@ -32,13 +32,15 @@ import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
-import de.siegmar.billomat4j.AbstractServiceIT;
+import de.siegmar.billomat4j.ServiceHolder;
 import de.siegmar.billomat4j.domain.article.Article;
 import de.siegmar.billomat4j.domain.article.ArticleFilter;
+import de.siegmar.billomat4j.service.ArticleService;
 
-public class ArticleServiceIT extends AbstractServiceIT {
+public class ArticleServiceIT {
 
     private final List<Article> createdArticles = new ArrayList<>();
+    private final ArticleService articleService = ServiceHolder.ARTICLE;
 
     // Article
 

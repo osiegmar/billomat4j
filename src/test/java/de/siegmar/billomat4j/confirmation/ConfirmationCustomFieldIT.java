@@ -20,33 +20,34 @@
 package de.siegmar.billomat4j.confirmation;
 
 import de.siegmar.billomat4j.AbstractCustomFieldServiceIT;
+import de.siegmar.billomat4j.ServiceHolder;
 import de.siegmar.billomat4j.domain.client.Client;
 import de.siegmar.billomat4j.domain.confirmation.Confirmation;
 
 public class ConfirmationCustomFieldIT extends AbstractCustomFieldServiceIT {
 
     public ConfirmationCustomFieldIT() {
-        setService(confirmationService);
+        setService(ServiceHolder.CONFIRMATION);
     }
 
     @Override
     protected int buildOwner() {
         final Client client = new Client();
         client.setName("ConfirmationCustomFieldTest");
-        clientService.createClient(client);
+        ServiceHolder.CLIENT.createClient(client);
 
         final Confirmation confirmation = new Confirmation();
         confirmation.setClientId(client.getId());
         confirmation.setIntro("ConfirmationCustomFieldTest");
-        confirmationService.createConfirmation(confirmation);
+        ServiceHolder.CONFIRMATION.createConfirmation(confirmation);
         return confirmation.getId();
     }
 
     @Override
     protected void deleteOwner(final int ownerId) {
-        final int clientId = confirmationService.getConfirmationById(ownerId).getClientId();
-        confirmationService.deleteConfirmation(ownerId);
-        clientService.deleteClient(clientId);
+        final int clientId = ServiceHolder.CONFIRMATION.getConfirmationById(ownerId).getClientId();
+        ServiceHolder.CONFIRMATION.deleteConfirmation(ownerId);
+        ServiceHolder.CLIENT.deleteClient(clientId);
     }
 
 }

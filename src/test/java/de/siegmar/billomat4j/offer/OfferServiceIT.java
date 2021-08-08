@@ -32,8 +32,10 @@ import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 
-import de.siegmar.billomat4j.AbstractServiceIT;
+import de.siegmar.billomat4j.ServiceHolder;
+import de.siegmar.billomat4j.TemplateSetup;
 import de.siegmar.billomat4j.domain.Email;
 import de.siegmar.billomat4j.domain.EmailRecipients;
 import de.siegmar.billomat4j.domain.client.Client;
@@ -41,13 +43,15 @@ import de.siegmar.billomat4j.domain.offer.Offer;
 import de.siegmar.billomat4j.domain.offer.OfferFilter;
 import de.siegmar.billomat4j.domain.offer.OfferItem;
 import de.siegmar.billomat4j.domain.offer.OfferStatus;
-import de.siegmar.billomat4j.domain.template.Template;
-import de.siegmar.billomat4j.domain.template.TemplateFormat;
-import de.siegmar.billomat4j.domain.template.TemplateType;
+import de.siegmar.billomat4j.service.ClientService;
+import de.siegmar.billomat4j.service.OfferService;
 
-public class OfferServiceIT extends AbstractServiceIT {
+@ExtendWith(TemplateSetup.class)
+public class OfferServiceIT {
 
     private final List<Offer> createdOffers = new ArrayList<>();
+    private final OfferService offerService = ServiceHolder.OFFER;
+    private final ClientService clientService = ServiceHolder.CLIENT;
 
     // Offer
 
@@ -124,30 +128,6 @@ public class OfferServiceIT extends AbstractServiceIT {
     }
 
     @Test
-    public void completeWithTemplate() {
-        final Template template = buildTemplate();
-        templateService.createTemplate(template);
-
-        try {
-            final Offer offer = createOffer(1);
-            offerService.completeOffer(offer.getId(), null);
-            assertEquals(OfferStatus.OPEN, offerService.getOfferById(offer.getId()).getStatus());
-        } finally {
-            templateService.deleteTemplate(template.getId());
-        }
-    }
-
-    private Template buildTemplate() {
-        final Template template = new Template();
-        template.setFormat(TemplateFormat.rtf);
-        template.setName("Test RTF Template");
-        template.setType(TemplateType.OFFER);
-        template.setTemplateFile(loadFile("template.rtf"));
-
-        return template;
-    }
-
-    @Test
     @Disabled("E-Mail")
     public void sendOfferViaEmail() {
         final Offer offer = createOffer(1);
@@ -155,9 +135,9 @@ public class OfferServiceIT extends AbstractServiceIT {
         final Email email = new Email();
         email.setSubject("Test Offer Mail");
         email.setBody("Here's your offer");
-        email.setFrom(getEmail());
+        email.setFrom(ServiceHolder.getEmail());
         final EmailRecipients emailRecipients = new EmailRecipients();
-        emailRecipients.addTo(getEmail());
+        emailRecipients.addTo(ServiceHolder.getEmail());
         email.setRecipients(emailRecipients);
         offerService.sendOfferViaEmail(offer.getId(), email);
     }

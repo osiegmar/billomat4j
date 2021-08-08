@@ -19,39 +19,43 @@
 
 package de.siegmar.billomat4j.creditnote;
 
+import org.junit.jupiter.api.extension.ExtendWith;
+
 import de.siegmar.billomat4j.AbstractPaymentIT;
+import de.siegmar.billomat4j.ServiceHolder;
+import de.siegmar.billomat4j.TemplateSetup;
 import de.siegmar.billomat4j.domain.client.Client;
 import de.siegmar.billomat4j.domain.creditnote.CreditNote;
 import de.siegmar.billomat4j.domain.creditnote.CreditNotePayment;
 import de.siegmar.billomat4j.domain.creditnote.CreditNotePaymentFilter;
 import de.siegmar.billomat4j.domain.types.PaymentType;
 
-
+@ExtendWith(TemplateSetup.class)
 public class CreditNotePaymentIT extends AbstractPaymentIT<CreditNotePayment, CreditNotePaymentFilter> {
 
     public CreditNotePaymentIT() {
-        setService(creditNoteService);
+        setService(ServiceHolder.CREDITNOTE);
     }
 
     @Override
     protected int createOwner() {
         final Client client = new Client();
         client.setName("CreditNotePaymentTest Client");
-        clientService.createClient(client);
+        ServiceHolder.CLIENT.createClient(client);
 
         final CreditNote creditNote = new CreditNote();
         creditNote.setClientId(client.getId());
-        creditNoteService.createCreditNote(creditNote);
-        creditNoteService.completeCreditNote(creditNote.getId(), null);
+        ServiceHolder.CREDITNOTE.createCreditNote(creditNote);
+        ServiceHolder.CREDITNOTE.completeCreditNote(creditNote.getId(), null);
 
         return creditNote.getId();
     }
 
     @Override
     protected void deleteOwner(final int ownerId) {
-        final int clientId = creditNoteService.getCreditNoteById(ownerId).getClientId();
-        creditNoteService.deleteCreditNote(ownerId);
-        clientService.deleteClient(clientId);
+        final int clientId = ServiceHolder.CREDITNOTE.getCreditNoteById(ownerId).getClientId();
+        ServiceHolder.CREDITNOTE.deleteCreditNote(ownerId);
+        ServiceHolder.CLIENT.deleteClient(clientId);
     }
 
     @Override

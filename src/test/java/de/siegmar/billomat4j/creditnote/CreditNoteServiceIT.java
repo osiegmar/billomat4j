@@ -34,8 +34,11 @@ import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 
-import de.siegmar.billomat4j.AbstractServiceIT;
+import de.siegmar.billomat4j.ResourceLoader;
+import de.siegmar.billomat4j.ServiceHolder;
+import de.siegmar.billomat4j.TemplateSetup;
 import de.siegmar.billomat4j.domain.Email;
 import de.siegmar.billomat4j.domain.EmailRecipients;
 import de.siegmar.billomat4j.domain.client.Client;
@@ -49,10 +52,17 @@ import de.siegmar.billomat4j.domain.creditnote.CreditNoteStatus;
 import de.siegmar.billomat4j.domain.template.Template;
 import de.siegmar.billomat4j.domain.template.TemplateFormat;
 import de.siegmar.billomat4j.domain.template.TemplateType;
+import de.siegmar.billomat4j.service.ClientService;
+import de.siegmar.billomat4j.service.CreditNoteService;
+import de.siegmar.billomat4j.service.TemplateService;
 
-public class CreditNoteServiceIT extends AbstractServiceIT {
+@ExtendWith(TemplateSetup.class)
+public class CreditNoteServiceIT {
 
     private final List<CreditNote> createdCreditNotes = new ArrayList<>();
+    private final CreditNoteService creditNoteService = ServiceHolder.CREDITNOTE;
+    private final ClientService clientService = ServiceHolder.CLIENT;
+    private final TemplateService templateService = ServiceHolder.TEMPLATE;
 
     // CreditNote
 
@@ -179,7 +189,7 @@ public class CreditNoteServiceIT extends AbstractServiceIT {
         template.setFormat(TemplateFormat.rtf);
         template.setName("Test RTF Template");
         template.setType(TemplateType.CREDIT_NOTE);
-        template.setTemplateFile(loadFile("template.rtf"));
+        template.setTemplateFile(ResourceLoader.loadFile("template.rtf"));
 
         return template;
     }
@@ -210,9 +220,9 @@ public class CreditNoteServiceIT extends AbstractServiceIT {
         final Email email = new Email();
         email.setSubject("Test CreditNote Mail");
         email.setBody("Here's your creditNote");
-        email.setFrom(getEmail());
+        email.setFrom(ServiceHolder.getEmail());
         final EmailRecipients emailRecipients = new EmailRecipients();
-        emailRecipients.addTo(getEmail());
+        emailRecipients.addTo(ServiceHolder.getEmail());
         email.setRecipients(emailRecipients);
         creditNoteService.sendCreditNoteViaEmail(creditNote.getId(), email);
     }

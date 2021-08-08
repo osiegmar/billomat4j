@@ -20,33 +20,34 @@
 package de.siegmar.billomat4j.creditnote;
 
 import de.siegmar.billomat4j.AbstractCustomFieldServiceIT;
+import de.siegmar.billomat4j.ServiceHolder;
 import de.siegmar.billomat4j.domain.client.Client;
 import de.siegmar.billomat4j.domain.creditnote.CreditNote;
 
 public class CreditNoteCustomFieldIT extends AbstractCustomFieldServiceIT {
 
     public CreditNoteCustomFieldIT() {
-        setService(creditNoteService);
+        setService(ServiceHolder.CREDITNOTE);
     }
 
     @Override
     protected int buildOwner() {
         final Client client = new Client();
         client.setName("CreditNoteCustomFieldTest");
-        clientService.createClient(client);
+        ServiceHolder.CLIENT.createClient(client);
 
         final CreditNote creditNote = new CreditNote();
         creditNote.setClientId(client.getId());
         creditNote.setIntro("CreditNoteCustomFieldTest");
-        creditNoteService.createCreditNote(creditNote);
+        ServiceHolder.CREDITNOTE.createCreditNote(creditNote);
         return creditNote.getId();
     }
 
     @Override
     protected void deleteOwner(final int ownerId) {
-        final int clientId = creditNoteService.getCreditNoteById(ownerId).getClientId();
-        creditNoteService.deleteCreditNote(ownerId);
-        clientService.deleteClient(clientId);
+        final int clientId = ServiceHolder.CREDITNOTE.getCreditNoteById(ownerId).getClientId();
+        ServiceHolder.CREDITNOTE.deleteCreditNote(ownerId);
+        ServiceHolder.CLIENT.deleteClient(clientId);
     }
 
 }

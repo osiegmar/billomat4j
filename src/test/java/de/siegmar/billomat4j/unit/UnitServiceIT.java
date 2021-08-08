@@ -30,13 +30,15 @@ import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
-import de.siegmar.billomat4j.AbstractServiceIT;
+import de.siegmar.billomat4j.ServiceHolder;
 import de.siegmar.billomat4j.domain.unit.Unit;
 import de.siegmar.billomat4j.domain.unit.UnitFilter;
+import de.siegmar.billomat4j.service.UnitService;
 
-public class UnitServiceIT extends AbstractServiceIT {
+public class UnitServiceIT {
 
     private final List<Unit> createdUnits = new ArrayList<>();
+    private final UnitService unitService = ServiceHolder.UNIT;
 
     @AfterEach
     public void cleanup() {

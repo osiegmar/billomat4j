@@ -20,25 +20,26 @@
 package de.siegmar.billomat4j.client;
 
 import de.siegmar.billomat4j.AbstractCustomFieldServiceIT;
+import de.siegmar.billomat4j.ServiceHolder;
 import de.siegmar.billomat4j.domain.client.Client;
 
 public class ClientCustomFieldIT extends AbstractCustomFieldServiceIT {
 
     public ClientCustomFieldIT() {
-        setService(clientService);
+        setService(ServiceHolder.CLIENT);
     }
 
     @Override
     protected int buildOwner() {
         final Client client = new Client();
         client.setName("ClientCustomFieldTest");
-        clientService.createClient(client);
+        ServiceHolder.CLIENT.createClient(client);
         return client.getId();
     }
 
     @Override
     protected void deleteOwner(final int ownerId) {
-        clientService.deleteClient(ownerId);
+        ServiceHolder.CLIENT.deleteClient(ownerId);
     }
 
 }

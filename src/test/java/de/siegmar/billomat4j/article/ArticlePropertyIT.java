@@ -20,6 +20,7 @@
 package de.siegmar.billomat4j.article;
 
 import de.siegmar.billomat4j.AbstractPropertyIT;
+import de.siegmar.billomat4j.ServiceHolder;
 import de.siegmar.billomat4j.domain.article.Article;
 import de.siegmar.billomat4j.domain.article.ArticlePropertyValue;
 import de.siegmar.billomat4j.domain.settings.ArticleProperty;
@@ -27,13 +28,13 @@ import de.siegmar.billomat4j.domain.settings.ArticleProperty;
 public class ArticlePropertyIT extends AbstractPropertyIT<ArticleProperty, ArticlePropertyValue> {
 
     public ArticlePropertyIT() {
-        setService(articleService);
+        setService(ServiceHolder.ARTICLE);
     }
 
     @Override
     protected int createOwner() {
         final Article article = new Article();
-        articleService.createArticle(article);
+        ServiceHolder.ARTICLE.createArticle(article);
         return article.getId();
     }
 
@@ -52,7 +53,7 @@ public class ArticlePropertyIT extends AbstractPropertyIT<ArticleProperty, Artic
 
     @Override
     protected void deleteOwner(final int ownerId) {
-        articleService.deleteArticle(ownerId);
+        ServiceHolder.ARTICLE.deleteArticle(ownerId);
     }
 
 }

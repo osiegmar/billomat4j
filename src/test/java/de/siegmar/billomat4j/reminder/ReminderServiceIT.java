@@ -35,8 +35,10 @@ import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 
-import de.siegmar.billomat4j.AbstractServiceIT;
+import de.siegmar.billomat4j.ServiceHolder;
+import de.siegmar.billomat4j.TemplateSetup;
 import de.siegmar.billomat4j.domain.Email;
 import de.siegmar.billomat4j.domain.EmailRecipients;
 import de.siegmar.billomat4j.domain.client.Client;
@@ -47,14 +49,18 @@ import de.siegmar.billomat4j.domain.reminder.ReminderFilter;
 import de.siegmar.billomat4j.domain.reminder.ReminderItem;
 import de.siegmar.billomat4j.domain.reminder.ReminderPdf;
 import de.siegmar.billomat4j.domain.reminder.ReminderStatus;
-import de.siegmar.billomat4j.domain.template.Template;
-import de.siegmar.billomat4j.domain.template.TemplateFormat;
-import de.siegmar.billomat4j.domain.template.TemplateType;
+import de.siegmar.billomat4j.service.ClientService;
+import de.siegmar.billomat4j.service.InvoiceService;
+import de.siegmar.billomat4j.service.ReminderService;
 
-public class ReminderServiceIT extends AbstractServiceIT {
+@ExtendWith(TemplateSetup.class)
+public class ReminderServiceIT {
 
     private final List<Reminder> createdReminders = new ArrayList<>();
     private final List<Client> createdClients = new ArrayList<>();
+    private final ReminderService reminderService = ServiceHolder.REMINDER;
+    private final InvoiceService invoiceService = ServiceHolder.INVOICE;
+    private final ClientService clientService = ServiceHolder.CLIENT;
 
     // Reminder
 
@@ -137,30 +143,6 @@ public class ReminderServiceIT extends AbstractServiceIT {
     }
 
     @Test
-    public void completeWithTemplate() {
-        final Template template = buildTemplate();
-        templateService.createTemplate(template);
-
-        try {
-            final Reminder reminder = createReminder(1);
-            reminderService.completeReminder(reminder.getId(), null);
-            assertEquals(ReminderStatus.OPEN, reminderService.getReminderById(reminder.getId()).getStatus());
-        } finally {
-            templateService.deleteTemplate(template.getId());
-        }
-    }
-
-    private Template buildTemplate() {
-        final Template template = new Template();
-        template.setFormat(TemplateFormat.rtf);
-        template.setName("Test RTF Template");
-        template.setType(TemplateType.REMINDER);
-        template.setTemplateFile(loadFile("template.rtf"));
-
-        return template;
-    }
-
-    @Test
     public void uploadSignedPdf() {
         final Reminder reminder = createReminder(1);
         reminderService.completeReminder(reminder.getId(), null);
@@ -186,9 +168,9 @@ public class ReminderServiceIT extends AbstractServiceIT {
         final Email email = new Email();
         email.setSubject("Test Reminder Mail");
         email.setBody("Here's your reminder");
-        email.setFrom(getEmail());
+        email.setFrom(ServiceHolder.getEmail());
         final EmailRecipients emailRecipients = new EmailRecipients();
-        emailRecipients.addTo(getEmail());
+        emailRecipients.addTo(ServiceHolder.getEmail());
         email.setRecipients(emailRecipients);
         reminderService.sendReminderViaEmail(reminder.getId(), email);
     }

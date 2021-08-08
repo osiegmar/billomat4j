@@ -30,13 +30,15 @@ import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 
-import de.siegmar.billomat4j.AbstractServiceIT;
+import de.siegmar.billomat4j.ServiceHolder;
 import de.siegmar.billomat4j.domain.client.Client;
 import de.siegmar.billomat4j.domain.client.ClientFilter;
+import de.siegmar.billomat4j.service.ClientService;
 
-public class ClientServiceIT extends AbstractServiceIT {
+public class ClientServiceIT {
 
     private final List<Client> createdClients = new ArrayList<>();
+    private final ClientService clientService = ServiceHolder.CLIENT;
 
     // Client
 

@@ -33,8 +33,7 @@ import de.siegmar.billomat4j.domain.settings.AbstractProperty;
 import de.siegmar.billomat4j.domain.types.PropertyType;
 import de.siegmar.billomat4j.service.GenericPropertyService;
 
-public abstract class AbstractPropertyIT<P extends AbstractProperty, A extends AbstractPropertyValue>
-    extends AbstractServiceIT {
+public abstract class AbstractPropertyIT<P extends AbstractProperty, A extends AbstractPropertyValue> {
 
     private GenericPropertyService<P, A> service;
 

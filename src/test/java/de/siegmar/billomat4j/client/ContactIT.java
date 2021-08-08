@@ -22,38 +22,33 @@ package de.siegmar.billomat4j.client;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInstance;
 
-import de.siegmar.billomat4j.AbstractServiceIT;
+import de.siegmar.billomat4j.ServiceHolder;
 import de.siegmar.billomat4j.domain.client.Client;
 import de.siegmar.billomat4j.domain.client.Contact;
+import de.siegmar.billomat4j.service.ClientService;
 
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)
-public class ContactIT extends AbstractServiceIT {
+public class ContactIT {
 
-    private Client client;
+    private final ClientService clientService = ServiceHolder.CLIENT;
+    private final List<Client> createdClients = new ArrayList<>();
 
-    @BeforeAll
-    public void setupClient() {
-        client = new Client();
-        client.setName("ContactTest Client");
-        client.setCountryCode("DE");
-        clientService.createClient(client);
-        assertEquals(0, clientService.findContacts(client.getId()).size());
-    }
-
-    @AfterAll
+    @AfterEach
     public void cleanupClient() {
-        clientService.deleteClient(client.getId());
+        for (final Client client : createdClients) {
+            clientService.deleteClient(client.getId());
+        }
     }
 
     @Test
     public void test() {
+        final Client client = createClient();
+
         final Contact contact = new Contact();
         contact.setClientId(client.getId());
         contact.setFirstName("Test");
@@ -70,6 +65,16 @@ public class ContactIT extends AbstractServiceIT {
 
         clientService.deleteContact(foundContact.getId());
         assertEquals(0, clientService.findContacts(client.getId()).size());
+    }
+
+    private Client createClient() {
+        final Client client = new Client();
+        client.setName("ContactTest Client");
+        client.setCountryCode("DE");
+        clientService.createClient(client);
+        createdClients.add(client);
+        assertEquals(0, clientService.findContacts(client.getId()).size());
+        return client;
     }
 
 }

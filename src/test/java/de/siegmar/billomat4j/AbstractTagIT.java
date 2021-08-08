@@ -29,7 +29,7 @@ import org.junit.jupiter.api.Test;
 import de.siegmar.billomat4j.domain.AbstractTag;
 import de.siegmar.billomat4j.service.GenericTagService;
 
-public abstract class AbstractTagIT<T extends AbstractTag> extends AbstractServiceIT {
+public abstract class AbstractTagIT<T extends AbstractTag> {
 
     private GenericTagService<T> service;
 

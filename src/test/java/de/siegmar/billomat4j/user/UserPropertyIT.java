@@ -20,18 +20,19 @@
 package de.siegmar.billomat4j.user;
 
 import de.siegmar.billomat4j.AbstractPropertyIT;
+import de.siegmar.billomat4j.ServiceHolder;
 import de.siegmar.billomat4j.domain.settings.UserProperty;
 import de.siegmar.billomat4j.domain.user.UserPropertyValue;
 
 public class UserPropertyIT extends AbstractPropertyIT<UserProperty, UserPropertyValue> {
 
     public UserPropertyIT() {
-        setService(userService);
+        setService(ServiceHolder.USER);
     }
 
     @Override
     protected int createOwner() {
-        return userService.getMySelf().getId();
+        return ServiceHolder.USER.getMySelf().getId();
     }
 
     @Override

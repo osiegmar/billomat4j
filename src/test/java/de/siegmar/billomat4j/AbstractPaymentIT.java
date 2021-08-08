@@ -35,8 +35,7 @@ import de.siegmar.billomat4j.domain.AbstractPaymentFilter;
 import de.siegmar.billomat4j.domain.types.PaymentType;
 import de.siegmar.billomat4j.service.GenericPaymentService;
 
-public abstract class AbstractPaymentIT<P extends AbstractPayment, F extends AbstractPaymentFilter<?>>
-    extends AbstractServiceIT {
+public abstract class AbstractPaymentIT<P extends AbstractPayment, F extends AbstractPaymentFilter<?>> {
 
     private GenericPaymentService<P, F> service;
 

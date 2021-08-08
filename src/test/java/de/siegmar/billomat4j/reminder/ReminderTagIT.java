@@ -22,24 +22,29 @@ package de.siegmar.billomat4j.reminder;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+import org.junit.jupiter.api.extension.ExtendWith;
+
 import de.siegmar.billomat4j.AbstractTagIT;
+import de.siegmar.billomat4j.ServiceHolder;
+import de.siegmar.billomat4j.TemplateSetup;
 import de.siegmar.billomat4j.domain.client.Client;
 import de.siegmar.billomat4j.domain.invoice.Invoice;
 import de.siegmar.billomat4j.domain.invoice.InvoiceItem;
 import de.siegmar.billomat4j.domain.reminder.Reminder;
 import de.siegmar.billomat4j.domain.reminder.ReminderTag;
 
+@ExtendWith(TemplateSetup.class)
 public class ReminderTagIT extends AbstractTagIT<ReminderTag> {
 
     public ReminderTagIT() {
-        setService(reminderService);
+        setService(ServiceHolder.REMINDER);
     }
 
     @Override
     protected int createOwner() {
         final Client client = new Client();
         client.setName("ReminderTagTest Client");
-        clientService.createClient(client);
+        ServiceHolder.CLIENT.createClient(client);
 
         // Create invoice
         final Invoice invoice = new Invoice();
@@ -49,12 +54,12 @@ public class ReminderTagIT extends AbstractTagIT<ReminderTag> {
         invoiceItem.setUnitPrice(BigDecimal.ONE);
         invoiceItem.setQuantity(BigDecimal.ONE);
         invoice.addInvoiceItem(invoiceItem);
-        invoiceService.createInvoice(invoice);
-        invoiceService.completeInvoice(invoice.getId(), null);
+        ServiceHolder.INVOICE.createInvoice(invoice);
+        ServiceHolder.INVOICE.completeInvoice(invoice.getId(), null);
 
         final Reminder reminder = new Reminder();
         reminder.setInvoiceId(invoice.getId());
-        reminderService.createReminder(reminder);
+        ServiceHolder.REMINDER.createReminder(reminder);
         return reminder.getId();
     }
 
@@ -67,11 +72,11 @@ public class ReminderTagIT extends AbstractTagIT<ReminderTag> {
 
     @Override
     protected void deleteOwner(final int ownerId) {
-        final int invoiceId = reminderService.getReminderById(ownerId).getInvoiceId();
-        final int clientId = invoiceService.getInvoiceById(invoiceId).getClientId();
-        reminderService.deleteReminder(ownerId);
-        invoiceService.deleteInvoice(invoiceId);
-        clientService.deleteClient(clientId);
+        final int invoiceId = ServiceHolder.REMINDER.getReminderById(ownerId).getInvoiceId();
+        final int clientId = ServiceHolder.INVOICE.getInvoiceById(invoiceId).getClientId();
+        ServiceHolder.REMINDER.deleteReminder(ownerId);
+        ServiceHolder.INVOICE.deleteInvoice(invoiceId);
+        ServiceHolder.CLIENT.deleteClient(clientId);
     }
 
 }

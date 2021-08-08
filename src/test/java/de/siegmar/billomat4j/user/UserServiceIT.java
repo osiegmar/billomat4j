@@ -26,13 +26,17 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-import de.siegmar.billomat4j.AbstractServiceIT;
+import de.siegmar.billomat4j.ServiceHolder;
 import de.siegmar.billomat4j.domain.user.User;
 import de.siegmar.billomat4j.domain.user.UserFilter;
+import de.siegmar.billomat4j.service.UserService;
 
-public class UserServiceIT extends AbstractServiceIT {
+public class UserServiceIT {
+
+    private final UserService userService = ServiceHolder.USER;
 
     // User
 
@@ -42,12 +46,14 @@ public class UserServiceIT extends AbstractServiceIT {
         assertFalse(users.isEmpty());
     }
 
+    @Disabled("BROKEN-FILTER")
     @Test
     public void findFiltered() {
         assertTrue(userService.findUsers(new UserFilter().byFirstName("!!&%$$")).isEmpty());
         assertFalse(userService.findUsers(new UserFilter().byEmail("@")).isEmpty());
     }
 
+    @Disabled("BROKEN-FILTER")
     @Test
     public void getById() {
         final User user = userService.findUsers(new UserFilter().byEmail("@")).iterator().next();

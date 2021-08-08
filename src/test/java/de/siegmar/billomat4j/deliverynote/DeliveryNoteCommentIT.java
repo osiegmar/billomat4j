@@ -20,6 +20,7 @@
 package de.siegmar.billomat4j.deliverynote;
 
 import de.siegmar.billomat4j.AbstractCommentIT;
+import de.siegmar.billomat4j.ServiceHolder;
 import de.siegmar.billomat4j.domain.client.Client;
 import de.siegmar.billomat4j.domain.deliverynote.DeliveryNote;
 import de.siegmar.billomat4j.domain.deliverynote.DeliveryNoteActionKey;
@@ -30,27 +31,27 @@ public class DeliveryNoteCommentIT
     extends AbstractCommentIT<DeliveryNoteActionKey, DeliveryNoteComment, DeliveryNoteCommentFilter> {
 
     public DeliveryNoteCommentIT() {
-        setService(deliveryNoteService);
+        setService(ServiceHolder.DELIVERYNOTE);
     }
 
     @Override
     protected int createOwner() {
         final Client client = new Client();
         client.setName("DeliveryNoteCommentTest Client");
-        clientService.createClient(client);
+        ServiceHolder.CLIENT.createClient(client);
 
         final DeliveryNote deliveryNote = new DeliveryNote();
         deliveryNote.setClientId(client.getId());
-        deliveryNoteService.createDeliveryNote(deliveryNote);
+        ServiceHolder.DELIVERYNOTE.createDeliveryNote(deliveryNote);
 
         return deliveryNote.getId();
     }
 
     @Override
     protected void deleteOwner(final int ownerId) {
-        final int clientId = deliveryNoteService.getDeliveryNoteById(ownerId).getClientId();
-        deliveryNoteService.deleteDeliveryNote(ownerId);
-        clientService.deleteClient(clientId);
+        final int clientId = ServiceHolder.DELIVERYNOTE.getDeliveryNoteById(ownerId).getClientId();
+        ServiceHolder.DELIVERYNOTE.deleteDeliveryNote(ownerId);
+        ServiceHolder.CLIENT.deleteClient(clientId);
     }
 
     @Override

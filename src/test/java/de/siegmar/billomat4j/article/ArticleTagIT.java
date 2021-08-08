@@ -20,19 +20,20 @@
 package de.siegmar.billomat4j.article;
 
 import de.siegmar.billomat4j.AbstractTagIT;
+import de.siegmar.billomat4j.ServiceHolder;
 import de.siegmar.billomat4j.domain.article.Article;
 import de.siegmar.billomat4j.domain.article.ArticleTag;
 
 public class ArticleTagIT extends AbstractTagIT<ArticleTag> {
 
     public ArticleTagIT() {
-        setService(articleService);
+        setService(ServiceHolder.ARTICLE);
     }
 
     @Override
     protected int createOwner() {
         final Article article = new Article();
-        articleService.createArticle(article);
+        ServiceHolder.ARTICLE.createArticle(article);
 
         return article.getId();
     }
@@ -46,7 +47,7 @@ public class ArticleTagIT extends AbstractTagIT<ArticleTag> {
 
     @Override
     protected void deleteOwner(final int ownerId) {
-        articleService.deleteArticle(ownerId);
+        ServiceHolder.ARTICLE.deleteArticle(ownerId);
     }
 
 }

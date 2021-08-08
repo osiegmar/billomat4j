@@ -22,6 +22,7 @@ package de.siegmar.billomat4j.template;
 import java.nio.charset.StandardCharsets;
 
 import de.siegmar.billomat4j.AbstractCustomFieldServiceIT;
+import de.siegmar.billomat4j.ServiceHolder;
 import de.siegmar.billomat4j.domain.template.Template;
 import de.siegmar.billomat4j.domain.template.TemplateFormat;
 import de.siegmar.billomat4j.domain.template.TemplateType;
@@ -29,7 +30,7 @@ import de.siegmar.billomat4j.domain.template.TemplateType;
 public class TemplateCustomFieldIT extends AbstractCustomFieldServiceIT {
 
     public TemplateCustomFieldIT() {
-        setService(templateService);
+        setService(ServiceHolder.TEMPLATE);
     }
 
     @Override
@@ -39,13 +40,13 @@ public class TemplateCustomFieldIT extends AbstractCustomFieldServiceIT {
         template.setFormat(TemplateFormat.doc);
         template.setType(TemplateType.CONFIRMATION);
         template.setTemplateFile("dummy".getBytes(StandardCharsets.US_ASCII));
-        templateService.createTemplate(template);
+        ServiceHolder.TEMPLATE.createTemplate(template);
         return template.getId();
     }
 
     @Override
     protected void deleteOwner(final int ownerId) {
-        templateService.deleteTemplate(ownerId);
+        ServiceHolder.TEMPLATE.deleteTemplate(ownerId);
     }
 
 }

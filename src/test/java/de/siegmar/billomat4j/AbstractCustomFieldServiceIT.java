@@ -25,7 +25,7 @@ import org.junit.jupiter.api.Test;
 
 import de.siegmar.billomat4j.service.GenericCustomFieldService;
 
-public abstract class AbstractCustomFieldServiceIT extends AbstractServiceIT {
+public abstract class AbstractCustomFieldServiceIT {
 
     private GenericCustomFieldService service;
 

@@ -32,8 +32,10 @@ import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 
-import de.siegmar.billomat4j.AbstractServiceIT;
+import de.siegmar.billomat4j.ServiceHolder;
+import de.siegmar.billomat4j.TemplateSetup;
 import de.siegmar.billomat4j.domain.Email;
 import de.siegmar.billomat4j.domain.EmailRecipients;
 import de.siegmar.billomat4j.domain.client.Client;
@@ -42,13 +44,15 @@ import de.siegmar.billomat4j.domain.deliverynote.DeliveryNoteFilter;
 import de.siegmar.billomat4j.domain.deliverynote.DeliveryNoteItem;
 import de.siegmar.billomat4j.domain.deliverynote.DeliveryNotePdf;
 import de.siegmar.billomat4j.domain.deliverynote.DeliveryNoteStatus;
-import de.siegmar.billomat4j.domain.template.Template;
-import de.siegmar.billomat4j.domain.template.TemplateFormat;
-import de.siegmar.billomat4j.domain.template.TemplateType;
+import de.siegmar.billomat4j.service.ClientService;
+import de.siegmar.billomat4j.service.DeliveryNoteService;
 
-public class DeliveryNoteServiceIT extends AbstractServiceIT {
+@ExtendWith(TemplateSetup.class)
+public class DeliveryNoteServiceIT {
 
     private final List<DeliveryNote> createdDeliveryNotes = new ArrayList<>();
+    private final DeliveryNoteService deliveryNoteService = ServiceHolder.DELIVERYNOTE;
+    private final ClientService clientService = ServiceHolder.CLIENT;
 
     // DeliveryNote
 
@@ -143,32 +147,6 @@ public class DeliveryNoteServiceIT extends AbstractServiceIT {
     }
 
     @Test
-    public void completeWithTemplate() {
-        final Template template = buildTemplate();
-        templateService.createTemplate(template);
-
-        try {
-            final DeliveryNote deliveryNote = createDeliveryNote(1);
-            assertEquals(DeliveryNoteStatus.DRAFT, deliveryNote.getStatus());
-            deliveryNoteService.completeDeliveryNote(deliveryNote.getId(), null);
-            assertEquals(DeliveryNoteStatus.CREATED,
-                deliveryNoteService.getDeliveryNoteById(deliveryNote.getId()).getStatus());
-        } finally {
-            templateService.deleteTemplate(template.getId());
-        }
-    }
-
-    private Template buildTemplate() {
-        final Template template = new Template();
-        template.setFormat(TemplateFormat.rtf);
-        template.setName("Test RTF Template");
-        template.setType(TemplateType.DELIVERY_NOTE);
-        template.setTemplateFile(loadFile("template.rtf"));
-
-        return template;
-    }
-
-    @Test
     public void getDeliveryNotePdf() {
         final DeliveryNote deliveryNote = createDeliveryNote(1);
         deliveryNoteService.completeDeliveryNote(deliveryNote.getId(), null);
@@ -184,9 +162,9 @@ public class DeliveryNoteServiceIT extends AbstractServiceIT {
         final Email email = new Email();
         email.setSubject("Test DeliveryNote Mail");
         email.setBody("Here's your deliveryNote");
-        email.setFrom(getEmail());
+        email.setFrom(ServiceHolder.getEmail());
         final EmailRecipients emailRecipients = new EmailRecipients();
-        emailRecipients.addTo(getEmail());
+        emailRecipients.addTo(ServiceHolder.getEmail());
         email.setRecipients(emailRecipients);
         deliveryNoteService.sendDeliveryNoteViaEmail(deliveryNote.getId(), email);
     }

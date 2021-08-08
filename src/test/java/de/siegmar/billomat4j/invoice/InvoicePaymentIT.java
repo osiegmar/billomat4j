@@ -19,38 +19,43 @@
 
 package de.siegmar.billomat4j.invoice;
 
+import org.junit.jupiter.api.extension.ExtendWith;
+
 import de.siegmar.billomat4j.AbstractPaymentIT;
+import de.siegmar.billomat4j.ServiceHolder;
+import de.siegmar.billomat4j.TemplateSetup;
 import de.siegmar.billomat4j.domain.client.Client;
 import de.siegmar.billomat4j.domain.invoice.Invoice;
 import de.siegmar.billomat4j.domain.invoice.InvoicePayment;
 import de.siegmar.billomat4j.domain.invoice.InvoicePaymentFilter;
 import de.siegmar.billomat4j.domain.types.PaymentType;
 
+@ExtendWith(TemplateSetup.class)
 public class InvoicePaymentIT extends AbstractPaymentIT<InvoicePayment, InvoicePaymentFilter> {
 
     public InvoicePaymentIT() {
-        setService(invoiceService);
+        setService(ServiceHolder.INVOICE);
     }
 
     @Override
     protected int createOwner() {
         final Client client = new Client();
         client.setName("InvoicePaymentTest Client");
-        clientService.createClient(client);
+        ServiceHolder.CLIENT.createClient(client);
 
         final Invoice invoice = new Invoice();
         invoice.setClientId(client.getId());
-        invoiceService.createInvoice(invoice);
-        invoiceService.completeInvoice(invoice.getId(), null);
+        ServiceHolder.INVOICE.createInvoice(invoice);
+        ServiceHolder.INVOICE.completeInvoice(invoice.getId(), null);
 
         return invoice.getId();
     }
 
     @Override
     protected void deleteOwner(final int ownerId) {
-        final int clientId = invoiceService.getInvoiceById(ownerId).getClientId();
-        invoiceService.deleteInvoice(ownerId);
-        clientService.deleteClient(clientId);
+        final int clientId = ServiceHolder.INVOICE.getInvoiceById(ownerId).getClientId();
+        ServiceHolder.INVOICE.deleteInvoice(ownerId);
+        ServiceHolder.CLIENT.deleteClient(clientId);
     }
 
     @Override

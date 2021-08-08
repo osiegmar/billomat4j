@@ -20,6 +20,7 @@
 package de.siegmar.billomat4j.offer;
 
 import de.siegmar.billomat4j.AbstractItemIT;
+import de.siegmar.billomat4j.ServiceHolder;
 import de.siegmar.billomat4j.domain.client.Client;
 import de.siegmar.billomat4j.domain.offer.Offer;
 import de.siegmar.billomat4j.domain.offer.OfferItem;
@@ -27,27 +28,27 @@ import de.siegmar.billomat4j.domain.offer.OfferItem;
 public class OfferItemIT extends AbstractItemIT<OfferItem> {
 
     public OfferItemIT() {
-        setService(offerService);
+        setService(ServiceHolder.OFFER);
     }
 
     @Override
     protected int createOwner() {
         final Client client = new Client();
         client.setName("OfferItemTest Client");
-        clientService.createClient(client);
+        ServiceHolder.CLIENT.createClient(client);
 
         final Offer offer = new Offer();
         offer.setClientId(client.getId());
-        offerService.createOffer(offer);
+        ServiceHolder.OFFER.createOffer(offer);
 
         return offer.getId();
     }
 
     @Override
     protected void deleteOwner(final int ownerId) {
-        final int clientId = offerService.getOfferById(ownerId).getClientId();
-        offerService.deleteOffer(ownerId);
-        clientService.deleteClient(clientId);
+        final int clientId = ServiceHolder.OFFER.getOfferById(ownerId).getClientId();
+        ServiceHolder.OFFER.deleteOffer(ownerId);
+        ServiceHolder.CLIENT.deleteClient(clientId);
     }
 
     @Override

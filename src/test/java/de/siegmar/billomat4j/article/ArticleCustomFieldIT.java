@@ -20,25 +20,26 @@
 package de.siegmar.billomat4j.article;
 
 import de.siegmar.billomat4j.AbstractCustomFieldServiceIT;
+import de.siegmar.billomat4j.ServiceHolder;
 import de.siegmar.billomat4j.domain.article.Article;
 
 public class ArticleCustomFieldIT extends AbstractCustomFieldServiceIT {
 
     public ArticleCustomFieldIT() {
-        setService(articleService);
+        setService(ServiceHolder.ARTICLE);
     }
 
     @Override
     protected int buildOwner() {
         final Article article = new Article();
         article.setTitle("ArticleCustomFieldTest");
-        articleService.createArticle(article);
+        ServiceHolder.ARTICLE.createArticle(article);
         return article.getId();
     }
 
     @Override
     protected void deleteOwner(final int ownerId) {
-        articleService.deleteArticle(ownerId);
+        ServiceHolder.ARTICLE.deleteArticle(ownerId);
     }
 
 }

@@ -33,8 +33,7 @@ import de.siegmar.billomat4j.domain.ActionKey;
 import de.siegmar.billomat4j.domain.Filter;
 import de.siegmar.billomat4j.service.GenericCommentService;
 
-public abstract class AbstractCommentIT<K extends ActionKey, C extends AbstractComment<K>, F extends Filter>
-    extends AbstractServiceIT {
+public abstract class AbstractCommentIT<K extends ActionKey, C extends AbstractComment<K>, F extends Filter> {
 
     private GenericCommentService<K, C, F> service;
 

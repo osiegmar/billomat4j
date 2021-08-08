@@ -20,16 +20,17 @@
 package de.siegmar.billomat4j.user;
 
 import de.siegmar.billomat4j.AbstractCustomFieldServiceIT;
+import de.siegmar.billomat4j.ServiceHolder;
 
 public class UserCustomFieldIT extends AbstractCustomFieldServiceIT {
 
     public UserCustomFieldIT() {
-        setService(userService);
+        setService(ServiceHolder.USER);
     }
 
     @Override
     protected int buildOwner() {
-        return userService.findUsers(null).iterator().next().getId();
+        return ServiceHolder.USER.findUsers(null).iterator().next().getId();
     }
 
     @Override

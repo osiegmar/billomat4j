@@ -26,15 +26,19 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.math.BigDecimal;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-import de.siegmar.billomat4j.AbstractServiceIT;
+import de.siegmar.billomat4j.ServiceHolder;
 import de.siegmar.billomat4j.domain.settings.CountryTax;
 import de.siegmar.billomat4j.domain.settings.ReminderText;
 import de.siegmar.billomat4j.domain.settings.Settings;
 import de.siegmar.billomat4j.domain.settings.Tax;
+import de.siegmar.billomat4j.service.SettingsService;
 
-public class SettingsServiceIT extends AbstractServiceIT {
+public class SettingsServiceIT {
+
+    private final SettingsService settingsService = ServiceHolder.SETTINGS;
 
     // Settings
 
@@ -44,6 +48,7 @@ public class SettingsServiceIT extends AbstractServiceIT {
         assertNotNull(settings);
     }
 
+    @Disabled("BROKEN-UPDATE-500")
     @Test
     public void update() {
         // Get

@@ -35,8 +35,10 @@ import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 
-import de.siegmar.billomat4j.AbstractServiceIT;
+import de.siegmar.billomat4j.ServiceHolder;
+import de.siegmar.billomat4j.TemplateSetup;
 import de.siegmar.billomat4j.domain.Email;
 import de.siegmar.billomat4j.domain.EmailRecipients;
 import de.siegmar.billomat4j.domain.client.Client;
@@ -47,13 +49,15 @@ import de.siegmar.billomat4j.domain.invoice.InvoiceGroupFilter;
 import de.siegmar.billomat4j.domain.invoice.InvoiceItem;
 import de.siegmar.billomat4j.domain.invoice.InvoicePdf;
 import de.siegmar.billomat4j.domain.invoice.InvoiceStatus;
-import de.siegmar.billomat4j.domain.template.Template;
-import de.siegmar.billomat4j.domain.template.TemplateFormat;
-import de.siegmar.billomat4j.domain.template.TemplateType;
+import de.siegmar.billomat4j.service.ClientService;
+import de.siegmar.billomat4j.service.InvoiceService;
 
-public class InvoiceServiceIT extends AbstractServiceIT {
+@ExtendWith(TemplateSetup.class)
+public class InvoiceServiceIT {
 
     private final List<Invoice> createdInvoices = new ArrayList<>();
+    private final InvoiceService invoiceService = ServiceHolder.INVOICE;
+    private final ClientService clientService = ServiceHolder.CLIENT;
 
     // Invoice
 
@@ -177,30 +181,6 @@ public class InvoiceServiceIT extends AbstractServiceIT {
     }
 
     @Test
-    public void completeWithTemplate() {
-        final Template template = buildTemplate();
-        templateService.createTemplate(template);
-
-        try {
-            final Invoice invoice = createInvoice(1);
-            invoiceService.completeInvoice(invoice.getId(), null);
-            assertEquals(InvoiceStatus.OPEN, invoiceService.getInvoiceById(invoice.getId()).getStatus());
-        } finally {
-            templateService.deleteTemplate(template.getId());
-        }
-    }
-
-    private Template buildTemplate() {
-        final Template template = new Template();
-        template.setFormat(TemplateFormat.rtf);
-        template.setName("Test RTF Template");
-        template.setType(TemplateType.INVOICE);
-        template.setTemplateFile(loadFile("template.rtf"));
-
-        return template;
-    }
-
-    @Test
     public void uploadSignedPdf() {
         final Invoice invoice = createInvoice(1);
         invoiceService.completeInvoice(invoice.getId(), null);
@@ -226,9 +206,9 @@ public class InvoiceServiceIT extends AbstractServiceIT {
         final Email email = new Email();
         email.setSubject("Test Invoice Mail");
         email.setBody("Here's your invoice");
-        email.setFrom(getEmail());
+        email.setFrom(ServiceHolder.getEmail());
         final EmailRecipients emailRecipients = new EmailRecipients();
-        emailRecipients.addTo(getEmail());
+        emailRecipients.addTo(ServiceHolder.getEmail());
         email.setRecipients(emailRecipients);
         invoiceService.sendInvoiceViaEmail(invoice.getId(), email);
     }

@@ -19,6 +19,9 @@
 
 package de.siegmar.billomat4j;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import de.siegmar.billomat4j.domain.article.Article;
 import de.siegmar.billomat4j.domain.client.Client;
 import de.siegmar.billomat4j.domain.confirmation.Confirmation;
@@ -35,51 +38,63 @@ import de.siegmar.billomat4j.domain.template.Template;
     "checkstyle:npathcomplexity",
     "checkstyle:cyclomaticcomplexity"
     })
-public class Cleanup extends AbstractServiceIT {
+public class Cleanup {
+
+    private static final Logger LOG = LoggerFactory.getLogger(Cleanup.class);
 
     public static void main(final String[] args) {
         new Cleanup().cleanup();
     }
 
     private void cleanup() {
-        for (final Confirmation confirmation : confirmationService.findConfirmations(null)) {
-            confirmationService.deleteConfirmation(confirmation.getId());
+        for (final Confirmation confirmation : ServiceHolder.CONFIRMATION.findConfirmations(null)) {
+            LOG.info("Delete confirmation {}", confirmation);
+            ServiceHolder.CONFIRMATION.deleteConfirmation(confirmation.getId());
         }
 
-        for (final Template template : templateService.findTemplates(null)) {
-            templateService.deleteTemplate(template.getId());
+        for (final Template template : ServiceHolder.TEMPLATE.findTemplates(null)) {
+            LOG.info("Delete template {}", template);
+            ServiceHolder.TEMPLATE.deleteTemplate(template.getId());
         }
 
-        for (final CreditNote creditNote : creditNoteService.findCreditNotes(null)) {
-            creditNoteService.deleteCreditNote(creditNote.getId());
+        for (final CreditNote creditNote : ServiceHolder.CREDITNOTE.findCreditNotes(null)) {
+            LOG.info("Delete creditNote {}", creditNote);
+            ServiceHolder.CREDITNOTE.deleteCreditNote(creditNote.getId());
         }
 
-        for (final DeliveryNote deliveryNote : deliveryNoteService.findDeliveryNotes(null)) {
-            deliveryNoteService.deleteDeliveryNote(deliveryNote.getId());
+        for (final DeliveryNote deliveryNote : ServiceHolder.DELIVERYNOTE.findDeliveryNotes(null)) {
+            LOG.info("Delete deliveryNote {}", deliveryNote);
+            ServiceHolder.DELIVERYNOTE.deleteDeliveryNote(deliveryNote.getId());
         }
 
-        for (final Offer offer : offerService.findOffers(null)) {
-            offerService.deleteOffer(offer.getId());
+        for (final Offer offer : ServiceHolder.OFFER.findOffers(null)) {
+            LOG.info("Delete offer {}", offer);
+            ServiceHolder.OFFER.deleteOffer(offer.getId());
         }
 
-        for (final Recurring recurring : recurringService.findRecurrings(null)) {
-            recurringService.deleteRecurring(recurring.getId());
+        for (final Recurring recurring : ServiceHolder.RECURRING.findRecurrings(null)) {
+            LOG.info("Delete recurring {}", recurring);
+            ServiceHolder.RECURRING.deleteRecurring(recurring.getId());
         }
 
-        for (final Reminder reminder : reminderService.findReminders(null)) {
-            reminderService.deleteReminder(reminder.getId());
+        for (final Reminder reminder : ServiceHolder.REMINDER.findReminders(null)) {
+            LOG.info("Delete reminder {}", reminder);
+            ServiceHolder.REMINDER.deleteReminder(reminder.getId());
         }
 
-        for (final Invoice invoice : invoiceService.findInvoices(null)) {
-            invoiceService.deleteInvoice(invoice.getId());
+        for (final Invoice invoice : ServiceHolder.INVOICE.findInvoices(null)) {
+            LOG.info("Delete invoice {}", invoice);
+            ServiceHolder.INVOICE.deleteInvoice(invoice.getId());
         }
 
-        for (final Article article : articleService.findArticles(null)) {
-            articleService.deleteArticle(article.getId());
+        for (final Article article : ServiceHolder.ARTICLE.findArticles(null)) {
+            LOG.info("Delete article {}", article);
+            ServiceHolder.ARTICLE.deleteArticle(article.getId());
         }
 
-        for (final Client client : clientService.findClients(null)) {
-            clientService.deleteClient(client.getId());
+        for (final Client client : ServiceHolder.CLIENT.findClients(null)) {
+            LOG.info("Delete client {}", client);
+            ServiceHolder.CLIENT.deleteClient(client.getId());
         }
     }
 

@@ -20,6 +20,7 @@
 package de.siegmar.billomat4j.confirmation;
 
 import de.siegmar.billomat4j.AbstractItemIT;
+import de.siegmar.billomat4j.ServiceHolder;
 import de.siegmar.billomat4j.domain.client.Client;
 import de.siegmar.billomat4j.domain.confirmation.Confirmation;
 import de.siegmar.billomat4j.domain.confirmation.ConfirmationItem;
@@ -27,27 +28,27 @@ import de.siegmar.billomat4j.domain.confirmation.ConfirmationItem;
 public class ConfirmationItemIT extends AbstractItemIT<ConfirmationItem> {
 
     public ConfirmationItemIT() {
-        setService(confirmationService);
+        setService(ServiceHolder.CONFIRMATION);
     }
 
     @Override
     protected int createOwner() {
         final Client client = new Client();
         client.setName("ConfirmationItemTest Client");
-        clientService.createClient(client);
+        ServiceHolder.CLIENT.createClient(client);
 
         final Confirmation confirmation = new Confirmation();
         confirmation.setClientId(client.getId());
-        confirmationService.createConfirmation(confirmation);
+        ServiceHolder.CONFIRMATION.createConfirmation(confirmation);
 
         return confirmation.getId();
     }
 
     @Override
     protected void deleteOwner(final int ownerId) {
-        final int clientId = confirmationService.getConfirmationById(ownerId).getClientId();
-        confirmationService.deleteConfirmation(ownerId);
-        clientService.deleteClient(clientId);
+        final int clientId = ServiceHolder.CONFIRMATION.getConfirmationById(ownerId).getClientId();
+        ServiceHolder.CONFIRMATION.deleteConfirmation(ownerId);
+        ServiceHolder.CLIENT.deleteClient(clientId);
     }
 
     @Override

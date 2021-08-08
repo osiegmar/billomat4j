@@ -20,6 +20,7 @@
 package de.siegmar.billomat4j.creditnote;
 
 import de.siegmar.billomat4j.AbstractItemIT;
+import de.siegmar.billomat4j.ServiceHolder;
 import de.siegmar.billomat4j.domain.client.Client;
 import de.siegmar.billomat4j.domain.creditnote.CreditNote;
 import de.siegmar.billomat4j.domain.creditnote.CreditNoteItem;
@@ -27,27 +28,27 @@ import de.siegmar.billomat4j.domain.creditnote.CreditNoteItem;
 public class CreditNoteItemIT extends AbstractItemIT<CreditNoteItem> {
 
     public CreditNoteItemIT() {
-        setService(creditNoteService);
+        setService(ServiceHolder.CREDITNOTE);
     }
 
     @Override
     protected int createOwner() {
         final Client client = new Client();
         client.setName("CreditNoteItemTest Client");
-        clientService.createClient(client);
+        ServiceHolder.CLIENT.createClient(client);
 
         final CreditNote creditNote = new CreditNote();
         creditNote.setClientId(client.getId());
-        creditNoteService.createCreditNote(creditNote);
+        ServiceHolder.CREDITNOTE.createCreditNote(creditNote);
 
         return creditNote.getId();
     }
 
     @Override
     protected void deleteOwner(final int ownerId) {
-        final int clientId = creditNoteService.getCreditNoteById(ownerId).getClientId();
-        creditNoteService.deleteCreditNote(ownerId);
-        clientService.deleteClient(clientId);
+        final int clientId = ServiceHolder.CREDITNOTE.getCreditNoteById(ownerId).getClientId();
+        ServiceHolder.CREDITNOTE.deleteCreditNote(ownerId);
+        ServiceHolder.CLIENT.deleteClient(clientId);
     }
 
     @Override

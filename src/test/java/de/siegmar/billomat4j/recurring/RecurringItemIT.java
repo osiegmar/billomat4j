@@ -20,6 +20,7 @@
 package de.siegmar.billomat4j.recurring;
 
 import de.siegmar.billomat4j.AbstractItemIT;
+import de.siegmar.billomat4j.ServiceHolder;
 import de.siegmar.billomat4j.domain.client.Client;
 import de.siegmar.billomat4j.domain.recurring.Recurring;
 import de.siegmar.billomat4j.domain.recurring.RecurringItem;
@@ -27,27 +28,27 @@ import de.siegmar.billomat4j.domain.recurring.RecurringItem;
 public class RecurringItemIT extends AbstractItemIT<RecurringItem> {
 
     public RecurringItemIT() {
-        setService(recurringService);
+        setService(ServiceHolder.RECURRING);
     }
 
     @Override
     protected int createOwner() {
         final Client client = new Client();
         client.setName("RecurringItemTest Client");
-        clientService.createClient(client);
+        ServiceHolder.CLIENT.createClient(client);
 
         final Recurring recurring = new Recurring();
         recurring.setClientId(client.getId());
-        recurringService.createRecurring(recurring);
+        ServiceHolder.RECURRING.createRecurring(recurring);
 
         return recurring.getId();
     }
 
     @Override
     protected void deleteOwner(final int ownerId) {
-        final int clientId = recurringService.getRecurringById(ownerId).getClientId();
-        recurringService.deleteRecurring(ownerId);
-        clientService.deleteClient(clientId);
+        final int clientId = ServiceHolder.RECURRING.getRecurringById(ownerId).getClientId();
+        ServiceHolder.RECURRING.deleteRecurring(ownerId);
+        ServiceHolder.CLIENT.deleteClient(clientId);
     }
 
     @Override

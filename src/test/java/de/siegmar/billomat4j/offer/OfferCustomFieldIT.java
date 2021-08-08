@@ -20,33 +20,34 @@
 package de.siegmar.billomat4j.offer;
 
 import de.siegmar.billomat4j.AbstractCustomFieldServiceIT;
+import de.siegmar.billomat4j.ServiceHolder;
 import de.siegmar.billomat4j.domain.client.Client;
 import de.siegmar.billomat4j.domain.offer.Offer;
 
 public class OfferCustomFieldIT extends AbstractCustomFieldServiceIT {
 
     public OfferCustomFieldIT() {
-        setService(offerService);
+        setService(ServiceHolder.OFFER);
     }
 
     @Override
     protected int buildOwner() {
         final Client client = new Client();
         client.setName("OfferCustomFieldTest");
-        clientService.createClient(client);
+        ServiceHolder.CLIENT.createClient(client);
 
         final Offer offer = new Offer();
         offer.setClientId(client.getId());
         offer.setIntro("OfferCustomFieldTest");
-        offerService.createOffer(offer);
+        ServiceHolder.OFFER.createOffer(offer);
         return offer.getId();
     }
 
     @Override
     protected void deleteOwner(final int ownerId) {
-        final int clientId = offerService.getOfferById(ownerId).getClientId();
-        offerService.deleteOffer(ownerId);
-        clientService.deleteClient(clientId);
+        final int clientId = ServiceHolder.OFFER.getOfferById(ownerId).getClientId();
+        ServiceHolder.OFFER.deleteOffer(ownerId);
+        ServiceHolder.CLIENT.deleteClient(clientId);
     }
 
 }
