@@ -20,6 +20,7 @@
 package de.siegmar.billomat4j.domain.client;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 import com.fasterxml.jackson.annotation.JsonRootName;
 import com.fasterxml.jackson.annotation.JsonView;
@@ -58,6 +59,8 @@ public class Client extends AbstractMeta {
     private String bankAccountNumber;
     private String bankSwift;
     private String bankIban;
+    private String sepaMandate;
+    private LocalDate sepaMandateDate;
     private TaxRule taxRule;
     private SettingsType discountRateType;
     private BigDecimal discountRate;
@@ -283,6 +286,14 @@ public class Client extends AbstractMeta {
     public void setBankIban(final String bankIban) {
         this.bankIban = bankIban;
     }
+
+    public String getSepaMandate() { return sepaMandate; }
+
+    public void setSepaMandate(final String sepaMandate) { this.sepaMandate = sepaMandate; }
+
+    public LocalDate getSepaMandateDate() { return sepaMandateDate; }
+
+    public void setSepaMandateDate(final LocalDate sepaMandateDate ) { this.sepaMandateDate = sepaMandateDate; }
 
     public TaxRule getTaxRule() {
         return taxRule;
