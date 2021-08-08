@@ -26,6 +26,7 @@ public enum TemplateType {
     CONFIRMATION,
     REMINDER,
     DELIVERY_NOTE,
-    CREDIT_NOTE
+    CREDIT_NOTE,
+    LETTER
 
 }
