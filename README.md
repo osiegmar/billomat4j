@@ -48,6 +48,8 @@ Create a file "src/test/resources/billomat.properties" with this content:
 ```
 billomatId = <your-billomat-id>
 billomatApiKey = <your-billomat-api-key>
+billomatAppId = <your-billomat-app-id>
+billomatAppSecret = <your-billomat-app-secret>
 email = <your-email-address>
 ```
 
