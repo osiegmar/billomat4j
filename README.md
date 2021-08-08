@@ -2,7 +2,7 @@
 
 [![build](https://github.com/osiegmar/billomat4j/workflows/build/badge.svg?branch=master)](https://github.com/osiegmar/billomat4j/actions?query=branch%3Amaster)
 [![javadoc](https://javadoc.io/badge2/de.siegmar/billomat4j/javadoc.svg)](https://javadoc.io/doc/de.siegmar/billomat4j)
-[![Maven Central](https://img.shields.io/maven-central/v/de.siegmar/billomat4j.svg)](https://search.maven.org/search?q=g:%22de.siegmar%22%20AND%20a:%22billomat4j%22)
+[![Maven Central](https://img.shields.io/maven-central/v/de.siegmar/billomat4j.svg)](https://search.maven.org/artifact/de.siegmar/billomat4j)
 
 Java Software Development Kit for the [Billomat API](https://www.billomat.com/api/).
 
