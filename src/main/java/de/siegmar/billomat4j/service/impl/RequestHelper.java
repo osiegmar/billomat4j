@@ -19,18 +19,18 @@
 
 package de.siegmar.billomat4j.service.impl;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
+import java.net.URI;
 import java.net.URLEncoder;
-import java.util.Iterator;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
+import java.nio.charset.StandardCharsets;
+import java.time.Duration;
 import java.util.Map;
-import java.util.Map.Entry;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
@@ -38,68 +38,57 @@ import org.slf4j.LoggerFactory;
 
 class RequestHelper {
 
-    private static final int FIRST_HTTP_ERROR_CODE = 400;
     private static final String CONTENT_TYPE = "application/json";
-    private static final int BUF_SIZE = 2048;
-    private static final int HTTP_NOT_FOUND = 404;
     private static final String HTTP_GET = "GET";
     private static final String HTTP_POST = "POST";
     private static final String HTTP_PUT = "PUT";
     private static final String HTTP_DELETE = "DELETE";
-    private static final String ENCODING = "UTF-8";
     private static final int CONNECT_TIMEOUT = 10000;
     private static final int READ_TIMEOUT = 60000;
     private static final String USER_AGENT = "Billomat4J/" + Billomat4JSettings.getVersion();
-
+    private static final int SC_CLIENT_ERROR = 400;
+    private static final int SC_NOT_FOUND = 404;
+    private static final int SC_SERVER_ERROR = 500;
     private static final Logger LOG = LoggerFactory.getLogger(RequestHelper.class);
 
     private final BillomatConfiguration billomatConfiguration;
+    private final HttpClient httpClient;
 
     RequestHelper(final BillomatConfiguration billomatConfiguration) {
         this.billomatConfiguration = billomatConfiguration;
+        httpClient = HttpClient.newBuilder()
+            .connectTimeout(Duration.ofMillis(CONNECT_TIMEOUT))
+            .build();
     }
 
     public byte[] get(final String resource, final String id, final String method, final Map<String, String> filter)
         throws IOException {
 
-        final URL url = buildUrl(resource, id, method, filter);
-        final HttpURLConnection connection = prepareConnection(url, HTTP_GET);
+        final HttpResponse<byte[]> res = sendAndReceive(resource, method, id, null, HTTP_GET, filter);
 
-        LOG.debug("Service status response: {} {}", connection.getResponseCode(), connection.getResponseMessage());
-
-        if (connection.getResponseCode() == HTTP_NOT_FOUND) {
-            return null;
-        }
-
-        if (isError(connection)) {
-            try (InputStream inputStream = connection.getErrorStream()) {
-                final byte[] result = readToByteArray(inputStream);
-                throw new ServiceException("Service error response: code=" + connection.getResponseCode() + ", data="
-                    + new String(result, ENCODING));
+        if (isClientError(res.statusCode())) {
+            if (res.statusCode() == SC_NOT_FOUND) {
+                return null;
             }
+
+            throw new ServiceException("Service error response: code=" + res.statusCode()
+                + ", data=" + new String(res.body(), StandardCharsets.UTF_8));
         }
 
-        try (InputStream inputStream = connection.getInputStream()) {
-            final byte[] data = readToByteArray(inputStream);
-            if (LOG.isDebugEnabled()) {
-                final String msg;
-                if (!isBinaryContent(connection)) {
-                    msg = new String(data, ENCODING);
-                } else {
-                    msg = "[binary]";
-                }
-                LOG.debug("Service response: {}", msg);
-            }
-            return data;
-        }
+        return res.body();
     }
 
-    private boolean isError(final HttpURLConnection connection) throws IOException {
-        return connection.getResponseCode() >= FIRST_HTTP_ERROR_CODE;
+    private boolean isClientError(final int statusCode) {
+        return statusCode >= SC_CLIENT_ERROR && statusCode < SC_SERVER_ERROR;
     }
 
-    private boolean isBinaryContent(final HttpURLConnection connection) {
-        return connection.getContentType().startsWith("image/");
+    private boolean isServerError(final int statusCode) {
+        return statusCode >= SC_SERVER_ERROR;
+    }
+
+    private boolean isBinaryContent(final HttpResponse<byte[]> connection) {
+        final Optional<String> contentType = connection.headers().firstValue("Content-Type");
+        return contentType.isPresent() && contentType.get().startsWith("image/");
     }
 
     public byte[] post(final String resource, final String method, final byte[] data) throws IOException {
@@ -109,154 +98,134 @@ class RequestHelper {
     public byte[] post(final String resource, final String id, final String method, final byte[] data)
         throws IOException {
 
-        return sendAndReceive(resource, method, id, data, HTTP_POST);
+        return sendAndReceive(resource, method, id, data, HTTP_POST, null).body();
     }
 
     public byte[] put(final String resource, final String method, final String id, final byte[] data)
         throws IOException {
 
-        return sendAndReceive(resource, method, id, data, HTTP_PUT);
+        return sendAndReceive(resource, method, id, data, HTTP_PUT, null).body();
     }
 
-    private byte[] sendAndReceive(final String resource, final String method, final String id, final byte[] data,
-            final String type) throws IOException {
+    private HttpResponse<byte[]> sendAndReceive(final String resource, final String method, final String id,
+                                                final byte[] data, final String type, final Map<String, String> filter)
+        throws IOException {
 
-        final URL url = buildUrl(resource, id, method, null);
-        final HttpURLConnection connection = prepareConnection(url, type);
-        connection.setRequestProperty("Content-Type", CONTENT_TYPE);
-        connection.setDoOutput(true);
+        // build request
+        final URI uri = buildUrl(resource, id, method, filter);
+        final HttpRequest request = prepareRequest(data, type, uri);
 
+        LOG.debug("HTTP request: {}", request);
+        if (data != null && data.length > 0 && LOG.isDebugEnabled()) {
+            LOG.debug("Service request: {}", new String(data, StandardCharsets.UTF_8));
+        }
+
+        // send request
+        final HttpResponse<byte[]> res;
+        try {
+            res = httpClient.send(request, HttpResponse.BodyHandlers.ofByteArray());
+        } catch (final InterruptedException e) {
+            Thread.currentThread().interrupt();
+            throw new IllegalStateException(e);
+        }
+
+        // handle response
+        LOG.debug("Service status response: {}", res.statusCode());
+        if (isServerError(res.statusCode())) {
+            throw new ServiceException("Service error response: code=" + res.statusCode()
+                + ", data=" + new String(res.body(), StandardCharsets.UTF_8));
+        }
+
+        if (res.body() != null && res.body().length > 0 && LOG.isDebugEnabled()) {
+            LOG.debug("Service response: {}",
+                isBinaryContent(res) ? "[binary]" : new String(res.body(), StandardCharsets.UTF_8));
+        }
+
+        return res;
+    }
+
+    private HttpRequest prepareRequest(final byte[] data, final String type, final URI uri) {
         if (data != null) {
-            if (LOG.isDebugEnabled()) {
-                LOG.debug("Service request: {}", new String(data, ENCODING));
-            }
-
-            connection.setRequestProperty("Content-Length", "" + data.length);
-
-            try (OutputStream outputStream = connection.getOutputStream()) {
-                outputStream.write(data);
-            }
+            return prepareConnection(uri)
+                .setHeader("Content-Type", CONTENT_TYPE)
+                .method(type, HttpRequest.BodyPublishers.ofByteArray(data))
+                .build();
         }
 
-        LOG.debug("Service status response: {} {}", connection.getResponseCode(), connection.getResponseMessage());
-
-        if (isError(connection)) {
-            try (InputStream inputStream = connection.getErrorStream()) {
-                final byte[] result = readToByteArray(inputStream);
-                if (result.length > 0) {
-                    throw new ServiceException("Service error response: code=" + connection.getResponseCode()
-                        + ", data=" + new String(result, ENCODING));
-                }
-            }
-        }
-
-        try (InputStream inputStream = connection.getInputStream()) {
-            final byte[] result = readToByteArray(inputStream);
-            if (result.length > 0 && LOG.isDebugEnabled()) {
-                LOG.debug("Service response: {}", new String(result, ENCODING));
-            }
-            return result;
-        }
-    }
-
-    private static byte[] readToByteArray(final InputStream inputStream) throws IOException {
-        final ByteArrayOutputStream bos = new ByteArrayOutputStream();
-
-        final byte[] buf = new byte[BUF_SIZE];
-        int cnt;
-        while ((cnt = inputStream.read(buf)) != -1) {
-            bos.write(buf, 0, cnt);
-        }
-
-        return bos.toByteArray();
+        return prepareConnection(uri)
+            .method(type, HttpRequest.BodyPublishers.noBody())
+            .build();
     }
 
     public void delete(final String resource, final String id) throws IOException {
-        final URL url = buildUrl(resource, id, null, null);
-        final HttpURLConnection connection = prepareConnection(url, HTTP_DELETE);
-
-        LOG.debug("Service status response: {} {}", connection.getResponseCode(), connection.getResponseMessage());
-
-        if (isError(connection)) {
-            try (InputStream inputStream = connection.getErrorStream()) {
-                final byte[] result = readToByteArray(inputStream);
-                throw new ServiceException("Service error response: " + new String(result, ENCODING));
-            }
-        }
+        sendAndReceive(resource, null, id, null, HTTP_DELETE, null);
     }
 
-    private HttpURLConnection prepareConnection(final URL url, final String type) throws IOException {
-        final HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-        connection.setConnectTimeout(CONNECT_TIMEOUT);
-        connection.setReadTimeout(READ_TIMEOUT);
-        connection.setRequestProperty("X-BillomatApiKey", billomatConfiguration.getApiKey());
+    private HttpRequest.Builder prepareConnection(final URI uri) {
+        final HttpRequest.Builder builder = HttpRequest.newBuilder(uri)
+            .timeout(Duration.ofMillis(READ_TIMEOUT))
+            .setHeader("Accept", CONTENT_TYPE)
+            .setHeader("User-Agent", USER_AGENT)
+            .setHeader("X-BillomatApiKey", billomatConfiguration.getApiKey());
+
         if (billomatConfiguration.getAppId() != null) {
-            connection.setRequestProperty("X-AppId", billomatConfiguration.getAppId());
+            builder.setHeader("X-AppId", billomatConfiguration.getAppId());
         }
         if (billomatConfiguration.getAppSecret() != null) {
-            connection.setRequestProperty("X-AppSecret", billomatConfiguration.getAppSecret());
+            builder.setHeader("X-AppSecret", billomatConfiguration.getAppSecret());
         }
-        connection.setRequestProperty("Accept", CONTENT_TYPE);
-        connection.setRequestProperty("User-Agent", USER_AGENT);
-        connection.setRequestMethod(type);
 
-        LOG.debug("HTTP request: {} {}", type, url);
-
-        return connection;
+        return builder;
     }
 
-    private URL buildUrl(final String resource, final String id, final String method,
-            final Map<String, String> filter) {
+    private URI buildUrl(final String resource, final String id, final String method,
+                         final Map<String, String> filter) {
 
         Validate.notEmpty(resource, "resource required");
 
         final StringBuilder sb = new StringBuilder();
-        if (billomatConfiguration.isSecure()) {
-            sb.append("https");
-        } else {
-            sb.append("http");
-        }
+
+        sb.append(billomatConfiguration.isSecure() ? "https" : "http");
         sb.append("://");
-        sb.append(billomatConfiguration.getBillomatId());
-        sb.append(".billomat.net/api/");
+        sb.append(billomatConfiguration.getBillomatId()).append(".billomat.net");
+        sb.append(buildPath(resource, id, method));
+
+        if (filter != null) {
+            sb.append('?');
+            sb.append(buildQS(filter));
+        }
+
+        return URI.create(sb.toString());
+    }
+
+    private String buildPath(final String resource, final String id, final String method) {
+        final StringBuilder sb = new StringBuilder();
+
+        sb.append("/api/");
         sb.append(resource);
 
         if (id != null) {
-            sb.append("/");
+            sb.append('/');
             sb.append(id);
         }
 
         if (method != null) {
-            sb.append("/");
+            sb.append('/');
             sb.append(method);
         }
 
-        if (filter != null && !filter.isEmpty()) {
-            sb.append("?");
-            for (final Iterator<Entry<String, String>> iterator = filter.entrySet().iterator(); iterator.hasNext();) {
-                final Entry<String, String> entry = iterator.next();
-                sb.append(entry.getKey());
-                if (entry.getValue() != null) {
-                    sb.append("=");
-                    sb.append(encodeValue(entry));
-                }
-
-                if (iterator.hasNext()) {
-                    sb.append("&");
-                }
-            }
-        }
-
-        try {
-            return new URL(sb.toString());
-        } catch (final MalformedURLException e) {
-            throw new IllegalStateException(e);
-        }
+        return sb.toString();
     }
 
-    private String encodeValue(final Entry<String, String> entry) {
+    private String buildQS(final Map<String, String> filter) {
+        return filter.entrySet().stream()
+            .map(e -> e.getKey() + "=" + encode(e.getValue()))
+            .collect(Collectors.joining("&"));
+    }
+
+    private String encode(final String entry) {
         try {
-            return URLEncoder.encode(entry.getValue(), ENCODING);
+            return URLEncoder.encode(entry, StandardCharsets.UTF_8.toString());
         } catch (final UnsupportedEncodingException e) {
             throw new IllegalStateException(e);
         }

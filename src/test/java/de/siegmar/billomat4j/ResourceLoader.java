@@ -19,12 +19,11 @@
 
 package de.siegmar.billomat4j;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.UncheckedIOException;
-import java.net.URISyntaxException;
-
-import org.apache.commons.io.FileUtils;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 public final class ResourceLoader {
 
@@ -32,12 +31,14 @@ public final class ResourceLoader {
     }
 
     public static byte[] loadFile(final String name) {
-        final File f;
+        final URL res = ResourceLoader.class.getResource("/" + name);
+
+        if (res == null) {
+            return null;
+        }
+
         try {
-            f = new File(ClassLoader.getSystemResource("/" + name).toURI().toURL().getFile());
-            return FileUtils.readFileToByteArray(f);
-        } catch (final URISyntaxException e) {
-            throw new IllegalStateException(e);
+            return Files.readAllBytes(Path.of(res.getFile()));
         } catch (final IOException e) {
             throw new UncheckedIOException(e);
         }

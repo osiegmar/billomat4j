@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Changed
+- Update to Java 11
 - Replaced TestNG with JUnit 5
 
 ## [1.1.3] - 2016-05-26

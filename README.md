@@ -1,4 +1,4 @@
-# billomat4j
+# Billomat4J
 
 [![build](https://github.com/osiegmar/billomat4j/workflows/build/badge.svg?branch=master)](https://github.com/osiegmar/billomat4j/actions?query=branch%3Amaster)
 [![javadoc](https://javadoc.io/badge2/de.siegmar/billomat4j/javadoc.svg)](https://javadoc.io/doc/de.siegmar/billomat4j)
@@ -8,7 +8,7 @@ Java Software Development Kit for the [Billomat API](https://www.billomat.com/ap
 
 ## Requirements
 
-- Java 8
+- Java 11
 - Apache Commons Lang
 - Jackson JSON Processor
 - SLF4J
@@ -60,20 +60,3 @@ Run the integration test suite by invoking:
 ```
 ./gradlew integrationTest
 ```
-
-## Copyright
-
-Copyright 2012 Oliver Siegmar
-
-Billomat4J is free software: you can redistribute it and/or modify
-it under the terms of the GNU Lesser General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-Billomat4J is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU Lesser General Public License for more details.
-
-You should have received a copy of the GNU Lesser General Public License
-along with Billomat4J.  If not, see <http://www.gnu.org/licenses/>.

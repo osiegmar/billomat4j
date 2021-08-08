@@ -32,6 +32,7 @@ import de.siegmar.billomat4j.domain.offer.Offer;
 import de.siegmar.billomat4j.domain.recurring.Recurring;
 import de.siegmar.billomat4j.domain.reminder.Reminder;
 import de.siegmar.billomat4j.domain.template.Template;
+import de.siegmar.billomat4j.domain.unit.Unit;
 
 @SuppressWarnings({
     "checkstyle:uncommentedmain",
@@ -47,6 +48,11 @@ public class Cleanup {
     }
 
     private void cleanup() {
+        for (final Unit unit : ServiceHolder.UNIT.findUnits(null)) {
+            LOG.info("Delete unit {}", unit);
+            ServiceHolder.UNIT.deleteUnit(unit.getId());
+        }
+
         for (final Confirmation confirmation : ServiceHolder.CONFIRMATION.findConfirmations(null)) {
             LOG.info("Delete confirmation {}", confirmation);
             ServiceHolder.CONFIRMATION.deleteConfirmation(confirmation.getId());
