@@ -23,7 +23,6 @@ import de.siegmar.billomat4j.AbstractTagIT;
 import de.siegmar.billomat4j.domain.client.Client;
 import de.siegmar.billomat4j.domain.client.ClientTag;
 
-
 public class ClientTagIT extends AbstractTagIT<ClientTag> {
 
     public ClientTagIT() {

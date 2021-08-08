@@ -24,7 +24,6 @@ import de.siegmar.billomat4j.domain.client.Client;
 import de.siegmar.billomat4j.domain.confirmation.Confirmation;
 import de.siegmar.billomat4j.domain.confirmation.ConfirmationItem;
 
-
 public class ConfirmationItemIT extends AbstractItemIT<ConfirmationItem> {
 
     public ConfirmationItemIT() {

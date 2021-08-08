@@ -24,7 +24,6 @@ import de.siegmar.billomat4j.domain.client.Client;
 import de.siegmar.billomat4j.domain.confirmation.Confirmation;
 import de.siegmar.billomat4j.domain.confirmation.ConfirmationTag;
 
-
 public class ConfirmationTagIT extends AbstractTagIT<ConfirmationTag> {
 
     public ConfirmationTagIT() {

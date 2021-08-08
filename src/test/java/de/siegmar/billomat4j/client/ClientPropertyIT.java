@@ -24,7 +24,6 @@ import de.siegmar.billomat4j.domain.client.Client;
 import de.siegmar.billomat4j.domain.client.ClientPropertyValue;
 import de.siegmar.billomat4j.domain.settings.ClientProperty;
 
-
 public class ClientPropertyIT extends AbstractPropertyIT<ClientProperty, ClientPropertyValue> {
 
     public ClientPropertyIT() {

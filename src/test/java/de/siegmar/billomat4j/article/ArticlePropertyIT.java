@@ -24,7 +24,6 @@ import de.siegmar.billomat4j.domain.article.Article;
 import de.siegmar.billomat4j.domain.article.ArticlePropertyValue;
 import de.siegmar.billomat4j.domain.settings.ArticleProperty;
 
-
 public class ArticlePropertyIT extends AbstractPropertyIT<ArticleProperty, ArticlePropertyValue> {
 
     public ArticlePropertyIT() {

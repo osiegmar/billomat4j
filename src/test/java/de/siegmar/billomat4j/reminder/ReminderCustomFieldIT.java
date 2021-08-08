@@ -28,7 +28,6 @@ import de.siegmar.billomat4j.domain.invoice.Invoice;
 import de.siegmar.billomat4j.domain.invoice.InvoiceItem;
 import de.siegmar.billomat4j.domain.reminder.Reminder;
 
-
 public class ReminderCustomFieldIT extends AbstractCustomFieldServiceIT {
 
     public ReminderCustomFieldIT() {

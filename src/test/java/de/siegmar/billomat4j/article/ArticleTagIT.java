@@ -23,7 +23,6 @@ import de.siegmar.billomat4j.AbstractTagIT;
 import de.siegmar.billomat4j.domain.article.Article;
 import de.siegmar.billomat4j.domain.article.ArticleTag;
 
-
 public class ArticleTagIT extends AbstractTagIT<ArticleTag> {
 
     public ArticleTagIT() {

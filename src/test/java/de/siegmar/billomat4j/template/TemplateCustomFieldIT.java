@@ -26,7 +26,6 @@ import de.siegmar.billomat4j.domain.template.Template;
 import de.siegmar.billomat4j.domain.template.TemplateFormat;
 import de.siegmar.billomat4j.domain.template.TemplateType;
 
-
 public class TemplateCustomFieldIT extends AbstractCustomFieldServiceIT {
 
     public TemplateCustomFieldIT() {

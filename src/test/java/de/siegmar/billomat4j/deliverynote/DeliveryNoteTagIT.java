@@ -24,7 +24,6 @@ import de.siegmar.billomat4j.domain.client.Client;
 import de.siegmar.billomat4j.domain.deliverynote.DeliveryNote;
 import de.siegmar.billomat4j.domain.deliverynote.DeliveryNoteTag;
 
-
 public class DeliveryNoteTagIT extends AbstractTagIT<DeliveryNoteTag> {
 
     public DeliveryNoteTagIT() {

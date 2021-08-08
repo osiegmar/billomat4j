@@ -24,7 +24,6 @@ import de.siegmar.billomat4j.domain.client.Client;
 import de.siegmar.billomat4j.domain.creditnote.CreditNote;
 import de.siegmar.billomat4j.domain.creditnote.CreditNoteTag;
 
-
 public class CreditNoteTagIT extends AbstractTagIT<CreditNoteTag> {
 
     public CreditNoteTagIT() {
