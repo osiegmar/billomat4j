@@ -195,7 +195,7 @@ public class InvoiceServiceImpl extends AbstractService implements InvoiceServic
 
     @Override
     public void deleteComment(final int invoiceCommentId) {
-        delete(RESOURCE_COMMENTS, Validate.notNull(invoiceCommentId));
+        delete(RESOURCE_COMMENTS, invoiceCommentId);
     }
 
     // InvoicePayment
@@ -239,7 +239,7 @@ public class InvoiceServiceImpl extends AbstractService implements InvoiceServic
 
     @Override
     public void deleteTag(final int invoiceTagId) {
-        delete(RESOURCE_TAGS, Validate.notNull(invoiceTagId));
+        delete(RESOURCE_TAGS, invoiceTagId);
     }
 
 }

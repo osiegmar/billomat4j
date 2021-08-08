@@ -182,7 +182,7 @@ public class DeliveryNoteServiceImpl extends AbstractService implements Delivery
 
     @Override
     public void deleteTag(final int deliveryNoteTagId) {
-        delete(RESOURCE_TAGS, Validate.notNull(deliveryNoteTagId));
+        delete(RESOURCE_TAGS, deliveryNoteTagId);
     }
 
 }
