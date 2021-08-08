@@ -24,6 +24,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -197,6 +198,19 @@ public class ClientServiceIT {
         client.setArchived(true);
         clientService.updateClient(client);
         assertTrue(client.getArchived());
+    }
+
+    @Test
+    public void setSepaMandate() {
+        final String sepaMandateNr = "DRSTE3452TZERTS89ZUTZBVS67";
+        final LocalDate sepaDate = LocalDate.of(2018, 10, 10);
+        final Client client = buildClient("Sepa Company");
+        client.setSepaMandate(sepaMandateNr);
+        client.setSepaMandateDate(sepaDate);
+        clientService.createClient(client);
+        assertNotNull(client.getId());
+        assertEquals(client.getSepaMandate(), sepaMandateNr);
+        assertEquals(client.getSepaMandateDate(), sepaDate);
     }
 
 }
