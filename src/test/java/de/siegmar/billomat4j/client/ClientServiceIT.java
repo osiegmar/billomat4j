@@ -211,6 +211,7 @@ public class ClientServiceIT {
         assertNotNull(client.getId());
         assertEquals(client.getSepaMandate(), sepaMandateNr);
         assertEquals(client.getSepaMandateDate(), sepaDate);
+        createdClients.add(client);
     }
 
 }
