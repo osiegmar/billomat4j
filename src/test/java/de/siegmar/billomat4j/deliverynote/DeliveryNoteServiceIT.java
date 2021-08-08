@@ -44,8 +44,8 @@ import de.siegmar.billomat4j.domain.deliverynote.DeliveryNoteFilter;
 import de.siegmar.billomat4j.domain.deliverynote.DeliveryNoteItem;
 import de.siegmar.billomat4j.domain.deliverynote.DeliveryNotePdf;
 import de.siegmar.billomat4j.domain.deliverynote.DeliveryNoteStatus;
-import de.siegmar.billomat4j.service.ClientService;
-import de.siegmar.billomat4j.service.DeliveryNoteService;
+import de.siegmar.billomat4j.service.impl.ClientService;
+import de.siegmar.billomat4j.service.impl.DeliveryNoteService;
 
 @ExtendWith(TemplateSetup.class)
 public class DeliveryNoteServiceIT {

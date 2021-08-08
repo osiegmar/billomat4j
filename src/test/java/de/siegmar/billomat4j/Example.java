@@ -24,9 +24,8 @@ import java.time.LocalDate;
 import de.siegmar.billomat4j.domain.invoice.Invoice;
 import de.siegmar.billomat4j.domain.invoice.InvoiceFilter;
 import de.siegmar.billomat4j.domain.invoice.InvoiceStatus;
-import de.siegmar.billomat4j.service.InvoiceService;
 import de.siegmar.billomat4j.service.impl.BillomatConfiguration;
-import de.siegmar.billomat4j.service.impl.InvoiceServiceImpl;
+import de.siegmar.billomat4j.service.impl.InvoiceService;
 
 @SuppressWarnings({
     "checkstyle:hideutilityclassconstructor",
@@ -45,7 +44,7 @@ public class Example {
         billomatConfiguration.setAppId("<appId>");
         billomatConfiguration.setAppSecret("<appSecret>");
 
-        final InvoiceService invoiceService = new InvoiceServiceImpl(billomatConfiguration);
+        final InvoiceService invoiceService = new InvoiceService(billomatConfiguration);
 
         System.out.println("Paid invoices for the last 30 days:");
 

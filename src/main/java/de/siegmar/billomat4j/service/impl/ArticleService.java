@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Oliver Siegmar
+ * Copyright 2021 Oliver Siegmar
  *
  * This file is part of Billomat4J.
  *
@@ -32,16 +32,20 @@ import de.siegmar.billomat4j.domain.article.ArticleTags;
 import de.siegmar.billomat4j.domain.article.Articles;
 import de.siegmar.billomat4j.domain.settings.ArticleProperties;
 import de.siegmar.billomat4j.domain.settings.ArticleProperty;
-import de.siegmar.billomat4j.service.ArticleService;
+import de.siegmar.billomat4j.service.GenericCustomFieldService;
+import de.siegmar.billomat4j.service.GenericPropertyService;
+import de.siegmar.billomat4j.service.GenericTagService;
 
-public class ArticleServiceImpl extends AbstractService implements ArticleService {
+public class ArticleService extends AbstractService
+    implements GenericCustomFieldService, GenericPropertyService<ArticleProperty,
+    ArticlePropertyValue>, GenericTagService<ArticleTag> {
 
     private static final String RESOURCE = "articles";
     private static final String PROPERTIES_RESOURCE = "article-properties";
     private static final String ATTRIBUTE_RESOURCE = "article-property-values";
     private static final String TAG_RESOURCE = "article-tags";
 
-    public ArticleServiceImpl(final BillomatConfiguration billomatConfiguration) {
+    public ArticleService(final BillomatConfiguration billomatConfiguration) {
         super(billomatConfiguration);
     }
 
@@ -57,34 +61,63 @@ public class ArticleServiceImpl extends AbstractService implements ArticleServic
         updateCustomField(RESOURCE, articleId, "article", value);
     }
 
-    @Override
+    /**
+     * @param articleFilter article filter, may be {@code null} to find unfiltered
+     * @return articles found by filter criteria or an empty list if no articles were found - never {@code null}
+     * @throws ServiceException if an error occured while accessing the web service
+     */
     public List<Article> findArticles(final ArticleFilter articleFilter) {
         return getAllPagesFromResource(RESOURCE, Articles.class, articleFilter);
     }
 
-    @Override
-    public Article getArticleById(final int id) {
-        return getById(RESOURCE, Article.class, id);
+    /**
+     * Gets an article by its id.
+     *
+     * @param articleId the article's id
+     * @return the article or {@code null} if not found
+     * @throws ServiceException if an error occured while accessing the web service
+     */
+    public Article getArticleById(final int articleId) {
+        return getById(RESOURCE, Article.class, articleId);
     }
 
-    @Override
+    /**
+     * Gets an article by its article number.
+     *
+     * @param articleNumber the article number, must not be empty / {@code null}
+     * @return the article or {@code null} if not found
+     * @throws NullPointerException     if articleNumber is null
+     * @throws IllegalArgumentException if articleNumber is empty
+     * @throws ServiceException         if an error occured while accessing the web service
+     */
     public Article getArticleByNumber(final String articleNumber) {
         return single(findArticles(new ArticleFilter().byArticleNumber(Validate.notEmpty(articleNumber))));
     }
 
-    @Override
+    /**
+     * @param article the article to create, must not be {@code null}
+     * @throws NullPointerException if article is null
+     * @throws ServiceException     if an error occured while accessing the web service
+     */
     public void createArticle(final Article article) {
         create(RESOURCE, Validate.notNull(article));
     }
 
-    @Override
+    /**
+     * @param article the article to update, must not be {@code null}
+     * @throws NullPointerException if article is null
+     * @throws ServiceException     if an error occured while accessing the web service
+     */
     public void updateArticle(final Article article) {
         update(RESOURCE, Validate.notNull(article));
     }
 
-    @Override
-    public void deleteArticle(final int id) {
-        delete(RESOURCE, id);
+    /**
+     * @param articleId the id of the article to be deleted
+     * @throws ServiceException if an error occured while accessing the web service
+     */
+    public void deleteArticle(final int articleId) {
+        delete(RESOURCE, articleId);
     }
 
     // ArticleProperty

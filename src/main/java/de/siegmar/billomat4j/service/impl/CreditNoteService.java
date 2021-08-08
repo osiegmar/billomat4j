@@ -28,6 +28,7 @@ import org.apache.commons.lang3.Validate;
 import de.siegmar.billomat4j.domain.Email;
 import de.siegmar.billomat4j.domain.Filter;
 import de.siegmar.billomat4j.domain.creditnote.CreditNote;
+import de.siegmar.billomat4j.domain.creditnote.CreditNoteActionKey;
 import de.siegmar.billomat4j.domain.creditnote.CreditNoteComment;
 import de.siegmar.billomat4j.domain.creditnote.CreditNoteCommentFilter;
 import de.siegmar.billomat4j.domain.creditnote.CreditNoteComments;
@@ -44,9 +45,16 @@ import de.siegmar.billomat4j.domain.creditnote.CreditNotePdf;
 import de.siegmar.billomat4j.domain.creditnote.CreditNoteTag;
 import de.siegmar.billomat4j.domain.creditnote.CreditNoteTags;
 import de.siegmar.billomat4j.domain.creditnote.CreditNotes;
-import de.siegmar.billomat4j.service.CreditNoteService;
+import de.siegmar.billomat4j.service.GenericCommentService;
+import de.siegmar.billomat4j.service.GenericCustomFieldService;
+import de.siegmar.billomat4j.service.GenericItemService;
+import de.siegmar.billomat4j.service.GenericPaymentService;
+import de.siegmar.billomat4j.service.GenericTagService;
 
-public class CreditNoteServiceImpl extends AbstractService implements CreditNoteService {
+public class CreditNoteService extends AbstractService
+    implements GenericCustomFieldService, GenericTagService<CreditNoteTag>,
+    GenericCommentService<CreditNoteActionKey, CreditNoteComment, CreditNoteCommentFilter>,
+    GenericItemService<CreditNoteItem>, GenericPaymentService<CreditNotePayment, CreditNotePaymentFilter> {
 
     private static final String RESOURCE = "credit-notes";
     private static final String RESOURCE_ITEMS = "credit-note-items";
@@ -54,7 +62,7 @@ public class CreditNoteServiceImpl extends AbstractService implements CreditNote
     private static final String RESOURCE_PAYMENTS = "credit-note-payments";
     private static final String RESOURCE_TAGS = "credit-note-tags";
 
-    public CreditNoteServiceImpl(final BillomatConfiguration billomatConfiguration) {
+    public CreditNoteService(final BillomatConfiguration billomatConfiguration) {
         super(billomatConfiguration);
     }
 
@@ -70,12 +78,23 @@ public class CreditNoteServiceImpl extends AbstractService implements CreditNote
         updateCustomField(RESOURCE, creditNoteId, "credit-note", value);
     }
 
-    @Override
+    /**
+     * @param creditNoteFilter credit note filter, may be {@code null} to find unfiltered
+     * @return credit notes found by filter criteria or an empty list if no credit notes were found - never
+     * {@code null}
+     * @throws ServiceException if an error occured while accessing the web service
+     */
     public List<CreditNote> findCreditNotes(final CreditNoteFilter creditNoteFilter) {
         return getAllPagesFromResource(RESOURCE, CreditNotes.class, creditNoteFilter);
     }
 
-    @Override
+    /**
+     * @param creditNoteGroupFilter the group definition, must not be {@code null}
+     * @param creditNoteFilter      the filter criteria, optional - may be {@code null}
+     * @return grouped credit note list or an empty list if no credit notes were found - never {@code null}
+     * @throws NullPointerException if creditNoteGroupFilter is null
+     * @throws ServiceException     if an error occured while accessing the web service
+     */
     public List<CreditNoteGroup> getGroupedCreditNotes(final CreditNoteGroupFilter creditNoteGroupFilter,
                                                        final CreditNoteFilter creditNoteFilter) {
 
@@ -85,57 +104,111 @@ public class CreditNoteServiceImpl extends AbstractService implements CreditNote
         return getAllFromResource(RESOURCE, CreditNoteGroups.class, filter);
     }
 
-    @Override
-    public CreditNote getCreditNoteById(final int id) {
-        return getById(RESOURCE, CreditNote.class, id);
+    /**
+     * Gets a credit note by its id.
+     *
+     * @param creditNoteId the credit note's id
+     * @return the credit note or {@code null} if not found
+     * @throws ServiceException if an error occured while accessing the web service
+     */
+    public CreditNote getCreditNoteById(final int creditNoteId) {
+        return getById(RESOURCE, CreditNote.class, creditNoteId);
     }
 
-    @Override
+    /**
+     * Gets a credit note by its credit note number.
+     *
+     * @param creditNoteNumber the credit note number, must not be empty / {@code null}
+     * @return the credit note or {@code null} if not found
+     * @throws NullPointerException     if creditNoteNumber is null
+     * @throws IllegalArgumentException if creditNoteNumber is empty
+     * @throws ServiceException         if an error occured while accessing the web service
+     */
     public CreditNote getCreditNoteByNumber(final String creditNoteNumber) {
         return single(findCreditNotes(new CreditNoteFilter().byCreditNoteNumber(Validate.notEmpty(creditNoteNumber))));
     }
 
-    @Override
+    /**
+     * @param creditNote the credit note to create, must not be {@code null}
+     * @throws NullPointerException if creditNote is null
+     * @throws ServiceException     if an error occured while accessing the web service
+     */
     public void createCreditNote(final CreditNote creditNote) {
         create(RESOURCE, Validate.notNull(creditNote));
     }
 
-    @Override
+    /**
+     * @param creditNote the credit note to update, must not be {@code null}
+     * @throws NullPointerException if creditNote is null
+     * @throws ServiceException     if an error occured while accessing the web service
+     */
     public void updateCreditNote(final CreditNote creditNote) {
         update(RESOURCE, Validate.notNull(creditNote));
     }
 
-    @Override
-    public void deleteCreditNote(final int id) {
-        delete(RESOURCE, id);
+    /**
+     * @param creditNoteId the id of the credit note to be deleted
+     * @throws ServiceException if an error occured while accessing the web service
+     */
+    public void deleteCreditNote(final int creditNoteId) {
+        delete(RESOURCE, creditNoteId);
     }
 
-    @Override
-    public CreditNotePdf getCreditNotePdf(final int id) {
-        return getCreditNotePdf(id, null);
+    /**
+     * @param creditNoteId the id of the credit note to get the PDF for
+     * @return the credit note PDF or {@code null} if not found
+     * @throws ServiceException if an error occured while accessing the web service
+     * @see #getCreditNoteSignedPdf(int)
+     */
+    public CreditNotePdf getCreditNotePdf(final int creditNoteId) {
+        return getCreditNotePdf(creditNoteId, null);
     }
 
-    private CreditNotePdf getCreditNotePdf(final int id, final Map<String, String> filter) {
-        return getPdf(RESOURCE, CreditNotePdf.class, id, filter);
+    private CreditNotePdf getCreditNotePdf(final int creditNoteId, final Map<String, String> filter) {
+        return getPdf(RESOURCE, CreditNotePdf.class, creditNoteId, filter);
     }
 
-    @Override
-    public CreditNotePdf getCreditNoteSignedPdf(final int id) {
+    /**
+     * @param creditNoteId the id of the credit note to get the signed PDF for
+     * @return the signed credit note PDF or {@code null} if not found
+     * @throws ServiceException if an error occured while accessing the web service
+     * @see #uploadCreditNoteSignedPdf(int, byte[])
+     * @see #getCreditNotePdf(int)
+     */
+    public CreditNotePdf getCreditNoteSignedPdf(final int creditNoteId) {
         final Map<String, String> filter = Collections.singletonMap("type", "signed");
-        return getCreditNotePdf(id, filter);
+        return getCreditNotePdf(creditNoteId, filter);
     }
 
-    @Override
-    public void completeCreditNote(final int id, final Integer templateId) {
-        completeDocument(RESOURCE, id, templateId);
+    /**
+     * Sets the credit note status to {@link de.siegmar.billomat4j.domain.creditnote.CreditNoteStatus#OPEN}.
+     *
+     * @param creditNoteId the id of the credit note to update
+     * @param templateId   the id of the template to use for the resulting document or {@code null}
+     *                     if no template should be used
+     * @throws ServiceException if an error occured while accessing the web service
+     */
+    public void completeCreditNote(final int creditNoteId, final Integer templateId) {
+        completeDocument(RESOURCE, creditNoteId, templateId);
     }
 
-    @Override
+    /**
+     * @param creditNoteId the id of the credit note to upload the signed PDF for
+     * @param pdf          the signed PDF as binary data (must not be {@code null})
+     * @throws ServiceException     if an error occured while accessing the web service
+     * @throws NullPointerException if pdf is null
+     * @see #getCreditNoteSignedPdf(int)
+     */
     public void uploadCreditNoteSignedPdf(final int creditNoteId, final byte[] pdf) {
         uploadSignedPdf(RESOURCE, creditNoteId, Validate.notNull(pdf));
     }
 
-    @Override
+    /**
+     * @param creditNoteId    the id of the credit note to send an email for
+     * @param creditNoteEmail the email configuration
+     * @throws NullPointerException if creditNoteEmail is null
+     * @throws ServiceException     if an error occured while accessing the web service
+     */
     public void sendCreditNoteViaEmail(final int creditNoteId, final Email creditNoteEmail) {
         sendEmail(RESOURCE, creditNoteId, creditNoteEmail);
     }

@@ -21,33 +21,20 @@ package de.siegmar.billomat4j;
 
 import java.util.Properties;
 
-import de.siegmar.billomat4j.service.ArticleService;
-import de.siegmar.billomat4j.service.ClientService;
-import de.siegmar.billomat4j.service.ConfirmationService;
-import de.siegmar.billomat4j.service.CreditNoteService;
-import de.siegmar.billomat4j.service.DeliveryNoteService;
-import de.siegmar.billomat4j.service.InvoiceService;
-import de.siegmar.billomat4j.service.OfferService;
-import de.siegmar.billomat4j.service.RecurringService;
-import de.siegmar.billomat4j.service.ReminderService;
-import de.siegmar.billomat4j.service.SettingsService;
-import de.siegmar.billomat4j.service.TemplateService;
-import de.siegmar.billomat4j.service.UnitService;
-import de.siegmar.billomat4j.service.UserService;
-import de.siegmar.billomat4j.service.impl.ArticleServiceImpl;
+import de.siegmar.billomat4j.service.impl.ArticleService;
 import de.siegmar.billomat4j.service.impl.BillomatConfiguration;
-import de.siegmar.billomat4j.service.impl.ClientServiceImpl;
-import de.siegmar.billomat4j.service.impl.ConfirmationServiceImpl;
-import de.siegmar.billomat4j.service.impl.CreditNoteServiceImpl;
-import de.siegmar.billomat4j.service.impl.DeliveryNoteServiceImpl;
-import de.siegmar.billomat4j.service.impl.InvoiceServiceImpl;
-import de.siegmar.billomat4j.service.impl.OfferServiceImpl;
-import de.siegmar.billomat4j.service.impl.RecurringServiceImpl;
-import de.siegmar.billomat4j.service.impl.ReminderServiceImpl;
-import de.siegmar.billomat4j.service.impl.SettingsServiceImpl;
-import de.siegmar.billomat4j.service.impl.TemplateServiceImpl;
-import de.siegmar.billomat4j.service.impl.UnitServiceImpl;
-import de.siegmar.billomat4j.service.impl.UserServiceImpl;
+import de.siegmar.billomat4j.service.impl.ClientService;
+import de.siegmar.billomat4j.service.impl.ConfirmationService;
+import de.siegmar.billomat4j.service.impl.CreditNoteService;
+import de.siegmar.billomat4j.service.impl.DeliveryNoteService;
+import de.siegmar.billomat4j.service.impl.InvoiceService;
+import de.siegmar.billomat4j.service.impl.OfferService;
+import de.siegmar.billomat4j.service.impl.RecurringService;
+import de.siegmar.billomat4j.service.impl.ReminderService;
+import de.siegmar.billomat4j.service.impl.SettingsService;
+import de.siegmar.billomat4j.service.impl.TemplateService;
+import de.siegmar.billomat4j.service.impl.UnitService;
+import de.siegmar.billomat4j.service.impl.UserService;
 
 @SuppressWarnings({
     "checkstyle:ClassDataAbstractionCoupling",
@@ -75,19 +62,19 @@ public final class ServiceHolder {
         PROPERTIES = ConfigUtil.loadProperties();
         final BillomatConfiguration cfg = ConfigUtil.configure(PROPERTIES);
 
-        ARTICLE = new ArticleServiceImpl(cfg);
-        CLIENT = new ClientServiceImpl(cfg);
-        CONFIRMATION = new ConfirmationServiceImpl(cfg);
-        CREDITNOTE = new CreditNoteServiceImpl(cfg);
-        DELIVERYNOTE = new DeliveryNoteServiceImpl(cfg);
-        INVOICE = new InvoiceServiceImpl(cfg);
-        OFFER = new OfferServiceImpl(cfg);
-        RECURRING = new RecurringServiceImpl(cfg);
-        REMINDER = new ReminderServiceImpl(cfg);
-        SETTINGS = new SettingsServiceImpl(cfg);
-        TEMPLATE = new TemplateServiceImpl(cfg);
-        UNIT = new UnitServiceImpl(cfg);
-        USER = new UserServiceImpl(cfg);
+        ARTICLE = new ArticleService(cfg);
+        CLIENT = new ClientService(cfg);
+        CONFIRMATION = new ConfirmationService(cfg);
+        CREDITNOTE = new CreditNoteService(cfg);
+        DELIVERYNOTE = new DeliveryNoteService(cfg);
+        INVOICE = new InvoiceService(cfg);
+        OFFER = new OfferService(cfg);
+        RECURRING = new RecurringService(cfg);
+        REMINDER = new ReminderService(cfg);
+        SETTINGS = new SettingsService(cfg);
+        TEMPLATE = new TemplateService(cfg);
+        UNIT = new UnitService(cfg);
+        USER = new UserService(cfg);
     }
 
     private ServiceHolder() {

@@ -49,9 +49,9 @@ import de.siegmar.billomat4j.domain.reminder.ReminderFilter;
 import de.siegmar.billomat4j.domain.reminder.ReminderItem;
 import de.siegmar.billomat4j.domain.reminder.ReminderPdf;
 import de.siegmar.billomat4j.domain.reminder.ReminderStatus;
-import de.siegmar.billomat4j.service.ClientService;
-import de.siegmar.billomat4j.service.InvoiceService;
-import de.siegmar.billomat4j.service.ReminderService;
+import de.siegmar.billomat4j.service.impl.ClientService;
+import de.siegmar.billomat4j.service.impl.InvoiceService;
+import de.siegmar.billomat4j.service.impl.ReminderService;
 
 @ExtendWith(TemplateSetup.class)
 public class ReminderServiceIT {

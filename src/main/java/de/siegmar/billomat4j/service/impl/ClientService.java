@@ -34,9 +34,13 @@ import de.siegmar.billomat4j.domain.client.Contact;
 import de.siegmar.billomat4j.domain.client.Contacts;
 import de.siegmar.billomat4j.domain.settings.ClientProperties;
 import de.siegmar.billomat4j.domain.settings.ClientProperty;
-import de.siegmar.billomat4j.service.ClientService;
+import de.siegmar.billomat4j.service.GenericCustomFieldService;
+import de.siegmar.billomat4j.service.GenericPropertyService;
+import de.siegmar.billomat4j.service.GenericTagService;
 
-public class ClientServiceImpl extends AbstractService implements ClientService {
+public class ClientService extends AbstractService
+    implements GenericCustomFieldService, GenericPropertyService<ClientProperty,
+    ClientPropertyValue>, GenericTagService<ClientTag> {
 
     private static final String RESOURCE = "clients";
     private static final String PROPERTIES_RESOURCE = "client-properties";
@@ -44,7 +48,7 @@ public class ClientServiceImpl extends AbstractService implements ClientService 
     private static final String TAG_RESOURCE = "client-tags";
     private static final String CONTACT_RESOURCE = "contacts";
 
-    public ClientServiceImpl(final BillomatConfiguration billomatConfiguration) {
+    public ClientService(final BillomatConfiguration billomatConfiguration) {
         super(billomatConfiguration);
     }
 
@@ -60,39 +64,72 @@ public class ClientServiceImpl extends AbstractService implements ClientService 
         updateCustomField(RESOURCE, clientId, "client", value);
     }
 
-    @Override
+    /**
+     * @return the Billomat account as a client
+     * @throws ServiceException if an error occured while accessing the web service
+     * @see <a href="http://www.billomat.com/api/account/">API Account</a>
+     */
     public Client getMySelf() {
         return getMySelf(RESOURCE, Client.class);
     }
 
-    @Override
+    /**
+     * @param clientFilter client filter, may be {@code null} to find unfiltered
+     * @return clients found by filter criteria or an empty list if no clients were found - never {@code null}
+     * @throws ServiceException if an error occured while accessing the web service
+     */
     public List<Client> findClients(final ClientFilter clientFilter) {
         return getAllPagesFromResource(RESOURCE, Clients.class, clientFilter);
     }
 
-    @Override
-    public Client getClientById(final int id) {
-        return getById(RESOURCE, Client.class, id);
+    /**
+     * Gets a client by its id.
+     *
+     * @param clientId the client's id
+     * @return the client or {@code null} if not found
+     * @throws ServiceException if an error occured while accessing the web service
+     */
+    public Client getClientById(final int clientId) {
+        return getById(RESOURCE, Client.class, clientId);
     }
 
-    @Override
+    /**
+     * Gets a client by its client number.
+     *
+     * @param clientNumber the client number, must not be empty / {@code null}
+     * @return the client or {@code null} if not found
+     * @throws NullPointerException     if clientNumber is null
+     * @throws IllegalArgumentException if clientNumber is empty
+     * @throws ServiceException         if an error occured while accessing the web service
+     */
     public Client getClientByNumber(final String clientNumber) {
         return single(findClients(new ClientFilter().byClientNumber(Validate.notEmpty(clientNumber))));
     }
 
-    @Override
+    /**
+     * @param client the client to create, must not be {@code null}
+     * @throws NullPointerException if client is null
+     * @throws ServiceException     if an error occured while accessing the web service
+     */
     public void createClient(final Client client) {
         create(RESOURCE, Validate.notNull(client));
     }
 
-    @Override
+    /**
+     * @param client the client to update, must not be {@code null}
+     * @throws NullPointerException if client is null
+     * @throws ServiceException     if an error occured while accessing the web service
+     */
     public void updateClient(final Client client) {
         update(RESOURCE, Validate.notNull(client));
     }
 
-    @Override
-    public void deleteClient(final int id) {
-        delete(RESOURCE, id);
+    /**
+     * @param clientId the id of the client to be deleted
+     * @throws ServiceException if an error occured while accessing the web service
+     */
+    public void deleteClient(final int clientId) {
+        delete(RESOURCE, clientId);
     }
 
     // ClientProperty
@@ -167,27 +204,48 @@ public class ClientServiceImpl extends AbstractService implements ClientService 
 
     // Contact
 
-    @Override
+    /**
+     * @param clientId the id of the client the contacts belong to
+     * @return all contacts for the specified client or an empty list if no contacts were found - never {@code null}
+     * @throws ServiceException if an error occured while accessing the web service
+     */
     public List<Contact> findContacts(final int clientId) {
         return getAllPagesFromResource(CONTACT_RESOURCE, Contacts.class, clientIdFilter(clientId));
     }
 
-    @Override
+    /**
+     * Gets a contact by its id.
+     *
+     * @param contactId the contact's id
+     * @return the contact or {@code null} if not found
+     * @throws ServiceException if an error occured while accessing the web service
+     */
     public Contact getContact(final int contactId) {
         return getById(CONTACT_RESOURCE, Contact.class, contactId);
     }
 
-    @Override
+    /**
+     * @param contact the contact to create, must not be {@code null}
+     * @throws NullPointerException if contact is null
+     * @throws ServiceException     if an error occured while accessing the web service
+     */
     public void createContact(final Contact contact) {
         create(CONTACT_RESOURCE, Validate.notNull(contact));
     }
 
-    @Override
+    /**
+     * @param contact the contact to update, must not be {@code null}
+     * @throws NullPointerException if contact is null
+     * @throws ServiceException     if an error occured while accessing the web service
+     */
     public void updateContact(final Contact contact) {
         update(CONTACT_RESOURCE, Validate.notNull(contact));
     }
 
-    @Override
+    /**
+     * @param contactId the id of the contact to be deleted
+     * @throws ServiceException if an error occured while accessing the web service
+     */
     public void deleteContact(final int contactId) {
         delete(CONTACT_RESOURCE, contactId);
     }

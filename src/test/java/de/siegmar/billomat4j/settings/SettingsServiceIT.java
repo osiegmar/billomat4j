@@ -34,7 +34,7 @@ import de.siegmar.billomat4j.domain.settings.CountryTax;
 import de.siegmar.billomat4j.domain.settings.ReminderText;
 import de.siegmar.billomat4j.domain.settings.Settings;
 import de.siegmar.billomat4j.domain.settings.Tax;
-import de.siegmar.billomat4j.service.SettingsService;
+import de.siegmar.billomat4j.service.impl.SettingsService;
 
 public class SettingsServiceIT {
 

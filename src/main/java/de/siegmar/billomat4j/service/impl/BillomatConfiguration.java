@@ -91,8 +91,7 @@ public class BillomatConfiguration {
     /**
      * Sets secure mode (HTTPS instead of HTTP). This is enabled by default.
      *
-     * @param secure
-     *            {@code true} for HTTPS, {@code false} for HTTP
+     * @param secure {@code true} for HTTPS, {@code false} for HTTP
      */
     public void setSecure(final boolean secure) {
         this.secure = secure;
@@ -105,8 +104,7 @@ public class BillomatConfiguration {
     /**
      * Defines if unmappable API response should be ignores. This is the default.
      *
-     * @param ignoreUnknownProperties
-     *            {@code true} for ignore unknown response attributes
+     * @param ignoreUnknownProperties {@code true} for ignore unknown response attributes
      */
     public void setIgnoreUnknownProperties(final boolean ignoreUnknownProperties) {
         this.ignoreUnknownProperties = ignoreUnknownProperties;
@@ -138,34 +136,34 @@ public class BillomatConfiguration {
         objectMapper.registerModule(new JavaTimeModule());
 
         objectMapper.registerModule(
-                new SimpleModule("CustomBooleanDeserializer",
-                        new Version(1, 0, 0, null, GROUP_ID, ARTIFACT_ID))
+            new SimpleModule("CustomBooleanDeserializer",
+                new Version(1, 0, 0, null, GROUP_ID, ARTIFACT_ID))
                 .addDeserializer(Boolean.class, new CustomBooleanDeserializer()));
 
         objectMapper.registerModule(
-                new SimpleModule("PaymentTypesDeserializer",
-                        new Version(1, 0, 0, null, GROUP_ID, ARTIFACT_ID))
+            new SimpleModule("PaymentTypesDeserializer",
+                new Version(1, 0, 0, null, GROUP_ID, ARTIFACT_ID))
                 .addDeserializer(PaymentType[].class, new PaymentTypesDeserializer()));
 
         objectMapper.registerModule(
-                new SimpleModule("PaymentTypesSerializer",
-                        new Version(1, 0, 0, null, GROUP_ID, ARTIFACT_ID))
+            new SimpleModule("PaymentTypesSerializer",
+                new Version(1, 0, 0, null, GROUP_ID, ARTIFACT_ID))
                 .addSerializer(PaymentType[].class, new PaymentTypesSerializer()));
 
         objectReader = objectMapper.reader()
-                .with(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
-                .with(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT)
-                .with(DeserializationFeature.UNWRAP_ROOT_VALUE);
+            .with(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
+            .with(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT)
+            .with(DeserializationFeature.UNWRAP_ROOT_VALUE);
 
         if (isIgnoreUnknownProperties()) {
             objectReader = objectReader.without(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
         }
 
         objectWriter = objectMapper.writer()
-                .withView(Views.Default.class)
-                .with(SerializationFeature.WRAP_ROOT_VALUE)
-                .without(SerializationFeature.WRITE_CHAR_ARRAYS_AS_JSON_ARRAYS)
-                .without(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+            .withView(Views.Default.class)
+            .with(SerializationFeature.WRAP_ROOT_VALUE)
+            .without(SerializationFeature.WRITE_CHAR_ARRAYS_AS_JSON_ARRAYS)
+            .without(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
     }
 
 }

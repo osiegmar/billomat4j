@@ -26,13 +26,13 @@ import org.apache.commons.lang3.Validate;
 import de.siegmar.billomat4j.domain.unit.Unit;
 import de.siegmar.billomat4j.domain.unit.UnitFilter;
 import de.siegmar.billomat4j.domain.unit.Units;
-import de.siegmar.billomat4j.service.UnitService;
+import de.siegmar.billomat4j.service.GenericCustomFieldService;
 
-public class UnitServiceImpl extends AbstractService implements UnitService {
+public class UnitService extends AbstractService implements GenericCustomFieldService {
 
     private static final String RESOURCE = "units";
 
-    public UnitServiceImpl(final BillomatConfiguration billomatConfiguration) {
+    public UnitService(final BillomatConfiguration billomatConfiguration) {
         super(billomatConfiguration);
     }
 
@@ -46,29 +46,50 @@ public class UnitServiceImpl extends AbstractService implements UnitService {
         updateCustomField(RESOURCE, unitId, "unit", value);
     }
 
-    @Override
+    /**
+     * @param unitFilter unit filter, may be {@code null} to find unfiltered
+     * @return units found by filter criteria or an empty list if no units were found - never {@code null}
+     * @throws ServiceException if an error occured while accessing the web service
+     */
     public List<Unit> findUnits(final UnitFilter unitFilter) {
         return getAllPagesFromResource(RESOURCE, Units.class, unitFilter);
     }
 
-    @Override
-    public Unit getUnitById(final int id) {
-        return getById(RESOURCE, Unit.class, id);
+    /**
+     * Gets a unit by its id.
+     *
+     * @param unitId the unit's id
+     * @return the unit or {@code null} if not found
+     * @throws ServiceException if an error occured while accessing the web service
+     */
+    public Unit getUnitById(final int unitId) {
+        return getById(RESOURCE, Unit.class, unitId);
     }
 
-    @Override
+    /**
+     * @param unit the unit to create, must not be {@code null}
+     * @throws NullPointerException if unit is null
+     * @throws ServiceException     if an error occured while accessing the web service
+     */
     public void createUnit(final Unit unit) {
         create(RESOURCE, Validate.notNull(unit));
     }
 
-    @Override
+    /**
+     * @param unit the unit to update, must not be {@code null}
+     * @throws NullPointerException if unit is null
+     * @throws ServiceException     if an error occured while accessing the web service
+     */
     public void updateUnit(final Unit unit) {
         update(RESOURCE, Validate.notNull(unit));
     }
 
-    @Override
-    public void deleteUnit(final int id) {
-        delete(RESOURCE, id);
+    /**
+     * @param unitId the id of the unit to be deleted
+     * @throws ServiceException if an error occured while accessing the web service
+     */
+    public void deleteUnit(final int unitId) {
+        delete(RESOURCE, unitId);
     }
 
 }

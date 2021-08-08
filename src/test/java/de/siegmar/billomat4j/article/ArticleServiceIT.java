@@ -35,7 +35,7 @@ import org.junit.jupiter.api.Test;
 import de.siegmar.billomat4j.ServiceHolder;
 import de.siegmar.billomat4j.domain.article.Article;
 import de.siegmar.billomat4j.domain.article.ArticleFilter;
-import de.siegmar.billomat4j.service.ArticleService;
+import de.siegmar.billomat4j.service.impl.ArticleService;
 
 public class ArticleServiceIT {
 

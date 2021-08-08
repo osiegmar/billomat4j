@@ -26,6 +26,7 @@ import org.apache.commons.lang3.Validate;
 import de.siegmar.billomat4j.domain.Email;
 import de.siegmar.billomat4j.domain.Filter;
 import de.siegmar.billomat4j.domain.confirmation.Confirmation;
+import de.siegmar.billomat4j.domain.confirmation.ConfirmationActionKey;
 import de.siegmar.billomat4j.domain.confirmation.ConfirmationComment;
 import de.siegmar.billomat4j.domain.confirmation.ConfirmationCommentFilter;
 import de.siegmar.billomat4j.domain.confirmation.ConfirmationComments;
@@ -36,16 +37,22 @@ import de.siegmar.billomat4j.domain.confirmation.ConfirmationPdf;
 import de.siegmar.billomat4j.domain.confirmation.ConfirmationTag;
 import de.siegmar.billomat4j.domain.confirmation.ConfirmationTags;
 import de.siegmar.billomat4j.domain.confirmation.Confirmations;
-import de.siegmar.billomat4j.service.ConfirmationService;
+import de.siegmar.billomat4j.service.GenericCommentService;
+import de.siegmar.billomat4j.service.GenericCustomFieldService;
+import de.siegmar.billomat4j.service.GenericItemService;
+import de.siegmar.billomat4j.service.GenericTagService;
 
-public class ConfirmationServiceImpl extends AbstractService implements ConfirmationService {
+public class ConfirmationService extends AbstractService
+    implements GenericCustomFieldService, GenericTagService<ConfirmationTag>,
+    GenericCommentService<ConfirmationActionKey, ConfirmationComment,
+        ConfirmationCommentFilter>, GenericItemService<ConfirmationItem> {
 
     private static final String RESOURCE = "confirmations";
     private static final String RESOURCE_ITEMS = "confirmation-items";
     private static final String RESOURCE_COMMENTS = "confirmation-comments";
     private static final String RESOURCE_TAGS = "confirmation-tags";
 
-    public ConfirmationServiceImpl(final BillomatConfiguration billomatConfiguration) {
+    public ConfirmationService(final BillomatConfiguration billomatConfiguration) {
         super(billomatConfiguration);
     }
 
@@ -61,65 +68,129 @@ public class ConfirmationServiceImpl extends AbstractService implements Confirma
         updateCustomField(RESOURCE, confirmationId, "confirmation", value);
     }
 
-    @Override
+    /**
+     * @param confirmationFilter confirmation filter, may be {@code null} to find unfiltered
+     * @return confirmations found by filter criteria or an empty list if no confirmations were found - never
+     * {@code null}
+     * @throws ServiceException if an error occured while accessing the web service
+     */
     public List<Confirmation> findConfirmations(final ConfirmationFilter confirmationFilter) {
         return getAllPagesFromResource(RESOURCE, Confirmations.class, confirmationFilter);
     }
 
-    @Override
-    public Confirmation getConfirmationById(final int id) {
-        return getById(RESOURCE, Confirmation.class, id);
+    /**
+     * Gets a confirmation by its id.
+     *
+     * @param confirmationId the confirmation's id
+     * @return the confirmation or {@code null} if not found
+     * @throws ServiceException if an error occured while accessing the web service
+     */
+    public Confirmation getConfirmationById(final int confirmationId) {
+        return getById(RESOURCE, Confirmation.class, confirmationId);
     }
 
-    @Override
+    /**
+     * Gets a confirmation by its confirmation number.
+     *
+     * @param confirmationNumber the confirmation number, must not be empty / {@code null}
+     * @return the confirmation or {@code null} if not found
+     * @throws NullPointerException     if confirmationNumber is null
+     * @throws IllegalArgumentException if confirmationNumber is empty
+     * @throws ServiceException         if an error occured while accessing the web service
+     */
     public Confirmation getConfirmationByNumber(final String confirmationNumber) {
         Validate.notEmpty(confirmationNumber);
         return single(findConfirmations(new ConfirmationFilter().byConfirmationNumber(confirmationNumber)));
     }
 
-    @Override
+    /**
+     * @param confirmation the confirmation to create, must not be {@code null}
+     * @throws NullPointerException if confirmation is null
+     * @throws ServiceException     if an error occured while accessing the web service
+     */
     public void createConfirmation(final Confirmation confirmation) {
         create(RESOURCE, Validate.notNull(confirmation));
     }
 
-    @Override
+    /**
+     * @param confirmation the confirmation to update, must not be {@code null}
+     * @throws NullPointerException if confirmation is null
+     * @throws ServiceException     if an error occured while accessing the web service
+     */
     public void updateConfirmation(final Confirmation confirmation) {
         update(RESOURCE, Validate.notNull(confirmation));
     }
 
-    @Override
-    public void deleteConfirmation(final int id) {
-        delete(RESOURCE, id);
+    /**
+     * @param confirmationId the id of the confirmation to be deleted
+     * @throws ServiceException if an error occured while accessing the web service
+     */
+    public void deleteConfirmation(final int confirmationId) {
+        delete(RESOURCE, confirmationId);
     }
 
-    @Override
-    public ConfirmationPdf getConfirmationPdf(final int id) {
-        return getPdf(RESOURCE, ConfirmationPdf.class, id, null);
+    /**
+     * @param confirmationId the id of the confirmation to get the PDF for
+     * @return the confirmation PDF or {@code null} if not found
+     * @throws ServiceException if an error occured while accessing the web service
+     */
+    public ConfirmationPdf getConfirmationPdf(final int confirmationId) {
+        return getPdf(RESOURCE, ConfirmationPdf.class, confirmationId, null);
     }
 
-    @Override
-    public void completeConfirmation(final int id, final Integer templateId) {
-        completeDocument(RESOURCE, id, templateId);
+    /**
+     * Sets the confirmation status to
+     * {@link de.siegmar.billomat4j.domain.confirmation.ConfirmationStatus#COMPLETED}.
+     *
+     * @param confirmationId the id of the confirmation to update
+     * @param templateId     the id of the template to use for the resulting document or {@code null}
+     *                       if no template should be used
+     * @throws ServiceException if an error occured while accessing the web service
+     */
+    public void completeConfirmation(final int confirmationId, final Integer templateId) {
+        completeDocument(RESOURCE, confirmationId, templateId);
     }
 
-    @Override
+    /**
+     * @param confirmationId    the id of the confirmation to send an email for
+     * @param confirmationEmail the email configuration
+     * @throws NullPointerException if confirmationEmail is null
+     * @throws ServiceException     if an error occured while accessing the web service
+     */
     public void sendConfirmationViaEmail(final int confirmationId, final Email confirmationEmail) {
         sendEmail(RESOURCE, confirmationId, confirmationEmail);
     }
 
-    @Override
-    public void cancelConfirmation(final int id) {
-        transit(RESOURCE, "cancel", id);
+    /**
+     * Sets the confirmation status to
+     * {@link de.siegmar.billomat4j.domain.confirmation.ConfirmationStatus#CANCELED}.
+     *
+     * @param confirmationId the id of the confirmation to update
+     * @throws ServiceException if an error occured while accessing the web service
+     */
+    public void cancelConfirmation(final int confirmationId) {
+        transit(RESOURCE, "cancel", confirmationId);
     }
 
-    @Override
-    public void clearConfirmation(final int id) {
-        transit(RESOURCE, "clear", id);
+    /**
+     * Sets the confirmation status to {@link de.siegmar.billomat4j.domain.confirmation.ConfirmationStatus#CLEARED}
+     * .
+     *
+     * @param confirmationId the id of the confirmation to update
+     * @throws ServiceException if an error occured while accessing the web service
+     */
+    public void clearConfirmation(final int confirmationId) {
+        transit(RESOURCE, "clear", confirmationId);
     }
 
-    @Override
-    public void unclearConfirmation(final int id) {
-        transit(RESOURCE, "unclear", id);
+    /**
+     * Reverts the status change of {@link #clearConfirmation(int)}.
+     *
+     * @param confirmationId the id of the confirmation to update
+     * @throws ServiceException if an error occured while accessing the web service
+     */
+    public void unclearConfirmation(final int confirmationId) {
+        transit(RESOURCE, "unclear", confirmationId);
     }
 
     // ConfirmationItem

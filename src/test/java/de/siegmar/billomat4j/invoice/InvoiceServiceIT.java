@@ -49,8 +49,8 @@ import de.siegmar.billomat4j.domain.invoice.InvoiceGroupFilter;
 import de.siegmar.billomat4j.domain.invoice.InvoiceItem;
 import de.siegmar.billomat4j.domain.invoice.InvoicePdf;
 import de.siegmar.billomat4j.domain.invoice.InvoiceStatus;
-import de.siegmar.billomat4j.service.ClientService;
-import de.siegmar.billomat4j.service.InvoiceService;
+import de.siegmar.billomat4j.service.impl.ClientService;
+import de.siegmar.billomat4j.service.impl.InvoiceService;
 
 @ExtendWith(TemplateSetup.class)
 public class InvoiceServiceIT {

@@ -33,7 +33,7 @@ import org.junit.jupiter.api.Test;
 import de.siegmar.billomat4j.ServiceHolder;
 import de.siegmar.billomat4j.domain.unit.Unit;
 import de.siegmar.billomat4j.domain.unit.UnitFilter;
-import de.siegmar.billomat4j.service.UnitService;
+import de.siegmar.billomat4j.service.impl.UnitService;
 
 public class UnitServiceIT {
 

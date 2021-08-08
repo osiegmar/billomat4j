@@ -32,16 +32,20 @@ import de.siegmar.billomat4j.domain.recurring.RecurringItems;
 import de.siegmar.billomat4j.domain.recurring.RecurringTag;
 import de.siegmar.billomat4j.domain.recurring.RecurringTags;
 import de.siegmar.billomat4j.domain.recurring.Recurrings;
-import de.siegmar.billomat4j.service.RecurringService;
+import de.siegmar.billomat4j.service.GenericCustomFieldService;
+import de.siegmar.billomat4j.service.GenericItemService;
+import de.siegmar.billomat4j.service.GenericTagService;
 
-public class RecurringServiceImpl extends AbstractService implements RecurringService {
+public class RecurringService extends AbstractService
+    implements GenericCustomFieldService, GenericTagService<RecurringTag>,
+    GenericItemService<RecurringItem> {
 
     private static final String RESOURCE = "recurrings";
     private static final String RESOURCE_ITEMS = "recurring-items";
     private static final String RESOURCE_TAGS = "recurring-tags";
     private static final String RESOURCE_EMAIL_RECEIVER = "recurring-email-receivers";
 
-    public RecurringServiceImpl(final BillomatConfiguration billomatConfiguration) {
+    public RecurringService(final BillomatConfiguration billomatConfiguration) {
         super(billomatConfiguration);
     }
 
@@ -57,29 +61,51 @@ public class RecurringServiceImpl extends AbstractService implements RecurringSe
         updateCustomField(RESOURCE, recurringId, "recurring", value);
     }
 
-    @Override
+    /**
+     * @param recurringFilter recurring filter, may be {@code null} to find unfiltered
+     * @return recurrings found by filter criteria or an empty list if no recurrings were found - never
+     * {@code null}
+     * @throws ServiceException if an error occured while accessing the web service
+     */
     public List<Recurring> findRecurrings(final RecurringFilter recurringFilter) {
         return getAllPagesFromResource(RESOURCE, Recurrings.class, recurringFilter);
     }
 
-    @Override
-    public Recurring getRecurringById(final int id) {
-        return getById(RESOURCE, Recurring.class, id);
+    /**
+     * Gets a recurring by its id.
+     *
+     * @param recurringId the recurring's id
+     * @return the recurring or {@code null} if not found
+     * @throws ServiceException if an error occured while accessing the web service
+     */
+    public Recurring getRecurringById(final int recurringId) {
+        return getById(RESOURCE, Recurring.class, recurringId);
     }
 
-    @Override
+    /**
+     * @param recurring the recurring to create, must not be {@code null}
+     * @throws NullPointerException if recurring is null
+     * @throws ServiceException     if an error occured while accessing the web service
+     */
     public void createRecurring(final Recurring recurring) {
         create(RESOURCE, Validate.notNull(recurring));
     }
 
-    @Override
+    /**
+     * @param recurring the recurring to update, must not be {@code null}
+     * @throws NullPointerException if recurring is null
+     * @throws ServiceException     if an error occured while accessing the web service
+     */
     public void updateRecurring(final Recurring recurring) {
         update(RESOURCE, Validate.notNull(recurring));
     }
 
-    @Override
-    public void deleteRecurring(final int id) {
-        delete(RESOURCE, id);
+    /**
+     * @param recurringId the id of the recurring to be deleted
+     * @throws ServiceException if an error occured while accessing the web service
+     */
+    public void deleteRecurring(final int recurringId) {
+        delete(RESOURCE, recurringId);
     }
 
     // RecurringItem
@@ -137,28 +163,50 @@ public class RecurringServiceImpl extends AbstractService implements RecurringSe
 
     // RecurringEmailReceiver
 
-    @Override
+    /**
+     * @param recurringId the recurring id
+     * @return email receivers found for the given recurring id or an empty list if no items were found - never
+     * {@code null}
+     * @throws ServiceException if an error occured while accessing the web service
+     */
     public List<RecurringEmailReceiver> getRecurringEmailReceivers(final int recurringId) {
         return getAllPagesFromResource(RESOURCE_EMAIL_RECEIVER, RecurringEmailReceivers.class,
-                recurringIdFilter(recurringId));
+            recurringIdFilter(recurringId));
     }
 
-    @Override
+    /**
+     * Gets a recurring receiver by its id.
+     *
+     * @param recurringEmailReceiverId the recurring receiver's id
+     * @return the recurring receiver or {@code null} if not found
+     * @throws ServiceException if an error occured while accessing the web service
+     */
     public RecurringEmailReceiver getRecurringEmailReceiverById(final int recurringEmailReceiverId) {
         return getById(RESOURCE_EMAIL_RECEIVER, RecurringEmailReceiver.class, recurringEmailReceiverId);
     }
 
-    @Override
+    /**
+     * @param recurringEmailReceiver the recurring receiver to create, must not be {@code null}
+     * @throws NullPointerException if recurringEmailReceiver is null
+     * @throws ServiceException     if an error occured while accessing the web service
+     */
     public void createRecurringEmailReceiver(final RecurringEmailReceiver recurringEmailReceiver) {
         create(RESOURCE_EMAIL_RECEIVER, Validate.notNull(recurringEmailReceiver));
     }
 
-    @Override
+    /**
+     * @param recurringEmailReceiver the recurring receiver to update, must not be {@code null}
+     * @throws NullPointerException if recurringEmailReceiver is null
+     * @throws ServiceException     if an error occured while accessing the web service
+     */
     public void updateRecurringEmailReceiver(final RecurringEmailReceiver recurringEmailReceiver) {
         update(RESOURCE_EMAIL_RECEIVER, Validate.notNull(recurringEmailReceiver));
     }
 
-    @Override
+    /**
+     * @param recurringEmailReceiverId the id of the recurring receiver to be deleted
+     * @throws ServiceException if an error occured while accessing the web service
+     */
     public void deleteRecurringEmailReceiver(final int recurringEmailReceiverId) {
         delete(RESOURCE_EMAIL_RECEIVER, recurringEmailReceiverId);
     }

@@ -32,7 +32,7 @@ import org.junit.jupiter.api.Test;
 import de.siegmar.billomat4j.ServiceHolder;
 import de.siegmar.billomat4j.domain.user.User;
 import de.siegmar.billomat4j.domain.user.UserFilter;
-import de.siegmar.billomat4j.service.UserService;
+import de.siegmar.billomat4j.service.impl.UserService;
 
 public class UserServiceIT {
 

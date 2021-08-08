@@ -26,6 +26,7 @@ import org.apache.commons.lang3.Validate;
 import de.siegmar.billomat4j.domain.Email;
 import de.siegmar.billomat4j.domain.Filter;
 import de.siegmar.billomat4j.domain.deliverynote.DeliveryNote;
+import de.siegmar.billomat4j.domain.deliverynote.DeliveryNoteActionKey;
 import de.siegmar.billomat4j.domain.deliverynote.DeliveryNoteComment;
 import de.siegmar.billomat4j.domain.deliverynote.DeliveryNoteCommentFilter;
 import de.siegmar.billomat4j.domain.deliverynote.DeliveryNoteComments;
@@ -36,16 +37,22 @@ import de.siegmar.billomat4j.domain.deliverynote.DeliveryNotePdf;
 import de.siegmar.billomat4j.domain.deliverynote.DeliveryNoteTag;
 import de.siegmar.billomat4j.domain.deliverynote.DeliveryNoteTags;
 import de.siegmar.billomat4j.domain.deliverynote.DeliveryNotes;
-import de.siegmar.billomat4j.service.DeliveryNoteService;
+import de.siegmar.billomat4j.service.GenericCommentService;
+import de.siegmar.billomat4j.service.GenericCustomFieldService;
+import de.siegmar.billomat4j.service.GenericItemService;
+import de.siegmar.billomat4j.service.GenericTagService;
 
-public class DeliveryNoteServiceImpl extends AbstractService implements DeliveryNoteService {
+public class DeliveryNoteService extends AbstractService
+    implements GenericCustomFieldService, GenericTagService<DeliveryNoteTag>,
+    GenericCommentService<DeliveryNoteActionKey, DeliveryNoteComment, DeliveryNoteCommentFilter>,
+    GenericItemService<DeliveryNoteItem> {
 
     private static final String RESOURCE = "delivery-notes";
     private static final String RESOURCE_ITEMS = "delivery-note-items";
     private static final String RESOURCE_COMMENTS = "delivery-note-comments";
     private static final String RESOURCE_TAGS = "delivery-note-tags";
 
-    public DeliveryNoteServiceImpl(final BillomatConfiguration billomatConfiguration) {
+    public DeliveryNoteService(final BillomatConfiguration billomatConfiguration) {
         super(billomatConfiguration);
     }
 
@@ -61,48 +68,39 @@ public class DeliveryNoteServiceImpl extends AbstractService implements Delivery
         updateCustomField(RESOURCE, deliveryNoteId, "delivery-note", value);
     }
 
-    @Override
     public List<DeliveryNote> findDeliveryNotes(final DeliveryNoteFilter deliveryNoteFilter) {
         return getAllPagesFromResource(RESOURCE, DeliveryNotes.class, deliveryNoteFilter);
     }
 
-    @Override
-    public DeliveryNote getDeliveryNoteById(final int id) {
-        return getById(RESOURCE, DeliveryNote.class, id);
+    public DeliveryNote getDeliveryNoteById(final int deliveryNoteId) {
+        return getById(RESOURCE, DeliveryNote.class, deliveryNoteId);
     }
 
-    @Override
     public DeliveryNote getDeliveryNoteByNumber(final String deliveryNoteNumber) {
         Validate.notEmpty(deliveryNoteNumber);
         return single(findDeliveryNotes(new DeliveryNoteFilter().byDeliveryNoteNumber(deliveryNoteNumber)));
     }
 
-    @Override
     public void createDeliveryNote(final DeliveryNote deliveryNote) {
         create(RESOURCE, Validate.notNull(deliveryNote));
     }
 
-    @Override
     public void updateDeliveryNote(final DeliveryNote deliveryNote) {
         update(RESOURCE, Validate.notNull(deliveryNote));
     }
 
-    @Override
-    public void deleteDeliveryNote(final int id) {
-        delete(RESOURCE, id);
+    public void deleteDeliveryNote(final int deliveryNoteId) {
+        delete(RESOURCE, deliveryNoteId);
     }
 
-    @Override
-    public DeliveryNotePdf getDeliveryNotePdf(final int id) {
-        return getPdf(RESOURCE, DeliveryNotePdf.class, id, null);
+    public DeliveryNotePdf getDeliveryNotePdf(final int deliveryNoteId) {
+        return getPdf(RESOURCE, DeliveryNotePdf.class, deliveryNoteId, null);
     }
 
-    @Override
-    public void completeDeliveryNote(final int id, final Integer templateId) {
-        completeDocument(RESOURCE, id, templateId);
+    public void completeDeliveryNote(final int deliveryNoteId, final Integer templateId) {
+        completeDocument(RESOURCE, deliveryNoteId, templateId);
     }
 
-    @Override
     public void sendDeliveryNoteViaEmail(final int deliveryNoteId, final Email deliveryNoteEmail) {
         sendEmail(RESOURCE, deliveryNoteId, deliveryNoteEmail);
     }

@@ -31,22 +31,26 @@ import de.siegmar.billomat4j.domain.settings.ReminderTexts;
 import de.siegmar.billomat4j.domain.settings.Settings;
 import de.siegmar.billomat4j.domain.settings.Tax;
 import de.siegmar.billomat4j.domain.settings.Taxes;
-import de.siegmar.billomat4j.service.SettingsService;
 
-public class SettingsServiceImpl extends AbstractService implements SettingsService {
+public class SettingsService extends AbstractService {
 
     private static final String RESOURCE = "settings";
     private static final String TAX_RESOURCE = "taxes";
     private static final String COUNTRY_TAX_RESOURCE = "country-taxes";
     private static final String REMINDER_TEXT_RESOURCE = "reminder-texts";
 
-    public SettingsServiceImpl(final BillomatConfiguration billomatConfiguration) {
+    public SettingsService(final BillomatConfiguration billomatConfiguration) {
         super(billomatConfiguration);
     }
 
     // Settings
 
-    @Override
+    /**
+     * Gets the account's main settings.
+     *
+     * @return the account's main settings
+     * @throws ServiceException if an error occured while accessing the web service
+     */
     public Settings getSettings() {
         try {
             final byte[] data = requestHelper.get(RESOURCE, null, null, null);
@@ -56,7 +60,11 @@ public class SettingsServiceImpl extends AbstractService implements SettingsServ
         }
     }
 
-    @Override
+    /**
+     * @param settings the settings to update, must not be {@code null}
+     * @throws NullPointerException if settings is null
+     * @throws ServiceException     if an error occured while accessing the web service
+     */
     public void updateSettings(final Settings settings) {
         try {
             final byte[] requestData = objectWriter.writeValueAsBytes(Validate.notNull(settings));
@@ -69,81 +77,141 @@ public class SettingsServiceImpl extends AbstractService implements SettingsServ
 
     // Tax
 
-    @Override
+    /**
+     * @return all configured taxes or an empty list if no taxes were found - never {@code null}
+     * @throws ServiceException if an error occured while accessing the web service
+     */
     public List<Tax> getTaxes() {
         return getAllPagesFromResource(TAX_RESOURCE, Taxes.class, null);
     }
 
-    @Override
+    /**
+     * Gets a tax by its id.
+     *
+     * @param taxId the tax's id
+     * @return the tax or {@code null} if not found
+     * @throws ServiceException if an error occured while accessing the web service
+     */
     public Tax getTaxById(final int taxId) {
         return getById(TAX_RESOURCE, Tax.class, taxId);
     }
 
-    @Override
+    /**
+     * @param tax the tax to create, must not be {@code null}
+     * @throws NullPointerException if tax is null
+     * @throws ServiceException     if an error occured while accessing the web service
+     */
     public void createTax(final Tax tax) {
         create(TAX_RESOURCE, Validate.notNull(tax));
     }
 
-    @Override
+    /**
+     * @param tax the tax to update, must not be {@code null}
+     * @throws NullPointerException if tax is null
+     * @throws ServiceException     if an error occured while accessing the web service
+     */
     public void updateTax(final Tax tax) {
         update(TAX_RESOURCE, Validate.notNull(tax));
     }
 
-    @Override
+    /**
+     * @param taxId the id of the tax to be deleted
+     * @throws ServiceException if an error occured while accessing the web service
+     */
     public void deleteTax(final int taxId) {
         delete(TAX_RESOURCE, taxId);
     }
 
     // CountryTax
 
-    @Override
+    /**
+     * @return all configured country taxes or an empty list if no country taxes were found - never {@code null}
+     * @throws ServiceException if an error occured while accessing the web service
+     */
     public List<CountryTax> getCountryTaxes() {
         return getAllPagesFromResource(COUNTRY_TAX_RESOURCE, CountryTaxes.class, null);
     }
 
-    @Override
+    /**
+     * Gets a country tax by its id.
+     *
+     * @param countryTaxId the country tax's id
+     * @return the country tax or {@code null} if not found
+     * @throws ServiceException if an error occured while accessing the web service
+     */
     public CountryTax getCountryTaxById(final int countryTaxId) {
         return getById(COUNTRY_TAX_RESOURCE, CountryTax.class, countryTaxId);
     }
 
-    @Override
+    /**
+     * @param countryTax the country tax to create, must not be {@code null}
+     * @throws NullPointerException if countryTax is null
+     * @throws ServiceException     if an error occured while accessing the web service
+     */
     public void createCountryTax(final CountryTax countryTax) {
         create(COUNTRY_TAX_RESOURCE, Validate.notNull(countryTax));
     }
 
-    @Override
+    /**
+     * @param countryTax the country tax to update, must not be {@code null}
+     * @throws NullPointerException if countryTax is null
+     * @throws ServiceException     if an error occured while accessing the web service
+     */
     public void updateCountryTax(final CountryTax countryTax) {
         update(COUNTRY_TAX_RESOURCE, Validate.notNull(countryTax));
     }
 
-    @Override
+    /**
+     * @param countryTaxId the id of the country tax to be deleted
+     * @throws ServiceException if an error occured while accessing the web service
+     */
     public void deleteCountryTax(final int countryTaxId) {
         delete(COUNTRY_TAX_RESOURCE, countryTaxId);
     }
 
     // ReminderText
 
-    @Override
+    /**
+     * @return all configured reminder texts or an empty list if no reminder texts were found - never {@code null}
+     * @throws ServiceException if an error occured while accessing the web service
+     */
     public List<ReminderText> getReminderTexts() {
         return getAllPagesFromResource(REMINDER_TEXT_RESOURCE, ReminderTexts.class, null);
     }
 
-    @Override
+    /**
+     * Gets a reminder text by its id.
+     *
+     * @param reminderTextId the reminder text's id
+     * @return the reminder text or {@code null} if not found
+     * @throws ServiceException if an error occured while accessing the web service
+     */
     public ReminderText getReminderTextById(final int reminderTextId) {
         return getById(REMINDER_TEXT_RESOURCE, ReminderText.class, reminderTextId);
     }
 
-    @Override
+    /**
+     * @param reminderText the reminder text to create, must not be {@code null}
+     * @throws NullPointerException if reminderText is null
+     * @throws ServiceException     if an error occured while accessing the web service
+     */
     public void createReminderText(final ReminderText reminderText) {
         create(REMINDER_TEXT_RESOURCE, Validate.notNull(reminderText));
     }
 
-    @Override
+    /**
+     * @param reminderText the reminder text to update, must not be {@code null}
+     * @throws NullPointerException if reminderText is null
+     * @throws ServiceException     if an error occured while accessing the web service
+     */
     public void updateReminderText(final ReminderText reminderText) {
         update(REMINDER_TEXT_RESOURCE, Validate.notNull(reminderText));
     }
 
-    @Override
+    /**
+     * @param reminderTextId the id of the reminder text to be deleted
+     * @throws ServiceException if an error occured while accessing the web service
+     */
     public void deleteReminderText(final int reminderTextId) {
         delete(REMINDER_TEXT_RESOURCE, reminderTextId);
     }

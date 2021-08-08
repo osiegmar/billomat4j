@@ -30,15 +30,17 @@ import de.siegmar.billomat4j.domain.user.UserFilter;
 import de.siegmar.billomat4j.domain.user.UserPropertyValue;
 import de.siegmar.billomat4j.domain.user.UserPropertyValues;
 import de.siegmar.billomat4j.domain.user.Users;
-import de.siegmar.billomat4j.service.UserService;
+import de.siegmar.billomat4j.service.GenericCustomFieldService;
+import de.siegmar.billomat4j.service.GenericPropertyService;
 
-public class UserServiceImpl extends AbstractService implements UserService {
+public class UserService extends AbstractService implements GenericCustomFieldService,
+    GenericPropertyService<UserProperty, UserPropertyValue> {
 
     private static final String RESOURCE = "users";
     private static final String PROPERTIES_RESOURCE = "user-properties";
     private static final String ATTRIBUTE_RESOURCE = "user-property-values";
 
-    public UserServiceImpl(final BillomatConfiguration billomatConfiguration) {
+    public UserService(final BillomatConfiguration billomatConfiguration) {
         super(billomatConfiguration);
     }
 
@@ -54,17 +56,28 @@ public class UserServiceImpl extends AbstractService implements UserService {
         updateCustomField(RESOURCE, userId, "user", value);
     }
 
-    @Override
+    /**
+     * @param userFilter user filter, may be {@code null} to find unfiltered
+     * @return users found by filter criteria or an empty list if no users were found - never {@code null}
+     * @throws ServiceException if an error occured while accessing the web service
+     */
     public List<User> findUsers(final UserFilter userFilter) {
         return getAllPagesFromResource(RESOURCE, Users.class, userFilter);
     }
 
-    @Override
-    public User getUserById(final int id) {
-        return getById(RESOURCE, User.class, id);
+    /**
+     * @param userId the user's id
+     * @return the user or {@code null} if not found
+     * @throws ServiceException if an error occured while accessing the web service
+     */
+    public User getUserById(final int userId) {
+        return getById(RESOURCE, User.class, userId);
     }
 
-    @Override
+    /**
+     * @return the authenticated user
+     * @throws ServiceException if an error occured while accessing the web service
+     */
     public User getMySelf() {
         return getMySelf(RESOURCE, User.class);
     }

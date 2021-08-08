@@ -28,6 +28,7 @@ import org.apache.commons.lang3.Validate;
 import de.siegmar.billomat4j.domain.Email;
 import de.siegmar.billomat4j.domain.Filter;
 import de.siegmar.billomat4j.domain.invoice.Invoice;
+import de.siegmar.billomat4j.domain.invoice.InvoiceActionKey;
 import de.siegmar.billomat4j.domain.invoice.InvoiceComment;
 import de.siegmar.billomat4j.domain.invoice.InvoiceCommentFilter;
 import de.siegmar.billomat4j.domain.invoice.InvoiceComments;
@@ -44,9 +45,16 @@ import de.siegmar.billomat4j.domain.invoice.InvoicePdf;
 import de.siegmar.billomat4j.domain.invoice.InvoiceTag;
 import de.siegmar.billomat4j.domain.invoice.InvoiceTags;
 import de.siegmar.billomat4j.domain.invoice.Invoices;
-import de.siegmar.billomat4j.service.InvoiceService;
+import de.siegmar.billomat4j.service.GenericCommentService;
+import de.siegmar.billomat4j.service.GenericCustomFieldService;
+import de.siegmar.billomat4j.service.GenericItemService;
+import de.siegmar.billomat4j.service.GenericPaymentService;
+import de.siegmar.billomat4j.service.GenericTagService;
 
-public class InvoiceServiceImpl extends AbstractService implements InvoiceService {
+public class InvoiceService extends AbstractService
+    implements GenericCustomFieldService, GenericTagService<InvoiceTag>,
+    GenericCommentService<InvoiceActionKey, InvoiceComment, InvoiceCommentFilter>,
+    GenericItemService<InvoiceItem>, GenericPaymentService<InvoicePayment, InvoicePaymentFilter> {
 
     private static final String RESOURCE = "invoices";
     private static final String RESOURCE_ITEMS = "invoice-items";
@@ -54,7 +62,7 @@ public class InvoiceServiceImpl extends AbstractService implements InvoiceServic
     private static final String RESOURCE_PAYMENTS = "invoice-payments";
     private static final String RESOURCE_TAGS = "invoice-tags";
 
-    public InvoiceServiceImpl(final BillomatConfiguration billomatConfiguration) {
+    public InvoiceService(final BillomatConfiguration billomatConfiguration) {
         super(billomatConfiguration);
     }
 
@@ -70,78 +78,148 @@ public class InvoiceServiceImpl extends AbstractService implements InvoiceServic
         updateCustomField(RESOURCE, invoiceId, "invoice", value);
     }
 
-    @Override
+    /**
+     * @param invoiceFilter invoice filter, may be {@code null} to find unfiltered
+     * @return invoices found by filter criteria or an empty list if no invoices were found - never
+     * {@code null}
+     * @throws ServiceException if an error occured while accessing the web service
+     */
     public List<Invoice> findInvoices(final InvoiceFilter invoiceFilter) {
         return getAllPagesFromResource(RESOURCE, Invoices.class, invoiceFilter);
     }
 
-    @Override
+    /**
+     * @param invoiceGroupFilter the group definition, must not be {@code null}
+     * @param invoiceFilter      the filter criteria, optional - may be {@code null}
+     * @return grouped invoice list or an empty list if no invoices were found - never {@code null}
+     * @throws NullPointerException if invoiceGroupFilter is null
+     * @throws ServiceException     if an error occured while accessing the web service
+     */
     public List<InvoiceGroup> getGroupedInvoices(final InvoiceGroupFilter invoiceGroupFilter,
-            final InvoiceFilter invoiceFilter) {
+                                                 final InvoiceFilter invoiceFilter) {
 
         Validate.notNull(invoiceGroupFilter);
         Validate.isTrue(invoiceGroupFilter.isConfigured());
         return getAllFromResource(RESOURCE, InvoiceGroups.class, new CombinedFilter(invoiceGroupFilter, invoiceFilter));
     }
 
-    @Override
-    public Invoice getInvoiceById(final int id) {
-        return getById(RESOURCE, Invoice.class, id);
+    /**
+     * Gets a invoice by its id.
+     *
+     * @param invoiceId the invoice's id
+     * @return the invoice or {@code null} if not found
+     * @throws ServiceException if an error occured while accessing the web service
+     */
+    public Invoice getInvoiceById(final int invoiceId) {
+        return getById(RESOURCE, Invoice.class, invoiceId);
     }
 
-    @Override
+    /**
+     * Gets a invoice by its invoice number.
+     *
+     * @param invoiceNumber the invoice number, must not be empty / {@code null}
+     * @return the invoice or {@code null} if not found
+     * @throws NullPointerException     if invoiceNumber is null
+     * @throws IllegalArgumentException if invoiceNumber is empty
+     * @throws ServiceException         if an error occured while accessing the web service
+     */
     public Invoice getInvoiceByNumber(final String invoiceNumber) {
         return single(findInvoices(new InvoiceFilter().byInvoiceNumber(Validate.notEmpty(invoiceNumber))));
     }
 
-    @Override
+    /**
+     * @param invoice the invoice to create, must not be {@code null}
+     * @throws NullPointerException if invoice is null
+     * @throws ServiceException     if an error occured while accessing the web service
+     */
     public void createInvoice(final Invoice invoice) {
         create(RESOURCE, Validate.notNull(invoice));
     }
 
-    @Override
+    /**
+     * @param invoice the invoice to update, must not be {@code null}
+     * @throws NullPointerException if invoice is null
+     * @throws ServiceException     if an error occured while accessing the web service
+     */
     public void updateInvoice(final Invoice invoice) {
         update(RESOURCE, Validate.notNull(invoice));
     }
 
-    @Override
-    public void deleteInvoice(final int id) {
-        delete(RESOURCE, id);
+    /**
+     * @param invoiceId the id of the invoice to be deleted
+     * @throws ServiceException if an error occured while accessing the web service
+     */
+    public void deleteInvoice(final int invoiceId) {
+        delete(RESOURCE, invoiceId);
     }
 
-    @Override
-    public InvoicePdf getInvoicePdf(final int id) {
-        return getInvoicePdf(id, null);
+    /**
+     * @param invoiceId the id of the invoice to get the PDF for
+     * @return the invoice PDF or {@code null} if not found
+     * @throws ServiceException if an error occured while accessing the web service
+     */
+    public InvoicePdf getInvoicePdf(final int invoiceId) {
+        return getInvoicePdf(invoiceId, null);
     }
 
-    private InvoicePdf getInvoicePdf(final int id, final Map<String, String> filter) {
-        return getPdf(RESOURCE, InvoicePdf.class, id, filter);
+    private InvoicePdf getInvoicePdf(final int invoiceId, final Map<String, String> filter) {
+        return getPdf(RESOURCE, InvoicePdf.class, invoiceId, filter);
     }
 
-    @Override
-    public InvoicePdf getInvoiceSignedPdf(final int id) {
+    /**
+     * @param invoiceId the id of the invoice to get the signed PDF for
+     * @return the signed invoice PDF or {@code null} if not found
+     * @throws ServiceException if an error occured while accessing the web service
+     * @see #uploadInvoiceSignedPdf(int, byte[])
+     * @see #getInvoicePdf(int)
+     */
+    public InvoicePdf getInvoiceSignedPdf(final int invoiceId) {
         final Map<String, String> filter = Collections.singletonMap("type", "signed");
-        return getInvoicePdf(id, filter);
+        return getInvoicePdf(invoiceId, filter);
     }
 
-    @Override
-    public void completeInvoice(final int id, final Integer templateId) {
-        completeDocument(RESOURCE, id, templateId);
+    /**
+     * Sets the invoice status to {@link de.siegmar.billomat4j.domain.invoice.InvoiceStatus#OPEN}
+     * or {@link de.siegmar.billomat4j.domain.invoice.InvoiceStatus#OVERDUE}.
+     *
+     * @param invoiceId  the id of the invoice to update
+     * @param templateId the id of the template to use for the resulting document or {@code null}
+     *                   if no template should be used
+     * @throws ServiceException if an error occured while accessing the web service
+     */
+    public void completeInvoice(final int invoiceId, final Integer templateId) {
+        completeDocument(RESOURCE, invoiceId, templateId);
     }
 
-    @Override
+    /**
+     * @param invoiceId the id of the invoice to upload the signed PDF for
+     * @param pdf       the signed PDF as binary data (must not be {@code null})
+     * @throws ServiceException     if an error occured while accessing the web service
+     * @throws NullPointerException if pdf is null
+     * @see #getInvoiceSignedPdf(int)
+     */
     public void uploadInvoiceSignedPdf(final int invoiceId, final byte[] pdf) {
         uploadSignedPdf(RESOURCE, invoiceId, Validate.notNull(pdf));
     }
 
-    @Override
+    /**
+     * @param invoiceId    the id of the invoice to send an email for
+     * @param invoiceEmail the email configuration
+     * @throws NullPointerException if invoiceEmail is null
+     * @throws ServiceException     if an error occured while accessing the web service
+     */
     public void sendInvoiceViaEmail(final int invoiceId, final Email invoiceEmail) {
         sendEmail(RESOURCE, invoiceId, invoiceEmail);
     }
 
-    @Override
-    public void cancelInvoice(final int id) {
-        transit(RESOURCE, "cancel", id);
+    /**
+     * Sets the invoice status to {@link de.siegmar.billomat4j.domain.invoice.InvoiceStatus#CANCELED}.
+     *
+     * @param invoiceId the id of the invoice to update
+     * @throws ServiceException if an error occured while accessing the web service
+     */
+    public void cancelInvoice(final int invoiceId) {
+        transit(RESOURCE, "cancel", invoiceId);
     }
 
     // InvoiceItem

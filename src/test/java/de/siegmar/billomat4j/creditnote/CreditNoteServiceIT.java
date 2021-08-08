@@ -52,9 +52,9 @@ import de.siegmar.billomat4j.domain.creditnote.CreditNoteStatus;
 import de.siegmar.billomat4j.domain.template.Template;
 import de.siegmar.billomat4j.domain.template.TemplateFormat;
 import de.siegmar.billomat4j.domain.template.TemplateType;
-import de.siegmar.billomat4j.service.ClientService;
-import de.siegmar.billomat4j.service.CreditNoteService;
-import de.siegmar.billomat4j.service.TemplateService;
+import de.siegmar.billomat4j.service.impl.ClientService;
+import de.siegmar.billomat4j.service.impl.CreditNoteService;
+import de.siegmar.billomat4j.service.impl.TemplateService;
 
 @ExtendWith(TemplateSetup.class)
 public class CreditNoteServiceIT {

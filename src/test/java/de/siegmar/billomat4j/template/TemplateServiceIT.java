@@ -40,7 +40,7 @@ import de.siegmar.billomat4j.domain.template.Template;
 import de.siegmar.billomat4j.domain.template.TemplateFilter;
 import de.siegmar.billomat4j.domain.template.TemplateFormat;
 import de.siegmar.billomat4j.domain.template.TemplateType;
-import de.siegmar.billomat4j.service.TemplateService;
+import de.siegmar.billomat4j.service.impl.TemplateService;
 
 public class TemplateServiceIT {
 

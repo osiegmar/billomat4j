@@ -43,8 +43,8 @@ import de.siegmar.billomat4j.domain.offer.Offer;
 import de.siegmar.billomat4j.domain.offer.OfferFilter;
 import de.siegmar.billomat4j.domain.offer.OfferItem;
 import de.siegmar.billomat4j.domain.offer.OfferStatus;
-import de.siegmar.billomat4j.service.ClientService;
-import de.siegmar.billomat4j.service.OfferService;
+import de.siegmar.billomat4j.service.impl.ClientService;
+import de.siegmar.billomat4j.service.impl.OfferService;
 
 @ExtendWith(TemplateSetup.class)
 public class OfferServiceIT {

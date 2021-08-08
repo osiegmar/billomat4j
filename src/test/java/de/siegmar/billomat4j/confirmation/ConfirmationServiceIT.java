@@ -48,9 +48,9 @@ import de.siegmar.billomat4j.domain.confirmation.ConfirmationStatus;
 import de.siegmar.billomat4j.domain.template.Template;
 import de.siegmar.billomat4j.domain.template.TemplateFormat;
 import de.siegmar.billomat4j.domain.template.TemplateType;
-import de.siegmar.billomat4j.service.ClientService;
-import de.siegmar.billomat4j.service.ConfirmationService;
-import de.siegmar.billomat4j.service.TemplateService;
+import de.siegmar.billomat4j.service.impl.ClientService;
+import de.siegmar.billomat4j.service.impl.ConfirmationService;
+import de.siegmar.billomat4j.service.impl.TemplateService;
 
 @ExtendWith(TemplateSetup.class)
 public class ConfirmationServiceIT {

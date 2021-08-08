@@ -63,8 +63,9 @@ abstract class AbstractService {
         return pager.getAll(resource, filter);
     }
 
-    protected <T extends WrappedRecord<E>, E> List<E> getAllFromResource(final String resource,
-            final Class<T> wrapperClass, final Filter filter) {
+    protected <T extends WrappedRecord<E>, E> List<E> getAllFromResource(
+        final String resource,
+        final Class<T> wrapperClass, final Filter filter) {
 
         final Map<String, String> params = new HashMap<>();
         if (filter != null) {

@@ -42,8 +42,8 @@ import de.siegmar.billomat4j.domain.recurring.RecurringFilter;
 import de.siegmar.billomat4j.domain.recurring.RecurringItem;
 import de.siegmar.billomat4j.domain.types.PaymentType;
 import de.siegmar.billomat4j.domain.types.RecipientType;
-import de.siegmar.billomat4j.service.ClientService;
-import de.siegmar.billomat4j.service.RecurringService;
+import de.siegmar.billomat4j.service.impl.ClientService;
+import de.siegmar.billomat4j.service.impl.RecurringService;
 
 public class RecurringServiceIT {
 

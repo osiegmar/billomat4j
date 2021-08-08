@@ -31,7 +31,7 @@ import org.junit.jupiter.api.Test;
 import de.siegmar.billomat4j.ServiceHolder;
 import de.siegmar.billomat4j.domain.client.Client;
 import de.siegmar.billomat4j.domain.client.Contact;
-import de.siegmar.billomat4j.service.ClientService;
+import de.siegmar.billomat4j.service.impl.ClientService;
 
 public class ContactIT {
 
