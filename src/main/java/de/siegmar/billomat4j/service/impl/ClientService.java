@@ -20,6 +20,7 @@
 package de.siegmar.billomat4j.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.apache.commons.lang3.Validate;
 
@@ -55,7 +56,7 @@ public class ClientService extends AbstractService
     // Client
 
     @Override
-    public String getCustomFieldValue(final int clientId) {
+    public Optional<String> getCustomFieldValue(final int clientId) {
         return getCustomField(RESOURCE, clientId);
     }
 
@@ -86,10 +87,10 @@ public class ClientService extends AbstractService
      * Gets a client by its id.
      *
      * @param clientId the client's id
-     * @return the client or {@code null} if not found
+     * @return the client
      * @throws ServiceException if an error occurred while accessing the web service
      */
-    public Client getClientById(final int clientId) {
+    public Optional<Client> getClientById(final int clientId) {
         return getById(RESOURCE, Client.class, clientId);
     }
 
@@ -97,12 +98,12 @@ public class ClientService extends AbstractService
      * Gets a client by its client number.
      *
      * @param clientNumber the client number, must not be empty / {@code null}
-     * @return the client or {@code null} if not found
+     * @return the client
      * @throws NullPointerException     if clientNumber is null
      * @throws IllegalArgumentException if clientNumber is empty
      * @throws ServiceException         if an error occurred while accessing the web service
      */
-    public Client getClientByNumber(final String clientNumber) {
+    public Optional<Client> getClientByNumber(final String clientNumber) {
         return single(findClients(new ClientFilter().byClientNumber(Validate.notEmpty(clientNumber))));
     }
 
@@ -140,7 +141,7 @@ public class ClientService extends AbstractService
     }
 
     @Override
-    public ClientProperty getPropertyById(final int clientPropertyId) {
+    public Optional<ClientProperty> getPropertyById(final int clientPropertyId) {
         return getById(PROPERTIES_RESOURCE, ClientProperty.class, clientPropertyId);
     }
 
@@ -171,7 +172,7 @@ public class ClientService extends AbstractService
     }
 
     @Override
-    public ClientPropertyValue getPropertyValueById(final int clientPropertyValueId) {
+    public Optional<ClientPropertyValue> getPropertyValueById(final int clientPropertyValueId) {
         return getById(ATTRIBUTE_RESOURCE, ClientPropertyValue.class, clientPropertyValueId);
     }
 
@@ -188,7 +189,7 @@ public class ClientService extends AbstractService
     }
 
     @Override
-    public ClientTag getTagById(final int clientTagId) {
+    public Optional<ClientTag> getTagById(final int clientTagId) {
         return getById(TAG_RESOURCE, ClientTag.class, clientTagId);
     }
 
@@ -217,10 +218,10 @@ public class ClientService extends AbstractService
      * Gets a contact by its id.
      *
      * @param contactId the contact's id
-     * @return the contact or {@code null} if not found
+     * @return the contact
      * @throws ServiceException if an error occurred while accessing the web service
      */
-    public Contact getContact(final int contactId) {
+    public Optional<Contact> getContact(final int contactId) {
         return getById(CONTACT_RESOURCE, Contact.class, contactId);
     }
 

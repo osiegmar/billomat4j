@@ -20,6 +20,7 @@
 package de.siegmar.billomat4j.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.apache.commons.lang3.Validate;
 
@@ -52,7 +53,7 @@ public class RecurringService extends AbstractService
     // Recurring
 
     @Override
-    public String getCustomFieldValue(final int recurringId) {
+    public Optional<String> getCustomFieldValue(final int recurringId) {
         return getCustomField(RESOURCE, recurringId);
     }
 
@@ -75,10 +76,10 @@ public class RecurringService extends AbstractService
      * Gets a recurring by its id.
      *
      * @param recurringId the recurring's id
-     * @return the recurring or {@code null} if not found
+     * @return the recurring
      * @throws ServiceException if an error occurred while accessing the web service
      */
-    public Recurring getRecurringById(final int recurringId) {
+    public Optional<Recurring> getRecurringById(final int recurringId) {
         return getById(RESOURCE, Recurring.class, recurringId);
     }
 
@@ -120,7 +121,7 @@ public class RecurringService extends AbstractService
     }
 
     @Override
-    public RecurringItem getItemById(final int recurringItemId) {
+    public Optional<RecurringItem> getItemById(final int recurringItemId) {
         return getById(RESOURCE_ITEMS, RecurringItem.class, recurringItemId);
     }
 
@@ -147,7 +148,7 @@ public class RecurringService extends AbstractService
     }
 
     @Override
-    public RecurringTag getTagById(final int recurringTagId) {
+    public Optional<RecurringTag> getTagById(final int recurringTagId) {
         return getById(RESOURCE_TAGS, RecurringTag.class, recurringTagId);
     }
 
@@ -178,10 +179,10 @@ public class RecurringService extends AbstractService
      * Gets a recurring receiver by its id.
      *
      * @param recurringEmailReceiverId the recurring receiver's id
-     * @return the recurring receiver or {@code null} if not found
+     * @return the recurring receiver
      * @throws ServiceException if an error occurred while accessing the web service
      */
-    public RecurringEmailReceiver getRecurringEmailReceiverById(final int recurringEmailReceiverId) {
+    public Optional<RecurringEmailReceiver> getRecurringEmailReceiverById(final int recurringEmailReceiverId) {
         return getById(RESOURCE_EMAIL_RECEIVER, RecurringEmailReceiver.class, recurringEmailReceiverId);
     }
 

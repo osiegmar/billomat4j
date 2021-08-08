@@ -46,7 +46,7 @@ public class ConfirmationItemIT extends AbstractItemIT<ConfirmationItem> {
 
     @Override
     protected void deleteOwner(final int ownerId) {
-        final int clientId = ServiceHolder.CONFIRMATION.getConfirmationById(ownerId).getClientId();
+        final int clientId = ServiceHolder.CONFIRMATION.getConfirmationById(ownerId).orElseThrow().getClientId();
         ServiceHolder.CONFIRMATION.deleteConfirmation(ownerId);
         ServiceHolder.CLIENT.deleteClient(clientId);
     }

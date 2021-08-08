@@ -21,7 +21,6 @@ package de.siegmar.billomat4j.settings;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.math.BigDecimal;
@@ -90,10 +89,10 @@ public class SettingsServiceIT {
         tax.setName("Test Tax Update");
         settingsService.updateTax(tax);
         assertEquals("Test Tax Update", tax.getName());
-        assertEquals("Test Tax Update", settingsService.getTaxById(taxId).getName());
+        assertEquals("Test Tax Update", settingsService.getTaxById(taxId).orElseThrow().getName());
 
         settingsService.deleteTax(taxId);
-        assertNull(settingsService.getTaxById(taxId));
+        assertTrue(settingsService.getTaxById(taxId).isEmpty());
         assertTrue(settingsService.getTaxes().isEmpty());
     }
 
@@ -112,10 +111,10 @@ public class SettingsServiceIT {
         countryTax.setCountryCode("AT");
         settingsService.updateCountryTax(countryTax);
         assertEquals("AT", countryTax.getCountryCode());
-        assertEquals("AT", settingsService.getCountryTaxById(taxId).getCountryCode());
+        assertEquals("AT", settingsService.getCountryTaxById(taxId).orElseThrow().getCountryCode());
 
         settingsService.deleteCountryTax(taxId);
-        assertNull(settingsService.getCountryTaxById(taxId));
+        assertTrue(settingsService.getCountryTaxById(taxId).isEmpty());
         assertTrue(settingsService.getCountryTaxes().isEmpty());
     }
 
@@ -140,10 +139,11 @@ public class SettingsServiceIT {
         reminderText.setName("Test ReminderText Update");
         settingsService.updateReminderText(reminderText);
         assertEquals("Test ReminderText Update", reminderText.getName());
-        assertEquals("Test ReminderText Update", settingsService.getReminderTextById(reminderTextId).getName());
+        assertEquals("Test ReminderText Update", settingsService
+            .getReminderTextById(reminderTextId).orElseThrow().getName());
 
         settingsService.deleteReminderText(reminderTextId);
-        assertNull(settingsService.getReminderTextById(reminderTextId));
+        assertTrue(settingsService.getReminderTextById(reminderTextId).isEmpty());
         assertTrue(settingsService.getReminderTexts().isEmpty());
     }
 

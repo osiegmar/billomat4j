@@ -52,7 +52,7 @@ public class DeliveryNoteTagIT extends AbstractTagIT<DeliveryNoteTag> {
 
     @Override
     protected void deleteOwner(final int ownerId) {
-        final int clientId = ServiceHolder.DELIVERYNOTE.getDeliveryNoteById(ownerId).getClientId();
+        final int clientId = ServiceHolder.DELIVERYNOTE.getDeliveryNoteById(ownerId).orElseThrow().getClientId();
         ServiceHolder.DELIVERYNOTE.deleteDeliveryNote(ownerId);
         ServiceHolder.CLIENT.deleteClient(clientId);
     }

@@ -20,6 +20,7 @@
 package de.siegmar.billomat4j.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import de.siegmar.billomat4j.domain.AbstractComment;
 import de.siegmar.billomat4j.domain.ActionKey;
@@ -43,11 +44,11 @@ public interface GenericCommentService<K extends ActionKey, C extends AbstractCo
      *
      * @param commentId
      *            the comment's id
-     * @return the comment or {@code null} if not found
+     * @return the comment
      * @throws de.siegmar.billomat4j.service.impl.ServiceException
      *             if an error occurred while accessing the web service
      */
-    C getCommentById(int commentId);
+    Optional<C> getCommentById(int commentId);
 
     /**
      * @param comment

@@ -60,7 +60,7 @@ public class ContactIT {
         assertEquals(1, contacts.size());
         assertEquals("Test", contacts.get(0).getFirstName());
 
-        final Contact foundContact = clientService.getContact(contacts.get(0).getId());
+        final Contact foundContact = clientService.getContact(contacts.get(0).getId()).orElseThrow();
         assertEquals("Test", foundContact.getFirstName());
 
         clientService.deleteContact(foundContact.getId());

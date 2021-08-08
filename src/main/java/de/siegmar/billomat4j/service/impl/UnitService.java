@@ -20,6 +20,7 @@
 package de.siegmar.billomat4j.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.apache.commons.lang3.Validate;
 
@@ -37,7 +38,7 @@ public class UnitService extends AbstractService implements GenericCustomFieldSe
     }
 
     @Override
-    public String getCustomFieldValue(final int unitId) {
+    public Optional<String> getCustomFieldValue(final int unitId) {
         return getCustomField(RESOURCE, unitId);
     }
 
@@ -59,10 +60,10 @@ public class UnitService extends AbstractService implements GenericCustomFieldSe
      * Gets a unit by its id.
      *
      * @param unitId the unit's id
-     * @return the unit or {@code null} if not found
+     * @return the unit
      * @throws ServiceException if an error occurred while accessing the web service
      */
-    public Unit getUnitById(final int unitId) {
+    public Optional<Unit> getUnitById(final int unitId) {
         return getById(RESOURCE, Unit.class, unitId);
     }
 

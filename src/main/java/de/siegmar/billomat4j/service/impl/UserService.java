@@ -20,6 +20,7 @@
 package de.siegmar.billomat4j.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.apache.commons.lang3.Validate;
 
@@ -47,7 +48,7 @@ public class UserService extends AbstractService implements GenericCustomFieldSe
     // User
 
     @Override
-    public String getCustomFieldValue(final int userId) {
+    public Optional<String> getCustomFieldValue(final int userId) {
         return getCustomField(RESOURCE, userId);
     }
 
@@ -67,10 +68,10 @@ public class UserService extends AbstractService implements GenericCustomFieldSe
 
     /**
      * @param userId the user's id
-     * @return the user or {@code null} if not found
+     * @return the user
      * @throws ServiceException if an error occurred while accessing the web service
      */
-    public User getUserById(final int userId) {
+    public Optional<User> getUserById(final int userId) {
         return getById(RESOURCE, User.class, userId);
     }
 
@@ -90,7 +91,7 @@ public class UserService extends AbstractService implements GenericCustomFieldSe
     }
 
     @Override
-    public UserProperty getPropertyById(final int userPropertyId) {
+    public Optional<UserProperty> getPropertyById(final int userPropertyId) {
         return getById(PROPERTIES_RESOURCE, UserProperty.class, userPropertyId);
     }
 
@@ -118,7 +119,7 @@ public class UserService extends AbstractService implements GenericCustomFieldSe
     }
 
     @Override
-    public UserPropertyValue getPropertyValueById(final int userPropertyValueId) {
+    public Optional<UserPropertyValue> getPropertyValueById(final int userPropertyValueId) {
         return getById(ATTRIBUTE_RESOURCE, UserPropertyValue.class, userPropertyValueId);
     }
 

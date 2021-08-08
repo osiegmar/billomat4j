@@ -38,11 +38,11 @@ public abstract class AbstractCustomFieldServiceIT {
         final int ownerId = buildOwner();
 
         try {
-            assertEquals("", service.getCustomFieldValue(ownerId));
+            assertEquals("", service.getCustomFieldValue(ownerId).orElseThrow());
             service.setCustomFieldValue(ownerId, "foo");
-            assertEquals("foo", service.getCustomFieldValue(ownerId));
+            assertEquals("foo", service.getCustomFieldValue(ownerId).orElseThrow());
             service.setCustomFieldValue(ownerId, "");
-            assertEquals("", service.getCustomFieldValue(ownerId));
+            assertEquals("", service.getCustomFieldValue(ownerId).orElseThrow());
         } finally {
             deleteOwner(ownerId);
         }

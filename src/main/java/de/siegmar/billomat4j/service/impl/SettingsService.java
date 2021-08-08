@@ -21,6 +21,7 @@ package de.siegmar.billomat4j.service.impl;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 import org.apache.commons.lang3.Validate;
 
@@ -89,10 +90,10 @@ public class SettingsService extends AbstractService {
      * Gets a tax by its id.
      *
      * @param taxId the tax's id
-     * @return the tax or {@code null} if not found
+     * @return the tax
      * @throws ServiceException if an error occurred while accessing the web service
      */
-    public Tax getTaxById(final int taxId) {
+    public Optional<Tax> getTaxById(final int taxId) {
         return getById(TAX_RESOURCE, Tax.class, taxId);
     }
 
@@ -136,10 +137,10 @@ public class SettingsService extends AbstractService {
      * Gets a country tax by its id.
      *
      * @param countryTaxId the country tax's id
-     * @return the country tax or {@code null} if not found
+     * @return the country tax
      * @throws ServiceException if an error occurred while accessing the web service
      */
-    public CountryTax getCountryTaxById(final int countryTaxId) {
+    public Optional<CountryTax> getCountryTaxById(final int countryTaxId) {
         return getById(COUNTRY_TAX_RESOURCE, CountryTax.class, countryTaxId);
     }
 
@@ -183,10 +184,10 @@ public class SettingsService extends AbstractService {
      * Gets a reminder text by its id.
      *
      * @param reminderTextId the reminder text's id
-     * @return the reminder text or {@code null} if not found
+     * @return the reminder text
      * @throws ServiceException if an error occurred while accessing the web service
      */
-    public ReminderText getReminderTextById(final int reminderTextId) {
+    public Optional<ReminderText> getReminderTextById(final int reminderTextId) {
         return getById(REMINDER_TEXT_RESOURCE, ReminderText.class, reminderTextId);
     }
 

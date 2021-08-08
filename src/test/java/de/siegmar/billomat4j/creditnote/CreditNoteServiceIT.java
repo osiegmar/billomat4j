@@ -23,7 +23,6 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.math.BigDecimal;
@@ -47,7 +46,6 @@ import de.siegmar.billomat4j.domain.creditnote.CreditNoteFilter;
 import de.siegmar.billomat4j.domain.creditnote.CreditNoteGroup;
 import de.siegmar.billomat4j.domain.creditnote.CreditNoteGroupFilter;
 import de.siegmar.billomat4j.domain.creditnote.CreditNoteItem;
-import de.siegmar.billomat4j.domain.creditnote.CreditNotePdf;
 import de.siegmar.billomat4j.domain.creditnote.CreditNoteStatus;
 import de.siegmar.billomat4j.domain.template.Template;
 import de.siegmar.billomat4j.domain.template.TemplateFormat;
@@ -110,7 +108,7 @@ public class CreditNoteServiceIT {
         creditNoteService.createCreditNote(creditNote);
         createdCreditNotes.add(creditNote);
 
-        assertEquals(creditNote.getId(), creditNoteService.getCreditNoteByNumber("I5").getId());
+        assertEquals(creditNote.getId(), creditNoteService.getCreditNoteByNumber("I5").orElseThrow().getId());
     }
 
     @Test
@@ -136,7 +134,7 @@ public class CreditNoteServiceIT {
     @Test
     public void getById() {
         final CreditNote creditNote = createCreditNote(1);
-        assertEquals(creditNote.getId(), creditNoteService.getCreditNoteById(creditNote.getId()).getId());
+        assertEquals(creditNote.getId(), creditNoteService.getCreditNoteById(creditNote.getId()).orElseThrow().getId());
     }
 
     @Test
@@ -145,7 +143,7 @@ public class CreditNoteServiceIT {
         creditNote.setLabel("Test Label");
         creditNoteService.updateCreditNote(creditNote);
         assertEquals("Test Label", creditNote.getLabel());
-        assertEquals("Test Label", creditNoteService.getCreditNoteById(creditNote.getId()).getLabel());
+        assertEquals("Test Label", creditNoteService.getCreditNoteById(creditNote.getId()).orElseThrow().getLabel());
     }
 
     @Test
@@ -156,7 +154,7 @@ public class CreditNoteServiceIT {
         creditNoteService.deleteCreditNote(creditNote.getId());
         clientService.deleteClient(clientId);
 
-        assertNull(creditNoteService.getCreditNoteById(creditNote.getId()));
+        assertTrue(creditNoteService.getCreditNoteById(creditNote.getId()).isEmpty());
 
         createdCreditNotes.remove(creditNote);
     }
@@ -166,7 +164,8 @@ public class CreditNoteServiceIT {
         final CreditNote creditNote = createCreditNote(1);
         assertEquals(CreditNoteStatus.DRAFT, creditNote.getStatus());
         creditNoteService.completeCreditNote(creditNote.getId(), null);
-        assertEquals(CreditNoteStatus.OPEN, creditNoteService.getCreditNoteById(creditNote.getId()).getStatus());
+        assertEquals(CreditNoteStatus.OPEN, creditNoteService
+            .getCreditNoteById(creditNote.getId()).orElseThrow().getStatus());
     }
 
     @Test
@@ -178,7 +177,8 @@ public class CreditNoteServiceIT {
             final CreditNote creditNote = createCreditNote(1);
             assertEquals(CreditNoteStatus.DRAFT, creditNote.getStatus());
             creditNoteService.completeCreditNote(creditNote.getId(), null);
-            assertEquals(CreditNoteStatus.OPEN, creditNoteService.getCreditNoteById(creditNote.getId()).getStatus());
+            assertEquals(CreditNoteStatus.OPEN, creditNoteService
+                .getCreditNoteById(creditNote.getId()).orElseThrow().getStatus());
         } finally {
             templateService.deleteTemplate(template.getId());
         }
@@ -201,15 +201,14 @@ public class CreditNoteServiceIT {
         creditNoteService.uploadCreditNoteSignedPdf(creditNote.getId(), "dummy".getBytes(StandardCharsets.US_ASCII));
 
         assertArrayEquals("dummy".getBytes(StandardCharsets.US_ASCII),
-            creditNoteService.getCreditNoteSignedPdf(creditNote.getId()).getBase64file());
+            creditNoteService.getCreditNoteSignedPdf(creditNote.getId()).orElseThrow().getBase64file());
     }
 
     @Test
     public void getCreditNotePdf() {
         final CreditNote creditNote = createCreditNote(1);
         creditNoteService.completeCreditNote(creditNote.getId(), null);
-        final CreditNotePdf creditNotePdf = creditNoteService.getCreditNotePdf(creditNote.getId());
-        assertNotNull(creditNotePdf);
+        assertTrue(creditNoteService.getCreditNotePdf(creditNote.getId()).isPresent());
     }
 
     @Test

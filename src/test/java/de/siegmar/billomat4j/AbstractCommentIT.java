@@ -21,7 +21,6 @@ package de.siegmar.billomat4j;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
@@ -57,7 +56,7 @@ public abstract class AbstractCommentIT<K extends ActionKey, C extends AbstractC
             assertNotNull(comment.getId());
 
             service.deleteComment(comment.getId());
-            assertNull(service.getCommentById(comment.getId()));
+            assertTrue(service.getCommentById(comment.getId()).isEmpty());
         } finally {
             deleteOwner(ownerId);
         }

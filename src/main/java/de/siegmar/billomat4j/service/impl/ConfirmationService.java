@@ -20,6 +20,7 @@
 package de.siegmar.billomat4j.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.apache.commons.lang3.Validate;
 
@@ -59,7 +60,7 @@ public class ConfirmationService extends AbstractService
     // Confirmation
 
     @Override
-    public String getCustomFieldValue(final int confirmationId) {
+    public Optional<String> getCustomFieldValue(final int confirmationId) {
         return getCustomField(RESOURCE, confirmationId);
     }
 
@@ -82,10 +83,10 @@ public class ConfirmationService extends AbstractService
      * Gets a confirmation by its id.
      *
      * @param confirmationId the confirmation's id
-     * @return the confirmation or {@code null} if not found
+     * @return the confirmation
      * @throws ServiceException if an error occurred while accessing the web service
      */
-    public Confirmation getConfirmationById(final int confirmationId) {
+    public Optional<Confirmation> getConfirmationById(final int confirmationId) {
         return getById(RESOURCE, Confirmation.class, confirmationId);
     }
 
@@ -93,12 +94,12 @@ public class ConfirmationService extends AbstractService
      * Gets a confirmation by its confirmation number.
      *
      * @param confirmationNumber the confirmation number, must not be empty / {@code null}
-     * @return the confirmation or {@code null} if not found
+     * @return the confirmation
      * @throws NullPointerException     if confirmationNumber is null
      * @throws IllegalArgumentException if confirmationNumber is empty
      * @throws ServiceException         if an error occurred while accessing the web service
      */
-    public Confirmation getConfirmationByNumber(final String confirmationNumber) {
+    public Optional<Confirmation> getConfirmationByNumber(final String confirmationNumber) {
         Validate.notEmpty(confirmationNumber);
         return single(findConfirmations(new ConfirmationFilter().byConfirmationNumber(confirmationNumber)));
     }
@@ -131,10 +132,10 @@ public class ConfirmationService extends AbstractService
 
     /**
      * @param confirmationId the id of the confirmation to get the PDF for
-     * @return the confirmation PDF or {@code null} if not found
+     * @return the confirmation PDF
      * @throws ServiceException if an error occurred while accessing the web service
      */
-    public ConfirmationPdf getConfirmationPdf(final int confirmationId) {
+    public Optional<ConfirmationPdf> getConfirmationPdf(final int confirmationId) {
         return getPdf(RESOURCE, ConfirmationPdf.class, confirmationId, null);
     }
 
@@ -205,7 +206,7 @@ public class ConfirmationService extends AbstractService
     }
 
     @Override
-    public ConfirmationItem getItemById(final int confirmationItemId) {
+    public Optional<ConfirmationItem> getItemById(final int confirmationItemId) {
         return getById(RESOURCE_ITEMS, ConfirmationItem.class, confirmationItemId);
     }
 
@@ -235,7 +236,7 @@ public class ConfirmationService extends AbstractService
     }
 
     @Override
-    public ConfirmationComment getCommentById(final int confirmationCommentId) {
+    public Optional<ConfirmationComment> getCommentById(final int confirmationCommentId) {
         return getById(RESOURCE_COMMENTS, ConfirmationComment.class, confirmationCommentId);
     }
 
@@ -257,7 +258,7 @@ public class ConfirmationService extends AbstractService
     }
 
     @Override
-    public ConfirmationTag getTagById(final int confirmationTagId) {
+    public Optional<ConfirmationTag> getTagById(final int confirmationTagId) {
         return getById(RESOURCE_TAGS, ConfirmationTag.class, confirmationTagId);
     }
 

@@ -22,7 +22,7 @@ package de.siegmar.billomat4j;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -58,7 +58,7 @@ public abstract class AbstractItemIT<I extends AbstractItem> {
             assertEquals(2, item.getQuantity().intValue());
 
             service.deleteItem(item.getId());
-            assertNull(service.getItemById(item.getId()));
+            assertTrue(service.getItemById(item.getId()).isEmpty());
         } finally {
             deleteOwner(ownerId);
         }

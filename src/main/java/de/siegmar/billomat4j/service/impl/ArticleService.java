@@ -20,6 +20,7 @@
 package de.siegmar.billomat4j.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.apache.commons.lang3.Validate;
 
@@ -52,7 +53,7 @@ public class ArticleService extends AbstractService
     // Article
 
     @Override
-    public String getCustomFieldValue(final int articleId) {
+    public Optional<String> getCustomFieldValue(final int articleId) {
         return getCustomField(RESOURCE, articleId);
     }
 
@@ -74,10 +75,10 @@ public class ArticleService extends AbstractService
      * Gets an article by its id.
      *
      * @param articleId the article's id
-     * @return the article or {@code null} if not found
+     * @return the article
      * @throws ServiceException if an error occurred while accessing the web service
      */
-    public Article getArticleById(final int articleId) {
+    public Optional<Article> getArticleById(final int articleId) {
         return getById(RESOURCE, Article.class, articleId);
     }
 
@@ -85,12 +86,12 @@ public class ArticleService extends AbstractService
      * Gets an article by its article number.
      *
      * @param articleNumber the article number, must not be empty / {@code null}
-     * @return the article or {@code null} if not found
+     * @return the article
      * @throws NullPointerException     if articleNumber is null
      * @throws IllegalArgumentException if articleNumber is empty
      * @throws ServiceException         if an error occurred while accessing the web service
      */
-    public Article getArticleByNumber(final String articleNumber) {
+    public Optional<Article> getArticleByNumber(final String articleNumber) {
         return single(findArticles(new ArticleFilter().byArticleNumber(Validate.notEmpty(articleNumber))));
     }
 
@@ -128,7 +129,7 @@ public class ArticleService extends AbstractService
     }
 
     @Override
-    public ArticleProperty getPropertyById(final int articlePropertyId) {
+    public Optional<ArticleProperty> getPropertyById(final int articlePropertyId) {
         return getById(PROPERTIES_RESOURCE, ArticleProperty.class, articlePropertyId);
     }
 
@@ -159,7 +160,7 @@ public class ArticleService extends AbstractService
     }
 
     @Override
-    public ArticlePropertyValue getPropertyValueById(final int articlePropertyValueId) {
+    public Optional<ArticlePropertyValue> getPropertyValueById(final int articlePropertyValueId) {
         return getById(ATTRIBUTE_RESOURCE, ArticlePropertyValue.class, articlePropertyValueId);
     }
 
@@ -176,7 +177,7 @@ public class ArticleService extends AbstractService
     }
 
     @Override
-    public ArticleTag getTagById(final int articleTagId) {
+    public Optional<ArticleTag> getTagById(final int articleTagId) {
         return getById(TAG_RESOURCE, ArticleTag.class, articleTagId);
     }
 

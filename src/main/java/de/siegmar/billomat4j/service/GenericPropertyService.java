@@ -20,6 +20,7 @@
 package de.siegmar.billomat4j.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import de.siegmar.billomat4j.domain.AbstractPropertyValue;
 import de.siegmar.billomat4j.domain.settings.AbstractProperty;
@@ -40,11 +41,11 @@ public interface GenericPropertyService<P extends AbstractProperty, V extends Ab
      *
      * @param propertyId
      *            the property's id
-     * @return the property or {@code null} if not found
+     * @return the property
      * @throws de.siegmar.billomat4j.service.impl.ServiceException
      *             if an error occurred while accessing the web service
      */
-    P getPropertyById(int propertyId);
+    Optional<P> getPropertyById(int propertyId);
 
     /**
      * @param property
@@ -91,11 +92,11 @@ public interface GenericPropertyService<P extends AbstractProperty, V extends Ab
      *
      * @param propertyValueId
      *            the property value's id
-     * @return the property value or {@code null} if not found
+     * @return the property
      * @throws de.siegmar.billomat4j.service.impl.ServiceException
      *             if an error occurred while accessing the web service
      */
-    V getPropertyValueById(int propertyValueId);
+    Optional<V> getPropertyValueById(int propertyValueId);
 
     /**
      * @param propertyValue

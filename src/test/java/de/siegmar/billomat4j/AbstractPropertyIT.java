@@ -65,7 +65,7 @@ public abstract class AbstractPropertyIT<P extends AbstractProperty, A extends A
         assertEquals(articleProperty.getDefaultValue(), "Default Value");
 
         // Get By Id
-        final P articlePropertyById = service.getPropertyById(articleProperty.getId());
+        final P articlePropertyById = service.getPropertyById(articleProperty.getId()).orElseThrow();
         assertEquals(articlePropertyById.getDefaultValue(), "Default Value");
 
         // Delete
@@ -102,7 +102,7 @@ public abstract class AbstractPropertyIT<P extends AbstractProperty, A extends A
         assertEquals(propertyValues.get(0).getId(), propertyValue.getId());
 
         // Find property value
-        assertEquals(service.getPropertyValueById(propertyValue.getId()).getId(), propertyValue.getId());
+        assertEquals(service.getPropertyValueById(propertyValue.getId()).orElseThrow().getId(), propertyValue.getId());
 
         // Cleanup
         service.deleteProperty(property.getId());

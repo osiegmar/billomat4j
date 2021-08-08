@@ -22,7 +22,6 @@ package de.siegmar.billomat4j.deliverynote;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.math.BigDecimal;
@@ -100,7 +99,7 @@ public class DeliveryNoteServiceIT {
         deliveryNoteService.createDeliveryNote(deliveryNote);
         createdDeliveryNotes.add(deliveryNote);
 
-        assertEquals(deliveryNote.getId(), deliveryNoteService.getDeliveryNoteByNumber("I5").getId());
+        assertEquals(deliveryNote.getId(), deliveryNoteService.getDeliveryNoteByNumber("I5").orElseThrow().getId());
     }
 
     @Test
@@ -112,7 +111,8 @@ public class DeliveryNoteServiceIT {
     @Test
     public void getById() {
         final DeliveryNote deliveryNote = createDeliveryNote(1);
-        assertEquals(deliveryNote.getId(), deliveryNoteService.getDeliveryNoteById(deliveryNote.getId()).getId());
+        assertEquals(deliveryNote.getId(), deliveryNoteService
+            .getDeliveryNoteById(deliveryNote.getId()).orElseThrow().getId());
     }
 
     @Test
@@ -121,7 +121,8 @@ public class DeliveryNoteServiceIT {
         deliveryNote.setLabel("Test Label");
         deliveryNoteService.updateDeliveryNote(deliveryNote);
         assertEquals("Test Label", deliveryNote.getLabel());
-        assertEquals("Test Label", deliveryNoteService.getDeliveryNoteById(deliveryNote.getId()).getLabel());
+        assertEquals("Test Label", deliveryNoteService
+            .getDeliveryNoteById(deliveryNote.getId()).orElseThrow().getLabel());
     }
 
     @Test
@@ -132,7 +133,7 @@ public class DeliveryNoteServiceIT {
         deliveryNoteService.deleteDeliveryNote(deliveryNote.getId());
         clientService.deleteClient(clientId);
 
-        assertNull(deliveryNoteService.getDeliveryNoteById(deliveryNote.getId()));
+        assertTrue(deliveryNoteService.getDeliveryNoteById(deliveryNote.getId()).isEmpty());
 
         createdDeliveryNotes.remove(deliveryNote);
     }
@@ -143,14 +144,15 @@ public class DeliveryNoteServiceIT {
         assertEquals(DeliveryNoteStatus.DRAFT, deliveryNote.getStatus());
         deliveryNoteService.completeDeliveryNote(deliveryNote.getId(), null);
         assertEquals(DeliveryNoteStatus.CREATED,
-            deliveryNoteService.getDeliveryNoteById(deliveryNote.getId()).getStatus());
+            deliveryNoteService.getDeliveryNoteById(deliveryNote.getId()).orElseThrow().getStatus());
     }
 
     @Test
     public void getDeliveryNotePdf() {
         final DeliveryNote deliveryNote = createDeliveryNote(1);
         deliveryNoteService.completeDeliveryNote(deliveryNote.getId(), null);
-        final DeliveryNotePdf deliveryNotePdf = deliveryNoteService.getDeliveryNotePdf(deliveryNote.getId());
+        final DeliveryNotePdf deliveryNotePdf = deliveryNoteService
+            .getDeliveryNotePdf(deliveryNote.getId()).orElseThrow();
         assertNotNull(deliveryNotePdf);
     }
 

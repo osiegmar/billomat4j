@@ -88,7 +88,7 @@ public class UnitServiceIT {
         unit.setName("Test Unit 1 (updated)");
         unitService.updateUnit(unit);
         assertEquals("Test Unit 1 (updated)", unit.getName());
-        assertEquals("Test Unit 1 (updated)", unitService.getUnitById(unit.getId()).getName());
+        assertEquals("Test Unit 1 (updated)", unitService.getUnitById(unit.getId()).orElseThrow().getName());
     }
 
 }

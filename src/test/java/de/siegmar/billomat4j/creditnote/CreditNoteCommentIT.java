@@ -49,7 +49,7 @@ public class CreditNoteCommentIT
 
     @Override
     protected void deleteOwner(final int ownerId) {
-        final int clientId = ServiceHolder.CREDITNOTE.getCreditNoteById(ownerId).getClientId();
+        final int clientId = ServiceHolder.CREDITNOTE.getCreditNoteById(ownerId).orElseThrow().getClientId();
         ServiceHolder.CREDITNOTE.deleteCreditNote(ownerId);
         ServiceHolder.CLIENT.deleteClient(clientId);
     }

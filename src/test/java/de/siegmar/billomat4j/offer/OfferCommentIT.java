@@ -48,7 +48,7 @@ public class OfferCommentIT extends AbstractCommentIT<OfferActionKey, OfferComme
 
     @Override
     protected void deleteOwner(final int ownerId) {
-        final int clientId = ServiceHolder.OFFER.getOfferById(ownerId).getClientId();
+        final int clientId = ServiceHolder.OFFER.getOfferById(ownerId).orElseThrow().getClientId();
         ServiceHolder.OFFER.deleteOffer(ownerId);
         ServiceHolder.CLIENT.deleteClient(clientId);
     }

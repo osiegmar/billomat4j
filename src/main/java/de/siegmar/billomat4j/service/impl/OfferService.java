@@ -20,6 +20,7 @@
 package de.siegmar.billomat4j.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.apache.commons.lang3.Validate;
 
@@ -58,7 +59,7 @@ public class OfferService extends AbstractService implements GenericCustomFieldS
     // Offer
 
     @Override
-    public String getCustomFieldValue(final int offerId) {
+    public Optional<String> getCustomFieldValue(final int offerId) {
         return getCustomField(RESOURCE, offerId);
     }
 
@@ -81,10 +82,10 @@ public class OfferService extends AbstractService implements GenericCustomFieldS
      * Gets a offer by its id.
      *
      * @param offerId the offer's id
-     * @return the offer or {@code null} if not found
+     * @return the offer
      * @throws ServiceException if an error occurred while accessing the web service
      */
-    public Offer getOfferById(final int offerId) {
+    public Optional<Offer> getOfferById(final int offerId) {
         return getById(RESOURCE, Offer.class, offerId);
     }
 
@@ -92,12 +93,12 @@ public class OfferService extends AbstractService implements GenericCustomFieldS
      * Gets a offer by its offer number.
      *
      * @param offerNumber the offer number, must not be empty / {@code null}
-     * @return the offer or {@code null} if not found
+     * @return the offer
      * @throws NullPointerException     if offerNumber is null
      * @throws IllegalArgumentException if offerNumber is empty
      * @throws ServiceException         if an error occurred while accessing the web service
      */
-    public Offer getOfferByNumber(final String offerNumber) {
+    public Optional<Offer> getOfferByNumber(final String offerNumber) {
         return single(findOffers(new OfferFilter().byOfferNumber(Validate.notEmpty(offerNumber))));
     }
 
@@ -129,10 +130,10 @@ public class OfferService extends AbstractService implements GenericCustomFieldS
 
     /**
      * @param offerId the id of the offer to get the PDF for
-     * @return the offer PDF or {@code null} if not found
+     * @return the offer PDF
      * @throws ServiceException if an error occurred while accessing the web service
      */
-    public OfferPdf getOfferPdf(final int offerId) {
+    public Optional<OfferPdf> getOfferPdf(final int offerId) {
         return getPdf(RESOURCE, OfferPdf.class, offerId, null);
     }
 
@@ -220,7 +221,7 @@ public class OfferService extends AbstractService implements GenericCustomFieldS
     }
 
     @Override
-    public OfferItem getItemById(final int offerItemId) {
+    public Optional<OfferItem> getItemById(final int offerItemId) {
         return getById(RESOURCE_ITEMS, OfferItem.class, offerItemId);
     }
 
@@ -248,7 +249,7 @@ public class OfferService extends AbstractService implements GenericCustomFieldS
     }
 
     @Override
-    public OfferComment getCommentById(final int offerCommentId) {
+    public Optional<OfferComment> getCommentById(final int offerCommentId) {
         return getById(RESOURCE_COMMENTS, OfferComment.class, offerCommentId);
     }
 
@@ -270,7 +271,7 @@ public class OfferService extends AbstractService implements GenericCustomFieldS
     }
 
     @Override
-    public OfferTag getTagById(final int offerTagId) {
+    public Optional<OfferTag> getTagById(final int offerTagId) {
         return getById(RESOURCE_TAGS, OfferTag.class, offerTagId);
     }
 

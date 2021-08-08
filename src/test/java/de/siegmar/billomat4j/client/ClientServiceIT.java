@@ -138,7 +138,7 @@ public class ClientServiceIT {
         assertNotNull(client.getId());
 
         // Get
-        final Client clientById = clientService.getClientById(client.getId());
+        final Client clientById = clientService.getClientById(client.getId()).orElseThrow();
         assertEquals(client.getId(), clientById.getId());
     }
 
@@ -160,7 +160,7 @@ public class ClientServiceIT {
         assertEquals("9999", updateClient.getClientNumber());
 
         // Get
-        final Client updatedClient = clientService.getClientById(client.getId());
+        final Client updatedClient = clientService.getClientById(client.getId()).orElseThrow();
         assertEquals("Updated Company", updatedClient.getName());
         assertEquals("9999", updatedClient.getClientNumber());
     }
@@ -180,7 +180,7 @@ public class ClientServiceIT {
         assertEquals("9999", client.getClientNumber());
 
         // Get
-        final Client updatedClient = clientService.getClientById(client.getId());
+        final Client updatedClient = clientService.getClientById(client.getId()).orElseThrow();
         assertEquals("Updated Company", updatedClient.getName());
         assertEquals("9999", updatedClient.getClientNumber());
     }

@@ -52,7 +52,7 @@ public class RecurringTagIT extends AbstractTagIT<RecurringTag> {
 
     @Override
     protected void deleteOwner(final int ownerId) {
-        final int clientId = ServiceHolder.RECURRING.getRecurringById(ownerId).getClientId();
+        final int clientId = ServiceHolder.RECURRING.getRecurringById(ownerId).orElseThrow().getClientId();
         ServiceHolder.RECURRING.deleteRecurring(ownerId);
         ServiceHolder.CLIENT.deleteClient(clientId);
     }

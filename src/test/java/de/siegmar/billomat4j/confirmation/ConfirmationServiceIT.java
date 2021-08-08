@@ -22,7 +22,6 @@ package de.siegmar.billomat4j.confirmation;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.math.BigDecimal;
@@ -43,7 +42,6 @@ import de.siegmar.billomat4j.domain.client.Client;
 import de.siegmar.billomat4j.domain.confirmation.Confirmation;
 import de.siegmar.billomat4j.domain.confirmation.ConfirmationFilter;
 import de.siegmar.billomat4j.domain.confirmation.ConfirmationItem;
-import de.siegmar.billomat4j.domain.confirmation.ConfirmationPdf;
 import de.siegmar.billomat4j.domain.confirmation.ConfirmationStatus;
 import de.siegmar.billomat4j.domain.template.Template;
 import de.siegmar.billomat4j.domain.template.TemplateFormat;
@@ -101,7 +99,8 @@ public class ConfirmationServiceIT {
     @Test
     public void getById() {
         final Confirmation confirmation = createConfirmation(1);
-        assertEquals(confirmation.getId(), confirmationService.getConfirmationById(confirmation.getId()).getId());
+        assertEquals(confirmation.getId(), confirmationService
+            .getConfirmationById(confirmation.getId()).orElseThrow().getId());
     }
 
     @Test
@@ -110,7 +109,8 @@ public class ConfirmationServiceIT {
         confirmation.setLabel("Test Label");
         confirmationService.updateConfirmation(confirmation);
         assertEquals("Test Label", confirmation.getLabel());
-        assertEquals("Test Label", confirmationService.getConfirmationById(confirmation.getId()).getLabel());
+        assertEquals("Test Label", confirmationService
+            .getConfirmationById(confirmation.getId()).orElseThrow().getLabel());
     }
 
     @Test
@@ -121,7 +121,7 @@ public class ConfirmationServiceIT {
         confirmationService.deleteConfirmation(confirmation.getId());
         clientService.deleteClient(clientId);
 
-        assertNull(confirmationService.getConfirmationById(confirmation.getId()));
+        assertTrue(confirmationService.getConfirmationById(confirmation.getId()).isEmpty());
 
         createdConfirmations.remove(confirmation);
     }
@@ -131,7 +131,7 @@ public class ConfirmationServiceIT {
         final Confirmation confirmation = createConfirmation(1);
         confirmationService.completeConfirmation(confirmation.getId(), null);
         assertEquals(ConfirmationStatus.COMPLETED,
-            confirmationService.getConfirmationById(confirmation.getId()).getStatus());
+            confirmationService.getConfirmationById(confirmation.getId()).orElseThrow().getStatus());
     }
 
     @Test
@@ -143,7 +143,7 @@ public class ConfirmationServiceIT {
             final Confirmation confirmation = createConfirmation(1);
             confirmationService.completeConfirmation(confirmation.getId(), template.getId());
             assertEquals(ConfirmationStatus.COMPLETED,
-                confirmationService.getConfirmationById(confirmation.getId()).getStatus());
+                confirmationService.getConfirmationById(confirmation.getId()).orElseThrow().getStatus());
         } finally {
             templateService.deleteTemplate(template.getId());
         }
@@ -163,8 +163,7 @@ public class ConfirmationServiceIT {
     public void getConfirmationPdf() {
         final Confirmation confirmation = createConfirmation(1);
         confirmationService.completeConfirmation(confirmation.getId(), null);
-        final ConfirmationPdf confirmationPdf = confirmationService.getConfirmationPdf(confirmation.getId());
-        assertNotNull(confirmationPdf);
+        assertTrue(confirmationService.getConfirmationPdf(confirmation.getId()).isPresent());
     }
 
     @Test
@@ -188,7 +187,7 @@ public class ConfirmationServiceIT {
         confirmationService.completeConfirmation(confirmation.getId(), null);
         confirmationService.cancelConfirmation(confirmation.getId());
         assertEquals(ConfirmationStatus.CANCELED,
-            confirmationService.getConfirmationById(confirmation.getId()).getStatus());
+            confirmationService.getConfirmationById(confirmation.getId()).orElseThrow().getStatus());
     }
 
     @Test
@@ -197,7 +196,7 @@ public class ConfirmationServiceIT {
         confirmationService.completeConfirmation(confirmation.getId(), null);
         confirmationService.clearConfirmation(confirmation.getId());
         assertEquals(ConfirmationStatus.CLEARED,
-            confirmationService.getConfirmationById(confirmation.getId()).getStatus());
+            confirmationService.getConfirmationById(confirmation.getId()).orElseThrow().getStatus());
     }
 
     @Test
@@ -207,7 +206,7 @@ public class ConfirmationServiceIT {
         confirmationService.clearConfirmation(confirmation.getId());
         confirmationService.unclearConfirmation(confirmation.getId());
         assertEquals(ConfirmationStatus.COMPLETED,
-            confirmationService.getConfirmationById(confirmation.getId()).getStatus());
+            confirmationService.getConfirmationById(confirmation.getId()).orElseThrow().getStatus());
     }
 
     private Confirmation createConfirmation(final int number) {

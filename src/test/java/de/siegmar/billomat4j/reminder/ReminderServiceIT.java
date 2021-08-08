@@ -23,7 +23,6 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.math.BigDecimal;
@@ -47,7 +46,6 @@ import de.siegmar.billomat4j.domain.invoice.InvoiceItem;
 import de.siegmar.billomat4j.domain.reminder.Reminder;
 import de.siegmar.billomat4j.domain.reminder.ReminderFilter;
 import de.siegmar.billomat4j.domain.reminder.ReminderItem;
-import de.siegmar.billomat4j.domain.reminder.ReminderPdf;
 import de.siegmar.billomat4j.domain.reminder.ReminderStatus;
 import de.siegmar.billomat4j.service.impl.ClientService;
 import de.siegmar.billomat4j.service.impl.InvoiceService;
@@ -107,7 +105,7 @@ public class ReminderServiceIT {
     @Test
     public void getById() {
         final Reminder reminder = createReminder(1);
-        assertEquals(reminder.getId(), reminderService.getReminderById(reminder.getId()).getId());
+        assertEquals(reminder.getId(), reminderService.getReminderById(reminder.getId()).orElseThrow().getId());
     }
 
     @Test
@@ -116,20 +114,20 @@ public class ReminderServiceIT {
         reminder.setLabel("Test Label");
         reminderService.updateReminder(reminder);
         assertEquals("Test Label", reminder.getLabel());
-        assertEquals("Test Label", reminderService.getReminderById(reminder.getId()).getLabel());
+        assertEquals("Test Label", reminderService.getReminderById(reminder.getId()).orElseThrow().getLabel());
     }
 
     @Test
     public void delete() {
         final Reminder reminder = createReminder(1);
 
-        final Invoice invoice = invoiceService.getInvoiceById(reminder.getInvoiceId());
+        final Invoice invoice = invoiceService.getInvoiceById(reminder.getInvoiceId()).orElseThrow();
         final int clientId = invoice.getClientId();
         reminderService.deleteReminder(reminder.getId());
         invoiceService.deleteInvoice(invoice.getId());
         clientService.deleteClient(clientId);
 
-        assertNull(reminderService.getReminderById(reminder.getId()));
+        assertTrue(reminderService.getReminderById(reminder.getId()).isEmpty());
 
         createdClients.clear();
         createdReminders.clear();
@@ -139,7 +137,7 @@ public class ReminderServiceIT {
     public void complete() {
         final Reminder reminder = createReminder(1);
         reminderService.completeReminder(reminder.getId(), null);
-        assertEquals(ReminderStatus.OPEN, reminderService.getReminderById(reminder.getId()).getStatus());
+        assertEquals(ReminderStatus.OPEN, reminderService.getReminderById(reminder.getId()).orElseThrow().getStatus());
     }
 
     @Test
@@ -149,15 +147,14 @@ public class ReminderServiceIT {
         reminderService.uploadReminderSignedPdf(reminder.getId(), "dummy".getBytes(StandardCharsets.US_ASCII));
 
         assertArrayEquals("dummy".getBytes(StandardCharsets.US_ASCII),
-            reminderService.getReminderSignedPdf(reminder.getId()).getBase64file());
+            reminderService.getReminderSignedPdf(reminder.getId()).orElseThrow().getBase64file());
     }
 
     @Test
     public void getReminderPdf() {
         final Reminder reminder = createReminder(1);
         reminderService.completeReminder(reminder.getId(), null);
-        final ReminderPdf reminderPdf = reminderService.getReminderPdf(reminder.getId());
-        assertNotNull(reminderPdf);
+        assertTrue(reminderService.getReminderPdf(reminder.getId()).isPresent());
     }
 
     @Test
@@ -180,7 +177,8 @@ public class ReminderServiceIT {
         final Reminder reminder = createReminder(1);
         reminderService.completeReminder(reminder.getId(), null);
         reminderService.cancelReminder(reminder.getId());
-        assertEquals(ReminderStatus.CANCELED, reminderService.getReminderById(reminder.getId()).getStatus());
+        assertEquals(ReminderStatus.CANCELED, reminderService
+            .getReminderById(reminder.getId()).orElseThrow().getStatus());
     }
 
     private Reminder createReminder(final int number) {

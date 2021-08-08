@@ -52,7 +52,7 @@ public class OfferTagIT extends AbstractTagIT<OfferTag> {
 
     @Override
     protected void deleteOwner(final int ownerId) {
-        final int clientId = ServiceHolder.OFFER.getOfferById(ownerId).getClientId();
+        final int clientId = ServiceHolder.OFFER.getOfferById(ownerId).orElseThrow().getClientId();
         ServiceHolder.OFFER.deleteOffer(ownerId);
         ServiceHolder.CLIENT.deleteClient(clientId);
     }

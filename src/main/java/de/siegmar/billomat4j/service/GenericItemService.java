@@ -20,6 +20,7 @@
 package de.siegmar.billomat4j.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import de.siegmar.billomat4j.domain.AbstractItem;
 
@@ -39,11 +40,11 @@ public interface GenericItemService<I extends AbstractItem> {
      *
      * @param itemId
      *            the item's id
-     * @return the item or {@code null} if not found
+     * @return the item
      * @throws de.siegmar.billomat4j.service.impl.ServiceException
      *             if an error occurred while accessing the web service
      */
-    I getItemById(int itemId);
+    Optional<I> getItemById(int itemId);
 
     /**
      * @param item

@@ -23,7 +23,6 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.math.BigDecimal;
@@ -47,7 +46,6 @@ import de.siegmar.billomat4j.domain.invoice.InvoiceFilter;
 import de.siegmar.billomat4j.domain.invoice.InvoiceGroup;
 import de.siegmar.billomat4j.domain.invoice.InvoiceGroupFilter;
 import de.siegmar.billomat4j.domain.invoice.InvoiceItem;
-import de.siegmar.billomat4j.domain.invoice.InvoicePdf;
 import de.siegmar.billomat4j.domain.invoice.InvoiceStatus;
 import de.siegmar.billomat4j.service.impl.ClientService;
 import de.siegmar.billomat4j.service.impl.InvoiceService;
@@ -122,7 +120,7 @@ public class InvoiceServiceIT {
         invoiceService.createInvoice(invoice);
         createdInvoices.add(invoice);
 
-        assertEquals(invoice.getId(), invoiceService.getInvoiceByNumber("I5").getId());
+        assertEquals(invoice.getId(), invoiceService.getInvoiceByNumber("I5").orElseThrow().getId());
     }
 
     @Test
@@ -148,7 +146,7 @@ public class InvoiceServiceIT {
     @Test
     public void getById() {
         final Invoice invoice = createInvoice(1);
-        assertEquals(invoice.getId(), invoiceService.getInvoiceById(invoice.getId()).getId());
+        assertEquals(invoice.getId(), invoiceService.getInvoiceById(invoice.getId()).orElseThrow().getId());
     }
 
     @Test
@@ -157,7 +155,7 @@ public class InvoiceServiceIT {
         invoice.setLabel("Test Label");
         invoiceService.updateInvoice(invoice);
         assertEquals("Test Label", invoice.getLabel());
-        assertEquals("Test Label", invoiceService.getInvoiceById(invoice.getId()).getLabel());
+        assertEquals("Test Label", invoiceService.getInvoiceById(invoice.getId()).orElseThrow().getLabel());
     }
 
     @Test
@@ -168,7 +166,7 @@ public class InvoiceServiceIT {
         invoiceService.deleteInvoice(invoice.getId());
         clientService.deleteClient(clientId);
 
-        assertNull(invoiceService.getInvoiceById(invoice.getId()));
+        assertTrue(invoiceService.getInvoiceById(invoice.getId()).isEmpty());
 
         createdInvoices.remove(invoice);
     }
@@ -177,7 +175,7 @@ public class InvoiceServiceIT {
     public void complete() {
         final Invoice invoice = createInvoice(1);
         invoiceService.completeInvoice(invoice.getId(), null);
-        assertEquals(InvoiceStatus.OPEN, invoiceService.getInvoiceById(invoice.getId()).getStatus());
+        assertEquals(InvoiceStatus.OPEN, invoiceService.getInvoiceById(invoice.getId()).orElseThrow().getStatus());
     }
 
     @Test
@@ -187,15 +185,14 @@ public class InvoiceServiceIT {
         invoiceService.uploadInvoiceSignedPdf(invoice.getId(), "dummy".getBytes(StandardCharsets.US_ASCII));
 
         assertArrayEquals("dummy".getBytes(StandardCharsets.US_ASCII),
-            invoiceService.getInvoiceSignedPdf(invoice.getId()).getBase64file());
+            invoiceService.getInvoiceSignedPdf(invoice.getId()).orElseThrow().getBase64file());
     }
 
     @Test
     public void getInvoicePdf() {
         final Invoice invoice = createInvoice(1);
         invoiceService.completeInvoice(invoice.getId(), null);
-        final InvoicePdf invoicePdf = invoiceService.getInvoicePdf(invoice.getId());
-        assertNotNull(invoicePdf);
+        assertTrue(invoiceService.getInvoicePdf(invoice.getId()).isPresent());
     }
 
     @Test
@@ -218,7 +215,7 @@ public class InvoiceServiceIT {
         final Invoice invoice = createInvoice(1);
         invoiceService.completeInvoice(invoice.getId(), null);
         invoiceService.cancelInvoice(invoice.getId());
-        assertEquals(InvoiceStatus.CANCELED, invoiceService.getInvoiceById(invoice.getId()).getStatus());
+        assertEquals(InvoiceStatus.CANCELED, invoiceService.getInvoiceById(invoice.getId()).orElseThrow().getStatus());
     }
 
     private Invoice createInvoice(final int number) {

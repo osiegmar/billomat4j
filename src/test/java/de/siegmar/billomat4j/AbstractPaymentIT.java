@@ -21,7 +21,6 @@ package de.siegmar.billomat4j;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.math.BigDecimal;
@@ -66,7 +65,7 @@ public abstract class AbstractPaymentIT<P extends AbstractPayment, F extends Abs
 
             assertNotNull(service.getPaymentById(payment.getId()));
             service.deletePayment(payment.getId());
-            assertNull(service.getPaymentById(payment.getId()));
+            assertTrue(service.getPaymentById(payment.getId()).isEmpty());
         } finally {
             deleteOwner(ownerId);
         }

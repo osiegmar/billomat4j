@@ -65,8 +65,8 @@ public class ReminderItemIT extends AbstractItemIT<ReminderItem> {
 
     @Override
     protected void deleteOwner(final int ownerId) {
-        final Reminder reminder = ServiceHolder.REMINDER.getReminderById(ownerId);
-        final int clientId = ServiceHolder.INVOICE.getInvoiceById(reminder.getInvoiceId()).getClientId();
+        final Reminder reminder = ServiceHolder.REMINDER.getReminderById(ownerId).orElseThrow();
+        final int clientId = ServiceHolder.INVOICE.getInvoiceById(reminder.getInvoiceId()).orElseThrow().getClientId();
         ServiceHolder.REMINDER.deleteReminder(ownerId);
         ServiceHolder.INVOICE.deleteInvoice(reminder.getInvoiceId());
         ServiceHolder.CLIENT.deleteClient(clientId);

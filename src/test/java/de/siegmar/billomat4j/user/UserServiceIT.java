@@ -57,7 +57,7 @@ public class UserServiceIT {
     @Test
     public void getById() {
         final User user = userService.findUsers(new UserFilter().byEmail("@")).iterator().next();
-        final User user2 = userService.getUserById(user.getId());
+        final User user2 = userService.getUserById(user.getId()).orElseThrow();
         assertEquals(user.getId(), user2.getId());
     }
 

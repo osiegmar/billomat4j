@@ -22,6 +22,7 @@ package de.siegmar.billomat4j.service.impl;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.apache.commons.lang3.Validate;
 
@@ -69,7 +70,7 @@ public class CreditNoteService extends AbstractService
     // CreditNote
 
     @Override
-    public String getCustomFieldValue(final int creditNoteId) {
+    public Optional<String> getCustomFieldValue(final int creditNoteId) {
         return getCustomField(RESOURCE, creditNoteId);
     }
 
@@ -108,10 +109,10 @@ public class CreditNoteService extends AbstractService
      * Gets a credit note by its id.
      *
      * @param creditNoteId the credit note's id
-     * @return the credit note or {@code null} if not found
+     * @return the credit note
      * @throws ServiceException if an error occurred while accessing the web service
      */
-    public CreditNote getCreditNoteById(final int creditNoteId) {
+    public Optional<CreditNote> getCreditNoteById(final int creditNoteId) {
         return getById(RESOURCE, CreditNote.class, creditNoteId);
     }
 
@@ -119,12 +120,12 @@ public class CreditNoteService extends AbstractService
      * Gets a credit note by its credit note number.
      *
      * @param creditNoteNumber the credit note number, must not be empty / {@code null}
-     * @return the credit note or {@code null} if not found
+     * @return the credit note
      * @throws NullPointerException     if creditNoteNumber is null
      * @throws IllegalArgumentException if creditNoteNumber is empty
      * @throws ServiceException         if an error occurred while accessing the web service
      */
-    public CreditNote getCreditNoteByNumber(final String creditNoteNumber) {
+    public Optional<CreditNote> getCreditNoteByNumber(final String creditNoteNumber) {
         return single(findCreditNotes(new CreditNoteFilter().byCreditNoteNumber(Validate.notEmpty(creditNoteNumber))));
     }
 
@@ -156,26 +157,26 @@ public class CreditNoteService extends AbstractService
 
     /**
      * @param creditNoteId the id of the credit note to get the PDF for
-     * @return the credit note PDF or {@code null} if not found
+     * @return the credit note PDF
      * @throws ServiceException if an error occurred while accessing the web service
      * @see #getCreditNoteSignedPdf(int)
      */
-    public CreditNotePdf getCreditNotePdf(final int creditNoteId) {
+    public Optional<CreditNotePdf> getCreditNotePdf(final int creditNoteId) {
         return getCreditNotePdf(creditNoteId, null);
     }
 
-    private CreditNotePdf getCreditNotePdf(final int creditNoteId, final Map<String, String> filter) {
+    private Optional<CreditNotePdf> getCreditNotePdf(final int creditNoteId, final Map<String, String> filter) {
         return getPdf(RESOURCE, CreditNotePdf.class, creditNoteId, filter);
     }
 
     /**
      * @param creditNoteId the id of the credit note to get the signed PDF for
-     * @return the signed credit note PDF or {@code null} if not found
+     * @return the signed credit note PDF
      * @throws ServiceException if an error occurred while accessing the web service
      * @see #uploadCreditNoteSignedPdf(int, byte[])
      * @see #getCreditNotePdf(int)
      */
-    public CreditNotePdf getCreditNoteSignedPdf(final int creditNoteId) {
+    public Optional<CreditNotePdf> getCreditNoteSignedPdf(final int creditNoteId) {
         final Map<String, String> filter = Collections.singletonMap("type", "signed");
         return getCreditNotePdf(creditNoteId, filter);
     }
@@ -221,7 +222,7 @@ public class CreditNoteService extends AbstractService
     }
 
     @Override
-    public CreditNoteItem getItemById(final int creditNoteItemId) {
+    public Optional<CreditNoteItem> getItemById(final int creditNoteItemId) {
         return getById(RESOURCE_ITEMS, CreditNoteItem.class, creditNoteItemId);
     }
 
@@ -255,7 +256,7 @@ public class CreditNoteService extends AbstractService
     }
 
     @Override
-    public CreditNoteComment getCommentById(final int creditNoteCommentId) {
+    public Optional<CreditNoteComment> getCommentById(final int creditNoteCommentId) {
         return getById(RESOURCE_COMMENTS, CreditNoteComment.class, creditNoteCommentId);
     }
 
@@ -277,7 +278,7 @@ public class CreditNoteService extends AbstractService
     }
 
     @Override
-    public CreditNotePayment getPaymentById(final int creditNotePaymentId) {
+    public Optional<CreditNotePayment> getPaymentById(final int creditNotePaymentId) {
         return getById(RESOURCE_PAYMENTS, CreditNotePayment.class, creditNotePaymentId);
     }
 
@@ -299,7 +300,7 @@ public class CreditNoteService extends AbstractService
     }
 
     @Override
-    public CreditNoteTag getTagById(final int creditNoteTagId) {
+    public Optional<CreditNoteTag> getTagById(final int creditNoteTagId) {
         return getById(RESOURCE_TAGS, CreditNoteTag.class, creditNoteTagId);
     }
 

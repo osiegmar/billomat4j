@@ -22,6 +22,7 @@ package de.siegmar.billomat4j.service.impl;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.apache.commons.lang3.Validate;
 
@@ -53,7 +54,7 @@ public class ReminderService extends AbstractService
     // Reminder
 
     @Override
-    public String getCustomFieldValue(final int reminderId) {
+    public Optional<String> getCustomFieldValue(final int reminderId) {
         return getCustomField(RESOURCE, reminderId);
     }
 
@@ -76,10 +77,10 @@ public class ReminderService extends AbstractService
      * Gets a reminder by its id.
      *
      * @param reminderId the reminder's id
-     * @return the reminder or {@code null} if not found
+     * @return the reminder
      * @throws ServiceException if an error occurred while accessing the web service
      */
-    public Reminder getReminderById(final int reminderId) {
+    public Optional<Reminder> getReminderById(final int reminderId) {
         return getById(RESOURCE, Reminder.class, reminderId);
     }
 
@@ -111,25 +112,25 @@ public class ReminderService extends AbstractService
 
     /**
      * @param reminderId the id of the reminder to get the PDF for
-     * @return the reminder PDF or {@code null} if not found
+     * @return the reminder PDF
      * @throws ServiceException if an error occurred while accessing the web service
      */
-    public ReminderPdf getReminderPdf(final int reminderId) {
+    public Optional<ReminderPdf> getReminderPdf(final int reminderId) {
         return getReminderPdf(reminderId, null);
     }
 
-    private ReminderPdf getReminderPdf(final int reminderId, final Map<String, String> filter) {
+    private Optional<ReminderPdf> getReminderPdf(final int reminderId, final Map<String, String> filter) {
         return getPdf(RESOURCE, ReminderPdf.class, reminderId, filter);
     }
 
     /**
      * @param reminderId the id of the reminder to get the signed PDF for
-     * @return the signed reminder PDF or {@code null} if not found
+     * @return the signed reminder PDF
      * @throws ServiceException if an error occurred while accessing the web service
      * @see #uploadReminderSignedPdf(int, byte[])
      * @see #getReminderPdf(int)
      */
-    public ReminderPdf getReminderSignedPdf(final int reminderId) {
+    public Optional<ReminderPdf> getReminderSignedPdf(final int reminderId) {
         final Map<String, String> filter = Collections.singletonMap("type", "signed");
         return getReminderPdf(reminderId, filter);
     }
@@ -190,7 +191,7 @@ public class ReminderService extends AbstractService
     }
 
     @Override
-    public ReminderItem getItemById(final int reminderItemId) {
+    public Optional<ReminderItem> getItemById(final int reminderItemId) {
         return getById(RESOURCE_ITEMS, ReminderItem.class, reminderItemId);
     }
 
@@ -217,7 +218,7 @@ public class ReminderService extends AbstractService
     }
 
     @Override
-    public ReminderTag getTagById(final int reminderTagId) {
+    public Optional<ReminderTag> getTagById(final int reminderTagId) {
         return getById(RESOURCE_TAGS, ReminderTag.class, reminderTagId);
     }
 

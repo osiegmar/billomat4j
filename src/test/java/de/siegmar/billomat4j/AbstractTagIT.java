@@ -61,7 +61,7 @@ public abstract class AbstractTagIT<T extends AbstractTag> {
             assertEquals(tag2.getId(), service.getTags(owner2).get(0).getId());
 
             // Find tag
-            assertEquals(tag1.getId(), service.getTagById(tag1.getId()).getId());
+            assertEquals(tag1.getId(), service.getTagById(tag1.getId()).orElseThrow().getId());
 
             // Cleanup
             service.deleteTag(tag1.getId());

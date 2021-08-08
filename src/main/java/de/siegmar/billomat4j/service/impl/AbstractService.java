@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.apache.commons.lang3.Validate;
 
@@ -82,16 +83,16 @@ abstract class AbstractService {
     }
 
     protected <T> T getMySelf(final String resource, final Class<T> wrapperClass) {
-        return getById(resource, wrapperClass, "myself");
+        return getById(resource, wrapperClass, "myself").orElseThrow();
     }
 
-    protected <T> T getById(final String resource, final Class<T> wrapperClass, final Object id) {
+    protected <T> Optional<T> getById(final String resource, final Class<T> wrapperClass, final Object id) {
         try {
             final byte[] data = requestHelper.get(resource, id.toString(), null, null);
             if (data == null) {
-                return null;
+                return Optional.empty();
             }
-            return objectReader.forType(wrapperClass).readValue(data);
+            return Optional.of(objectReader.forType(wrapperClass).readValue(data));
         } catch (final IOException e) {
             throw new ServiceException(e);
         }
@@ -157,12 +158,16 @@ abstract class AbstractService {
         }
     }
 
-    protected <T extends AbstractDocumentPdf> T getPdf(final String resource, final Class<T> clazz, final int id,
-                                                       final Map<String, String> filter) {
+    protected <T extends AbstractDocumentPdf> Optional<T> getPdf(
+        final String resource, final Class<T> clazz, final int id,
+        final Map<String, String> filter) {
 
         try {
             final byte[] data = requestHelper.get(resource, Integer.toString(id), "pdf", filter);
-            return objectReader.forType(clazz).readValue(data);
+            if (data == null) {
+                return Optional.empty();
+            }
+            return Optional.of(objectReader.forType(clazz).readValue(data));
         } catch (final IOException e) {
             throw new ServiceException(e);
         }
@@ -183,12 +188,15 @@ abstract class AbstractService {
         }
     }
 
-    protected String getCustomField(final String resource, final int id) {
+    protected Optional<String> getCustomField(final String resource, final int id) {
         final ObjectMapper mapper = new ObjectMapper();
         try {
             final byte[] data = requestHelper.get(resource, Integer.toString(id), "customfield", null);
+            if (data == null) {
+                return Optional.empty();
+            }
             final JsonNode jsonNode = mapper.readValue(data, JsonNode.class);
-            return jsonNode.findValue("customfield").asText();
+            return Optional.of(jsonNode.findValue("customfield").asText());
         } catch (final IOException e) {
             throw new ServiceException(e);
         }
@@ -209,16 +217,16 @@ abstract class AbstractService {
         }
     }
 
-    protected static <T> T single(final List<T> list) {
+    protected static <T> Optional<T> single(final List<T> list) {
         if (list.isEmpty()) {
-            return null;
+            return Optional.empty();
         }
 
         if (list.size() > 1) {
             throw new IllegalArgumentException("list must not contain > 1 elements");
         }
 
-        return list.get(0);
+        return Optional.of(list.get(0));
     }
 
 }

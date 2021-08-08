@@ -72,8 +72,8 @@ public class ReminderTagIT extends AbstractTagIT<ReminderTag> {
 
     @Override
     protected void deleteOwner(final int ownerId) {
-        final int invoiceId = ServiceHolder.REMINDER.getReminderById(ownerId).getInvoiceId();
-        final int clientId = ServiceHolder.INVOICE.getInvoiceById(invoiceId).getClientId();
+        final int invoiceId = ServiceHolder.REMINDER.getReminderById(ownerId).orElseThrow().getInvoiceId();
+        final int clientId = ServiceHolder.INVOICE.getInvoiceById(invoiceId).orElseThrow().getClientId();
         ServiceHolder.REMINDER.deleteReminder(ownerId);
         ServiceHolder.INVOICE.deleteInvoice(invoiceId);
         ServiceHolder.CLIENT.deleteClient(clientId);

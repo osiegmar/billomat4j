@@ -144,7 +144,7 @@ public class TemplateServiceIT {
         assertNotNull(template.getId());
 
         // Load by Id
-        final Template templateLoaded = templateService.getTemplateById(template.getId());
+        final Template templateLoaded = templateService.getTemplateById(template.getId()).orElseThrow();
         assertEquals(template.getCreated(), templateLoaded.getCreated());
     }
 
@@ -161,7 +161,7 @@ public class TemplateServiceIT {
         templateService.updateTemplate(template);
 
         // Load by Id
-        final Template templateLoaded = templateService.getTemplateById(template.getId());
+        final Template templateLoaded = templateService.getTemplateById(template.getId()).orElseThrow();
         assertEquals("RTF Template", templateLoaded.getName());
         assertEquals(template.getCreated(), templateLoaded.getCreated());
     }
@@ -174,7 +174,7 @@ public class TemplateServiceIT {
         assertNotNull(template.getId());
 
         // Preview
-        final byte[] preview = templateService.getTemplatePreview(template.getId(), ImageFormat.jpg);
+        final byte[] preview = templateService.getTemplatePreview(template.getId(), ImageFormat.jpg).orElseThrow();
         assertTrue(preview.length > 0);
     }
 

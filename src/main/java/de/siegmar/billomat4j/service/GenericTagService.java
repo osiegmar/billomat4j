@@ -20,6 +20,7 @@
 package de.siegmar.billomat4j.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import de.siegmar.billomat4j.domain.AbstractTag;
 
@@ -41,11 +42,11 @@ public interface GenericTagService<T extends AbstractTag> {
      *
      * @param tagId
      *            the tags id
-     * @return the tag or {@code null} if not found
+     * @return the tag
      * @throws de.siegmar.billomat4j.service.impl.ServiceException
      *             if an error occurred while accessing the web service
      */
-    T getTagById(int tagId);
+    Optional<T> getTagById(int tagId);
 
     /**
      * @param tag

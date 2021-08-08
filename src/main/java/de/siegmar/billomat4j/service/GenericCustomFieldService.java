@@ -19,6 +19,8 @@
 
 package de.siegmar.billomat4j.service;
 
+import java.util.Optional;
+
 public interface GenericCustomFieldService {
 
     /**
@@ -29,7 +31,7 @@ public interface GenericCustomFieldService {
      * @throws de.siegmar.billomat4j.service.impl.ServiceException
      *             if an error occurred while accessing the web service
      */
-    String getCustomFieldValue(int ownerId);
+    Optional<String> getCustomFieldValue(int ownerId);
 
     /**
      * Sets a custom field value.

@@ -21,6 +21,7 @@ package de.siegmar.billomat4j.service.impl;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 import org.apache.commons.lang3.Validate;
 
@@ -41,7 +42,7 @@ public class TemplateService extends AbstractService implements GenericCustomFie
     // Template
 
     @Override
-    public String getCustomFieldValue(final int templateId) {
+    public Optional<String> getCustomFieldValue(final int templateId) {
         return getCustomField(RESOURCE, templateId);
     }
 
@@ -63,10 +64,10 @@ public class TemplateService extends AbstractService implements GenericCustomFie
      * Gets a template by its id.
      *
      * @param templateId the template's id
-     * @return the template or {@code null} if not found
+     * @return the template
      * @throws ServiceException if an error occurred while accessing the web service
      */
-    public Template getTemplateById(final int templateId) {
+    public Optional<Template> getTemplateById(final int templateId) {
         return getById(RESOURCE, Template.class, templateId);
     }
 
@@ -99,15 +100,15 @@ public class TemplateService extends AbstractService implements GenericCustomFie
     /**
      * @param templateId  the id of the template to obtain a preview for
      * @param imageFormat the image file format this method should render
-     * @return the template preview as binary data or {@code null} if template couldn't be found
+     * @return the template preview as binary data
      * @throws ServiceException if an error occurred while accessing the web service
      */
-    public byte[] getTemplatePreview(final int templateId, final ImageFormat imageFormat) {
+    public Optional<byte[]> getTemplatePreview(final int templateId, final ImageFormat imageFormat) {
         Validate.notNull(imageFormat);
 
         try {
-            return requestHelper.get(RESOURCE, Integer.toString(templateId), "thumb",
-                new GenericFilter("format", imageFormat).toMap());
+            return Optional.ofNullable(requestHelper.get(RESOURCE, Integer.toString(templateId), "thumb",
+                new GenericFilter("format", imageFormat).toMap()));
         } catch (final IOException e) {
             throw new ServiceException(e);
         }

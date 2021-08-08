@@ -20,6 +20,7 @@
 package de.siegmar.billomat4j.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.apache.commons.lang3.Validate;
 
@@ -59,7 +60,7 @@ public class DeliveryNoteService extends AbstractService
     // DeliveryNote
 
     @Override
-    public String getCustomFieldValue(final int deliveryNoteId) {
+    public Optional<String> getCustomFieldValue(final int deliveryNoteId) {
         return getCustomField(RESOURCE, deliveryNoteId);
     }
 
@@ -72,11 +73,11 @@ public class DeliveryNoteService extends AbstractService
         return getAllPagesFromResource(RESOURCE, DeliveryNotes.class, deliveryNoteFilter);
     }
 
-    public DeliveryNote getDeliveryNoteById(final int deliveryNoteId) {
+    public Optional<DeliveryNote> getDeliveryNoteById(final int deliveryNoteId) {
         return getById(RESOURCE, DeliveryNote.class, deliveryNoteId);
     }
 
-    public DeliveryNote getDeliveryNoteByNumber(final String deliveryNoteNumber) {
+    public Optional<DeliveryNote> getDeliveryNoteByNumber(final String deliveryNoteNumber) {
         Validate.notEmpty(deliveryNoteNumber);
         return single(findDeliveryNotes(new DeliveryNoteFilter().byDeliveryNoteNumber(deliveryNoteNumber)));
     }
@@ -93,7 +94,7 @@ public class DeliveryNoteService extends AbstractService
         delete(RESOURCE, deliveryNoteId);
     }
 
-    public DeliveryNotePdf getDeliveryNotePdf(final int deliveryNoteId) {
+    public Optional<DeliveryNotePdf> getDeliveryNotePdf(final int deliveryNoteId) {
         return getPdf(RESOURCE, DeliveryNotePdf.class, deliveryNoteId, null);
     }
 
@@ -117,7 +118,7 @@ public class DeliveryNoteService extends AbstractService
     }
 
     @Override
-    public DeliveryNoteItem getItemById(final int deliveryNoteItemId) {
+    public Optional<DeliveryNoteItem> getItemById(final int deliveryNoteItemId) {
         return getById(RESOURCE_ITEMS, DeliveryNoteItem.class, deliveryNoteItemId);
     }
 
@@ -147,7 +148,7 @@ public class DeliveryNoteService extends AbstractService
     }
 
     @Override
-    public DeliveryNoteComment getCommentById(final int deliveryNoteCommentId) {
+    public Optional<DeliveryNoteComment> getCommentById(final int deliveryNoteCommentId) {
         return getById(RESOURCE_COMMENTS, DeliveryNoteComment.class, deliveryNoteCommentId);
     }
 
@@ -169,7 +170,7 @@ public class DeliveryNoteService extends AbstractService
     }
 
     @Override
-    public DeliveryNoteTag getTagById(final int deliveryNoteTagId) {
+    public Optional<DeliveryNoteTag> getTagById(final int deliveryNoteTagId) {
         return getById(RESOURCE_TAGS, DeliveryNoteTag.class, deliveryNoteTagId);
     }
 

@@ -22,7 +22,6 @@ package de.siegmar.billomat4j.recurring;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.math.BigDecimal;
@@ -93,7 +92,7 @@ public class RecurringServiceIT {
     @Test
     public void getById() {
         final Recurring recurring = createRecurring(PaymentType.BANK_TRANSFER);
-        assertEquals(recurring.getId(), recurringService.getRecurringById(recurring.getId()).getId());
+        assertEquals(recurring.getId(), recurringService.getRecurringById(recurring.getId()).orElseThrow().getId());
     }
 
     @Test
@@ -102,7 +101,7 @@ public class RecurringServiceIT {
         recurring.setLabel("Test Label");
         recurringService.updateRecurring(recurring);
         assertEquals("Test Label", recurring.getLabel());
-        assertEquals("Test Label", recurringService.getRecurringById(recurring.getId()).getLabel());
+        assertEquals("Test Label", recurringService.getRecurringById(recurring.getId()).orElseThrow().getLabel());
     }
 
     @Test
@@ -113,7 +112,7 @@ public class RecurringServiceIT {
         recurringService.deleteRecurring(recurring.getId());
         clientService.deleteClient(clientId);
 
-        assertNull(recurringService.getRecurringById(recurring.getId()));
+        assertTrue(recurringService.getRecurringById(recurring.getId()).isEmpty());
 
         createdRecurrings.remove(recurring);
     }
@@ -138,7 +137,7 @@ public class RecurringServiceIT {
         recurringEmailReceiver.setType(RecipientType.Cc);
         recurringService.updateRecurringEmailReceiver(recurringEmailReceiver);
         assertEquals(RecipientType.Cc,
-            recurringService.getRecurringEmailReceiverById(recurringEmailReceiver.getId()).getType());
+            recurringService.getRecurringEmailReceiverById(recurringEmailReceiver.getId()).orElseThrow().getType());
 
         recurringService.deleteRecurringEmailReceiver(recurringEmailReceiver.getId());
     }

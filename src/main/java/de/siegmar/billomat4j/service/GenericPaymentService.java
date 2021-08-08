@@ -20,6 +20,7 @@
 package de.siegmar.billomat4j.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import de.siegmar.billomat4j.domain.AbstractPayment;
 import de.siegmar.billomat4j.domain.AbstractPaymentFilter;
@@ -40,11 +41,11 @@ public interface GenericPaymentService<P extends AbstractPayment, F extends Abst
      *
      * @param paymentId
      *            the payment's id
-     * @return the payment or {@code null} if not found
+     * @return the payment
      * @throws de.siegmar.billomat4j.service.impl.ServiceException
      *             if an error occurred while accessing the web service
      */
-    P getPaymentById(int paymentId);
+    Optional<P> getPaymentById(int paymentId);
 
     /**
      * @param payment

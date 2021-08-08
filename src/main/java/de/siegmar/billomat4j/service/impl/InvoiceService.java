@@ -22,6 +22,7 @@ package de.siegmar.billomat4j.service.impl;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.apache.commons.lang3.Validate;
 
@@ -69,7 +70,7 @@ public class InvoiceService extends AbstractService
     // Invoice
 
     @Override
-    public String getCustomFieldValue(final int invoiceId) {
+    public Optional<String> getCustomFieldValue(final int invoiceId) {
         return getCustomField(RESOURCE, invoiceId);
     }
 
@@ -107,10 +108,10 @@ public class InvoiceService extends AbstractService
      * Gets a invoice by its id.
      *
      * @param invoiceId the invoice's id
-     * @return the invoice or {@code null} if not found
+     * @return the invoice
      * @throws ServiceException if an error occurred while accessing the web service
      */
-    public Invoice getInvoiceById(final int invoiceId) {
+    public Optional<Invoice> getInvoiceById(final int invoiceId) {
         return getById(RESOURCE, Invoice.class, invoiceId);
     }
 
@@ -118,12 +119,12 @@ public class InvoiceService extends AbstractService
      * Gets a invoice by its invoice number.
      *
      * @param invoiceNumber the invoice number, must not be empty / {@code null}
-     * @return the invoice or {@code null} if not found
+     * @return the invoice
      * @throws NullPointerException     if invoiceNumber is null
      * @throws IllegalArgumentException if invoiceNumber is empty
      * @throws ServiceException         if an error occurred while accessing the web service
      */
-    public Invoice getInvoiceByNumber(final String invoiceNumber) {
+    public Optional<Invoice> getInvoiceByNumber(final String invoiceNumber) {
         return single(findInvoices(new InvoiceFilter().byInvoiceNumber(Validate.notEmpty(invoiceNumber))));
     }
 
@@ -155,25 +156,25 @@ public class InvoiceService extends AbstractService
 
     /**
      * @param invoiceId the id of the invoice to get the PDF for
-     * @return the invoice PDF or {@code null} if not found
+     * @return the invoice PDF
      * @throws ServiceException if an error occurred while accessing the web service
      */
-    public InvoicePdf getInvoicePdf(final int invoiceId) {
+    public Optional<InvoicePdf> getInvoicePdf(final int invoiceId) {
         return getInvoicePdf(invoiceId, null);
     }
 
-    private InvoicePdf getInvoicePdf(final int invoiceId, final Map<String, String> filter) {
+    private Optional<InvoicePdf> getInvoicePdf(final int invoiceId, final Map<String, String> filter) {
         return getPdf(RESOURCE, InvoicePdf.class, invoiceId, filter);
     }
 
     /**
      * @param invoiceId the id of the invoice to get the signed PDF for
-     * @return the signed invoice PDF or {@code null} if not found
+     * @return the signed invoice PDF
      * @throws ServiceException if an error occurred while accessing the web service
      * @see #uploadInvoiceSignedPdf(int, byte[])
      * @see #getInvoicePdf(int)
      */
-    public InvoicePdf getInvoiceSignedPdf(final int invoiceId) {
+    public Optional<InvoicePdf> getInvoiceSignedPdf(final int invoiceId) {
         final Map<String, String> filter = Collections.singletonMap("type", "signed");
         return getInvoicePdf(invoiceId, filter);
     }
@@ -234,7 +235,7 @@ public class InvoiceService extends AbstractService
     }
 
     @Override
-    public InvoiceItem getItemById(final int invoiceItemId) {
+    public Optional<InvoiceItem> getItemById(final int invoiceItemId) {
         return getById(RESOURCE_ITEMS, InvoiceItem.class, invoiceItemId);
     }
 
@@ -262,7 +263,7 @@ public class InvoiceService extends AbstractService
     }
 
     @Override
-    public InvoiceComment getCommentById(final int invoiceCommentId) {
+    public Optional<InvoiceComment> getCommentById(final int invoiceCommentId) {
         return getById(RESOURCE_COMMENTS, InvoiceComment.class, invoiceCommentId);
     }
 
@@ -284,7 +285,7 @@ public class InvoiceService extends AbstractService
     }
 
     @Override
-    public InvoicePayment getPaymentById(final int invoicePaymentId) {
+    public Optional<InvoicePayment> getPaymentById(final int invoicePaymentId) {
         return getById(RESOURCE_PAYMENTS, InvoicePayment.class, invoicePaymentId);
     }
 
@@ -306,7 +307,7 @@ public class InvoiceService extends AbstractService
     }
 
     @Override
-    public InvoiceTag getTagById(final int invoiceTagId) {
+    public Optional<InvoiceTag> getTagById(final int invoiceTagId) {
         return getById(RESOURCE_TAGS, InvoiceTag.class, invoiceTagId);
     }
 

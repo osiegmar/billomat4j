@@ -85,7 +85,7 @@ public class ArticleServiceIT {
         article.setTitle("Test Article (updated)");
         articleService.updateArticle(article);
         assertEquals("Test Article (updated)", article.getTitle());
-        assertEquals("Test Article (updated)", articleService.getArticleById(article.getId()).getTitle());
+        assertEquals("Test Article (updated)", articleService.getArticleById(article.getId()).orElseThrow().getTitle());
     }
 
     @Test

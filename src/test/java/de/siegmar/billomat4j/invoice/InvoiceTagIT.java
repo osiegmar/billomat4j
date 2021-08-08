@@ -52,7 +52,7 @@ public class InvoiceTagIT extends AbstractTagIT<InvoiceTag> {
 
     @Override
     protected void deleteOwner(final int ownerId) {
-        final int clientId = ServiceHolder.INVOICE.getInvoiceById(ownerId).getClientId();
+        final int clientId = ServiceHolder.INVOICE.getInvoiceById(ownerId).orElseThrow().getClientId();
         ServiceHolder.INVOICE.deleteInvoice(ownerId);
         ServiceHolder.CLIENT.deleteClient(clientId);
     }
