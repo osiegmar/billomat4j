@@ -19,11 +19,10 @@
 
 package de.siegmar.billomat4j;
 
-import static org.junit.jupiter.api.extension.ExtensionContext.Namespace.GLOBAL;
-
 import java.util.ArrayList;
 import java.util.List;
 
+import org.junit.jupiter.api.extension.AfterAllCallback;
 import org.junit.jupiter.api.extension.BeforeAllCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
 
@@ -31,13 +30,12 @@ import de.siegmar.billomat4j.domain.template.Template;
 import de.siegmar.billomat4j.domain.template.TemplateFormat;
 import de.siegmar.billomat4j.domain.template.TemplateType;
 
-public class TemplateSetup implements BeforeAllCallback, ExtensionContext.Store.CloseableResource {
+public class TemplateSetup implements BeforeAllCallback, AfterAllCallback {
 
     private final List<Template> templates = new ArrayList<>();
 
     @Override
     public void beforeAll(final ExtensionContext context) {
-        context.getRoot().getStore(GLOBAL).put("TemplateSetup", this);
         setupTemplateService();
     }
 
@@ -60,7 +58,11 @@ public class TemplateSetup implements BeforeAllCallback, ExtensionContext.Store.
     }
 
     @Override
-    public void close() {
+    public void afterAll(final ExtensionContext context) {
+        deleteTemplates();
+    }
+
+    private void deleteTemplates() {
         for (final Template template : templates) {
             ServiceHolder.TEMPLATE.deleteTemplate(template.getId());
         }
