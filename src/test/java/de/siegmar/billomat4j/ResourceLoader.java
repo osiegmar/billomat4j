@@ -34,7 +34,7 @@ public final class ResourceLoader {
     public static byte[] loadFile(final String name) {
         final File f;
         try {
-            f = new File(ResourceLoader.class.getResource("/" + name).toURI().toURL().getFile());
+            f = new File(ClassLoader.getSystemResource("/" + name).toURI().toURL().getFile());
             return FileUtils.readFileToByteArray(f);
         } catch (final URISyntaxException e) {
             throw new IllegalStateException(e);
