@@ -219,7 +219,7 @@ public class InvoiceServiceIT extends AbstractServiceIT {
     }
 
     @Test
-    @Disabled
+    @Disabled("E-Mail")
     public void sendInvoiceViaEmail() {
         final Invoice invoice = createInvoice(1);
         invoiceService.completeInvoice(invoice.getId(), null);

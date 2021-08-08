@@ -148,7 +148,7 @@ public class OfferServiceIT extends AbstractServiceIT {
     }
 
     @Test
-    @Disabled
+    @Disabled("E-Mail")
     public void sendOfferViaEmail() {
         final Offer offer = createOffer(1);
         offerService.completeOffer(offer.getId(), null);

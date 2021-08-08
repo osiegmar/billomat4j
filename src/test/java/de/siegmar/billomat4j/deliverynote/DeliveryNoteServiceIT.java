@@ -177,7 +177,7 @@ public class DeliveryNoteServiceIT extends AbstractServiceIT {
     }
 
     @Test
-    @Disabled
+    @Disabled("E-Mail")
     public void sendDeliveryNoteViaEmail() {
         final DeliveryNote deliveryNote = createDeliveryNote(1);
         deliveryNoteService.completeDeliveryNote(deliveryNote.getId(), null);

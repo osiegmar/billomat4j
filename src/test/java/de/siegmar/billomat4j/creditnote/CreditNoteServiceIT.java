@@ -203,7 +203,7 @@ public class CreditNoteServiceIT extends AbstractServiceIT {
     }
 
     @Test
-    @Disabled
+    @Disabled("E-Mail")
     public void sendCreditNoteViaEmail() {
         final CreditNote creditNote = createCreditNote(1);
         creditNoteService.completeCreditNote(creditNote.getId(), null);

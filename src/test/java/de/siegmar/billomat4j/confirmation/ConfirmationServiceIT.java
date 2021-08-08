@@ -158,7 +158,7 @@ public class ConfirmationServiceIT extends AbstractServiceIT {
     }
 
     @Test
-    @Disabled
+    @Disabled("E-Mail")
     public void sendConfirmationViaEmail() {
         final Confirmation confirmation = createConfirmation(1);
         confirmationService.completeConfirmation(confirmation.getId(), null);

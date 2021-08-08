@@ -179,7 +179,7 @@ public class ReminderServiceIT extends AbstractServiceIT {
     }
 
     @Test
-    @Disabled
+    @Disabled("E-Mail")
     public void sendReminderViaEmail() {
         final Reminder reminder = createReminder(1);
         reminderService.completeReminder(reminder.getId(), null);
