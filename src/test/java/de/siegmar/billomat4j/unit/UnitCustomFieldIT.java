@@ -22,7 +22,6 @@ package de.siegmar.billomat4j.unit;
 import de.siegmar.billomat4j.AbstractCustomFieldServiceIT;
 import de.siegmar.billomat4j.domain.unit.Unit;
 
-
 public class UnitCustomFieldIT extends AbstractCustomFieldServiceIT {
 
     public UnitCustomFieldIT() {

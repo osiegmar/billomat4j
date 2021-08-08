@@ -19,16 +19,17 @@
 
 package de.siegmar.billomat4j.template;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertNotNull;
-import static org.testng.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
 
 import de.siegmar.billomat4j.AbstractServiceIT;
 import de.siegmar.billomat4j.domain.template.ImageFormat;
@@ -41,7 +42,7 @@ public class TemplateServiceIT extends AbstractServiceIT {
 
     private final List<Template> createdTemplates = new ArrayList<>();
 
-    @AfterMethod
+    @AfterEach
     public void cleanup() {
         for (final Template template : createdTemplates) {
             templateService.deleteTemplate(template.getId());
@@ -72,10 +73,10 @@ public class TemplateServiceIT extends AbstractServiceIT {
         final Iterator<Template> templatesIterator = templates.iterator();
         final Template foundTemplate1 = templatesIterator.next();
         final Template foundTemplate2 = templatesIterator.next();
-        assertEquals(foundTemplate1.getId(), template1.getId());
-        assertEquals(foundTemplate1.getType(), TemplateType.OFFER);
-        assertEquals(foundTemplate2.getId(), template2.getId());
-        assertEquals(foundTemplate2.getType(), TemplateType.CONFIRMATION);
+        assertEquals(template1.getId(), foundTemplate1.getId());
+        assertEquals(TemplateType.OFFER, foundTemplate1.getType());
+        assertEquals(template2.getId(), foundTemplate2.getId());
+        assertEquals(TemplateType.CONFIRMATION, foundTemplate2.getType());
     }
 
     private Template buildTemplate() {
@@ -122,12 +123,12 @@ public class TemplateServiceIT extends AbstractServiceIT {
         templates = templateService.findTemplates(templateFilter);
         assertTrue(templates.size() == 2);
         final Template foundTemplate1 = templates.get(0);
-        assertEquals(foundTemplate1.getId(), template1.getId());
-        assertEquals(foundTemplate1.getType(), TemplateType.OFFER);
+        assertEquals(template1.getId(), foundTemplate1.getId());
+        assertEquals(TemplateType.OFFER, foundTemplate1.getType());
 
         final Template foundTemplate2 = templates.get(1);
-        assertEquals(foundTemplate2.getId(), template3.getId());
-        assertEquals(foundTemplate2.getType(), TemplateType.INVOICE);
+        assertEquals(template3.getId(), foundTemplate2.getId());
+        assertEquals(TemplateType.INVOICE, foundTemplate2.getType());
     }
 
     @Test
@@ -139,7 +140,7 @@ public class TemplateServiceIT extends AbstractServiceIT {
 
         // Load by Id
         final Template templateLoaded = templateService.getTemplateById(template.getId());
-        assertEquals(templateLoaded.getCreated(), template.getCreated());
+        assertEquals(template.getCreated(), templateLoaded.getCreated());
     }
 
     @Test
@@ -155,8 +156,8 @@ public class TemplateServiceIT extends AbstractServiceIT {
 
         // Load by Id
         final Template templateLoaded = templateService.getTemplateById(template.getId());
-        assertEquals(templateLoaded.getName(), "RTF Template");
-        assertEquals(templateLoaded.getCreated(), template.getCreated());
+        assertEquals("RTF Template", templateLoaded.getName());
+        assertEquals(template.getCreated(), templateLoaded.getCreated());
     }
 
     @Test
@@ -169,7 +170,7 @@ public class TemplateServiceIT extends AbstractServiceIT {
         // Preview
         final byte[] preview = templateService.getTemplatePreview(template.getId(), ImageFormat.jpg);
         final byte[] localPreview = loadFile("preview.jpg");
-        assertEquals(preview, localPreview);
+        assertArrayEquals(localPreview, preview);
     }
 
 }

@@ -16,6 +16,6 @@
     <allow pkg="org.apache.commons.io"/>
     <allow pkg="org.apache.commons.lang3"/>
     <allow pkg="org.slf4j"/>
-    <allow pkg="org.testng"/>
+    <allow pkg="org.junit.jupiter.api"/>
 
 </import-control>

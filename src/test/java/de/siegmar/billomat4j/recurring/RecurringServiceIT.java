@@ -19,19 +19,19 @@
 
 package de.siegmar.billomat4j.recurring;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertFalse;
-import static org.testng.Assert.assertNotNull;
-import static org.testng.Assert.assertNull;
-import static org.testng.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
 
 import de.siegmar.billomat4j.AbstractServiceIT;
 import de.siegmar.billomat4j.domain.client.Client;
@@ -49,7 +49,7 @@ public class RecurringServiceIT extends AbstractServiceIT {
 
     // Recurring
 
-    @AfterMethod
+    @AfterEach
     public void cleanup() {
         for (final Recurring recurring : createdRecurrings) {
             final int clientId = recurring.getClientId();
@@ -59,7 +59,7 @@ public class RecurringServiceIT extends AbstractServiceIT {
         createdRecurrings.clear();
     }
 
-    @Test(singleThreaded = true)
+    @Test
     public void findAll() {
         assertTrue(recurringService.findRecurrings(null).isEmpty());
         createRecurring(PaymentType.BANK_TRANSFER);
@@ -76,8 +76,8 @@ public class RecurringServiceIT extends AbstractServiceIT {
         createRecurring(PaymentType.BANK_CARD);
 
         recurrings = recurringService.findRecurrings(recurringFilter);
-        assertEquals(recurrings.size(), 1);
-        assertEquals(recurrings.get(0).getId(), recurring1.getId());
+        assertEquals(1, recurrings.size());
+        assertEquals(recurring1.getId(), recurrings.get(0).getId());
     }
 
     @Test
@@ -89,7 +89,7 @@ public class RecurringServiceIT extends AbstractServiceIT {
     @Test
     public void getById() {
         final Recurring recurring = createRecurring(PaymentType.BANK_TRANSFER);
-        assertEquals(recurringService.getRecurringById(recurring.getId()).getId(), recurring.getId());
+        assertEquals(recurring.getId(), recurringService.getRecurringById(recurring.getId()).getId());
     }
 
     @Test
@@ -97,8 +97,8 @@ public class RecurringServiceIT extends AbstractServiceIT {
         final Recurring recurring = createRecurring(PaymentType.BANK_TRANSFER);
         recurring.setLabel("Test Label");
         recurringService.updateRecurring(recurring);
-        assertEquals(recurring.getLabel(), "Test Label");
-        assertEquals(recurringService.getRecurringById(recurring.getId()).getLabel(), "Test Label");
+        assertEquals("Test Label", recurring.getLabel());
+        assertEquals("Test Label", recurringService.getRecurringById(recurring.getId()).getLabel());
     }
 
     @Test
@@ -121,8 +121,8 @@ public class RecurringServiceIT extends AbstractServiceIT {
         final List<RecurringEmailReceiver> recurringEmailReceivers =
                 recurringService.getRecurringEmailReceivers(recurring.getId());
 
-        assertEquals(recurringEmailReceivers.size(), 1);
-        assertEquals(recurringEmailReceivers.get(0).getAddress(), "");
+        assertEquals(1, recurringEmailReceivers.size());
+        assertEquals("", recurringEmailReceivers.get(0).getAddress());
 
         final RecurringEmailReceiver recurringEmailReceiver = new RecurringEmailReceiver();
         recurringEmailReceiver.setRecurringId(recurring.getId());
@@ -134,8 +134,8 @@ public class RecurringServiceIT extends AbstractServiceIT {
 
         recurringEmailReceiver.setType(RecipientType.Cc);
         recurringService.updateRecurringEmailReceiver(recurringEmailReceiver);
-        assertEquals(recurringService.getRecurringEmailReceiverById(recurringEmailReceiver.getId()).getType(),
-                RecipientType.Cc);
+        assertEquals(RecipientType.Cc,
+            recurringService.getRecurringEmailReceiverById(recurringEmailReceiver.getId()).getType());
 
         recurringService.deleteRecurringEmailReceiver(recurringEmailReceiver.getId());
     }

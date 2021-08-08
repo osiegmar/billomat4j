@@ -19,12 +19,12 @@
 
 package de.siegmar.billomat4j;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.List;
 
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
 
 import de.siegmar.billomat4j.domain.AbstractTag;
 import de.siegmar.billomat4j.service.GenericTagService;
@@ -54,14 +54,14 @@ public abstract class AbstractTagIT<T extends AbstractTag> extends AbstractServi
 
             // Find tags
             tags = service.getTags(null);
-            assertEquals(tags.size(), 2);
+            assertEquals(2, tags.size());
 
             // Find tags by owner
-            assertEquals(service.getTags(owner1).get(0).getId(), tag1.getId());
-            assertEquals(service.getTags(owner2).get(0).getId(), tag2.getId());
+            assertEquals(tag1.getId(), service.getTags(owner1).get(0).getId());
+            assertEquals(tag2.getId(), service.getTags(owner2).get(0).getId());
 
             // Find tag
-            assertEquals(service.getTagById(tag1.getId()).getId(), tag1.getId());
+            assertEquals(tag1.getId(), service.getTagById(tag1.getId()).getId());
 
             // Cleanup
             service.deleteTag(tag1.getId());

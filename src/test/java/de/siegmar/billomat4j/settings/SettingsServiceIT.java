@@ -19,14 +19,14 @@
 
 package de.siegmar.billomat4j.settings;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertNotNull;
-import static org.testng.Assert.assertNull;
-import static org.testng.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.math.BigDecimal;
 
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
 
 import de.siegmar.billomat4j.AbstractServiceIT;
 import de.siegmar.billomat4j.domain.settings.CountryTax;
@@ -48,16 +48,16 @@ public class SettingsServiceIT extends AbstractServiceIT {
     public void update() {
         // Get
         Settings settings = settingsService.getSettings();
-        assertEquals(settings.getInvoiceIntro(), "");
+        assertEquals("", settings.getInvoiceIntro());
 
         // Update
         settings.setInvoiceIntro("Invoice Intro");
         settingsService.updateSettings(settings);
-        assertEquals(settings.getInvoiceIntro(), "Invoice Intro");
+        assertEquals("Invoice Intro", settings.getInvoiceIntro());
 
         // Compare
         settings = settingsService.getSettings();
-        assertEquals(settings.getInvoiceIntro(), "Invoice Intro");
+        assertEquals("Invoice Intro", settings.getInvoiceIntro());
 
         // Revert
         settings.setInvoiceIntro("");
@@ -65,7 +65,7 @@ public class SettingsServiceIT extends AbstractServiceIT {
 
         // Compare
         settings = settingsService.getSettings();
-        assertEquals(settings.getInvoiceIntro(), "");
+        assertEquals("", settings.getInvoiceIntro());
     }
 
     // Tax
@@ -84,8 +84,8 @@ public class SettingsServiceIT extends AbstractServiceIT {
 
         tax.setName("Test Tax Update");
         settingsService.updateTax(tax);
-        assertEquals(tax.getName(), "Test Tax Update");
-        assertEquals(settingsService.getTaxById(taxId).getName(), "Test Tax Update");
+        assertEquals("Test Tax Update", tax.getName());
+        assertEquals("Test Tax Update", settingsService.getTaxById(taxId).getName());
 
         settingsService.deleteTax(taxId);
         assertNull(settingsService.getTaxById(taxId));
@@ -106,8 +106,8 @@ public class SettingsServiceIT extends AbstractServiceIT {
 
         countryTax.setCountryCode("AT");
         settingsService.updateCountryTax(countryTax);
-        assertEquals(countryTax.getCountryCode(), "AT");
-        assertEquals(settingsService.getCountryTaxById(taxId).getCountryCode(), "AT");
+        assertEquals("AT", countryTax.getCountryCode());
+        assertEquals("AT", settingsService.getCountryTaxById(taxId).getCountryCode());
 
         settingsService.deleteCountryTax(taxId);
         assertNull(settingsService.getCountryTaxById(taxId));
@@ -134,8 +134,8 @@ public class SettingsServiceIT extends AbstractServiceIT {
 
         reminderText.setName("Test ReminderText Update");
         settingsService.updateReminderText(reminderText);
-        assertEquals(reminderText.getName(), "Test ReminderText Update");
-        assertEquals(settingsService.getReminderTextById(reminderTextId).getName(), "Test ReminderText Update");
+        assertEquals("Test ReminderText Update", reminderText.getName());
+        assertEquals("Test ReminderText Update", settingsService.getReminderTextById(reminderTextId).getName());
 
         settingsService.deleteReminderText(reminderTextId);
         assertNull(settingsService.getReminderTextById(reminderTextId));

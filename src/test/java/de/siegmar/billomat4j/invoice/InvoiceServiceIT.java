@@ -19,11 +19,12 @@
 
 package de.siegmar.billomat4j.invoice;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertFalse;
-import static org.testng.Assert.assertNotNull;
-import static org.testng.Assert.assertNull;
-import static org.testng.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.math.BigDecimal;
 import java.nio.charset.StandardCharsets;
@@ -31,8 +32,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 import de.siegmar.billomat4j.AbstractServiceIT;
 import de.siegmar.billomat4j.domain.Email;
@@ -55,7 +57,7 @@ public class InvoiceServiceIT extends AbstractServiceIT {
 
     // Invoice
 
-    @AfterMethod
+    @AfterEach
     public void cleanup() {
         for (final Invoice invoice : createdInvoices) {
             final int clientId = invoice.getClientId();
@@ -82,8 +84,8 @@ public class InvoiceServiceIT extends AbstractServiceIT {
         createInvoice(2);
 
         invoices = invoiceService.findInvoices(invoiceFilter);
-        assertEquals(invoices.size(), 1);
-        assertEquals(invoices.get(0).getId(), invoice1.getId());
+        assertEquals(1, invoices.size());
+        assertEquals(invoice1.getId(), invoices.get(0).getId());
     }
 
     @Test
@@ -95,8 +97,8 @@ public class InvoiceServiceIT extends AbstractServiceIT {
         final Invoice invoice1 = createInvoice(1);
 
         invoices = invoiceService.findInvoices(invoiceFilter);
-        assertEquals(invoices.size(), 1);
-        assertEquals(invoices.get(0).getId(), invoice1.getId());
+        assertEquals(1, invoices.size());
+        assertEquals(invoice1.getId(), invoices.get(0).getId());
 
         final InvoiceFilter yesterdayFilter = new InvoiceFilter().byTo(LocalDate.now().minusDays(1));
         invoices = invoiceService.findInvoices(yesterdayFilter);
@@ -116,7 +118,7 @@ public class InvoiceServiceIT extends AbstractServiceIT {
         invoiceService.createInvoice(invoice);
         createdInvoices.add(invoice);
 
-        assertEquals(invoiceService.getInvoiceByNumber("I5").getId(), invoice.getId());
+        assertEquals(invoice.getId(), invoiceService.getInvoiceByNumber("I5").getId());
     }
 
     @Test
@@ -127,10 +129,10 @@ public class InvoiceServiceIT extends AbstractServiceIT {
         final List<InvoiceGroup> invoiceGroups =
                 invoiceService.getGroupedInvoices(new InvoiceGroupFilter().byDay(), null);
 
-        assertEquals(invoiceGroups.size(), 1);
+        assertEquals(1, invoiceGroups.size());
 
         final InvoiceGroup invoiceGroup = invoiceGroups.get(0);
-        assertEquals(invoiceGroup.getTotalNet(), invoice1.getTotalNet().add(invoice2.getTotalNet()));
+        assertEquals(invoice1.getTotalNet().add(invoice2.getTotalNet()), invoiceGroup.getTotalNet());
     }
 
     @Test
@@ -142,7 +144,7 @@ public class InvoiceServiceIT extends AbstractServiceIT {
     @Test
     public void getById() {
         final Invoice invoice = createInvoice(1);
-        assertEquals(invoiceService.getInvoiceById(invoice.getId()).getId(), invoice.getId());
+        assertEquals(invoice.getId(), invoiceService.getInvoiceById(invoice.getId()).getId());
     }
 
     @Test
@@ -150,8 +152,8 @@ public class InvoiceServiceIT extends AbstractServiceIT {
         final Invoice invoice = createInvoice(1);
         invoice.setLabel("Test Label");
         invoiceService.updateInvoice(invoice);
-        assertEquals(invoice.getLabel(), "Test Label");
-        assertEquals(invoiceService.getInvoiceById(invoice.getId()).getLabel(), "Test Label");
+        assertEquals("Test Label", invoice.getLabel());
+        assertEquals("Test Label", invoiceService.getInvoiceById(invoice.getId()).getLabel());
     }
 
     @Test
@@ -171,7 +173,7 @@ public class InvoiceServiceIT extends AbstractServiceIT {
     public void complete() {
         final Invoice invoice = createInvoice(1);
         invoiceService.completeInvoice(invoice.getId(), null);
-        assertEquals(invoiceService.getInvoiceById(invoice.getId()).getStatus(), InvoiceStatus.OPEN);
+        assertEquals(InvoiceStatus.OPEN, invoiceService.getInvoiceById(invoice.getId()).getStatus());
     }
 
     @Test
@@ -182,7 +184,7 @@ public class InvoiceServiceIT extends AbstractServiceIT {
         try {
             final Invoice invoice = createInvoice(1);
             invoiceService.completeInvoice(invoice.getId(), null);
-            assertEquals(invoiceService.getInvoiceById(invoice.getId()).getStatus(), InvoiceStatus.OPEN);
+            assertEquals(InvoiceStatus.OPEN, invoiceService.getInvoiceById(invoice.getId()).getStatus());
         } finally {
             templateService.deleteTemplate(template.getId());
         }
@@ -204,8 +206,8 @@ public class InvoiceServiceIT extends AbstractServiceIT {
         invoiceService.completeInvoice(invoice.getId(), null);
         invoiceService.uploadInvoiceSignedPdf(invoice.getId(), "dummy".getBytes(StandardCharsets.US_ASCII));
 
-        assertEquals(invoiceService.getInvoiceSignedPdf(invoice.getId()).getBase64file(),
-            "dummy".getBytes(StandardCharsets.US_ASCII));
+        assertArrayEquals("dummy".getBytes(StandardCharsets.US_ASCII),
+            invoiceService.getInvoiceSignedPdf(invoice.getId()).getBase64file());
     }
 
     @Test
@@ -216,7 +218,8 @@ public class InvoiceServiceIT extends AbstractServiceIT {
         assertNotNull(invoicePdf);
     }
 
-    @Test(enabled = false)
+    @Test
+    @Disabled
     public void sendInvoiceViaEmail() {
         final Invoice invoice = createInvoice(1);
         invoiceService.completeInvoice(invoice.getId(), null);
@@ -235,7 +238,7 @@ public class InvoiceServiceIT extends AbstractServiceIT {
         final Invoice invoice = createInvoice(1);
         invoiceService.completeInvoice(invoice.getId(), null);
         invoiceService.cancelInvoice(invoice.getId());
-        assertEquals(invoiceService.getInvoiceById(invoice.getId()).getStatus(), InvoiceStatus.CANCELED);
+        assertEquals(InvoiceStatus.CANCELED, invoiceService.getInvoiceById(invoice.getId()).getStatus());
     }
 
     private Invoice createInvoice(final int number) {

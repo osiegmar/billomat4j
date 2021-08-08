@@ -19,19 +19,18 @@
 
 package de.siegmar.billomat4j.article;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertFalse;
-import static org.testng.Assert.assertNotNull;
-import static org.testng.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Currency;
 import java.util.List;
 
-import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
 
 import de.siegmar.billomat4j.AbstractServiceIT;
 import de.siegmar.billomat4j.domain.article.Article;
@@ -43,7 +42,7 @@ public class ArticleServiceIT extends AbstractServiceIT {
 
     // Article
 
-    @AfterMethod
+    @AfterEach
     public void cleanup() {
         for (final Article article : createdArticles) {
             articleService.deleteArticle(article.getId());
@@ -83,15 +82,15 @@ public class ArticleServiceIT extends AbstractServiceIT {
         final Article article = createArticle("Test Article (update)");
         article.setTitle("Test Article (updated)");
         articleService.updateArticle(article);
-        assertEquals(article.getTitle(), "Test Article (updated)");
-        Assert.assertEquals(articleService.getArticleById(article.getId()).getTitle(), "Test Article (updated)");
+        assertEquals("Test Article (updated)", article.getTitle());
+        assertEquals("Test Article (updated)", articleService.getArticleById(article.getId()).getTitle());
     }
 
     @Test
     public void findFiltered() {
         final ArticleFilter articleFilter = new ArticleFilter().byTitle("Test Article1 (findFiltered)");
         List<Article> articles = articleService.findArticles(articleFilter);
-        assertEquals(articles.size(), 0);
+        assertEquals(0, articles.size());
 
         final Article article1 = createArticle("Test Article1 (findFiltered)");
         assertNotNull(article1.getId());
@@ -102,8 +101,8 @@ public class ArticleServiceIT extends AbstractServiceIT {
         assertNotNull(article2.getArticleNumber());
 
         articles = articleService.findArticles(articleFilter);
-        assertEquals(articles.size(), 1);
-        assertEquals(articles.get(0).getId(), article1.getId());
+        assertEquals(1, articles.size());
+        assertEquals(article1.getId(), articles.get(0).getId());
     }
 
 }

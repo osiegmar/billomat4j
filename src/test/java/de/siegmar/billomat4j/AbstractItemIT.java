@@ -19,15 +19,15 @@
 
 package de.siegmar.billomat4j;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertFalse;
-import static org.testng.Assert.assertNotNull;
-import static org.testng.Assert.assertNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import java.math.BigDecimal;
 import java.util.List;
 
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
 
 import de.siegmar.billomat4j.domain.AbstractItem;
 import de.siegmar.billomat4j.service.GenericItemService;
@@ -55,7 +55,7 @@ public abstract class AbstractItemIT<I extends AbstractItem> extends AbstractSer
 
             item.setQuantity(BigDecimal.valueOf(2));
             service.updateItem(item);
-            assertEquals(item.getQuantity().intValue(), 2);
+            assertEquals(2, item.getQuantity().intValue());
 
             service.deleteItem(item.getId());
             assertNull(service.getItemById(item.getId()));

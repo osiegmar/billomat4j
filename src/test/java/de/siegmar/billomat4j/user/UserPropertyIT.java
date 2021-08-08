@@ -23,7 +23,6 @@ import de.siegmar.billomat4j.AbstractPropertyIT;
 import de.siegmar.billomat4j.domain.settings.UserProperty;
 import de.siegmar.billomat4j.domain.user.UserPropertyValue;
 
-
 public class UserPropertyIT extends AbstractPropertyIT<UserProperty, UserPropertyValue> {
 
     public UserPropertyIT() {

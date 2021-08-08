@@ -19,33 +19,35 @@
 
 package de.siegmar.billomat4j.client;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.List;
 
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 
 import de.siegmar.billomat4j.AbstractServiceIT;
 import de.siegmar.billomat4j.domain.client.Client;
 import de.siegmar.billomat4j.domain.client.Contact;
 
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class ContactIT extends AbstractServiceIT {
 
     private Client client;
 
-    @BeforeClass
+    @BeforeAll
     public void setupClient() {
         client = new Client();
         client.setName("ContactTest Client");
         client.setCountryCode("DE");
         clientService.createClient(client);
-        assertEquals(clientService.findContacts(client.getId()).size(), 0);
+        assertEquals(0, clientService.findContacts(client.getId()).size());
     }
 
-    @AfterClass
+    @AfterAll
     public void cleanupClient() {
         clientService.deleteClient(client.getId());
     }
@@ -60,14 +62,14 @@ public class ContactIT extends AbstractServiceIT {
         assertNotNull(contact.getId());
 
         final List<Contact> contacts = clientService.findContacts(client.getId());
-        assertEquals(contacts.size(), 1);
-        assertEquals(contacts.get(0).getFirstName(), "Test");
+        assertEquals(1, contacts.size());
+        assertEquals("Test", contacts.get(0).getFirstName());
 
         final Contact foundContact = clientService.getContact(contacts.get(0).getId());
-        assertEquals(foundContact.getFirstName(), "Test");
+        assertEquals("Test", foundContact.getFirstName());
 
         clientService.deleteContact(foundContact.getId());
-        assertEquals(clientService.findContacts(client.getId()).size(), 0);
+        assertEquals(0, clientService.findContacts(client.getId()).size());
     }
 
 }

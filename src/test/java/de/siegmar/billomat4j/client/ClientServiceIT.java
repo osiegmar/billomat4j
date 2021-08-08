@@ -19,16 +19,16 @@
 
 package de.siegmar.billomat4j.client;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertFalse;
-import static org.testng.Assert.assertNotNull;
-import static org.testng.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
 
 import de.siegmar.billomat4j.AbstractServiceIT;
 import de.siegmar.billomat4j.domain.client.Client;
@@ -40,7 +40,7 @@ public class ClientServiceIT extends AbstractServiceIT {
 
     // Client
 
-    @AfterMethod
+    @AfterEach
     public void cleanup() {
         for (final Client client : createdClients) {
             clientService.deleteClient(client.getId());
@@ -67,9 +67,9 @@ public class ClientServiceIT extends AbstractServiceIT {
 
         // Find again
         clients = clientService.findClients(null);
-        assertEquals(clients.size(), 2);
-        assertEquals(clients.get(0).getId(), client1.getId());
-        assertEquals(clients.get(1).getId(), client2.getId());
+        assertEquals(2, clients.size());
+        assertEquals(client1.getId(), clients.get(0).getId());
+        assertEquals(client2.getId(), clients.get(1).getId());
     }
 
     private Client buildClient(final String name) {
@@ -117,8 +117,8 @@ public class ClientServiceIT extends AbstractServiceIT {
 
         // Find again
         clients = clientService.findClients(clientFilter);
-        assertEquals(clients.size(), 1);
-        assertEquals(clients.get(0).getId(), client1.getId());
+        assertEquals(1, clients.size());
+        assertEquals(client1.getId(), clients.get(0).getId());
     }
 
     @Test
@@ -136,7 +136,7 @@ public class ClientServiceIT extends AbstractServiceIT {
 
         // Get
         final Client clientById = clientService.getClientById(client.getId());
-        assertEquals(clientById.getId(), client.getId());
+        assertEquals(client.getId(), clientById.getId());
     }
 
     @Test
@@ -153,13 +153,13 @@ public class ClientServiceIT extends AbstractServiceIT {
         updateClient.setName("Updated Company");
         clientService.updateClient(updateClient);
 
-        assertEquals(updateClient.getName(), "Updated Company");
-        assertEquals(updateClient.getClientNumber(), "9999");
+        assertEquals("Updated Company", updateClient.getName());
+        assertEquals("9999", updateClient.getClientNumber());
 
         // Get
         final Client updatedClient = clientService.getClientById(client.getId());
-        assertEquals(updatedClient.getName(), "Updated Company");
-        assertEquals(updatedClient.getClientNumber(), "9999");
+        assertEquals("Updated Company", updatedClient.getName());
+        assertEquals("9999", updatedClient.getClientNumber());
     }
 
     @Test
@@ -173,13 +173,13 @@ public class ClientServiceIT extends AbstractServiceIT {
         // Update
         client.setName("Updated Company");
         clientService.updateClient(client);
-        assertEquals(client.getName(), "Updated Company");
-        assertEquals(client.getClientNumber(), "9999");
+        assertEquals("Updated Company", client.getName());
+        assertEquals("9999", client.getClientNumber());
 
         // Get
         final Client updatedClient = clientService.getClientById(client.getId());
-        assertEquals(updatedClient.getName(), "Updated Company");
-        assertEquals(updatedClient.getClientNumber(), "9999");
+        assertEquals("Updated Company", updatedClient.getName());
+        assertEquals("9999", updatedClient.getClientNumber());
     }
 
     @Test

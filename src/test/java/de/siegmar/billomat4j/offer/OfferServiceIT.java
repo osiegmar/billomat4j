@@ -19,18 +19,19 @@
 
 package de.siegmar.billomat4j.offer;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertFalse;
-import static org.testng.Assert.assertNotNull;
-import static org.testng.Assert.assertNull;
-import static org.testng.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 import de.siegmar.billomat4j.AbstractServiceIT;
 import de.siegmar.billomat4j.domain.Email;
@@ -50,7 +51,7 @@ public class OfferServiceIT extends AbstractServiceIT {
 
     // Offer
 
-    @AfterMethod
+    @AfterEach
     public void cleanup() {
         for (final Offer offer : createdOffers) {
             final int clientId = offer.getClientId();
@@ -77,8 +78,8 @@ public class OfferServiceIT extends AbstractServiceIT {
         createOffer(2);
 
         offers = offerService.findOffers(offerFilter);
-        assertEquals(offers.size(), 1);
-        assertEquals(offers.get(0).getId(), offer1.getId());
+        assertEquals(1, offers.size());
+        assertEquals(offer1.getId(), offers.get(0).getId());
     }
 
     @Test
@@ -90,7 +91,7 @@ public class OfferServiceIT extends AbstractServiceIT {
     @Test
     public void getById() {
         final Offer offer = createOffer(1);
-        assertEquals(offerService.getOfferById(offer.getId()).getId(), offer.getId());
+        assertEquals(offer.getId(), offerService.getOfferById(offer.getId()).getId());
     }
 
     @Test
@@ -98,8 +99,8 @@ public class OfferServiceIT extends AbstractServiceIT {
         final Offer offer = createOffer(1);
         offer.setLabel("Test Label");
         offerService.updateOffer(offer);
-        assertEquals(offer.getLabel(), "Test Label");
-        assertEquals(offerService.getOfferById(offer.getId()).getLabel(), "Test Label");
+        assertEquals("Test Label", offer.getLabel());
+        assertEquals("Test Label", offerService.getOfferById(offer.getId()).getLabel());
     }
 
     @Test
@@ -119,7 +120,7 @@ public class OfferServiceIT extends AbstractServiceIT {
     public void complete() {
         final Offer offer = createOffer(1);
         offerService.completeOffer(offer.getId(), null);
-        assertEquals(offerService.getOfferById(offer.getId()).getStatus(), OfferStatus.OPEN);
+        assertEquals(OfferStatus.OPEN, offerService.getOfferById(offer.getId()).getStatus());
     }
 
     @Test
@@ -130,7 +131,7 @@ public class OfferServiceIT extends AbstractServiceIT {
         try {
             final Offer offer = createOffer(1);
             offerService.completeOffer(offer.getId(), null);
-            assertEquals(offerService.getOfferById(offer.getId()).getStatus(), OfferStatus.OPEN);
+            assertEquals(OfferStatus.OPEN, offerService.getOfferById(offer.getId()).getStatus());
         } finally {
             templateService.deleteTemplate(template.getId());
         }
@@ -146,7 +147,8 @@ public class OfferServiceIT extends AbstractServiceIT {
         return template;
     }
 
-    @Test(enabled = false)
+    @Test
+    @Disabled
     public void sendOfferViaEmail() {
         final Offer offer = createOffer(1);
         offerService.completeOffer(offer.getId(), null);
@@ -165,7 +167,7 @@ public class OfferServiceIT extends AbstractServiceIT {
         final Offer offer = createOffer(1);
         offerService.completeOffer(offer.getId(), null);
         offerService.cancelOffer(offer.getId());
-        assertEquals(offerService.getOfferById(offer.getId()).getStatus(), OfferStatus.CANCELED);
+        assertEquals(OfferStatus.CANCELED, offerService.getOfferById(offer.getId()).getStatus());
     }
 
     @Test
@@ -173,7 +175,7 @@ public class OfferServiceIT extends AbstractServiceIT {
         final Offer offer = createOffer(1);
         offerService.completeOffer(offer.getId(), null);
         offerService.winOffer(offer.getId());
-        assertEquals(offerService.getOfferById(offer.getId()).getStatus(), OfferStatus.WON);
+        assertEquals(OfferStatus.WON, offerService.getOfferById(offer.getId()).getStatus());
     }
 
     @Test
@@ -181,7 +183,7 @@ public class OfferServiceIT extends AbstractServiceIT {
         final Offer offer = createOffer(1);
         offerService.completeOffer(offer.getId(), null);
         offerService.loseOffer(offer.getId());
-        assertEquals(offerService.getOfferById(offer.getId()).getStatus(), OfferStatus.LOST);
+        assertEquals(OfferStatus.LOST, offerService.getOfferById(offer.getId()).getStatus());
     }
 
     @Test
@@ -190,7 +192,7 @@ public class OfferServiceIT extends AbstractServiceIT {
         offerService.completeOffer(offer.getId(), null);
         offerService.winOffer(offer.getId());
         offerService.clearOffer(offer.getId());
-        assertEquals(offerService.getOfferById(offer.getId()).getStatus(), OfferStatus.CLEARED);
+        assertEquals(OfferStatus.CLEARED, offerService.getOfferById(offer.getId()).getStatus());
     }
 
     @Test
@@ -200,7 +202,7 @@ public class OfferServiceIT extends AbstractServiceIT {
         offerService.winOffer(offer.getId());
         offerService.clearOffer(offer.getId());
         offerService.unclearOffer(offer.getId());
-        assertEquals(offerService.getOfferById(offer.getId()).getStatus(), OfferStatus.WON);
+        assertEquals(OfferStatus.WON, offerService.getOfferById(offer.getId()).getStatus());
     }
 
     private Offer createOffer(final int number) {
@@ -239,7 +241,7 @@ public class OfferServiceIT extends AbstractServiceIT {
         assertNotNull(offer.getId());
 
         final List<OfferItem> items = offerService.getItems(offer.getId());
-        assertEquals(items.size(), 2);
+        assertEquals(2, items.size());
     }
 
     @Test
@@ -249,7 +251,7 @@ public class OfferServiceIT extends AbstractServiceIT {
 
         final List<OfferItem> items = offerService.getItems(offer.getId());
         final OfferItem item = offerService.getItemById(items.get(0).getId());
-        assertEquals(item.getOfferId(), offer.getId());
+        assertEquals(offer.getId(), item.getOfferId());
     }
 
     @Test
@@ -265,7 +267,7 @@ public class OfferServiceIT extends AbstractServiceIT {
         offerService.createItem(item);
 
         final List<OfferItem> items = offerService.getItems(offer.getId());
-        assertEquals(items.size(), 3);
+        assertEquals(3, items.size());
     }
 
     @Test
@@ -282,8 +284,8 @@ public class OfferServiceIT extends AbstractServiceIT {
 
         item.setQuantity(new BigDecimal("2"));
         offerService.updateItem(item);
-        assertEquals(item.getQuantity(), new BigDecimal("2"));
-        assertEquals(offerService.getItemById(item.getId()).getQuantity(), new BigDecimal("2"));
+        assertEquals(new BigDecimal("2"), item.getQuantity());
+        assertEquals(new BigDecimal("2"), offerService.getItemById(item.getId()).getQuantity());
     }
 
     @Test
@@ -293,7 +295,7 @@ public class OfferServiceIT extends AbstractServiceIT {
 
         final List<OfferItem> items = offerService.getItems(offer.getId());
         offerService.deleteItem(items.get(0).getId());
-        assertEquals(offerService.getItems(offer.getId()).size(), 1);
+        assertEquals(1, offerService.getItems(offer.getId()).size());
     }
 
 }

@@ -19,11 +19,12 @@
 
 package de.siegmar.billomat4j.reminder;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertFalse;
-import static org.testng.Assert.assertNotNull;
-import static org.testng.Assert.assertNull;
-import static org.testng.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.math.BigDecimal;
 import java.nio.charset.StandardCharsets;
@@ -31,8 +32,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 import de.siegmar.billomat4j.AbstractServiceIT;
 import de.siegmar.billomat4j.domain.Email;
@@ -56,7 +58,7 @@ public class ReminderServiceIT extends AbstractServiceIT {
 
     // Reminder
 
-    @AfterMethod
+    @AfterEach
     public void cleanup() {
         for (final Reminder reminder : createdReminders) {
             reminderService.deleteReminder(reminder.getId());
@@ -86,8 +88,8 @@ public class ReminderServiceIT extends AbstractServiceIT {
         createReminder(2);
 
         reminders = reminderService.findReminders(reminderFilter);
-        assertEquals(reminders.size(), 1);
-        assertEquals(reminders.get(0).getId(), reminder1.getId());
+        assertEquals(1, reminders.size());
+        assertEquals(reminder1.getId(), reminders.get(0).getId());
     }
 
     @Test
@@ -99,7 +101,7 @@ public class ReminderServiceIT extends AbstractServiceIT {
     @Test
     public void getById() {
         final Reminder reminder = createReminder(1);
-        assertEquals(reminderService.getReminderById(reminder.getId()).getId(), reminder.getId());
+        assertEquals(reminder.getId(), reminderService.getReminderById(reminder.getId()).getId());
     }
 
     @Test
@@ -107,8 +109,8 @@ public class ReminderServiceIT extends AbstractServiceIT {
         final Reminder reminder = createReminder(1);
         reminder.setLabel("Test Label");
         reminderService.updateReminder(reminder);
-        assertEquals(reminder.getLabel(), "Test Label");
-        assertEquals(reminderService.getReminderById(reminder.getId()).getLabel(), "Test Label");
+        assertEquals("Test Label", reminder.getLabel());
+        assertEquals("Test Label", reminderService.getReminderById(reminder.getId()).getLabel());
     }
 
     @Test
@@ -131,7 +133,7 @@ public class ReminderServiceIT extends AbstractServiceIT {
     public void complete() {
         final Reminder reminder = createReminder(1);
         reminderService.completeReminder(reminder.getId(), null);
-        assertEquals(reminderService.getReminderById(reminder.getId()).getStatus(), ReminderStatus.OPEN);
+        assertEquals(ReminderStatus.OPEN, reminderService.getReminderById(reminder.getId()).getStatus());
     }
 
     @Test
@@ -142,7 +144,7 @@ public class ReminderServiceIT extends AbstractServiceIT {
         try {
             final Reminder reminder = createReminder(1);
             reminderService.completeReminder(reminder.getId(), null);
-            assertEquals(reminderService.getReminderById(reminder.getId()).getStatus(), ReminderStatus.OPEN);
+            assertEquals(ReminderStatus.OPEN, reminderService.getReminderById(reminder.getId()).getStatus());
         } finally {
             templateService.deleteTemplate(template.getId());
         }
@@ -164,8 +166,8 @@ public class ReminderServiceIT extends AbstractServiceIT {
         reminderService.completeReminder(reminder.getId(), null);
         reminderService.uploadReminderSignedPdf(reminder.getId(), "dummy".getBytes(StandardCharsets.US_ASCII));
 
-        assertEquals(reminderService.getReminderSignedPdf(reminder.getId()).getBase64file(),
-            "dummy".getBytes(StandardCharsets.US_ASCII));
+        assertArrayEquals("dummy".getBytes(StandardCharsets.US_ASCII),
+            reminderService.getReminderSignedPdf(reminder.getId()).getBase64file());
     }
 
     @Test
@@ -176,7 +178,8 @@ public class ReminderServiceIT extends AbstractServiceIT {
         assertNotNull(reminderPdf);
     }
 
-    @Test(enabled = false)
+    @Test
+    @Disabled
     public void sendReminderViaEmail() {
         final Reminder reminder = createReminder(1);
         reminderService.completeReminder(reminder.getId(), null);
@@ -195,7 +198,7 @@ public class ReminderServiceIT extends AbstractServiceIT {
         final Reminder reminder = createReminder(1);
         reminderService.completeReminder(reminder.getId(), null);
         reminderService.cancelReminder(reminder.getId());
-        assertEquals(reminderService.getReminderById(reminder.getId()).getStatus(), ReminderStatus.CANCELED);
+        assertEquals(ReminderStatus.CANCELED, reminderService.getReminderById(reminder.getId()).getStatus());
     }
 
     private Reminder createReminder(final int number) {

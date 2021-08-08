@@ -26,19 +26,26 @@ dependencies {
     implementation('com.fasterxml.jackson.core:jackson-databind:2.6.5')
     implementation('com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.6.5')
     implementation('org.slf4j:slf4j-api:1.7.21')
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.5.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.5.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter-params:5.5.2'
     testImplementation('ch.qos.logback:logback-classic:1.1.7')
     testImplementation('commons-io:commons-io:2.5')
-    testImplementation('org.testng:testng:6.9.10')
 }
 
 processResources {
     expand(project.properties)
 }
 
+test {
+    useJUnitPlatform()
+    exclude '**/*IT.class'
+}
+
 task integrationTest(type: Test, dependsOn: "test") {
-    useTestNG() {
-        suites 'src/test/resources/testng.xml'
-    }
+    useJUnitPlatform()
+    include '**/*IT.class'
+    failFast = true
 }
 
 tasks.matching {task -> task.name.startsWith('spotbugs')}.forEach {
@@ -51,7 +58,7 @@ tasks.matching {task -> task.name.startsWith('spotbugs')}.forEach {
 publishing {
     publications {
         mavenJava(MavenPublication) {
-            artifactId = "logback-gelf"
+            artifactId = "billomat4j"
             from components.java
 
             pom {

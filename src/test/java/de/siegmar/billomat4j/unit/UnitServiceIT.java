@@ -19,16 +19,16 @@
 
 package de.siegmar.billomat4j.unit;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertFalse;
-import static org.testng.Assert.assertNotNull;
-import static org.testng.Assert.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
 
 import de.siegmar.billomat4j.AbstractServiceIT;
 import de.siegmar.billomat4j.domain.unit.Unit;
@@ -38,7 +38,7 @@ public class UnitServiceIT extends AbstractServiceIT {
 
     private final List<Unit> createdUnits = new ArrayList<>();
 
-    @AfterMethod
+    @AfterEach
     public void cleanup() {
         for (final Unit unit : createdUnits) {
             unitService.deleteUnit(unit.getId());
@@ -68,8 +68,8 @@ public class UnitServiceIT extends AbstractServiceIT {
         createUnit("Test Unit 2 (findFiltered)");
 
         final List<Unit> units = unitService.findUnits(new UnitFilter().byName("Test Unit 1 (findFiltered)"));
-        assertEquals(units.size(), 1);
-        assertEquals(units.get(0).getName(), "Test Unit 1 (findFiltered)");
+        assertEquals(1, units.size());
+        assertEquals("Test Unit 1 (findFiltered)", units.get(0).getName());
     }
 
     @Test
@@ -85,8 +85,8 @@ public class UnitServiceIT extends AbstractServiceIT {
 
         unit.setName("Test Unit 1 (updated)");
         unitService.updateUnit(unit);
-        assertEquals(unit.getName(), "Test Unit 1 (updated)");
-        assertEquals(unitService.getUnitById(unit.getId()).getName(), "Test Unit 1 (updated)");
+        assertEquals("Test Unit 1 (updated)", unit.getName());
+        assertEquals("Test Unit 1 (updated)", unitService.getUnitById(unit.getId()).getName());
     }
 
 }

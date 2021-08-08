@@ -22,6 +22,7 @@ package de.siegmar.billomat4j;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UncheckedIOException;
 import java.net.URISyntaxException;
 import java.util.Properties;
 
@@ -112,7 +113,7 @@ public abstract class AbstractServiceIT {
         try (InputStream in = AbstractServiceIT.class.getResourceAsStream("/billomat.properties")) {
             p.load(in);
         } catch (final IOException e) {
-            throw new IllegalStateException(e);
+            throw new UncheckedIOException(e);
         }
 
         return p;
@@ -126,7 +127,7 @@ public abstract class AbstractServiceIT {
         } catch (final URISyntaxException e) {
             throw new IllegalStateException(e);
         } catch (final IOException e) {
-            throw new IllegalStateException(e);
+            throw new UncheckedIOException(e);
         }
     }
 
