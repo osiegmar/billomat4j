@@ -49,7 +49,7 @@ public class UnitService extends AbstractService implements GenericCustomFieldSe
     /**
      * @param unitFilter unit filter, may be {@code null} to find unfiltered
      * @return units found by filter criteria or an empty list if no units were found - never {@code null}
-     * @throws ServiceException if an error occured while accessing the web service
+     * @throws ServiceException if an error occurred while accessing the web service
      */
     public List<Unit> findUnits(final UnitFilter unitFilter) {
         return getAllPagesFromResource(RESOURCE, Units.class, unitFilter);
@@ -60,7 +60,7 @@ public class UnitService extends AbstractService implements GenericCustomFieldSe
      *
      * @param unitId the unit's id
      * @return the unit or {@code null} if not found
-     * @throws ServiceException if an error occured while accessing the web service
+     * @throws ServiceException if an error occurred while accessing the web service
      */
     public Unit getUnitById(final int unitId) {
         return getById(RESOURCE, Unit.class, unitId);
@@ -69,7 +69,7 @@ public class UnitService extends AbstractService implements GenericCustomFieldSe
     /**
      * @param unit the unit to create, must not be {@code null}
      * @throws NullPointerException if unit is null
-     * @throws ServiceException     if an error occured while accessing the web service
+     * @throws ServiceException     if an error occurred while accessing the web service
      */
     public void createUnit(final Unit unit) {
         create(RESOURCE, Validate.notNull(unit));
@@ -78,7 +78,7 @@ public class UnitService extends AbstractService implements GenericCustomFieldSe
     /**
      * @param unit the unit to update, must not be {@code null}
      * @throws NullPointerException if unit is null
-     * @throws ServiceException     if an error occured while accessing the web service
+     * @throws ServiceException     if an error occurred while accessing the web service
      */
     public void updateUnit(final Unit unit) {
         update(RESOURCE, Validate.notNull(unit));
@@ -86,7 +86,7 @@ public class UnitService extends AbstractService implements GenericCustomFieldSe
 
     /**
      * @param unitId the id of the unit to be deleted
-     * @throws ServiceException if an error occured while accessing the web service
+     * @throws ServiceException if an error occurred while accessing the web service
      */
     public void deleteUnit(final int unitId) {
         delete(RESOURCE, unitId);

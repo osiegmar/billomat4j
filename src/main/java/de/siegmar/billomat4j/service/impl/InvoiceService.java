@@ -82,7 +82,7 @@ public class InvoiceService extends AbstractService
      * @param invoiceFilter invoice filter, may be {@code null} to find unfiltered
      * @return invoices found by filter criteria or an empty list if no invoices were found - never
      * {@code null}
-     * @throws ServiceException if an error occured while accessing the web service
+     * @throws ServiceException if an error occurred while accessing the web service
      */
     public List<Invoice> findInvoices(final InvoiceFilter invoiceFilter) {
         return getAllPagesFromResource(RESOURCE, Invoices.class, invoiceFilter);
@@ -93,7 +93,7 @@ public class InvoiceService extends AbstractService
      * @param invoiceFilter      the filter criteria, optional - may be {@code null}
      * @return grouped invoice list or an empty list if no invoices were found - never {@code null}
      * @throws NullPointerException if invoiceGroupFilter is null
-     * @throws ServiceException     if an error occured while accessing the web service
+     * @throws ServiceException     if an error occurred while accessing the web service
      */
     public List<InvoiceGroup> getGroupedInvoices(final InvoiceGroupFilter invoiceGroupFilter,
                                                  final InvoiceFilter invoiceFilter) {
@@ -108,7 +108,7 @@ public class InvoiceService extends AbstractService
      *
      * @param invoiceId the invoice's id
      * @return the invoice or {@code null} if not found
-     * @throws ServiceException if an error occured while accessing the web service
+     * @throws ServiceException if an error occurred while accessing the web service
      */
     public Invoice getInvoiceById(final int invoiceId) {
         return getById(RESOURCE, Invoice.class, invoiceId);
@@ -121,7 +121,7 @@ public class InvoiceService extends AbstractService
      * @return the invoice or {@code null} if not found
      * @throws NullPointerException     if invoiceNumber is null
      * @throws IllegalArgumentException if invoiceNumber is empty
-     * @throws ServiceException         if an error occured while accessing the web service
+     * @throws ServiceException         if an error occurred while accessing the web service
      */
     public Invoice getInvoiceByNumber(final String invoiceNumber) {
         return single(findInvoices(new InvoiceFilter().byInvoiceNumber(Validate.notEmpty(invoiceNumber))));
@@ -130,7 +130,7 @@ public class InvoiceService extends AbstractService
     /**
      * @param invoice the invoice to create, must not be {@code null}
      * @throws NullPointerException if invoice is null
-     * @throws ServiceException     if an error occured while accessing the web service
+     * @throws ServiceException     if an error occurred while accessing the web service
      */
     public void createInvoice(final Invoice invoice) {
         create(RESOURCE, Validate.notNull(invoice));
@@ -139,7 +139,7 @@ public class InvoiceService extends AbstractService
     /**
      * @param invoice the invoice to update, must not be {@code null}
      * @throws NullPointerException if invoice is null
-     * @throws ServiceException     if an error occured while accessing the web service
+     * @throws ServiceException     if an error occurred while accessing the web service
      */
     public void updateInvoice(final Invoice invoice) {
         update(RESOURCE, Validate.notNull(invoice));
@@ -147,7 +147,7 @@ public class InvoiceService extends AbstractService
 
     /**
      * @param invoiceId the id of the invoice to be deleted
-     * @throws ServiceException if an error occured while accessing the web service
+     * @throws ServiceException if an error occurred while accessing the web service
      */
     public void deleteInvoice(final int invoiceId) {
         delete(RESOURCE, invoiceId);
@@ -156,7 +156,7 @@ public class InvoiceService extends AbstractService
     /**
      * @param invoiceId the id of the invoice to get the PDF for
      * @return the invoice PDF or {@code null} if not found
-     * @throws ServiceException if an error occured while accessing the web service
+     * @throws ServiceException if an error occurred while accessing the web service
      */
     public InvoicePdf getInvoicePdf(final int invoiceId) {
         return getInvoicePdf(invoiceId, null);
@@ -169,7 +169,7 @@ public class InvoiceService extends AbstractService
     /**
      * @param invoiceId the id of the invoice to get the signed PDF for
      * @return the signed invoice PDF or {@code null} if not found
-     * @throws ServiceException if an error occured while accessing the web service
+     * @throws ServiceException if an error occurred while accessing the web service
      * @see #uploadInvoiceSignedPdf(int, byte[])
      * @see #getInvoicePdf(int)
      */
@@ -185,7 +185,7 @@ public class InvoiceService extends AbstractService
      * @param invoiceId  the id of the invoice to update
      * @param templateId the id of the template to use for the resulting document or {@code null}
      *                   if no template should be used
-     * @throws ServiceException if an error occured while accessing the web service
+     * @throws ServiceException if an error occurred while accessing the web service
      */
     public void completeInvoice(final int invoiceId, final Integer templateId) {
         completeDocument(RESOURCE, invoiceId, templateId);
@@ -194,7 +194,7 @@ public class InvoiceService extends AbstractService
     /**
      * @param invoiceId the id of the invoice to upload the signed PDF for
      * @param pdf       the signed PDF as binary data (must not be {@code null})
-     * @throws ServiceException     if an error occured while accessing the web service
+     * @throws ServiceException     if an error occurred while accessing the web service
      * @throws NullPointerException if pdf is null
      * @see #getInvoiceSignedPdf(int)
      */
@@ -206,7 +206,7 @@ public class InvoiceService extends AbstractService
      * @param invoiceId    the id of the invoice to send an email for
      * @param invoiceEmail the email configuration
      * @throws NullPointerException if invoiceEmail is null
-     * @throws ServiceException     if an error occured while accessing the web service
+     * @throws ServiceException     if an error occurred while accessing the web service
      */
     public void sendInvoiceViaEmail(final int invoiceId, final Email invoiceEmail) {
         sendEmail(RESOURCE, invoiceId, invoiceEmail);
@@ -216,7 +216,7 @@ public class InvoiceService extends AbstractService
      * Sets the invoice status to {@link de.siegmar.billomat4j.domain.invoice.InvoiceStatus#CANCELED}.
      *
      * @param invoiceId the id of the invoice to update
-     * @throws ServiceException if an error occured while accessing the web service
+     * @throws ServiceException if an error occurred while accessing the web service
      */
     public void cancelInvoice(final int invoiceId) {
         transit(RESOURCE, "cancel", invoiceId);

@@ -30,7 +30,7 @@ public interface GenericItemService<I extends AbstractItem> {
      *            the id of owning entity
      * @return items found by filter criteria or an empty list if no items were found - never {@code null}
      * @throws de.siegmar.billomat4j.service.impl.ServiceException
-     *             if an error occured while accessing the web service
+     *             if an error occurred while accessing the web service
      */
     List<I> getItems(int ownerId);
 
@@ -41,7 +41,7 @@ public interface GenericItemService<I extends AbstractItem> {
      *            the item's id
      * @return the item or {@code null} if not found
      * @throws de.siegmar.billomat4j.service.impl.ServiceException
-     *             if an error occured while accessing the web service
+     *             if an error occurred while accessing the web service
      */
     I getItemById(int itemId);
 
@@ -51,7 +51,7 @@ public interface GenericItemService<I extends AbstractItem> {
      * @throws NullPointerException
      *             if item is null
      * @throws de.siegmar.billomat4j.service.impl.ServiceException
-     *             if an error occured while accessing the web service
+     *             if an error occurred while accessing the web service
      */
     void createItem(I item);
 
@@ -61,7 +61,7 @@ public interface GenericItemService<I extends AbstractItem> {
      * @throws NullPointerException
      *             if item is null
      * @throws de.siegmar.billomat4j.service.impl.ServiceException
-     *             if an error occured while accessing the web service
+     *             if an error occurred while accessing the web service
      */
     void updateItem(I item);
 
@@ -69,7 +69,7 @@ public interface GenericItemService<I extends AbstractItem> {
      * @param itemId
      *            the id of the item to be deleted
      * @throws de.siegmar.billomat4j.service.impl.ServiceException
-     *             if an error occured while accessing the web service
+     *             if an error occurred while accessing the web service
      */
     void deleteItem(int itemId);
 

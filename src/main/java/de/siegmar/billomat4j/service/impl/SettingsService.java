@@ -49,7 +49,7 @@ public class SettingsService extends AbstractService {
      * Gets the account's main settings.
      *
      * @return the account's main settings
-     * @throws ServiceException if an error occured while accessing the web service
+     * @throws ServiceException if an error occurred while accessing the web service
      */
     public Settings getSettings() {
         try {
@@ -63,7 +63,7 @@ public class SettingsService extends AbstractService {
     /**
      * @param settings the settings to update, must not be {@code null}
      * @throws NullPointerException if settings is null
-     * @throws ServiceException     if an error occured while accessing the web service
+     * @throws ServiceException     if an error occurred while accessing the web service
      */
     public void updateSettings(final Settings settings) {
         try {
@@ -79,7 +79,7 @@ public class SettingsService extends AbstractService {
 
     /**
      * @return all configured taxes or an empty list if no taxes were found - never {@code null}
-     * @throws ServiceException if an error occured while accessing the web service
+     * @throws ServiceException if an error occurred while accessing the web service
      */
     public List<Tax> getTaxes() {
         return getAllPagesFromResource(TAX_RESOURCE, Taxes.class, null);
@@ -90,7 +90,7 @@ public class SettingsService extends AbstractService {
      *
      * @param taxId the tax's id
      * @return the tax or {@code null} if not found
-     * @throws ServiceException if an error occured while accessing the web service
+     * @throws ServiceException if an error occurred while accessing the web service
      */
     public Tax getTaxById(final int taxId) {
         return getById(TAX_RESOURCE, Tax.class, taxId);
@@ -99,7 +99,7 @@ public class SettingsService extends AbstractService {
     /**
      * @param tax the tax to create, must not be {@code null}
      * @throws NullPointerException if tax is null
-     * @throws ServiceException     if an error occured while accessing the web service
+     * @throws ServiceException     if an error occurred while accessing the web service
      */
     public void createTax(final Tax tax) {
         create(TAX_RESOURCE, Validate.notNull(tax));
@@ -108,7 +108,7 @@ public class SettingsService extends AbstractService {
     /**
      * @param tax the tax to update, must not be {@code null}
      * @throws NullPointerException if tax is null
-     * @throws ServiceException     if an error occured while accessing the web service
+     * @throws ServiceException     if an error occurred while accessing the web service
      */
     public void updateTax(final Tax tax) {
         update(TAX_RESOURCE, Validate.notNull(tax));
@@ -116,7 +116,7 @@ public class SettingsService extends AbstractService {
 
     /**
      * @param taxId the id of the tax to be deleted
-     * @throws ServiceException if an error occured while accessing the web service
+     * @throws ServiceException if an error occurred while accessing the web service
      */
     public void deleteTax(final int taxId) {
         delete(TAX_RESOURCE, taxId);
@@ -126,7 +126,7 @@ public class SettingsService extends AbstractService {
 
     /**
      * @return all configured country taxes or an empty list if no country taxes were found - never {@code null}
-     * @throws ServiceException if an error occured while accessing the web service
+     * @throws ServiceException if an error occurred while accessing the web service
      */
     public List<CountryTax> getCountryTaxes() {
         return getAllPagesFromResource(COUNTRY_TAX_RESOURCE, CountryTaxes.class, null);
@@ -137,7 +137,7 @@ public class SettingsService extends AbstractService {
      *
      * @param countryTaxId the country tax's id
      * @return the country tax or {@code null} if not found
-     * @throws ServiceException if an error occured while accessing the web service
+     * @throws ServiceException if an error occurred while accessing the web service
      */
     public CountryTax getCountryTaxById(final int countryTaxId) {
         return getById(COUNTRY_TAX_RESOURCE, CountryTax.class, countryTaxId);
@@ -146,7 +146,7 @@ public class SettingsService extends AbstractService {
     /**
      * @param countryTax the country tax to create, must not be {@code null}
      * @throws NullPointerException if countryTax is null
-     * @throws ServiceException     if an error occured while accessing the web service
+     * @throws ServiceException     if an error occurred while accessing the web service
      */
     public void createCountryTax(final CountryTax countryTax) {
         create(COUNTRY_TAX_RESOURCE, Validate.notNull(countryTax));
@@ -155,7 +155,7 @@ public class SettingsService extends AbstractService {
     /**
      * @param countryTax the country tax to update, must not be {@code null}
      * @throws NullPointerException if countryTax is null
-     * @throws ServiceException     if an error occured while accessing the web service
+     * @throws ServiceException     if an error occurred while accessing the web service
      */
     public void updateCountryTax(final CountryTax countryTax) {
         update(COUNTRY_TAX_RESOURCE, Validate.notNull(countryTax));
@@ -163,7 +163,7 @@ public class SettingsService extends AbstractService {
 
     /**
      * @param countryTaxId the id of the country tax to be deleted
-     * @throws ServiceException if an error occured while accessing the web service
+     * @throws ServiceException if an error occurred while accessing the web service
      */
     public void deleteCountryTax(final int countryTaxId) {
         delete(COUNTRY_TAX_RESOURCE, countryTaxId);
@@ -173,7 +173,7 @@ public class SettingsService extends AbstractService {
 
     /**
      * @return all configured reminder texts or an empty list if no reminder texts were found - never {@code null}
-     * @throws ServiceException if an error occured while accessing the web service
+     * @throws ServiceException if an error occurred while accessing the web service
      */
     public List<ReminderText> getReminderTexts() {
         return getAllPagesFromResource(REMINDER_TEXT_RESOURCE, ReminderTexts.class, null);
@@ -184,7 +184,7 @@ public class SettingsService extends AbstractService {
      *
      * @param reminderTextId the reminder text's id
      * @return the reminder text or {@code null} if not found
-     * @throws ServiceException if an error occured while accessing the web service
+     * @throws ServiceException if an error occurred while accessing the web service
      */
     public ReminderText getReminderTextById(final int reminderTextId) {
         return getById(REMINDER_TEXT_RESOURCE, ReminderText.class, reminderTextId);
@@ -193,7 +193,7 @@ public class SettingsService extends AbstractService {
     /**
      * @param reminderText the reminder text to create, must not be {@code null}
      * @throws NullPointerException if reminderText is null
-     * @throws ServiceException     if an error occured while accessing the web service
+     * @throws ServiceException     if an error occurred while accessing the web service
      */
     public void createReminderText(final ReminderText reminderText) {
         create(REMINDER_TEXT_RESOURCE, Validate.notNull(reminderText));
@@ -202,7 +202,7 @@ public class SettingsService extends AbstractService {
     /**
      * @param reminderText the reminder text to update, must not be {@code null}
      * @throws NullPointerException if reminderText is null
-     * @throws ServiceException     if an error occured while accessing the web service
+     * @throws ServiceException     if an error occurred while accessing the web service
      */
     public void updateReminderText(final ReminderText reminderText) {
         update(REMINDER_TEXT_RESOURCE, Validate.notNull(reminderText));
@@ -210,7 +210,7 @@ public class SettingsService extends AbstractService {
 
     /**
      * @param reminderTextId the id of the reminder text to be deleted
-     * @throws ServiceException if an error occured while accessing the web service
+     * @throws ServiceException if an error occurred while accessing the web service
      */
     public void deleteReminderText(final int reminderTextId) {
         delete(REMINDER_TEXT_RESOURCE, reminderTextId);

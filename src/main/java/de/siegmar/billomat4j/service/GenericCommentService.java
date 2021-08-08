@@ -34,7 +34,7 @@ public interface GenericCommentService<K extends ActionKey, C extends AbstractCo
      *            comment filter, may be {@code null} to find unfiltered
      * @return comments found by filter criteria or an empty list if no comments were found - never {@code null}
      * @throws de.siegmar.billomat4j.service.impl.ServiceException
-     *             if an error occured while accessing the web service
+     *             if an error occurred while accessing the web service
      */
     List<C> findComments(int ownerId, F commentFilter);
 
@@ -45,7 +45,7 @@ public interface GenericCommentService<K extends ActionKey, C extends AbstractCo
      *            the comment's id
      * @return the comment or {@code null} if not found
      * @throws de.siegmar.billomat4j.service.impl.ServiceException
-     *             if an error occured while accessing the web service
+     *             if an error occurred while accessing the web service
      */
     C getCommentById(int commentId);
 
@@ -55,7 +55,7 @@ public interface GenericCommentService<K extends ActionKey, C extends AbstractCo
      * @throws NullPointerException
      *             if comment is null
      * @throws de.siegmar.billomat4j.service.impl.ServiceException
-     *             if an error occured while accessing the web service
+     *             if an error occurred while accessing the web service
      */
     void createComment(C comment);
 
@@ -63,7 +63,7 @@ public interface GenericCommentService<K extends ActionKey, C extends AbstractCo
      * @param commentId
      *            the id of the comment to be deleted
      * @throws de.siegmar.billomat4j.service.impl.ServiceException
-     *             if an error occured while accessing the web service
+     *             if an error occurred while accessing the web service
      */
     void deleteComment(int commentId);
 

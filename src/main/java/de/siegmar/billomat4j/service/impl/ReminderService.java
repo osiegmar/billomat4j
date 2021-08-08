@@ -66,7 +66,7 @@ public class ReminderService extends AbstractService
      * @param reminderFilter reminder filter, may be {@code null} to find unfiltered
      * @return reminders found by filter criteria or an empty list if no reminders were found - never
      * {@code null}
-     * @throws ServiceException if an error occured while accessing the web service
+     * @throws ServiceException if an error occurred while accessing the web service
      */
     public List<Reminder> findReminders(final ReminderFilter reminderFilter) {
         return getAllPagesFromResource(RESOURCE, Reminders.class, reminderFilter);
@@ -77,7 +77,7 @@ public class ReminderService extends AbstractService
      *
      * @param reminderId the reminder's id
      * @return the reminder or {@code null} if not found
-     * @throws ServiceException if an error occured while accessing the web service
+     * @throws ServiceException if an error occurred while accessing the web service
      */
     public Reminder getReminderById(final int reminderId) {
         return getById(RESOURCE, Reminder.class, reminderId);
@@ -86,7 +86,7 @@ public class ReminderService extends AbstractService
     /**
      * @param reminder the reminder to create, must not be {@code null}
      * @throws NullPointerException if reminder is null
-     * @throws ServiceException     if an error occured while accessing the web service
+     * @throws ServiceException     if an error occurred while accessing the web service
      */
     public void createReminder(final Reminder reminder) {
         create(RESOURCE, Validate.notNull(reminder));
@@ -95,7 +95,7 @@ public class ReminderService extends AbstractService
     /**
      * @param reminder the reminder to update, must not be {@code null}
      * @throws NullPointerException if reminder is null
-     * @throws ServiceException     if an error occured while accessing the web service
+     * @throws ServiceException     if an error occurred while accessing the web service
      */
     public void updateReminder(final Reminder reminder) {
         update(RESOURCE, Validate.notNull(reminder));
@@ -103,7 +103,7 @@ public class ReminderService extends AbstractService
 
     /**
      * @param reminderId the id of the reminder to be deleted
-     * @throws ServiceException if an error occured while accessing the web service
+     * @throws ServiceException if an error occurred while accessing the web service
      */
     public void deleteReminder(final int reminderId) {
         delete(RESOURCE, reminderId);
@@ -112,7 +112,7 @@ public class ReminderService extends AbstractService
     /**
      * @param reminderId the id of the reminder to get the PDF for
      * @return the reminder PDF or {@code null} if not found
-     * @throws ServiceException if an error occured while accessing the web service
+     * @throws ServiceException if an error occurred while accessing the web service
      */
     public ReminderPdf getReminderPdf(final int reminderId) {
         return getReminderPdf(reminderId, null);
@@ -125,7 +125,7 @@ public class ReminderService extends AbstractService
     /**
      * @param reminderId the id of the reminder to get the signed PDF for
      * @return the signed reminder PDF or {@code null} if not found
-     * @throws ServiceException if an error occured while accessing the web service
+     * @throws ServiceException if an error occurred while accessing the web service
      * @see #uploadReminderSignedPdf(int, byte[])
      * @see #getReminderPdf(int)
      */
@@ -141,7 +141,7 @@ public class ReminderService extends AbstractService
      * @param reminderId the id of the reminder to update
      * @param templateId the id of the template to use for the resulting document or {@code null}
      *                   if no template should be used
-     * @throws ServiceException if an error occured while accessing the web service
+     * @throws ServiceException if an error occurred while accessing the web service
      */
     public void completeReminder(final int reminderId, final Integer templateId) {
         completeDocument(RESOURCE, reminderId, templateId);
@@ -150,7 +150,7 @@ public class ReminderService extends AbstractService
     /**
      * @param reminderId the id of the reminder to upload the signed PDF for
      * @param pdf        the signed PDF as binary data (must not be {@code null})
-     * @throws ServiceException     if an error occured while accessing the web service
+     * @throws ServiceException     if an error occurred while accessing the web service
      * @throws NullPointerException if pdf is null
      * @see #getReminderSignedPdf(int)
      */
@@ -162,7 +162,7 @@ public class ReminderService extends AbstractService
      * @param reminderId    the id of the reminder to send an email for
      * @param reminderEmail the email configuration
      * @throws NullPointerException if reminderEmail is null
-     * @throws ServiceException     if an error occured while accessing the web service
+     * @throws ServiceException     if an error occurred while accessing the web service
      */
     public void sendReminderViaEmail(final int reminderId, final Email reminderEmail) {
         sendEmail(RESOURCE, reminderId, reminderEmail);
@@ -172,7 +172,7 @@ public class ReminderService extends AbstractService
      * Sets the reminder status to {@link de.siegmar.billomat4j.domain.reminder.ReminderStatus#CANCELED}.
      *
      * @param reminderId the id of the reminder to update
-     * @throws ServiceException if an error occured while accessing the web service
+     * @throws ServiceException if an error occurred while accessing the web service
      */
     public void cancelReminder(final int reminderId) {
         transit(RESOURCE, "cancel", reminderId);

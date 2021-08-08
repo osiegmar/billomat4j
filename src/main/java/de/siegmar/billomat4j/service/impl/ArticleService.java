@@ -64,7 +64,7 @@ public class ArticleService extends AbstractService
     /**
      * @param articleFilter article filter, may be {@code null} to find unfiltered
      * @return articles found by filter criteria or an empty list if no articles were found - never {@code null}
-     * @throws ServiceException if an error occured while accessing the web service
+     * @throws ServiceException if an error occurred while accessing the web service
      */
     public List<Article> findArticles(final ArticleFilter articleFilter) {
         return getAllPagesFromResource(RESOURCE, Articles.class, articleFilter);
@@ -75,7 +75,7 @@ public class ArticleService extends AbstractService
      *
      * @param articleId the article's id
      * @return the article or {@code null} if not found
-     * @throws ServiceException if an error occured while accessing the web service
+     * @throws ServiceException if an error occurred while accessing the web service
      */
     public Article getArticleById(final int articleId) {
         return getById(RESOURCE, Article.class, articleId);
@@ -88,7 +88,7 @@ public class ArticleService extends AbstractService
      * @return the article or {@code null} if not found
      * @throws NullPointerException     if articleNumber is null
      * @throws IllegalArgumentException if articleNumber is empty
-     * @throws ServiceException         if an error occured while accessing the web service
+     * @throws ServiceException         if an error occurred while accessing the web service
      */
     public Article getArticleByNumber(final String articleNumber) {
         return single(findArticles(new ArticleFilter().byArticleNumber(Validate.notEmpty(articleNumber))));
@@ -97,7 +97,7 @@ public class ArticleService extends AbstractService
     /**
      * @param article the article to create, must not be {@code null}
      * @throws NullPointerException if article is null
-     * @throws ServiceException     if an error occured while accessing the web service
+     * @throws ServiceException     if an error occurred while accessing the web service
      */
     public void createArticle(final Article article) {
         create(RESOURCE, Validate.notNull(article));
@@ -106,7 +106,7 @@ public class ArticleService extends AbstractService
     /**
      * @param article the article to update, must not be {@code null}
      * @throws NullPointerException if article is null
-     * @throws ServiceException     if an error occured while accessing the web service
+     * @throws ServiceException     if an error occurred while accessing the web service
      */
     public void updateArticle(final Article article) {
         update(RESOURCE, Validate.notNull(article));
@@ -114,7 +114,7 @@ public class ArticleService extends AbstractService
 
     /**
      * @param articleId the id of the article to be deleted
-     * @throws ServiceException if an error occured while accessing the web service
+     * @throws ServiceException if an error occurred while accessing the web service
      */
     public void deleteArticle(final int articleId) {
         delete(RESOURCE, articleId);

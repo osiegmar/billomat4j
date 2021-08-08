@@ -82,7 +82,7 @@ public class CreditNoteService extends AbstractService
      * @param creditNoteFilter credit note filter, may be {@code null} to find unfiltered
      * @return credit notes found by filter criteria or an empty list if no credit notes were found - never
      * {@code null}
-     * @throws ServiceException if an error occured while accessing the web service
+     * @throws ServiceException if an error occurred while accessing the web service
      */
     public List<CreditNote> findCreditNotes(final CreditNoteFilter creditNoteFilter) {
         return getAllPagesFromResource(RESOURCE, CreditNotes.class, creditNoteFilter);
@@ -93,7 +93,7 @@ public class CreditNoteService extends AbstractService
      * @param creditNoteFilter      the filter criteria, optional - may be {@code null}
      * @return grouped credit note list or an empty list if no credit notes were found - never {@code null}
      * @throws NullPointerException if creditNoteGroupFilter is null
-     * @throws ServiceException     if an error occured while accessing the web service
+     * @throws ServiceException     if an error occurred while accessing the web service
      */
     public List<CreditNoteGroup> getGroupedCreditNotes(final CreditNoteGroupFilter creditNoteGroupFilter,
                                                        final CreditNoteFilter creditNoteFilter) {
@@ -109,7 +109,7 @@ public class CreditNoteService extends AbstractService
      *
      * @param creditNoteId the credit note's id
      * @return the credit note or {@code null} if not found
-     * @throws ServiceException if an error occured while accessing the web service
+     * @throws ServiceException if an error occurred while accessing the web service
      */
     public CreditNote getCreditNoteById(final int creditNoteId) {
         return getById(RESOURCE, CreditNote.class, creditNoteId);
@@ -122,7 +122,7 @@ public class CreditNoteService extends AbstractService
      * @return the credit note or {@code null} if not found
      * @throws NullPointerException     if creditNoteNumber is null
      * @throws IllegalArgumentException if creditNoteNumber is empty
-     * @throws ServiceException         if an error occured while accessing the web service
+     * @throws ServiceException         if an error occurred while accessing the web service
      */
     public CreditNote getCreditNoteByNumber(final String creditNoteNumber) {
         return single(findCreditNotes(new CreditNoteFilter().byCreditNoteNumber(Validate.notEmpty(creditNoteNumber))));
@@ -131,7 +131,7 @@ public class CreditNoteService extends AbstractService
     /**
      * @param creditNote the credit note to create, must not be {@code null}
      * @throws NullPointerException if creditNote is null
-     * @throws ServiceException     if an error occured while accessing the web service
+     * @throws ServiceException     if an error occurred while accessing the web service
      */
     public void createCreditNote(final CreditNote creditNote) {
         create(RESOURCE, Validate.notNull(creditNote));
@@ -140,7 +140,7 @@ public class CreditNoteService extends AbstractService
     /**
      * @param creditNote the credit note to update, must not be {@code null}
      * @throws NullPointerException if creditNote is null
-     * @throws ServiceException     if an error occured while accessing the web service
+     * @throws ServiceException     if an error occurred while accessing the web service
      */
     public void updateCreditNote(final CreditNote creditNote) {
         update(RESOURCE, Validate.notNull(creditNote));
@@ -148,7 +148,7 @@ public class CreditNoteService extends AbstractService
 
     /**
      * @param creditNoteId the id of the credit note to be deleted
-     * @throws ServiceException if an error occured while accessing the web service
+     * @throws ServiceException if an error occurred while accessing the web service
      */
     public void deleteCreditNote(final int creditNoteId) {
         delete(RESOURCE, creditNoteId);
@@ -157,7 +157,7 @@ public class CreditNoteService extends AbstractService
     /**
      * @param creditNoteId the id of the credit note to get the PDF for
      * @return the credit note PDF or {@code null} if not found
-     * @throws ServiceException if an error occured while accessing the web service
+     * @throws ServiceException if an error occurred while accessing the web service
      * @see #getCreditNoteSignedPdf(int)
      */
     public CreditNotePdf getCreditNotePdf(final int creditNoteId) {
@@ -171,7 +171,7 @@ public class CreditNoteService extends AbstractService
     /**
      * @param creditNoteId the id of the credit note to get the signed PDF for
      * @return the signed credit note PDF or {@code null} if not found
-     * @throws ServiceException if an error occured while accessing the web service
+     * @throws ServiceException if an error occurred while accessing the web service
      * @see #uploadCreditNoteSignedPdf(int, byte[])
      * @see #getCreditNotePdf(int)
      */
@@ -186,7 +186,7 @@ public class CreditNoteService extends AbstractService
      * @param creditNoteId the id of the credit note to update
      * @param templateId   the id of the template to use for the resulting document or {@code null}
      *                     if no template should be used
-     * @throws ServiceException if an error occured while accessing the web service
+     * @throws ServiceException if an error occurred while accessing the web service
      */
     public void completeCreditNote(final int creditNoteId, final Integer templateId) {
         completeDocument(RESOURCE, creditNoteId, templateId);
@@ -195,7 +195,7 @@ public class CreditNoteService extends AbstractService
     /**
      * @param creditNoteId the id of the credit note to upload the signed PDF for
      * @param pdf          the signed PDF as binary data (must not be {@code null})
-     * @throws ServiceException     if an error occured while accessing the web service
+     * @throws ServiceException     if an error occurred while accessing the web service
      * @throws NullPointerException if pdf is null
      * @see #getCreditNoteSignedPdf(int)
      */
@@ -207,7 +207,7 @@ public class CreditNoteService extends AbstractService
      * @param creditNoteId    the id of the credit note to send an email for
      * @param creditNoteEmail the email configuration
      * @throws NullPointerException if creditNoteEmail is null
-     * @throws ServiceException     if an error occured while accessing the web service
+     * @throws ServiceException     if an error occurred while accessing the web service
      */
     public void sendCreditNoteViaEmail(final int creditNoteId, final Email creditNoteEmail) {
         sendEmail(RESOURCE, creditNoteId, creditNoteEmail);

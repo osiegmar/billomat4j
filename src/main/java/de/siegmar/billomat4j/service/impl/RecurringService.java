@@ -65,7 +65,7 @@ public class RecurringService extends AbstractService
      * @param recurringFilter recurring filter, may be {@code null} to find unfiltered
      * @return recurrings found by filter criteria or an empty list if no recurrings were found - never
      * {@code null}
-     * @throws ServiceException if an error occured while accessing the web service
+     * @throws ServiceException if an error occurred while accessing the web service
      */
     public List<Recurring> findRecurrings(final RecurringFilter recurringFilter) {
         return getAllPagesFromResource(RESOURCE, Recurrings.class, recurringFilter);
@@ -76,7 +76,7 @@ public class RecurringService extends AbstractService
      *
      * @param recurringId the recurring's id
      * @return the recurring or {@code null} if not found
-     * @throws ServiceException if an error occured while accessing the web service
+     * @throws ServiceException if an error occurred while accessing the web service
      */
     public Recurring getRecurringById(final int recurringId) {
         return getById(RESOURCE, Recurring.class, recurringId);
@@ -85,7 +85,7 @@ public class RecurringService extends AbstractService
     /**
      * @param recurring the recurring to create, must not be {@code null}
      * @throws NullPointerException if recurring is null
-     * @throws ServiceException     if an error occured while accessing the web service
+     * @throws ServiceException     if an error occurred while accessing the web service
      */
     public void createRecurring(final Recurring recurring) {
         create(RESOURCE, Validate.notNull(recurring));
@@ -94,7 +94,7 @@ public class RecurringService extends AbstractService
     /**
      * @param recurring the recurring to update, must not be {@code null}
      * @throws NullPointerException if recurring is null
-     * @throws ServiceException     if an error occured while accessing the web service
+     * @throws ServiceException     if an error occurred while accessing the web service
      */
     public void updateRecurring(final Recurring recurring) {
         update(RESOURCE, Validate.notNull(recurring));
@@ -102,7 +102,7 @@ public class RecurringService extends AbstractService
 
     /**
      * @param recurringId the id of the recurring to be deleted
-     * @throws ServiceException if an error occured while accessing the web service
+     * @throws ServiceException if an error occurred while accessing the web service
      */
     public void deleteRecurring(final int recurringId) {
         delete(RESOURCE, recurringId);
@@ -167,7 +167,7 @@ public class RecurringService extends AbstractService
      * @param recurringId the recurring id
      * @return email receivers found for the given recurring id or an empty list if no items were found - never
      * {@code null}
-     * @throws ServiceException if an error occured while accessing the web service
+     * @throws ServiceException if an error occurred while accessing the web service
      */
     public List<RecurringEmailReceiver> getRecurringEmailReceivers(final int recurringId) {
         return getAllPagesFromResource(RESOURCE_EMAIL_RECEIVER, RecurringEmailReceivers.class,
@@ -179,7 +179,7 @@ public class RecurringService extends AbstractService
      *
      * @param recurringEmailReceiverId the recurring receiver's id
      * @return the recurring receiver or {@code null} if not found
-     * @throws ServiceException if an error occured while accessing the web service
+     * @throws ServiceException if an error occurred while accessing the web service
      */
     public RecurringEmailReceiver getRecurringEmailReceiverById(final int recurringEmailReceiverId) {
         return getById(RESOURCE_EMAIL_RECEIVER, RecurringEmailReceiver.class, recurringEmailReceiverId);
@@ -188,7 +188,7 @@ public class RecurringService extends AbstractService
     /**
      * @param recurringEmailReceiver the recurring receiver to create, must not be {@code null}
      * @throws NullPointerException if recurringEmailReceiver is null
-     * @throws ServiceException     if an error occured while accessing the web service
+     * @throws ServiceException     if an error occurred while accessing the web service
      */
     public void createRecurringEmailReceiver(final RecurringEmailReceiver recurringEmailReceiver) {
         create(RESOURCE_EMAIL_RECEIVER, Validate.notNull(recurringEmailReceiver));
@@ -197,7 +197,7 @@ public class RecurringService extends AbstractService
     /**
      * @param recurringEmailReceiver the recurring receiver to update, must not be {@code null}
      * @throws NullPointerException if recurringEmailReceiver is null
-     * @throws ServiceException     if an error occured while accessing the web service
+     * @throws ServiceException     if an error occurred while accessing the web service
      */
     public void updateRecurringEmailReceiver(final RecurringEmailReceiver recurringEmailReceiver) {
         update(RESOURCE_EMAIL_RECEIVER, Validate.notNull(recurringEmailReceiver));
@@ -205,7 +205,7 @@ public class RecurringService extends AbstractService
 
     /**
      * @param recurringEmailReceiverId the id of the recurring receiver to be deleted
-     * @throws ServiceException if an error occured while accessing the web service
+     * @throws ServiceException if an error occurred while accessing the web service
      */
     public void deleteRecurringEmailReceiver(final int recurringEmailReceiverId) {
         delete(RESOURCE_EMAIL_RECEIVER, recurringEmailReceiverId);

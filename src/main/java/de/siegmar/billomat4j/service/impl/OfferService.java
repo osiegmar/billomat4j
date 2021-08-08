@@ -71,7 +71,7 @@ public class OfferService extends AbstractService implements GenericCustomFieldS
      * @param offerFilter offer filter, may be {@code null} to find unfiltered
      * @return offers found by filter criteria or an empty list if no offers were found - never
      * {@code null}
-     * @throws ServiceException if an error occured while accessing the web service
+     * @throws ServiceException if an error occurred while accessing the web service
      */
     public List<Offer> findOffers(final OfferFilter offerFilter) {
         return getAllPagesFromResource(RESOURCE, Offers.class, offerFilter);
@@ -82,7 +82,7 @@ public class OfferService extends AbstractService implements GenericCustomFieldS
      *
      * @param offerId the offer's id
      * @return the offer or {@code null} if not found
-     * @throws ServiceException if an error occured while accessing the web service
+     * @throws ServiceException if an error occurred while accessing the web service
      */
     public Offer getOfferById(final int offerId) {
         return getById(RESOURCE, Offer.class, offerId);
@@ -95,7 +95,7 @@ public class OfferService extends AbstractService implements GenericCustomFieldS
      * @return the offer or {@code null} if not found
      * @throws NullPointerException     if offerNumber is null
      * @throws IllegalArgumentException if offerNumber is empty
-     * @throws ServiceException         if an error occured while accessing the web service
+     * @throws ServiceException         if an error occurred while accessing the web service
      */
     public Offer getOfferByNumber(final String offerNumber) {
         return single(findOffers(new OfferFilter().byOfferNumber(Validate.notEmpty(offerNumber))));
@@ -104,7 +104,7 @@ public class OfferService extends AbstractService implements GenericCustomFieldS
     /**
      * @param offer the offer to create, must not be {@code null}
      * @throws NullPointerException if offer is null
-     * @throws ServiceException     if an error occured while accessing the web service
+     * @throws ServiceException     if an error occurred while accessing the web service
      */
     public void createOffer(final Offer offer) {
         create(RESOURCE, Validate.notNull(offer));
@@ -113,7 +113,7 @@ public class OfferService extends AbstractService implements GenericCustomFieldS
     /**
      * @param offer the offer to update, must not be {@code null}
      * @throws NullPointerException if offer is null
-     * @throws ServiceException     if an error occured while accessing the web service
+     * @throws ServiceException     if an error occurred while accessing the web service
      */
     public void updateOffer(final Offer offer) {
         update(RESOURCE, Validate.notNull(offer));
@@ -121,7 +121,7 @@ public class OfferService extends AbstractService implements GenericCustomFieldS
 
     /**
      * @param offerId the id of the offer to be deleted
-     * @throws ServiceException if an error occured while accessing the web service
+     * @throws ServiceException if an error occurred while accessing the web service
      */
     public void deleteOffer(final int offerId) {
         delete(RESOURCE, offerId);
@@ -130,7 +130,7 @@ public class OfferService extends AbstractService implements GenericCustomFieldS
     /**
      * @param offerId the id of the offer to get the PDF for
      * @return the offer PDF or {@code null} if not found
-     * @throws ServiceException if an error occured while accessing the web service
+     * @throws ServiceException if an error occurred while accessing the web service
      */
     public OfferPdf getOfferPdf(final int offerId) {
         return getPdf(RESOURCE, OfferPdf.class, offerId, null);
@@ -142,7 +142,7 @@ public class OfferService extends AbstractService implements GenericCustomFieldS
      * @param offerId    the id of the offer to update
      * @param templateId the id of the template to use for the resulting document or {@code null}
      *                   if no template should be used
-     * @throws ServiceException if an error occured while accessing the web service
+     * @throws ServiceException if an error occurred while accessing the web service
      */
     public void completeOffer(final int offerId, final Integer templateId) {
         completeDocument(RESOURCE, offerId, templateId);
@@ -152,7 +152,7 @@ public class OfferService extends AbstractService implements GenericCustomFieldS
      * @param offerId    the id of the offer to send an email for
      * @param offerEmail the email configuration
      * @throws NullPointerException if offerEmail is null
-     * @throws ServiceException     if an error occured while accessing the web service
+     * @throws ServiceException     if an error occurred while accessing the web service
      */
     public void sendOfferViaEmail(final int offerId, final Email offerEmail) {
         sendEmail(RESOURCE, offerId, offerEmail);
@@ -162,7 +162,7 @@ public class OfferService extends AbstractService implements GenericCustomFieldS
      * Sets the offer status to {@link de.siegmar.billomat4j.domain.offer.OfferStatus#CANCELED}.
      *
      * @param offerId the id of the offer to update
-     * @throws ServiceException if an error occured while accessing the web service
+     * @throws ServiceException if an error occurred while accessing the web service
      */
     public void cancelOffer(final int offerId) {
         transit(RESOURCE, "cancel", offerId);
@@ -172,7 +172,7 @@ public class OfferService extends AbstractService implements GenericCustomFieldS
      * Sets the offer status to {@link de.siegmar.billomat4j.domain.offer.OfferStatus#WON}.
      *
      * @param offerId the id of the offer to update
-     * @throws ServiceException if an error occured while accessing the web service
+     * @throws ServiceException if an error occurred while accessing the web service
      */
     public void winOffer(final int offerId) {
         transit(RESOURCE, "win", offerId);
@@ -182,7 +182,7 @@ public class OfferService extends AbstractService implements GenericCustomFieldS
      * Sets the offer status to {@link de.siegmar.billomat4j.domain.offer.OfferStatus#LOST}.
      *
      * @param offerId the id of the offer to update
-     * @throws ServiceException if an error occured while accessing the web service
+     * @throws ServiceException if an error occurred while accessing the web service
      */
     public void loseOffer(final int offerId) {
         transit(RESOURCE, "lose", offerId);
@@ -192,7 +192,7 @@ public class OfferService extends AbstractService implements GenericCustomFieldS
      * Sets the offer status to {@link de.siegmar.billomat4j.domain.offer.OfferStatus#CLEARED}.
      *
      * @param offerId the id of the offer to update
-     * @throws ServiceException if an error occured while accessing the web service
+     * @throws ServiceException if an error occurred while accessing the web service
      */
     public void clearOffer(final int offerId) {
         transit(RESOURCE, "clear", offerId);
@@ -202,7 +202,7 @@ public class OfferService extends AbstractService implements GenericCustomFieldS
      * Reverts the status change of {@link #clearOffer(int)}.
      *
      * @param offerId the id of the offer to update
-     * @throws ServiceException if an error occured while accessing the web service
+     * @throws ServiceException if an error occurred while accessing the web service
      */
     public void unclearOffer(final int offerId) {
         transit(RESOURCE, "unclear", offerId);

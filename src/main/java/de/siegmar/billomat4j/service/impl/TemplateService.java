@@ -53,7 +53,7 @@ public class TemplateService extends AbstractService implements GenericCustomFie
     /**
      * @param templateFilter template filter, may be {@code null} to find unfiltered
      * @return templates found by filter criteria or an empty list if no templates were found - never {@code null}
-     * @throws ServiceException if an error occured while accessing the web service
+     * @throws ServiceException if an error occurred while accessing the web service
      */
     public List<Template> findTemplates(final TemplateFilter templateFilter) {
         return getAllPagesFromResource(RESOURCE, Templates.class, templateFilter);
@@ -64,7 +64,7 @@ public class TemplateService extends AbstractService implements GenericCustomFie
      *
      * @param templateId the template's id
      * @return the template or {@code null} if not found
-     * @throws ServiceException if an error occured while accessing the web service
+     * @throws ServiceException if an error occurred while accessing the web service
      */
     public Template getTemplateById(final int templateId) {
         return getById(RESOURCE, Template.class, templateId);
@@ -73,7 +73,7 @@ public class TemplateService extends AbstractService implements GenericCustomFie
     /**
      * @param template the template to create, must not be {@code null}
      * @throws NullPointerException if template is null
-     * @throws ServiceException     if an error occured while accessing the web service
+     * @throws ServiceException     if an error occurred while accessing the web service
      */
     public void createTemplate(final Template template) {
         create(RESOURCE, Validate.notNull(template));
@@ -82,7 +82,7 @@ public class TemplateService extends AbstractService implements GenericCustomFie
     /**
      * @param template the template to update, must not be {@code null}
      * @throws NullPointerException if template is null
-     * @throws ServiceException     if an error occured while accessing the web service
+     * @throws ServiceException     if an error occurred while accessing the web service
      */
     public void updateTemplate(final Template template) {
         update(RESOURCE, Validate.notNull(template));
@@ -90,7 +90,7 @@ public class TemplateService extends AbstractService implements GenericCustomFie
 
     /**
      * @param templateId the id of the template to be deleted
-     * @throws ServiceException if an error occured while accessing the web service
+     * @throws ServiceException if an error occurred while accessing the web service
      */
     public void deleteTemplate(final int templateId) {
         delete(RESOURCE, templateId);
@@ -100,7 +100,7 @@ public class TemplateService extends AbstractService implements GenericCustomFie
      * @param templateId  the id of the template to obtain a preview for
      * @param imageFormat the image file format this method should render
      * @return the template preview as binary data or {@code null} if template couldn't be found
-     * @throws ServiceException if an error occured while accessing the web service
+     * @throws ServiceException if an error occurred while accessing the web service
      */
     public byte[] getTemplatePreview(final int templateId, final ImageFormat imageFormat) {
         Validate.notNull(imageFormat);

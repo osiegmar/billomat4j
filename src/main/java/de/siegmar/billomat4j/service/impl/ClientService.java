@@ -66,7 +66,7 @@ public class ClientService extends AbstractService
 
     /**
      * @return the Billomat account as a client
-     * @throws ServiceException if an error occured while accessing the web service
+     * @throws ServiceException if an error occurred while accessing the web service
      * @see <a href="http://www.billomat.com/api/account/">API Account</a>
      */
     public Client getMySelf() {
@@ -76,7 +76,7 @@ public class ClientService extends AbstractService
     /**
      * @param clientFilter client filter, may be {@code null} to find unfiltered
      * @return clients found by filter criteria or an empty list if no clients were found - never {@code null}
-     * @throws ServiceException if an error occured while accessing the web service
+     * @throws ServiceException if an error occurred while accessing the web service
      */
     public List<Client> findClients(final ClientFilter clientFilter) {
         return getAllPagesFromResource(RESOURCE, Clients.class, clientFilter);
@@ -87,7 +87,7 @@ public class ClientService extends AbstractService
      *
      * @param clientId the client's id
      * @return the client or {@code null} if not found
-     * @throws ServiceException if an error occured while accessing the web service
+     * @throws ServiceException if an error occurred while accessing the web service
      */
     public Client getClientById(final int clientId) {
         return getById(RESOURCE, Client.class, clientId);
@@ -100,7 +100,7 @@ public class ClientService extends AbstractService
      * @return the client or {@code null} if not found
      * @throws NullPointerException     if clientNumber is null
      * @throws IllegalArgumentException if clientNumber is empty
-     * @throws ServiceException         if an error occured while accessing the web service
+     * @throws ServiceException         if an error occurred while accessing the web service
      */
     public Client getClientByNumber(final String clientNumber) {
         return single(findClients(new ClientFilter().byClientNumber(Validate.notEmpty(clientNumber))));
@@ -109,7 +109,7 @@ public class ClientService extends AbstractService
     /**
      * @param client the client to create, must not be {@code null}
      * @throws NullPointerException if client is null
-     * @throws ServiceException     if an error occured while accessing the web service
+     * @throws ServiceException     if an error occurred while accessing the web service
      */
     public void createClient(final Client client) {
         create(RESOURCE, Validate.notNull(client));
@@ -118,7 +118,7 @@ public class ClientService extends AbstractService
     /**
      * @param client the client to update, must not be {@code null}
      * @throws NullPointerException if client is null
-     * @throws ServiceException     if an error occured while accessing the web service
+     * @throws ServiceException     if an error occurred while accessing the web service
      */
     public void updateClient(final Client client) {
         update(RESOURCE, Validate.notNull(client));
@@ -126,7 +126,7 @@ public class ClientService extends AbstractService
 
     /**
      * @param clientId the id of the client to be deleted
-     * @throws ServiceException if an error occured while accessing the web service
+     * @throws ServiceException if an error occurred while accessing the web service
      */
     public void deleteClient(final int clientId) {
         delete(RESOURCE, clientId);
@@ -207,7 +207,7 @@ public class ClientService extends AbstractService
     /**
      * @param clientId the id of the client the contacts belong to
      * @return all contacts for the specified client or an empty list if no contacts were found - never {@code null}
-     * @throws ServiceException if an error occured while accessing the web service
+     * @throws ServiceException if an error occurred while accessing the web service
      */
     public List<Contact> findContacts(final int clientId) {
         return getAllPagesFromResource(CONTACT_RESOURCE, Contacts.class, clientIdFilter(clientId));
@@ -218,7 +218,7 @@ public class ClientService extends AbstractService
      *
      * @param contactId the contact's id
      * @return the contact or {@code null} if not found
-     * @throws ServiceException if an error occured while accessing the web service
+     * @throws ServiceException if an error occurred while accessing the web service
      */
     public Contact getContact(final int contactId) {
         return getById(CONTACT_RESOURCE, Contact.class, contactId);
@@ -227,7 +227,7 @@ public class ClientService extends AbstractService
     /**
      * @param contact the contact to create, must not be {@code null}
      * @throws NullPointerException if contact is null
-     * @throws ServiceException     if an error occured while accessing the web service
+     * @throws ServiceException     if an error occurred while accessing the web service
      */
     public void createContact(final Contact contact) {
         create(CONTACT_RESOURCE, Validate.notNull(contact));
@@ -236,7 +236,7 @@ public class ClientService extends AbstractService
     /**
      * @param contact the contact to update, must not be {@code null}
      * @throws NullPointerException if contact is null
-     * @throws ServiceException     if an error occured while accessing the web service
+     * @throws ServiceException     if an error occurred while accessing the web service
      */
     public void updateContact(final Contact contact) {
         update(CONTACT_RESOURCE, Validate.notNull(contact));
@@ -244,7 +244,7 @@ public class ClientService extends AbstractService
 
     /**
      * @param contactId the id of the contact to be deleted
-     * @throws ServiceException if an error occured while accessing the web service
+     * @throws ServiceException if an error occurred while accessing the web service
      */
     public void deleteContact(final int contactId) {
         delete(CONTACT_RESOURCE, contactId);

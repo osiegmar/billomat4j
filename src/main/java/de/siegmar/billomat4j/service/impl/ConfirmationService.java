@@ -72,7 +72,7 @@ public class ConfirmationService extends AbstractService
      * @param confirmationFilter confirmation filter, may be {@code null} to find unfiltered
      * @return confirmations found by filter criteria or an empty list if no confirmations were found - never
      * {@code null}
-     * @throws ServiceException if an error occured while accessing the web service
+     * @throws ServiceException if an error occurred while accessing the web service
      */
     public List<Confirmation> findConfirmations(final ConfirmationFilter confirmationFilter) {
         return getAllPagesFromResource(RESOURCE, Confirmations.class, confirmationFilter);
@@ -83,7 +83,7 @@ public class ConfirmationService extends AbstractService
      *
      * @param confirmationId the confirmation's id
      * @return the confirmation or {@code null} if not found
-     * @throws ServiceException if an error occured while accessing the web service
+     * @throws ServiceException if an error occurred while accessing the web service
      */
     public Confirmation getConfirmationById(final int confirmationId) {
         return getById(RESOURCE, Confirmation.class, confirmationId);
@@ -96,7 +96,7 @@ public class ConfirmationService extends AbstractService
      * @return the confirmation or {@code null} if not found
      * @throws NullPointerException     if confirmationNumber is null
      * @throws IllegalArgumentException if confirmationNumber is empty
-     * @throws ServiceException         if an error occured while accessing the web service
+     * @throws ServiceException         if an error occurred while accessing the web service
      */
     public Confirmation getConfirmationByNumber(final String confirmationNumber) {
         Validate.notEmpty(confirmationNumber);
@@ -106,7 +106,7 @@ public class ConfirmationService extends AbstractService
     /**
      * @param confirmation the confirmation to create, must not be {@code null}
      * @throws NullPointerException if confirmation is null
-     * @throws ServiceException     if an error occured while accessing the web service
+     * @throws ServiceException     if an error occurred while accessing the web service
      */
     public void createConfirmation(final Confirmation confirmation) {
         create(RESOURCE, Validate.notNull(confirmation));
@@ -115,7 +115,7 @@ public class ConfirmationService extends AbstractService
     /**
      * @param confirmation the confirmation to update, must not be {@code null}
      * @throws NullPointerException if confirmation is null
-     * @throws ServiceException     if an error occured while accessing the web service
+     * @throws ServiceException     if an error occurred while accessing the web service
      */
     public void updateConfirmation(final Confirmation confirmation) {
         update(RESOURCE, Validate.notNull(confirmation));
@@ -123,7 +123,7 @@ public class ConfirmationService extends AbstractService
 
     /**
      * @param confirmationId the id of the confirmation to be deleted
-     * @throws ServiceException if an error occured while accessing the web service
+     * @throws ServiceException if an error occurred while accessing the web service
      */
     public void deleteConfirmation(final int confirmationId) {
         delete(RESOURCE, confirmationId);
@@ -132,7 +132,7 @@ public class ConfirmationService extends AbstractService
     /**
      * @param confirmationId the id of the confirmation to get the PDF for
      * @return the confirmation PDF or {@code null} if not found
-     * @throws ServiceException if an error occured while accessing the web service
+     * @throws ServiceException if an error occurred while accessing the web service
      */
     public ConfirmationPdf getConfirmationPdf(final int confirmationId) {
         return getPdf(RESOURCE, ConfirmationPdf.class, confirmationId, null);
@@ -145,7 +145,7 @@ public class ConfirmationService extends AbstractService
      * @param confirmationId the id of the confirmation to update
      * @param templateId     the id of the template to use for the resulting document or {@code null}
      *                       if no template should be used
-     * @throws ServiceException if an error occured while accessing the web service
+     * @throws ServiceException if an error occurred while accessing the web service
      */
     public void completeConfirmation(final int confirmationId, final Integer templateId) {
         completeDocument(RESOURCE, confirmationId, templateId);
@@ -155,7 +155,7 @@ public class ConfirmationService extends AbstractService
      * @param confirmationId    the id of the confirmation to send an email for
      * @param confirmationEmail the email configuration
      * @throws NullPointerException if confirmationEmail is null
-     * @throws ServiceException     if an error occured while accessing the web service
+     * @throws ServiceException     if an error occurred while accessing the web service
      */
     public void sendConfirmationViaEmail(final int confirmationId, final Email confirmationEmail) {
         sendEmail(RESOURCE, confirmationId, confirmationEmail);
@@ -166,7 +166,7 @@ public class ConfirmationService extends AbstractService
      * {@link de.siegmar.billomat4j.domain.confirmation.ConfirmationStatus#CANCELED}.
      *
      * @param confirmationId the id of the confirmation to update
-     * @throws ServiceException if an error occured while accessing the web service
+     * @throws ServiceException if an error occurred while accessing the web service
      */
     public void cancelConfirmation(final int confirmationId) {
         transit(RESOURCE, "cancel", confirmationId);
@@ -177,7 +177,7 @@ public class ConfirmationService extends AbstractService
      * .
      *
      * @param confirmationId the id of the confirmation to update
-     * @throws ServiceException if an error occured while accessing the web service
+     * @throws ServiceException if an error occurred while accessing the web service
      */
     public void clearConfirmation(final int confirmationId) {
         transit(RESOURCE, "clear", confirmationId);
@@ -187,7 +187,7 @@ public class ConfirmationService extends AbstractService
      * Reverts the status change of {@link #clearConfirmation(int)}.
      *
      * @param confirmationId the id of the confirmation to update
-     * @throws ServiceException if an error occured while accessing the web service
+     * @throws ServiceException if an error occurred while accessing the web service
      */
     public void unclearConfirmation(final int confirmationId) {
         transit(RESOURCE, "unclear", confirmationId);
