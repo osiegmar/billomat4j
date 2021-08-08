@@ -287,13 +287,21 @@ public class Client extends AbstractMeta {
         this.bankIban = bankIban;
     }
 
-    public String getSepaMandate() { return sepaMandate; }
+    public String getSepaMandate() {
+        return sepaMandate;
+    }
 
-    public void setSepaMandate(final String sepaMandate) { this.sepaMandate = sepaMandate; }
+    public void setSepaMandate(final String sepaMandate) {
+        this.sepaMandate = sepaMandate;
+    }
 
-    public LocalDate getSepaMandateDate() { return sepaMandateDate; }
+    public LocalDate getSepaMandateDate() {
+        return sepaMandateDate;
+    }
 
-    public void setSepaMandateDate(final LocalDate sepaMandateDate ) { this.sepaMandateDate = sepaMandateDate; }
+    public void setSepaMandateDate(final LocalDate sepaMandateDate) {
+        this.sepaMandateDate = sepaMandateDate;
+    }
 
     public TaxRule getTaxRule() {
         return taxRule;
@@ -422,4 +430,5 @@ public class Client extends AbstractMeta {
     public void setCustomerportalUrl(final String customerportalUrl) {
         this.customerportalUrl = customerportalUrl;
     }
+
 }
