@@ -62,7 +62,7 @@
     <module name="Header">
         <property name="headerFile" value="${config_loc}/java.header"/>
         <property name="fileExtensions" value="java"/>
-        <property name="ignoreLines" value="3"/>
+        <property name="ignoreLines" value="2"/>
     </module>
 
     <module name="LineLength">
