@@ -1,9 +1,8 @@
 name: integration test
 
 on:
-  push:
-    paths-ignore:
-      - '**/*.md'
+  schedule:
+    - cron:  '0 6 * * 7'
 
 jobs:
   build:
