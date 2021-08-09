@@ -29,16 +29,25 @@ public final class Billomat4JSettings {
     private static final Properties SETTINGS;
 
     static {
-        SETTINGS = new Properties();
-        try (InputStream is = Billomat4JSettings.class.getClassLoader()
-            .getResourceAsStream("billomat4j-settings.properties")) {
-            SETTINGS.load(is);
-        } catch (final IOException e) {
-            throw new UncheckedIOException(e);
-        }
+        SETTINGS = loadProperties("billomat4j-settings.properties");
     }
 
     private Billomat4JSettings() {
+    }
+
+    private static Properties loadProperties(final String name) {
+        final Properties properties = new Properties();
+        try (InputStream is = getResource(name)) {
+            properties.load(is);
+        } catch (final IOException e) {
+            throw new UncheckedIOException(e);
+        }
+
+        return properties;
+    }
+
+    private static InputStream getResource(final String name) {
+        return Billomat4JSettings.class.getClassLoader().getResourceAsStream(name);
     }
 
     public static String getVersion() {
