@@ -6,12 +6,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
+- Added customer portal URL (#3)
+  [\#3](https://github.com/osiegmar/billomat4j/pull/3)
 - Added SEPA mandate to client (#4)
   [\#4](https://github.com/osiegmar/billomat4j/pull/4)
+- Added LETTER template type
 
 ### Changed
-- Update to Java 11
+- Update to Java 11 and modularized code
+- Make use of Optional as return type
+- Update dependency versions
 - Replaced TestNG with JUnit 5
+
+### Removed
+- Removed service interfaces
 
 ## [1.1.3] - 2016-05-26
 ### Changed
