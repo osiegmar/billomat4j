@@ -16,7 +16,7 @@ Java Software Development Kit for the [Billomat API](https://www.billomat.com/ap
 ## Example
 
 This example fetches all paid invoices for the last 30 days and prints them out.
-This file is also part of this project - see src/test/java/de/siegmar/billomat4j/Example.java
+This file is also part of this project - see [Example.java](src/integrationTest/java/integrationtest/Example.java)
 
 ```java
 BillomatConfiguration billomatConfiguration = new BillomatConfiguration();
@@ -43,7 +43,7 @@ for (Invoice invoice : invoiceService.findInvoices(invoiceFilter)) {
 The tests will wipe out all your invoices, clients and so on.
 Ask the Billomat-Team for a dedicated Test-User!
 
-Create a file "src/test/resources/billomat.properties" with this content:
+Create a file `src/integrationTest/resources/billomat.properties` with this content:
 
 ```
 billomatId = <your-billomat-id>
