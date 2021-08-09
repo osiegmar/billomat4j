@@ -4,6 +4,7 @@ plugins {
     id 'signing'
     id 'checkstyle'
     id 'com.github.spotbugs' version '4.5.0'
+    id 'idea'
 }
 
 group = 'de.siegmar'
@@ -22,29 +23,54 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.apache.commons:commons-lang3:3.4'
-    implementation 'com.fasterxml.jackson.core:jackson-databind:2.9.10.7'
-    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.10'
-    implementation 'org.slf4j:slf4j-api:1.7.21'
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.5.2'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.5.2'
-    testImplementation 'org.junit.jupiter:junit-jupiter-params:5.5.2'
+    implementation 'org.apache.commons:commons-lang3:3.12.0'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.4'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.12.4'
+    implementation 'org.slf4j:slf4j-api:1.7.28'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter-params:5.7.2'
     testImplementation 'ch.qos.logback:logback-classic:1.1.7'
+}
+
+sourceSets {
+    integrationTest {
+        compileClasspath += sourceSets.main.output
+        runtimeClasspath += sourceSets.main.output
+    }
 }
 
 processResources {
     expand(project.properties)
 }
 
-test {
-    useJUnitPlatform()
-    exclude '**/*IT.class'
+configurations {
+    integrationTestImplementation.extendsFrom testImplementation
+    integrationTestRuntimeOnly.extendsFrom testRuntimeOnly
 }
 
-task integrationTest(type: Test, dependsOn: "test") {
-    useJUnitPlatform()
-    include '**/*IT.class'
+task integrationTest(type: Test) {
+    description = 'Runs integration tests.'
+    group = 'verification'
+
+    testClassesDirs = sourceSets.integrationTest.output.classesDirs
+    classpath = sourceSets.integrationTest.runtimeClasspath
     failFast = true
+}
+
+// Required in order to run the integration tests from IntelliJ (bug?)
+task integrationTestJar() {}
+
+tasks.withType(Test) {
+    useJUnitPlatform()
+}
+
+idea {
+    module {
+        testSourceDirs += sourceSets.integrationTest.java.srcDirs
+        testResourceDirs += sourceSets.integrationTest.resources.srcDirs
+    }
 }
 
 tasks.matching {task -> task.name.startsWith('spotbugs')}.forEach {

@@ -19,28 +19,20 @@
 
 package de.siegmar.billomat4j.service;
 
-import java.util.Optional;
+public class ServiceException extends RuntimeException {
 
-public interface GenericCustomFieldService {
+    private static final long serialVersionUID = 1L;
 
-    /**
-     * Gets a custom field value.
-     *
-     * @param ownerId the id of the custom field owning object
-     * @return the custom field value
-     * @throws ServiceException
-     *             if an error occurred while accessing the web service
-     */
-    Optional<String> getCustomFieldValue(int ownerId);
+    public ServiceException(final String message) {
+        super(message);
+    }
 
-    /**
-     * Sets a custom field value.
-     *
-     * @param ownerId the id of the custom field owning object
-     * @param value the value to be set
-     * @throws ServiceException
-     *             if an error occurred while accessing the web service
-     */
-    void setCustomFieldValue(int ownerId, String value);
+    public ServiceException(final Throwable cause) {
+        super(cause);
+    }
+
+    public ServiceException(final String message, final Throwable cause) {
+        super(message, cause);
+    }
 
 }

@@ -19,28 +19,30 @@
 
 package de.siegmar.billomat4j.service;
 
-import java.util.Optional;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.UncheckedIOException;
+import java.util.Properties;
 
-public interface GenericCustomFieldService {
+public final class Billomat4JSettings {
 
-    /**
-     * Gets a custom field value.
-     *
-     * @param ownerId the id of the custom field owning object
-     * @return the custom field value
-     * @throws ServiceException
-     *             if an error occurred while accessing the web service
-     */
-    Optional<String> getCustomFieldValue(int ownerId);
+    private static final Properties SETTINGS;
 
-    /**
-     * Sets a custom field value.
-     *
-     * @param ownerId the id of the custom field owning object
-     * @param value the value to be set
-     * @throws ServiceException
-     *             if an error occurred while accessing the web service
-     */
-    void setCustomFieldValue(int ownerId, String value);
+    static {
+        SETTINGS = new Properties();
+        try (InputStream is = Billomat4JSettings.class.getClassLoader()
+            .getResourceAsStream("billomat4j-settings.properties")) {
+            SETTINGS.load(is);
+        } catch (final IOException e) {
+            throw new UncheckedIOException(e);
+        }
+    }
+
+    private Billomat4JSettings() {
+    }
+
+    public static String getVersion() {
+        return SETTINGS.getProperty("version");
+    }
 
 }

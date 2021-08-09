@@ -19,28 +19,27 @@
 
 package de.siegmar.billomat4j.service;
 
-import java.util.Optional;
+import java.util.Collections;
+import java.util.Map;
 
-public interface GenericCustomFieldService {
+import de.siegmar.billomat4j.domain.Filter;
 
-    /**
-     * Gets a custom field value.
-     *
-     * @param ownerId the id of the custom field owning object
-     * @return the custom field value
-     * @throws ServiceException
-     *             if an error occurred while accessing the web service
-     */
-    Optional<String> getCustomFieldValue(int ownerId);
+class GenericFilter implements Filter {
 
-    /**
-     * Sets a custom field value.
-     *
-     * @param ownerId the id of the custom field owning object
-     * @param value the value to be set
-     * @throws ServiceException
-     *             if an error occurred while accessing the web service
-     */
-    void setCustomFieldValue(int ownerId, String value);
+    private final Map<String, String> map;
+
+    GenericFilter(final Object key, final Object value) {
+        map = Collections.singletonMap(key.toString(), value.toString());
+    }
+
+    @Override
+    public Map<String, String> toMap() {
+        return map;
+    }
+
+    @Override
+    public boolean isConfigured() {
+        return !map.isEmpty();
+    }
 
 }
