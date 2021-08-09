@@ -14,7 +14,7 @@
  * GNU Lesser General Public License for more details.
  *
  * You should have received a copy of the GNU Lesser General Public License
- * along with Billomat4J.  If not, see <http://www.gnu.org/licenses/>.
+ * along with Billomat4J.  If not, see <https://www.gnu.org/licenses/>.
  */
 
 package de.siegmar.billomat4j.service;
@@ -65,7 +65,7 @@ public class ClientService extends AbstractService
     /**
      * @return the Billomat account as a client
      * @throws ServiceException if an error occurred while accessing the web service
-     * @see <a href="http://www.billomat.com/api/account/">API Account</a>
+     * @see <a href="https://www.billomat.com/api/account/">API Account</a>
      */
     public Client getMySelf() {
         return getMySelf(RESOURCE, Client.class);
