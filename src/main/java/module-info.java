@@ -18,21 +18,21 @@ module billomat4j {
     exports de.siegmar.billomat4j.domain.unit;
     exports de.siegmar.billomat4j.domain.user;
 
-    opens de.siegmar.billomat4j.domain to com.fasterxml.jackson.databind;
-    opens de.siegmar.billomat4j.domain.article to com.fasterxml.jackson.databind;
-    opens de.siegmar.billomat4j.domain.client to com.fasterxml.jackson.databind;
-    opens de.siegmar.billomat4j.domain.confirmation to com.fasterxml.jackson.databind;
-    opens de.siegmar.billomat4j.domain.creditnote to com.fasterxml.jackson.databind;
-    opens de.siegmar.billomat4j.domain.deliverynote to com.fasterxml.jackson.databind;
-    opens de.siegmar.billomat4j.domain.invoice to com.fasterxml.jackson.databind;
-    opens de.siegmar.billomat4j.domain.offer to com.fasterxml.jackson.databind;
-    opens de.siegmar.billomat4j.domain.recurring to com.fasterxml.jackson.databind;
-    opens de.siegmar.billomat4j.domain.reminder to com.fasterxml.jackson.databind;
-    opens de.siegmar.billomat4j.domain.settings to com.fasterxml.jackson.databind;
-    opens de.siegmar.billomat4j.domain.template to com.fasterxml.jackson.databind;
-    opens de.siegmar.billomat4j.domain.types to com.fasterxml.jackson.databind;
-    opens de.siegmar.billomat4j.domain.unit to com.fasterxml.jackson.databind;
-    opens de.siegmar.billomat4j.domain.user to com.fasterxml.jackson.databind;
+    opens de.siegmar.billomat4j.domain;
+    opens de.siegmar.billomat4j.domain.article;
+    opens de.siegmar.billomat4j.domain.client;
+    opens de.siegmar.billomat4j.domain.confirmation;
+    opens de.siegmar.billomat4j.domain.creditnote;
+    opens de.siegmar.billomat4j.domain.deliverynote;
+    opens de.siegmar.billomat4j.domain.invoice;
+    opens de.siegmar.billomat4j.domain.offer;
+    opens de.siegmar.billomat4j.domain.recurring;
+    opens de.siegmar.billomat4j.domain.reminder;
+    opens de.siegmar.billomat4j.domain.settings;
+    opens de.siegmar.billomat4j.domain.template;
+    opens de.siegmar.billomat4j.domain.types;
+    opens de.siegmar.billomat4j.domain.unit;
+    opens de.siegmar.billomat4j.domain.user;
 
     requires java.net.http;
     requires com.fasterxml.jackson.annotation;
