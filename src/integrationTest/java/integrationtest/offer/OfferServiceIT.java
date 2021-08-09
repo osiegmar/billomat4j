@@ -75,7 +75,7 @@ public class OfferServiceIT {
     public void findFiltered() {
         final OfferFilter offerFilter = new OfferFilter().byOfferNumber("1");
         List<Offer> offers = offerService.findOffers(offerFilter);
-        assertTrue(offerService.findOffers(null).isEmpty());
+        assertTrue(offers.isEmpty());
 
         final Offer offer1 = createOffer(1);
         createOffer(2);
