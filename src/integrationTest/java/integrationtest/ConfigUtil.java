@@ -49,8 +49,16 @@ final class ConfigUtil {
 
     static Properties loadProperties() {
         final Properties p = new Properties();
-        try (InputStream in = ConfigUtil.class.getClassLoader().getResourceAsStream("billomat.properties")) {
-            p.load(in);
+        // no try-with-resources because of Spotbugs RCN_REDUNDANT_NULLCHECK_OF_NONNULL_VALUE bug
+        try {
+            final InputStream in = ConfigUtil.class.getClassLoader().getResourceAsStream("billomat.properties");
+            if (in != null) {
+                try {
+                    p.load(in);
+                } finally {
+                    in.close();
+                }
+            }
         } catch (final IOException e) {
             throw new UncheckedIOException(e);
         }

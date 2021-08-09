@@ -19,6 +19,8 @@
 
 package de.siegmar.billomat4j.service;
 
+import java.util.Objects;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.Version;
 import com.fasterxml.jackson.databind.DeserializationFeature;
@@ -127,6 +129,9 @@ public class BillomatConfiguration {
         if (requestHelper != null) {
             return;
         }
+
+        Objects.requireNonNull(billomatId, "billomatId not configured");
+        Objects.requireNonNull(apiKey, "apiKey not configured");
 
         requestHelper = new RequestHelper(this);
 

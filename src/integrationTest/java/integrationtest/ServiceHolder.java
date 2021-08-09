@@ -19,6 +19,7 @@
 
 package integrationtest;
 
+import java.util.Optional;
 import java.util.Properties;
 
 import de.siegmar.billomat4j.service.ArticleService;
@@ -60,6 +61,11 @@ public final class ServiceHolder {
 
     static {
         PROPERTIES = ConfigUtil.loadProperties();
+        env("BILLOMAT_ID").ifPresent(e -> PROPERTIES.setProperty("billomatId", e));
+        env("BILLOMAT_API_KEY").ifPresent(e -> PROPERTIES.setProperty("billomatApiKey", e));
+        env("BILLOMAT_APP_ID").ifPresent(e -> PROPERTIES.setProperty("billomatAppId", e));
+        env("BILLOMAT_APP_SECRET").ifPresent(e -> PROPERTIES.setProperty("billomatAppSecret", e));
+
         final BillomatConfiguration cfg = ConfigUtil.configure(PROPERTIES);
 
         ARTICLE = new ArticleService(cfg);
@@ -82,6 +88,10 @@ public final class ServiceHolder {
 
     public static String getEmail() {
         return PROPERTIES.getProperty("email");
+    }
+
+    private static Optional<String> env(final String name) {
+        return Optional.ofNullable(System.getenv().get(name));
     }
 
 }
