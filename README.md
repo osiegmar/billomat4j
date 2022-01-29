@@ -1,6 +1,6 @@
 # Billomat4J
 
-[![build](https://github.com/osiegmar/billomat4j/actions/workflows/gradle.yml/badge.svg?branch=master)](https://github.com/osiegmar/billomat4j/actions/workflows/gradle.yml)
+[![build](https://github.com/osiegmar/billomat4j/actions/workflows/gradle.yml/badge.svg)](https://github.com/osiegmar/billomat4j/actions/workflows/gradle.yml)
 [![javadoc](https://javadoc.io/badge2/de.siegmar/billomat4j/javadoc.svg)](https://javadoc.io/doc/de.siegmar/billomat4j)
 [![Maven Central](https://img.shields.io/maven-central/v/de.siegmar/billomat4j.svg)](https://search.maven.org/artifact/de.siegmar/billomat4j)
 
