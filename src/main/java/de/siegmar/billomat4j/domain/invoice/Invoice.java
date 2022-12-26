@@ -74,6 +74,7 @@ public class Invoice extends AbstractMeta {
     private Integer recurringId;
     private Integer contactId;
     private String customerportalUrl;
+    private Integer templateId;
 
     @JsonView(Views.NonSerialize.class)
     private BigDecimal paidAmount;
@@ -354,4 +355,13 @@ public class Invoice extends AbstractMeta {
     public void setCustomerportalUrl(final String customerportalUrl) {
         this.customerportalUrl = customerportalUrl;
     }
+
+    public Integer getTemplateId() {
+        return templateId;
+    }
+
+    public void setTemplateId(final Integer templateId) {
+        this.templateId = templateId;
+    }
+
 }

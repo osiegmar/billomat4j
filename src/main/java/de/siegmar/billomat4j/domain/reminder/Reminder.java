@@ -49,6 +49,7 @@ public class Reminder extends AbstractMeta {
     private BigDecimal totalGross;
     private ReminderItems reminderItems;
     private String customerportalUrl;
+    private Integer templateId;
 
     @JsonProperty("is_old")
     private Boolean old;
@@ -180,4 +181,13 @@ public class Reminder extends AbstractMeta {
     public void setCustomerportalUrl(final String customerportalUrl) {
         this.customerportalUrl = customerportalUrl;
     }
+
+    public Integer getTemplateId() {
+        return templateId;
+    }
+
+    public void setTemplateId(final Integer templateId) {
+        this.templateId = templateId;
+    }
+
 }

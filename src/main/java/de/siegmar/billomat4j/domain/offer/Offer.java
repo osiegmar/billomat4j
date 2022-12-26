@@ -62,6 +62,7 @@ public class Offer extends AbstractMeta {
     private Taxes taxes;
     private Integer contactId;
     private String customerportalUrl;
+    private Integer templateId;
 
     @JsonInclude(Include.NON_NULL)
     private LocalDate validityDate;
@@ -247,4 +248,13 @@ public class Offer extends AbstractMeta {
     public void setCustomerportalUrl(final String customerportalUrl) {
         this.customerportalUrl = customerportalUrl;
     }
+
+    public Integer getTemplateId() {
+        return templateId;
+    }
+
+    public void setTemplateId(final Integer templateId) {
+        this.templateId = templateId;
+    }
+
 }

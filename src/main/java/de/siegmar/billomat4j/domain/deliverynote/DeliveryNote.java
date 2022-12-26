@@ -65,6 +65,7 @@ public class DeliveryNote extends AbstractMeta {
     private DeliveryNoteItems deliveryNoteItems;
     private Integer contactId;
     private String customerportalUrl;
+    private Integer templateId;
 
     public Integer getClientId() {
         return clientId;
@@ -261,4 +262,13 @@ public class DeliveryNote extends AbstractMeta {
     public void setCustomerportalUrl(final String customerportalUrl) {
         this.customerportalUrl = customerportalUrl;
     }
+
+    public Integer getTemplateId() {
+        return templateId;
+    }
+
+    public void setTemplateId(final Integer templateId) {
+        this.templateId = templateId;
+    }
+
 }

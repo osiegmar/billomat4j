@@ -63,6 +63,7 @@ public class CreditNote extends AbstractMeta {
     private CreditNoteItems creditNoteItems;
     private Integer contactId;
     private String customerportalUrl;
+    private Integer templateId;
 
     public Integer getClientId() {
         return clientId;
@@ -243,4 +244,13 @@ public class CreditNote extends AbstractMeta {
     public void setCustomerportalUrl(final String customerportalUrl) {
         this.customerportalUrl = customerportalUrl;
     }
+
+    public Integer getTemplateId() {
+        return templateId;
+    }
+
+    public void setTemplateId(final Integer templateId) {
+        this.templateId = templateId;
+    }
+
 }
