@@ -24,12 +24,21 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 @JsonRootName("email")
 public class Email {
 
+    private Integer emailTemplateId;
     private String from;
     private EmailRecipients recipients;
     private String subject;
     private String body;
     private String filename;
     private EmailAttachments attachments;
+
+    public Integer getEmailTemplateId() {
+        return emailTemplateId;
+    }
+
+    public void setEmailTemplateId(final Integer emailTemplateId) {
+        this.emailTemplateId = emailTemplateId;
+    }
 
     public String getFrom() {
         return from;
