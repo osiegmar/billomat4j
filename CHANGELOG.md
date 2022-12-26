@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.1] - 2022-12-26
+### Added
+- Added email_template_id
+- Added template_id
+
+### Changed
+- Updated slf4j-api dependency to version 1.7.36
+
 ## [2.0.0] - 2022-01-29
 ### Added
 - Added customer portal URL ([#3](https://github.com/osiegmar/billomat4j/pull/3))
@@ -95,6 +103,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - First release
 
+[2.0.1]: https://github.com/osiegmar/billomat4j/compare/v2.0.0...v2.0.1
 [2.0.0]: https://github.com/osiegmar/billomat4j/compare/v1.1.3...v2.0.0
 [1.1.3]: https://github.com/osiegmar/billomat4j/compare/v1.1.2...v1.1.3
 [1.1.2]: https://github.com/osiegmar/billomat4j/compare/v1.1.1...v1.1.2
