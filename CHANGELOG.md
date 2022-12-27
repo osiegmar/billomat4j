@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Use Lombok to ease maintainability
 - Refactored some attribute names
 - Removed dependency to commons-lang3
+- Handle unknown enum values lenient
 
 ## [2.0.1] - 2022-12-26
 ### Added

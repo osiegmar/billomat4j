@@ -105,7 +105,8 @@ public class BillomatConfiguration {
         objectReader = objectMapper.reader()
             .with(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
             .with(DeserializationFeature.ACCEPT_EMPTY_STRING_AS_NULL_OBJECT)
-            .with(DeserializationFeature.UNWRAP_ROOT_VALUE);
+            .with(DeserializationFeature.UNWRAP_ROOT_VALUE)
+            .with(DeserializationFeature.READ_UNKNOWN_ENUM_VALUES_AS_NULL);
 
         if (isIgnoreUnknownProperties()) {
             objectReader = objectReader.without(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
