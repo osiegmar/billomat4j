@@ -22,24 +22,18 @@ package de.siegmar.billomat4j.domain;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import de.siegmar.billomat4j.json.Views;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 public abstract class AbstractTag extends AbstractIdentifiable {
 
     private String name;
 
+    @Setter(AccessLevel.NONE)
     @JsonView(Views.NonSerialize.class)
     private Integer count;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(final String name) {
-        this.name = name;
-    }
-
-    public Integer getCount() {
-        return count;
-    }
 
 }

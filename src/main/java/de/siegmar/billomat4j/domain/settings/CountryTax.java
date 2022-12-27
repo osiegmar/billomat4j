@@ -22,18 +22,14 @@ package de.siegmar.billomat4j.domain.settings;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import de.siegmar.billomat4j.domain.AbstractIdentifiable;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @JsonRootName("country-tax")
 public class CountryTax extends AbstractIdentifiable {
 
     private String countryCode;
-
-    public String getCountryCode() {
-        return countryCode;
-    }
-
-    public void setCountryCode(final String countryCode) {
-        this.countryCode = countryCode;
-    }
 
 }

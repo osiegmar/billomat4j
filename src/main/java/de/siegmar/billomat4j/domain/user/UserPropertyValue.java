@@ -22,27 +22,15 @@ package de.siegmar.billomat4j.domain.user;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import de.siegmar.billomat4j.domain.AbstractPropertyValue;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @JsonRootName("user-property-value")
 public class UserPropertyValue extends AbstractPropertyValue {
 
     private Integer userId;
     private Integer userPropertyId;
-
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(final Integer userId) {
-        this.userId = userId;
-    }
-
-    public Integer getUserPropertyId() {
-        return userPropertyId;
-    }
-
-    public void setUserPropertyId(final Integer userPropertyId) {
-        this.userPropertyId = userPropertyId;
-    }
 
 }

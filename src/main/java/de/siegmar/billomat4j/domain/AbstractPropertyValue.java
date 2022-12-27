@@ -20,35 +20,15 @@
 package de.siegmar.billomat4j.domain;
 
 import de.siegmar.billomat4j.domain.types.PropertyType;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 public abstract class AbstractPropertyValue extends AbstractIdentifiable {
 
     private PropertyType type;
     private String name;
     private String value;
-
-    public PropertyType getType() {
-        return type;
-    }
-
-    public void setType(final PropertyType type) {
-        this.type = type;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(final String name) {
-        this.name = name;
-    }
-
-    public String getValue() {
-        return value;
-    }
-
-    public void setValue(final String value) {
-        this.value = value;
-    }
 
 }

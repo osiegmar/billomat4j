@@ -22,18 +22,14 @@ package de.siegmar.billomat4j.domain.confirmation;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import de.siegmar.billomat4j.domain.AbstractTag;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @JsonRootName("confirmation-tag")
 public class ConfirmationTag extends AbstractTag {
 
     private Integer confirmationId;
-
-    public Integer getConfirmationId() {
-        return confirmationId;
-    }
-
-    public void setConfirmationId(final Integer confirmationId) {
-        this.confirmationId = confirmationId;
-    }
 
 }

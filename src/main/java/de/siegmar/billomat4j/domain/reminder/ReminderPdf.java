@@ -22,18 +22,14 @@ package de.siegmar.billomat4j.domain.reminder;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import de.siegmar.billomat4j.domain.AbstractDocumentPdf;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @JsonRootName("pdf")
 public class ReminderPdf extends AbstractDocumentPdf {
 
     private Integer reminderId;
-
-    public Integer getReminderId() {
-        return reminderId;
-    }
-
-    public void setReminderId(final Integer reminderId) {
-        this.reminderId = reminderId;
-    }
 
 }

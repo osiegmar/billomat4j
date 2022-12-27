@@ -27,20 +27,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import de.siegmar.billomat4j.domain.AbstractPageable;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @JsonRootName("confirmation-items")
 public class ConfirmationItems extends AbstractPageable<ConfirmationItem> {
 
     @JsonProperty("confirmation-item")
     private List<ConfirmationItem> confirmationItems = new ArrayList<>();
-
-    public List<ConfirmationItem> getConfirmationItems() {
-        return confirmationItems;
-    }
-
-    public void setConfirmationItems(final List<ConfirmationItem> confirmationItems) {
-        this.confirmationItems = confirmationItems;
-    }
 
     @JsonIgnore
     @Override

@@ -41,5 +41,6 @@ module billomat4j {
     requires org.apache.commons.lang3;
     requires org.slf4j;
     requires com.fasterxml.jackson.datatype.jsr310;
+    requires static lombok;
 
 }

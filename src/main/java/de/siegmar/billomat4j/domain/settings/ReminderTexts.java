@@ -20,7 +20,6 @@
 package de.siegmar.billomat4j.domain.settings;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -28,20 +27,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import de.siegmar.billomat4j.domain.AbstractPageable;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @JsonRootName("reminder-texts")
 public class ReminderTexts extends AbstractPageable<ReminderText> {
 
     @JsonProperty("reminder-text")
     private List<ReminderText> reminderTexts = new ArrayList<>();
-
-    public Collection<ReminderText> getReminderTexts() {
-        return reminderTexts;
-    }
-
-    public void setReminderTexts(final List<ReminderText> reminderTexts) {
-        this.reminderTexts = reminderTexts;
-    }
 
     @JsonIgnore
     @Override

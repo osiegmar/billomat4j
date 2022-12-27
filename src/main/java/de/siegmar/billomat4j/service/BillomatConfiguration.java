@@ -38,7 +38,11 @@ import de.siegmar.billomat4j.json.CustomBooleanDeserializer;
 import de.siegmar.billomat4j.json.PaymentTypesDeserializer;
 import de.siegmar.billomat4j.json.PaymentTypesSerializer;
 import de.siegmar.billomat4j.json.Views;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @SuppressWarnings("checkstyle:classdataabstractioncoupling")
 public class BillomatConfiguration {
 
@@ -54,64 +58,6 @@ public class BillomatConfiguration {
     private RequestHelper requestHelper;
     private ObjectReader objectReader;
     private ObjectWriter objectWriter;
-
-    public String getBillomatId() {
-        return billomatId;
-    }
-
-    public void setBillomatId(final String billomatId) {
-        this.billomatId = billomatId;
-    }
-
-    public String getApiKey() {
-        return apiKey;
-    }
-
-    public void setApiKey(final String apiKey) {
-        this.apiKey = apiKey;
-    }
-
-    public String getAppId() {
-        return appId;
-    }
-
-    public void setAppId(final String appId) {
-        this.appId = appId;
-    }
-
-    public String getAppSecret() {
-        return appSecret;
-    }
-
-    public void setAppSecret(final String appSecret) {
-        this.appSecret = appSecret;
-    }
-
-    public boolean isSecure() {
-        return secure;
-    }
-
-    /**
-     * Sets secure mode (HTTPS instead of HTTP). This is enabled by default.
-     *
-     * @param secure {@code true} for HTTPS, {@code false} for HTTP
-     */
-    public void setSecure(final boolean secure) {
-        this.secure = secure;
-    }
-
-    public boolean isIgnoreUnknownProperties() {
-        return ignoreUnknownProperties;
-    }
-
-    /**
-     * Defines if unmappable API response should be ignores. This is the default.
-     *
-     * @param ignoreUnknownProperties {@code true} for ignore unknown response attributes
-     */
-    public void setIgnoreUnknownProperties(final boolean ignoreUnknownProperties) {
-        this.ignoreUnknownProperties = ignoreUnknownProperties;
-    }
 
     RequestHelper getRequestHelper() {
         return requestHelper;

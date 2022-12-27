@@ -27,20 +27,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import de.siegmar.billomat4j.domain.AbstractPageable;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @JsonRootName("recurring-tags")
 public class RecurringTags extends AbstractPageable<RecurringTag> {
 
     @JsonProperty("recurring-tag")
     private List<RecurringTag> recurringTags = new ArrayList<>();
-
-    public List<RecurringTag> getRecurringTags() {
-        return recurringTags;
-    }
-
-    public void setRecurringTags(final List<RecurringTag> recurringTags) {
-        this.recurringTags = recurringTags;
-    }
 
     @JsonIgnore
     @Override

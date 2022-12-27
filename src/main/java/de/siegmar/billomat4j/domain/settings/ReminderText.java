@@ -24,7 +24,11 @@ import java.math.BigDecimal;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import de.siegmar.billomat4j.domain.AbstractIdentifiable;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @JsonRootName("reminder-text")
 public class ReminderText extends AbstractIdentifiable {
 
@@ -36,69 +40,5 @@ public class ReminderText extends AbstractIdentifiable {
     private String chargeName;
     private String chargeDescription;
     private BigDecimal chargeAmount;
-
-    public Integer getSorting() {
-        return sorting;
-    }
-
-    public void setSorting(final Integer sorting) {
-        this.sorting = sorting;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(final String name) {
-        this.name = name;
-    }
-
-    public String getSubject() {
-        return subject;
-    }
-
-    public void setSubject(final String subject) {
-        this.subject = subject;
-    }
-
-    public String getHeader() {
-        return header;
-    }
-
-    public void setHeader(final String header) {
-        this.header = header;
-    }
-
-    public String getFooter() {
-        return footer;
-    }
-
-    public void setFooter(final String footer) {
-        this.footer = footer;
-    }
-
-    public String getChargeName() {
-        return chargeName;
-    }
-
-    public void setChargeName(final String chargeName) {
-        this.chargeName = chargeName;
-    }
-
-    public String getChargeDescription() {
-        return chargeDescription;
-    }
-
-    public void setChargeDescription(final String chargeDescription) {
-        this.chargeDescription = chargeDescription;
-    }
-
-    public BigDecimal getChargeAmount() {
-        return chargeAmount;
-    }
-
-    public void setChargeAmount(final BigDecimal chargeAmount) {
-        this.chargeAmount = chargeAmount;
-    }
 
 }

@@ -22,27 +22,15 @@ package de.siegmar.billomat4j.domain.offer;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import de.siegmar.billomat4j.domain.AbstractInvoiceItem;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @JsonRootName("offer-item")
 public class OfferItem extends AbstractInvoiceItem {
 
     private Integer offerId;
     private Boolean optional;
-
-    public Integer getOfferId() {
-        return offerId;
-    }
-
-    public void setOfferId(final Integer offerId) {
-        this.offerId = offerId;
-    }
-
-    public Boolean getOptional() {
-        return optional;
-    }
-
-    public void setOptional(final Boolean optional) {
-        this.optional = optional;
-    }
 
 }

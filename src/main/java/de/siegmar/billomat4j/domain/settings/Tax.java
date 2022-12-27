@@ -27,10 +27,16 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 import de.siegmar.billomat4j.domain.AbstractIdentifiable;
 import de.siegmar.billomat4j.json.Views;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @JsonRootName("tax")
 public class Tax extends AbstractIdentifiable {
 
+    @Setter(AccessLevel.NONE)
     @JsonView(Views.NonSerialize.class)
     private Integer accountId;
 
@@ -39,33 +45,5 @@ public class Tax extends AbstractIdentifiable {
 
     @JsonProperty("is_default")
     private Boolean defaultTax;
-
-    public Integer getAccountId() {
-        return accountId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(final String name) {
-        this.name = name;
-    }
-
-    public BigDecimal getRate() {
-        return rate;
-    }
-
-    public void setRate(final BigDecimal rate) {
-        this.rate = rate;
-    }
-
-    public Boolean getDefaultTax() {
-        return defaultTax;
-    }
-
-    public void setDefaultTax(final Boolean defaultTax) {
-        this.defaultTax = defaultTax;
-    }
 
 }

@@ -22,18 +22,14 @@ package de.siegmar.billomat4j.domain.client;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import de.siegmar.billomat4j.domain.AbstractTag;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @JsonRootName("client-tag")
 public class ClientTag extends AbstractTag {
 
     private Integer clientId;
-
-    public Integer getClientId() {
-        return clientId;
-    }
-
-    public void setClientId(final Integer clientId) {
-        this.clientId = clientId;
-    }
 
 }

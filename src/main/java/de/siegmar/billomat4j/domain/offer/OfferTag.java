@@ -22,18 +22,14 @@ package de.siegmar.billomat4j.domain.offer;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import de.siegmar.billomat4j.domain.AbstractTag;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @JsonRootName("offer-tag")
 public class OfferTag extends AbstractTag {
 
     private Integer offerId;
-
-    public Integer getOfferId() {
-        return offerId;
-    }
-
-    public void setOfferId(final Integer offerId) {
-        this.offerId = offerId;
-    }
 
 }

@@ -22,6 +22,11 @@ package de.siegmar.billomat4j.domain;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 @JsonRootName("attachment")
 public class EmailAttachment {
 
@@ -32,22 +37,6 @@ public class EmailAttachment {
 
     @JsonProperty("base64file")
     private byte[] data;
-
-    public String getFilename() {
-        return filename;
-    }
-
-    public void setFilename(final String filename) {
-        this.filename = filename;
-    }
-
-    public String getMimeType() {
-        return mimeType;
-    }
-
-    public void setMimeType(final String mimeType) {
-        this.mimeType = mimeType;
-    }
 
     public byte[] getData() {
         return data.clone();

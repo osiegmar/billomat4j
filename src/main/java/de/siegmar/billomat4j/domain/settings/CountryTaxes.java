@@ -20,7 +20,6 @@
 package de.siegmar.billomat4j.domain.settings;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -28,20 +27,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import de.siegmar.billomat4j.domain.AbstractPageable;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @JsonRootName("country-taxes")
 public class CountryTaxes extends AbstractPageable<CountryTax> {
 
     @JsonProperty("country-tax")
     private List<CountryTax> countryTaxes = new ArrayList<>();
-
-    public Collection<CountryTax> getCountryTaxes() {
-        return countryTaxes;
-    }
-
-    public void setCountryTaxes(final List<CountryTax> countryTaxes) {
-        this.countryTaxes = countryTaxes;
-    }
 
     @JsonIgnore
     @Override

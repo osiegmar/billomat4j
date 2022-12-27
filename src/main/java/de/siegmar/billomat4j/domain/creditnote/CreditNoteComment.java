@@ -22,18 +22,14 @@ package de.siegmar.billomat4j.domain.creditnote;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import de.siegmar.billomat4j.domain.AbstractComment;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @JsonRootName("credit-note-comment")
 public class CreditNoteComment extends AbstractComment<CreditNoteActionKey> {
 
     private Integer creditNoteId;
-
-    public Integer getCreditNoteId() {
-        return creditNoteId;
-    }
-
-    public void setCreditNoteId(final Integer creditNoteId) {
-        this.creditNoteId = creditNoteId;
-    }
 
 }

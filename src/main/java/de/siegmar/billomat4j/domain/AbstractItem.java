@@ -21,6 +21,11 @@ package de.siegmar.billomat4j.domain;
 
 import java.math.BigDecimal;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public abstract class AbstractItem extends AbstractIdentifiable {
 
     private Integer articleId;
@@ -30,61 +35,5 @@ public abstract class AbstractItem extends AbstractIdentifiable {
     private BigDecimal unitPrice;
     private String title;
     private String description;
-
-    public Integer getArticleId() {
-        return articleId;
-    }
-
-    public void setArticleId(final Integer articleId) {
-        this.articleId = articleId;
-    }
-
-    public Integer getPosition() {
-        return position;
-    }
-
-    public void setPosition(final Integer position) {
-        this.position = position;
-    }
-
-    public String getUnit() {
-        return unit;
-    }
-
-    public void setUnit(final String unit) {
-        this.unit = unit;
-    }
-
-    public BigDecimal getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(final BigDecimal quantity) {
-        this.quantity = quantity;
-    }
-
-    public BigDecimal getUnitPrice() {
-        return unitPrice;
-    }
-
-    public void setUnitPrice(final BigDecimal unitPrice) {
-        this.unitPrice = unitPrice;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(final String title) {
-        this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(final String description) {
-        this.description = description;
-    }
 
 }

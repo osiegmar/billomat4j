@@ -24,27 +24,15 @@ import java.math.BigDecimal;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import de.siegmar.billomat4j.domain.AbstractItem;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @JsonRootName("reminder-item")
 public class ReminderItem extends AbstractItem {
 
     private Integer reminderId;
     private BigDecimal total;
-
-    public Integer getReminderId() {
-        return reminderId;
-    }
-
-    public void setReminderId(final Integer reminderId) {
-        this.reminderId = reminderId;
-    }
-
-    public BigDecimal getTotal() {
-        return total;
-    }
-
-    public void setTotal(final BigDecimal total) {
-        this.total = total;
-    }
 
 }

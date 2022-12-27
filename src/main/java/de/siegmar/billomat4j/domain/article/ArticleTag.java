@@ -22,18 +22,14 @@ package de.siegmar.billomat4j.domain.article;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import de.siegmar.billomat4j.domain.AbstractTag;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @JsonRootName("article-tag")
 public class ArticleTag extends AbstractTag {
 
     private Integer articleId;
-
-    public Integer getArticleId() {
-        return articleId;
-    }
-
-    public void setArticleId(final Integer articleId) {
-        this.articleId = articleId;
-    }
 
 }

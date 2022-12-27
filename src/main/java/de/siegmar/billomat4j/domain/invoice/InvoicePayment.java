@@ -22,18 +22,14 @@ package de.siegmar.billomat4j.domain.invoice;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import de.siegmar.billomat4j.domain.AbstractPayment;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @JsonRootName("invoice-payment")
 public class InvoicePayment extends AbstractPayment {
 
     private Integer invoiceId;
-
-    public Integer getInvoiceId() {
-        return invoiceId;
-    }
-
-    public void setInvoiceId(final Integer invoiceId) {
-        this.invoiceId = invoiceId;
-    }
 
 }

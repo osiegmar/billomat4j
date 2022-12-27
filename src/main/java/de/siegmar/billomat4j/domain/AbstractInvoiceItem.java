@@ -21,6 +21,11 @@ package de.siegmar.billomat4j.domain;
 
 import java.math.BigDecimal;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public abstract class AbstractInvoiceItem extends AbstractItem {
 
     private String taxName;
@@ -30,61 +35,5 @@ public abstract class AbstractInvoiceItem extends AbstractItem {
     private BigDecimal totalNet;
     private BigDecimal totalGrossUnreduced;
     private BigDecimal totalNetUnreduced;
-
-    public String getTaxName() {
-        return taxName;
-    }
-
-    public void setTaxName(final String taxName) {
-        this.taxName = taxName;
-    }
-
-    public BigDecimal getTaxRate() {
-        return taxRate;
-    }
-
-    public void setTaxRate(final BigDecimal taxRate) {
-        this.taxRate = taxRate;
-    }
-
-    public String getReduction() {
-        return reduction;
-    }
-
-    public void setReduction(final String reduction) {
-        this.reduction = reduction;
-    }
-
-    public BigDecimal getTotalGross() {
-        return totalGross;
-    }
-
-    public void setTotalGross(final BigDecimal totalGross) {
-        this.totalGross = totalGross;
-    }
-
-    public BigDecimal getTotalNet() {
-        return totalNet;
-    }
-
-    public void setTotalNet(final BigDecimal totalNet) {
-        this.totalNet = totalNet;
-    }
-
-    public BigDecimal getTotalGrossUnreduced() {
-        return totalGrossUnreduced;
-    }
-
-    public void setTotalGrossUnreduced(final BigDecimal totalGrossUnreduced) {
-        this.totalGrossUnreduced = totalGrossUnreduced;
-    }
-
-    public BigDecimal getTotalNetUnreduced() {
-        return totalNetUnreduced;
-    }
-
-    public void setTotalNetUnreduced(final BigDecimal totalNetUnreduced) {
-        this.totalNetUnreduced = totalNetUnreduced;
-    }
 
 }

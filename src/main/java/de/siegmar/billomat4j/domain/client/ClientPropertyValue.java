@@ -22,27 +22,15 @@ package de.siegmar.billomat4j.domain.client;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import de.siegmar.billomat4j.domain.AbstractPropertyValue;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @JsonRootName("client-property-value")
 public class ClientPropertyValue extends AbstractPropertyValue {
 
     private Integer clientId;
     private Integer clientPropertyId;
-
-    public Integer getClientId() {
-        return clientId;
-    }
-
-    public void setClientId(final Integer clientId) {
-        this.clientId = clientId;
-    }
-
-    public Integer getClientPropertyId() {
-        return clientPropertyId;
-    }
-
-    public void setClientPropertyId(final Integer clientPropertyId) {
-        this.clientPropertyId = clientPropertyId;
-    }
 
 }

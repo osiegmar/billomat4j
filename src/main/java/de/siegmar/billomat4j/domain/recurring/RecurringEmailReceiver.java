@@ -23,36 +23,16 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 
 import de.siegmar.billomat4j.domain.AbstractIdentifiable;
 import de.siegmar.billomat4j.domain.types.RecipientType;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @JsonRootName("recurring-email-receiver")
 public class RecurringEmailReceiver extends AbstractIdentifiable {
 
     private Integer recurringId;
     private RecipientType type;
     private String address;
-
-    public Integer getRecurringId() {
-        return recurringId;
-    }
-
-    public void setRecurringId(final Integer recurringId) {
-        this.recurringId = recurringId;
-    }
-
-    public RecipientType getType() {
-        return type;
-    }
-
-    public void setType(final RecipientType type) {
-        this.type = type;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(final String address) {
-        this.address = address;
-    }
 
 }

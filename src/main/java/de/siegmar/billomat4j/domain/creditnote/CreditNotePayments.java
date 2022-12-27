@@ -27,20 +27,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import de.siegmar.billomat4j.domain.AbstractPageable;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @JsonRootName("credit-note-payments")
 public class CreditNotePayments extends AbstractPageable<CreditNotePayment> {
 
     @JsonProperty("credit-note-payment")
     private List<CreditNotePayment> creditNotePayments = new ArrayList<>();
-
-    public List<CreditNotePayment> getCreditNotePayments() {
-        return creditNotePayments;
-    }
-
-    public void setCreditNotePayments(final List<CreditNotePayment> creditNotePayments) {
-        this.creditNotePayments = creditNotePayments;
-    }
 
     @JsonIgnore
     @Override

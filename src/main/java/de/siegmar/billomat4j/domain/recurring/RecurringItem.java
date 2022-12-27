@@ -22,18 +22,14 @@ package de.siegmar.billomat4j.domain.recurring;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import de.siegmar.billomat4j.domain.AbstractInvoiceItem;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @JsonRootName("recurring-item")
 public class RecurringItem extends AbstractInvoiceItem {
 
     private Integer recurringId;
-
-    public Integer getRecurringId() {
-        return recurringId;
-    }
-
-    public void setRecurringId(final Integer recurringId) {
-        this.recurringId = recurringId;
-    }
 
 }

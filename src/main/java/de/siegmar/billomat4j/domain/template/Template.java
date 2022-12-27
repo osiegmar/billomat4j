@@ -23,7 +23,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import de.siegmar.billomat4j.domain.AbstractMeta;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @JsonRootName("template")
 public class Template extends AbstractMeta {
 
@@ -33,30 +37,6 @@ public class Template extends AbstractMeta {
 
     @JsonProperty("base64file")
     private byte[] templateFile;
-
-    public TemplateType getType() {
-        return type;
-    }
-
-    public void setType(final TemplateType type) {
-        this.type = type;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(final String name) {
-        this.name = name;
-    }
-
-    public TemplateFormat getFormat() {
-        return format;
-    }
-
-    public void setFormat(final TemplateFormat format) {
-        this.format = format;
-    }
 
     public byte[] getTemplateFile() {
         return templateFile.clone();

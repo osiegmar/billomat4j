@@ -22,18 +22,14 @@ package de.siegmar.billomat4j.domain.deliverynote;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import de.siegmar.billomat4j.domain.AbstractInvoiceItem;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @JsonRootName("delivery-note-item")
 public class DeliveryNoteItem extends AbstractInvoiceItem {
 
     private Integer deliveryNoteId;
-
-    public Integer getDeliveryNoteId() {
-        return deliveryNoteId;
-    }
-
-    public void setDeliveryNoteId(final Integer deliveryNoteId) {
-        this.deliveryNoteId = deliveryNoteId;
-    }
 
 }

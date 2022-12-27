@@ -28,7 +28,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import de.siegmar.billomat4j.domain.AbstractMeta;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @JsonRootName("reminder")
 public class Reminder extends AbstractMeta {
 
@@ -54,140 +58,12 @@ public class Reminder extends AbstractMeta {
     @JsonProperty("is_old")
     private Boolean old;
 
-    public Integer getInvoiceId() {
-        return invoiceId;
-    }
-
-    public void setInvoiceId(final Integer invoiceId) {
-        this.invoiceId = invoiceId;
-    }
-
-    public ReminderStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(final ReminderStatus status) {
-        this.status = status;
-    }
-
-    public Integer getReminderTextId() {
-        return reminderTextId;
-    }
-
-    public void setReminderTextId(final Integer reminderTextId) {
-        this.reminderTextId = reminderTextId;
-    }
-
-    public Integer getReminderLevel() {
-        return reminderLevel;
-    }
-
-    public void setReminderLevel(final Integer reminderLevel) {
-        this.reminderLevel = reminderLevel;
-    }
-
-    public String getReminderLevelName() {
-        return reminderLevelName;
-    }
-
-    public void setReminderLevelName(final String reminderLevelName) {
-        this.reminderLevelName = reminderLevelName;
-    }
-
-    public LocalDate getDate() {
-        return date;
-    }
-
-    public void setDate(final LocalDate date) {
-        this.date = date;
-    }
-
-    public String getLabel() {
-        return label;
-    }
-
-    public void setLabel(final String label) {
-        this.label = label;
-    }
-
-    public String getSubject() {
-        return subject;
-    }
-
-    public void setSubject(final String subject) {
-        this.subject = subject;
-    }
-
-    public String getIntro() {
-        return intro;
-    }
-
-    public void setIntro(final String intro) {
-        this.intro = intro;
-    }
-
-    public String getNote() {
-        return note;
-    }
-
-    public void setNote(final String note) {
-        this.note = note;
-    }
-
-    public LocalDate getDueDate() {
-        return dueDate;
-    }
-
-    public void setDueDate(final LocalDate dueDate) {
-        this.dueDate = dueDate;
-    }
-
-    public BigDecimal getTotalGross() {
-        return totalGross;
-    }
-
-    public void setTotalGross(final BigDecimal totalGross) {
-        this.totalGross = totalGross;
-    }
-
-    public Boolean getOld() {
-        return old;
-    }
-
-    public void setOld(final Boolean old) {
-        this.old = old;
-    }
-
-    public ReminderItems getReminderItems() {
-        return reminderItems;
-    }
-
-    public void setReminderItems(final ReminderItems reminderItems) {
-        this.reminderItems = reminderItems;
-    }
-
     public void addReminderItem(final ReminderItem reminderItem) {
         if (reminderItems == null) {
             reminderItems = new ReminderItems();
         }
 
         reminderItems.getReminderItems().add(reminderItem);
-    }
-
-    public String getCustomerportalUrl() {
-        return customerportalUrl;
-    }
-
-    public void setCustomerportalUrl(final String customerportalUrl) {
-        this.customerportalUrl = customerportalUrl;
-    }
-
-    public Integer getTemplateId() {
-        return templateId;
-    }
-
-    public void setTemplateId(final Integer templateId) {
-        this.templateId = templateId;
     }
 
 }

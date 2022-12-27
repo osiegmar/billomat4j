@@ -22,18 +22,14 @@ package de.siegmar.billomat4j.domain.invoice;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import de.siegmar.billomat4j.domain.AbstractComment;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @JsonRootName("invoice-comment")
 public class InvoiceComment extends AbstractComment<InvoiceActionKey> {
 
     private Integer invoiceId;
-
-    public Integer getInvoiceId() {
-        return invoiceId;
-    }
-
-    public void setInvoiceId(final Integer invoiceId) {
-        this.invoiceId = invoiceId;
-    }
 
 }

@@ -22,18 +22,14 @@ package de.siegmar.billomat4j.domain.invoice;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import de.siegmar.billomat4j.domain.AbstractDocumentPdf;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @JsonRootName("pdf")
 public class InvoicePdf extends AbstractDocumentPdf {
 
     private Integer invoiceId;
-
-    public Integer getInvoiceId() {
-        return invoiceId;
-    }
-
-    public void setInvoiceId(final Integer invoiceId) {
-        this.invoiceId = invoiceId;
-    }
 
 }

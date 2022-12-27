@@ -27,20 +27,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import de.siegmar.billomat4j.domain.AbstractPageable;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @JsonRootName("bcc_addresses")
 public class BccAddresses extends AbstractPageable<String> {
 
     @JsonProperty("bcc_address")
     private List<String> bccAddresses = new ArrayList<>();
-
-    public List<String> getBccAddresses() {
-        return bccAddresses;
-    }
-
-    public void setBccAddresses(final List<String> bccAddresses) {
-        this.bccAddresses = bccAddresses;
-    }
 
     @JsonIgnore
     @Override

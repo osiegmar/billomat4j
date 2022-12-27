@@ -27,20 +27,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import de.siegmar.billomat4j.domain.AbstractPageable;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @JsonRootName("delivery-note-items")
 public class DeliveryNoteItems extends AbstractPageable<DeliveryNoteItem> {
 
     @JsonProperty("delivery-note-item")
     private List<DeliveryNoteItem> deliveryNoteItems = new ArrayList<>();
-
-    public List<DeliveryNoteItem> getDeliveryNoteItems() {
-        return deliveryNoteItems;
-    }
-
-    public void setDeliveryNoteItems(final List<DeliveryNoteItem> deliveryNoteItems) {
-        this.deliveryNoteItems = deliveryNoteItems;
-    }
 
     @JsonIgnore
     @Override

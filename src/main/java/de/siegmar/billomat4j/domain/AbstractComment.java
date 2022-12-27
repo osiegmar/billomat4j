@@ -21,6 +21,11 @@ package de.siegmar.billomat4j.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public abstract class AbstractComment<K extends ActionKey> extends AbstractMeta {
 
     private Integer userId;
@@ -29,37 +34,5 @@ public abstract class AbstractComment<K extends ActionKey> extends AbstractMeta 
 
     @JsonProperty("actionkey")
     private K actionKey;
-
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public void setUserId(final Integer userId) {
-        this.userId = userId;
-    }
-
-    public String getComment() {
-        return comment;
-    }
-
-    public void setComment(final String comment) {
-        this.comment = comment;
-    }
-
-    public K getActionKey() {
-        return actionKey;
-    }
-
-    public void setActionKey(final K actionKey) {
-        this.actionKey = actionKey;
-    }
-
-    public Integer getContactId() {
-        return contactId;
-    }
-
-    public void setContactId(final Integer contactId) {
-        this.contactId = contactId;
-    }
 
 }

@@ -25,36 +25,17 @@ import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 
 import com.fasterxml.jackson.annotation.JsonRootName;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 @JsonRootName("tax")
 public class Tax {
 
     private String name;
     private BigDecimal rate;
     private BigDecimal amount;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(final String name) {
-        this.name = name;
-    }
-
-    public BigDecimal getRate() {
-        return rate;
-    }
-
-    public void setRate(final BigDecimal rate) {
-        this.rate = rate;
-    }
-
-    public BigDecimal getAmount() {
-        return amount;
-    }
-
-    public void setAmount(final BigDecimal amount) {
-        this.amount = amount;
-    }
 
     @Override
     public String toString() {

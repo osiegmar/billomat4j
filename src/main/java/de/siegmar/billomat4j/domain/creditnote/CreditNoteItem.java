@@ -22,18 +22,14 @@ package de.siegmar.billomat4j.domain.creditnote;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import de.siegmar.billomat4j.domain.AbstractInvoiceItem;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @JsonRootName("credit-note-item")
 public class CreditNoteItem extends AbstractInvoiceItem {
 
     private Integer creditNoteId;
-
-    public Integer getCreditNoteId() {
-        return creditNoteId;
-    }
-
-    public void setCreditNoteId(final Integer creditNoteId) {
-        this.creditNoteId = creditNoteId;
-    }
 
 }

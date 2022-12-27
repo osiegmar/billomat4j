@@ -28,7 +28,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import de.siegmar.billomat4j.domain.AbstractIdentifiable;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @JsonRootName("invoice-group")
 public class InvoiceGroup extends AbstractIdentifiable {
 
@@ -46,77 +50,5 @@ public class InvoiceGroup extends AbstractIdentifiable {
 
     @JsonProperty("invoice-params")
     private InvoiceParams invoiceParams;
-
-    public BigDecimal getTotalGross() {
-        return totalGross;
-    }
-
-    public void setTotalGross(final BigDecimal totalGross) {
-        this.totalGross = totalGross;
-    }
-
-    public BigDecimal getTotalNet() {
-        return totalNet;
-    }
-
-    public void setTotalNet(final BigDecimal totalNet) {
-        this.totalNet = totalNet;
-    }
-
-    public Integer getClientId() {
-        return clientId;
-    }
-
-    public void setClientId(final Integer clientId) {
-        this.clientId = clientId;
-    }
-
-    public InvoiceStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(final InvoiceStatus status) {
-        this.status = status;
-    }
-
-    public LocalDate getDay() {
-        return day;
-    }
-
-    public void setDay(final LocalDate day) {
-        this.day = day;
-    }
-
-    public String getWeek() {
-        return week;
-    }
-
-    public void setWeek(final String week) {
-        this.week = week;
-    }
-
-    public String getMonth() {
-        return month;
-    }
-
-    public void setMonth(final String month) {
-        this.month = month;
-    }
-
-    public Integer getYear() {
-        return year;
-    }
-
-    public void setYear(final Integer year) {
-        this.year = year;
-    }
-
-    public InvoiceParams getInvoiceParams() {
-        return invoiceParams;
-    }
-
-    public void setInvoiceParams(final InvoiceParams invoiceParams) {
-        this.invoiceParams = invoiceParams;
-    }
 
 }

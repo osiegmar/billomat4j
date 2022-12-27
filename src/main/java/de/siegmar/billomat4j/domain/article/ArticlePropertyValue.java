@@ -22,27 +22,15 @@ package de.siegmar.billomat4j.domain.article;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import de.siegmar.billomat4j.domain.AbstractPropertyValue;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @JsonRootName("article-property-value")
 public class ArticlePropertyValue extends AbstractPropertyValue {
 
     private Integer articleId;
     private Integer articlePropertyId;
-
-    public Integer getArticleId() {
-        return articleId;
-    }
-
-    public void setArticleId(final Integer articleId) {
-        this.articleId = articleId;
-    }
-
-    public Integer getArticlePropertyId() {
-        return articlePropertyId;
-    }
-
-    public void setArticlePropertyId(final Integer articlePropertyId) {
-        this.articlePropertyId = articlePropertyId;
-    }
 
 }

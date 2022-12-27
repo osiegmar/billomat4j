@@ -24,20 +24,15 @@ import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import de.siegmar.billomat4j.json.Views;
+import lombok.Getter;
+import lombok.Setter;
 
 public abstract class AbstractIdentifiable implements Identifiable {
 
+    @Getter
+    @Setter
     @JsonView(Views.NonSerialize.class)
     private Integer id;
-
-    @Override
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(final Integer id) {
-        this.id = id;
-    }
 
     @Override
     public String toString() {

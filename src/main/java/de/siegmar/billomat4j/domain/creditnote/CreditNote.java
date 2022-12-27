@@ -31,12 +31,18 @@ import com.fasterxml.jackson.annotation.JsonView;
 import de.siegmar.billomat4j.domain.AbstractMeta;
 import de.siegmar.billomat4j.domain.Taxes;
 import de.siegmar.billomat4j.json.Views;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @JsonRootName("credit-note")
 public class CreditNote extends AbstractMeta {
 
     private Integer clientId;
 
+    @Setter(AccessLevel.NONE)
     @JsonView(Views.NonSerialize.class)
     private String creditNoteNumber;
 
@@ -65,192 +71,12 @@ public class CreditNote extends AbstractMeta {
     private String customerportalUrl;
     private Integer templateId;
 
-    public Integer getClientId() {
-        return clientId;
-    }
-
-    public void setClientId(final Integer clientId) {
-        this.clientId = clientId;
-    }
-
-    public String getCreditNoteNumber() {
-        return creditNoteNumber;
-    }
-
-    public Integer getNumber() {
-        return number;
-    }
-
-    public void setNumber(final Integer number) {
-        this.number = number;
-    }
-
-    public String getNumberPre() {
-        return numberPre;
-    }
-
-    public void setNumberPre(final String numberPre) {
-        this.numberPre = numberPre;
-    }
-
-    public CreditNoteStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(final CreditNoteStatus status) {
-        this.status = status;
-    }
-
-    public LocalDate getDate() {
-        return date;
-    }
-
-    public void setDate(final LocalDate date) {
-        this.date = date;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(final String address) {
-        this.address = address;
-    }
-
-    public String getLabel() {
-        return label;
-    }
-
-    public void setLabel(final String label) {
-        this.label = label;
-    }
-
-    public String getIntro() {
-        return intro;
-    }
-
-    public void setIntro(final String intro) {
-        this.intro = intro;
-    }
-
-    public String getNote() {
-        return note;
-    }
-
-    public void setNote(final String note) {
-        this.note = note;
-    }
-
-    public BigDecimal getTotalGross() {
-        return totalGross;
-    }
-
-    public void setTotalGross(final BigDecimal totalGross) {
-        this.totalGross = totalGross;
-    }
-
-    public BigDecimal getTotalNet() {
-        return totalNet;
-    }
-
-    public void setTotalNet(final BigDecimal totalNet) {
-        this.totalNet = totalNet;
-    }
-
-    public String getReduction() {
-        return reduction;
-    }
-
-    public void setReduction(final String reduction) {
-        this.reduction = reduction;
-    }
-
-    public BigDecimal getTotalGrossUnreduced() {
-        return totalGrossUnreduced;
-    }
-
-    public void setTotalGrossUnreduced(final BigDecimal totalGrossUnreduced) {
-        this.totalGrossUnreduced = totalGrossUnreduced;
-    }
-
-    public BigDecimal getTotalNetUnreduced() {
-        return totalNetUnreduced;
-    }
-
-    public void setTotalNetUnreduced(final BigDecimal totalNetUnreduced) {
-        this.totalNetUnreduced = totalNetUnreduced;
-    }
-
-    public Currency getCurrencyCode() {
-        return currencyCode;
-    }
-
-    public void setCurrencyCode(final Currency currencyCode) {
-        this.currencyCode = currencyCode;
-    }
-
-    public BigDecimal getQuote() {
-        return quote;
-    }
-
-    public void setQuote(final BigDecimal quote) {
-        this.quote = quote;
-    }
-
-    public Taxes getTaxes() {
-        return taxes;
-    }
-
-    public void setTaxes(final Taxes taxes) {
-        this.taxes = taxes;
-    }
-
-    public Integer getInvoiceId() {
-        return invoiceId;
-    }
-
-    public void setInvoiceId(final Integer invoiceId) {
-        this.invoiceId = invoiceId;
-    }
-
-    public CreditNoteItems getCreditNoteItems() {
-        return creditNoteItems;
-    }
-
-    public void setCreditNoteItems(final CreditNoteItems creditNoteItems) {
-        this.creditNoteItems = creditNoteItems;
-    }
-
     public void addCreditNoteItem(final CreditNoteItem creditNoteItem) {
         if (creditNoteItems == null) {
             creditNoteItems = new CreditNoteItems();
         }
 
         creditNoteItems.getCreditNoteItems().add(creditNoteItem);
-    }
-
-    public Integer getContactId() {
-        return contactId;
-    }
-
-    public void setContactId(final Integer contactId) {
-        this.contactId = contactId;
-    }
-
-    public String getCustomerportalUrl() {
-        return customerportalUrl;
-    }
-
-    public void setCustomerportalUrl(final String customerportalUrl) {
-        this.customerportalUrl = customerportalUrl;
-    }
-
-    public Integer getTemplateId() {
-        return templateId;
-    }
-
-    public void setTemplateId(final Integer templateId) {
-        this.templateId = templateId;
     }
 
 }

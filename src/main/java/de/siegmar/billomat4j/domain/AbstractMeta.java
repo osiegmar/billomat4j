@@ -24,14 +24,12 @@ import java.time.ZonedDateTime;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import de.siegmar.billomat4j.json.Views;
+import lombok.Getter;
 
 public abstract class AbstractMeta extends AbstractIdentifiable {
 
+    @Getter
     @JsonView(Views.NonSerialize.class)
     private ZonedDateTime created;
-
-    public ZonedDateTime getCreated() {
-        return created;
-    }
 
 }

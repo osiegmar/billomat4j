@@ -22,18 +22,14 @@ package de.siegmar.billomat4j.domain.confirmation;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import de.siegmar.billomat4j.domain.AbstractComment;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @JsonRootName("confirmation-comment")
 public class ConfirmationComment extends AbstractComment<ConfirmationActionKey> {
 
     private Integer confirmationId;
-
-    public Integer getConfirmationId() {
-        return confirmationId;
-    }
-
-    public void setConfirmationId(final Integer confirmationId) {
-        this.confirmationId = confirmationId;
-    }
 
 }

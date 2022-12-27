@@ -20,7 +20,6 @@
 package de.siegmar.billomat4j;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.net.URI;
 import java.net.URLEncoder;
 import java.net.http.HttpClient;
@@ -228,11 +227,7 @@ public class RequestHelper {
     }
 
     private String encode(final String entry) {
-        try {
-            return URLEncoder.encode(entry, StandardCharsets.UTF_8.toString());
-        } catch (final UnsupportedEncodingException e) {
-            throw new IllegalStateException(e);
-        }
+        return URLEncoder.encode(entry, StandardCharsets.UTF_8);
     }
 
 }

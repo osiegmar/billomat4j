@@ -26,13 +26,13 @@ public enum RecurringCycle {
     MONTHLY,
 
     /**
-     * @deprecated Use {@link Recurring#setCycleNumber(Integer)} with value 3 instead.
+     * @deprecated Use Recurring#setCycleNumber(Integer) with value 3 instead.
      */
     @Deprecated
     QUARTERLY,
 
     /**
-     * @deprecated Use {@link Recurring#setCycleNumber(Integer)} with value 6 instead.
+     * @deprecated Use Recurring#setCycleNumber(Integer) with value 6 instead.
      */
     @Deprecated
     SEMIYEARLY,

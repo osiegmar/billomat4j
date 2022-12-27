@@ -21,6 +21,9 @@ package de.siegmar.billomat4j.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import lombok.Getter;
+
+@Getter
 public abstract class AbstractPageable<E> implements Pageable<E> {
 
     @JsonProperty("@page")
@@ -31,20 +34,5 @@ public abstract class AbstractPageable<E> implements Pageable<E> {
 
     @JsonProperty("@total")
     private Integer total;
-
-    @Override
-    public Integer getPage() {
-        return page;
-    }
-
-    @Override
-    public Integer getPerPage() {
-        return perPage;
-    }
-
-    @Override
-    public Integer getTotal() {
-        return total;
-    }
 
 }

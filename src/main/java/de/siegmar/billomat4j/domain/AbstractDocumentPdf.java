@@ -26,6 +26,11 @@ import java.io.IOException;
 
 import com.fasterxml.jackson.annotation.JsonRootName;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 @JsonRootName("pdf")
 public abstract class AbstractDocumentPdf extends AbstractMeta {
 
@@ -33,30 +38,6 @@ public abstract class AbstractDocumentPdf extends AbstractMeta {
     private String mimetype;
     private int filesize;
     private byte[] base64file;
-
-    public String getFilename() {
-        return filename;
-    }
-
-    public void setFilename(final String filename) {
-        this.filename = filename;
-    }
-
-    public String getMimetype() {
-        return mimetype;
-    }
-
-    public void setMimetype(final String mimetype) {
-        this.mimetype = mimetype;
-    }
-
-    public int getFilesize() {
-        return filesize;
-    }
-
-    public void setFilesize(final int filesize) {
-        this.filesize = filesize;
-    }
 
     public byte[] getBase64file() {
         return base64file.clone();

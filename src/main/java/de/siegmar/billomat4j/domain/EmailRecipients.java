@@ -26,6 +26,11 @@ import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class EmailRecipients {
 
     @JsonProperty("to")
@@ -37,14 +42,6 @@ public class EmailRecipients {
     @JsonProperty("bcc")
     private List<String> bccRecipients;
 
-    public List<String> getToRecipients() {
-        return toRecipients;
-    }
-
-    public void setToRecipients(final List<String> toRecipients) {
-        this.toRecipients = toRecipients;
-    }
-
     public void addTo(final String to) {
         if (this.toRecipients == null) {
             this.toRecipients = new ArrayList<>();
@@ -52,27 +49,11 @@ public class EmailRecipients {
         this.toRecipients.add(to);
     }
 
-    public List<String> getCcRecipients() {
-        return ccRecipients;
-    }
-
-    public void setCcRecipients(final List<String> ccRecipients) {
-        this.ccRecipients = ccRecipients;
-    }
-
     public void addCc(final String cc) {
         if (this.ccRecipients == null) {
             this.ccRecipients = new ArrayList<>();
         }
         this.ccRecipients.add(cc);
-    }
-
-    public List<String> getBccRecipients() {
-        return bccRecipients;
-    }
-
-    public void setBccRecipients(final List<String> bccRecipients) {
-        this.bccRecipients = bccRecipients;
     }
 
     public void addBcc(final String bcc) {

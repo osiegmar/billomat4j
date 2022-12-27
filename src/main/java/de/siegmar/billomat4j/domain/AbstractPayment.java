@@ -29,9 +29,15 @@ import com.fasterxml.jackson.annotation.JsonView;
 
 import de.siegmar.billomat4j.domain.types.PaymentType;
 import de.siegmar.billomat4j.json.Views;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 public abstract class AbstractPayment extends AbstractMeta {
 
+    @Setter(AccessLevel.NONE)
     @JsonView(Views.NonSerialize.class)
     private Integer userId;
 
@@ -45,49 +51,5 @@ public abstract class AbstractPayment extends AbstractMeta {
     private PaymentType paymentType;
 
     private Boolean markInvoiceAsPaid;
-
-    public Integer getUserId() {
-        return userId;
-    }
-
-    public LocalDate getDate() {
-        return date;
-    }
-
-    public void setDate(final LocalDate date) {
-        this.date = date;
-    }
-
-    public BigDecimal getAmount() {
-        return amount;
-    }
-
-    public void setAmount(final BigDecimal amount) {
-        this.amount = amount;
-    }
-
-    public String getComment() {
-        return comment;
-    }
-
-    public void setComment(final String comment) {
-        this.comment = comment;
-    }
-
-    public PaymentType getPaymentType() {
-        return paymentType;
-    }
-
-    public void setPaymentType(final PaymentType paymentType) {
-        this.paymentType = paymentType;
-    }
-
-    public Boolean getMarkInvoiceAsPaid() {
-        return markInvoiceAsPaid;
-    }
-
-    public void setMarkInvoiceAsPaid(final Boolean markInvoiceAsPaid) {
-        this.markInvoiceAsPaid = markInvoiceAsPaid;
-    }
 
 }

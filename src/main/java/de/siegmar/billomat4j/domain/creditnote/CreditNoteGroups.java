@@ -28,7 +28,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import de.siegmar.billomat4j.domain.WrappedRecord;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @JsonRootName("credit-note-groups")
 public class CreditNoteGroups implements WrappedRecord<CreditNoteGroup> {
 
@@ -37,22 +41,6 @@ public class CreditNoteGroups implements WrappedRecord<CreditNoteGroup> {
 
     @JsonProperty("@currency_code")
     private Currency currencyCode;
-
-    public List<CreditNoteGroup> getCreditNoteGroups() {
-        return creditNoteGroups;
-    }
-
-    public void setCreditNoteGroups(final List<CreditNoteGroup> creditNoteGroups) {
-        this.creditNoteGroups = creditNoteGroups;
-    }
-
-    public Currency getCurrencyCode() {
-        return currencyCode;
-    }
-
-    public void setCurrencyCode(final Currency currencyCode) {
-        this.currencyCode = currencyCode;
-    }
 
     @JsonIgnore
     @Override

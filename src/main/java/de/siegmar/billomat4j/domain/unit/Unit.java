@@ -22,18 +22,14 @@ package de.siegmar.billomat4j.domain.unit;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import de.siegmar.billomat4j.domain.AbstractMeta;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @JsonRootName("unit")
 public class Unit extends AbstractMeta {
 
     private String name;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(final String name) {
-        this.name = name;
-    }
 
 }

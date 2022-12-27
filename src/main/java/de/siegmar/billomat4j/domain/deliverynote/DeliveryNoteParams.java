@@ -27,6 +27,11 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 @JsonRootName("delivery-note-params")
 public class DeliveryNoteParams {
 
@@ -38,38 +43,6 @@ public class DeliveryNoteParams {
 
     @JsonInclude(Include.NON_NULL)
     private LocalDate to;
-
-    public Integer getClientId() {
-        return clientId;
-    }
-
-    public void setClientId(final Integer clientId) {
-        this.clientId = clientId;
-    }
-
-    public DeliveryNoteStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(final DeliveryNoteStatus status) {
-        this.status = status;
-    }
-
-    public LocalDate getFrom() {
-        return from;
-    }
-
-    public void setFrom(final LocalDate from) {
-        this.from = from;
-    }
-
-    public LocalDate getTo() {
-        return to;
-    }
-
-    public void setTo(final LocalDate to) {
-        this.to = to;
-    }
 
     @Override
     public String toString() {

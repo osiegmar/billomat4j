@@ -21,17 +21,14 @@ package de.siegmar.billomat4j.domain;
 
 import com.fasterxml.jackson.annotation.JsonRootName;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 @JsonRootName("complete")
 public class DocumentComplete {
 
     private Integer templateId;
-
-    public Integer getTemplateId() {
-        return templateId;
-    }
-
-    public void setTemplateId(final Integer templateId) {
-        this.templateId = templateId;
-    }
 
 }

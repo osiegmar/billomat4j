@@ -27,20 +27,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import de.siegmar.billomat4j.domain.AbstractPageable;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @JsonRootName("reminder-tags")
 public class ReminderTags extends AbstractPageable<ReminderTag> {
 
     @JsonProperty("reminder-tag")
     private List<ReminderTag> reminderTags = new ArrayList<>();
-
-    public List<ReminderTag> getReminderTags() {
-        return reminderTags;
-    }
-
-    public void setReminderTags(final List<ReminderTag> reminderTags) {
-        this.reminderTags = reminderTags;
-    }
 
     @JsonIgnore
     @Override

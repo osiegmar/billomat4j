@@ -22,18 +22,14 @@ package de.siegmar.billomat4j.domain.recurring;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import de.siegmar.billomat4j.domain.AbstractTag;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @JsonRootName("recurring-tag")
 public class RecurringTag extends AbstractTag {
 
     private Integer recurringId;
-
-    public Integer getRecurringId() {
-        return recurringId;
-    }
-
-    public void setRecurringId(final Integer recurringId) {
-        this.recurringId = recurringId;
-    }
 
 }

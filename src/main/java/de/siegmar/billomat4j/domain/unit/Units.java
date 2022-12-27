@@ -20,7 +20,6 @@
 package de.siegmar.billomat4j.domain.unit;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -28,20 +27,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import de.siegmar.billomat4j.domain.AbstractPageable;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @JsonRootName("units")
 public class Units extends AbstractPageable<Unit> {
 
     @JsonProperty("unit")
     private List<Unit> units = new ArrayList<>();
-
-    public Collection<Unit> getUnits() {
-        return units;
-    }
-
-    public void setUnits(final List<Unit> units) {
-        this.units = units;
-    }
 
     @JsonIgnore
     @Override

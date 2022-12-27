@@ -26,7 +26,11 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 
 import de.siegmar.billomat4j.domain.AbstractMeta;
 import de.siegmar.billomat4j.domain.types.SalutationType;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @JsonRootName("user")
 public class User extends AbstractMeta {
 
@@ -37,37 +41,5 @@ public class User extends AbstractMeta {
     private Locale locale;
     private TimeZone timezone;
     private Integer roleId;
-
-    public SalutationType getSalutation() {
-        return salutation;
-    }
-
-    public void setSalutation(final SalutationType salutation) {
-        this.salutation = salutation;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public Locale getLocale() {
-        return locale;
-    }
-
-    public TimeZone getTimezone() {
-        return timezone;
-    }
-
-    public Integer getRoleId() {
-        return roleId;
-    }
 
 }

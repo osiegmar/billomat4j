@@ -21,6 +21,11 @@ package de.siegmar.billomat4j.domain;
 
 import com.fasterxml.jackson.annotation.JsonRootName;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 @JsonRootName("email")
 public class Email {
 
@@ -31,61 +36,5 @@ public class Email {
     private String body;
     private String filename;
     private EmailAttachments attachments;
-
-    public Integer getEmailTemplateId() {
-        return emailTemplateId;
-    }
-
-    public void setEmailTemplateId(final Integer emailTemplateId) {
-        this.emailTemplateId = emailTemplateId;
-    }
-
-    public String getFrom() {
-        return from;
-    }
-
-    public void setFrom(final String from) {
-        this.from = from;
-    }
-
-    public EmailRecipients getRecipients() {
-        return recipients;
-    }
-
-    public void setRecipients(final EmailRecipients recipients) {
-        this.recipients = recipients;
-    }
-
-    public String getSubject() {
-        return subject;
-    }
-
-    public void setSubject(final String subject) {
-        this.subject = subject;
-    }
-
-    public String getBody() {
-        return body;
-    }
-
-    public void setBody(final String body) {
-        this.body = body;
-    }
-
-    public String getFilename() {
-        return filename;
-    }
-
-    public void setFilename(final String filename) {
-        this.filename = filename;
-    }
-
-    public EmailAttachments getAttachments() {
-        return attachments;
-    }
-
-    public void setAttachments(final EmailAttachments attachments) {
-        this.attachments = attachments;
-    }
 
 }

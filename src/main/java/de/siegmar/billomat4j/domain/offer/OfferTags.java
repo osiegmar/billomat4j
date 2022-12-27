@@ -27,20 +27,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import de.siegmar.billomat4j.domain.AbstractPageable;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @JsonRootName("offer-tags")
 public class OfferTags extends AbstractPageable<OfferTag> {
 
     @JsonProperty("offer-tag")
     private List<OfferTag> offerTags = new ArrayList<>();
-
-    public List<OfferTag> getOfferTags() {
-        return offerTags;
-    }
-
-    public void setOfferTags(final List<OfferTag> offerTags) {
-        this.offerTags = offerTags;
-    }
 
     @JsonIgnore
     @Override

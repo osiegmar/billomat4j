@@ -28,7 +28,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import de.siegmar.billomat4j.domain.WrappedRecord;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 @JsonRootName("invoice-groups")
 public class InvoiceGroups implements WrappedRecord<InvoiceGroup> {
 
@@ -37,22 +41,6 @@ public class InvoiceGroups implements WrappedRecord<InvoiceGroup> {
 
     @JsonProperty("@currency_code")
     private Currency currencyCode;
-
-    public List<InvoiceGroup> getInvoiceGroups() {
-        return invoiceGroups;
-    }
-
-    public void setInvoiceGroups(final List<InvoiceGroup> invoiceGroups) {
-        this.invoiceGroups = invoiceGroups;
-    }
-
-    public Currency getCurrencyCode() {
-        return currencyCode;
-    }
-
-    public void setCurrencyCode(final Currency currencyCode) {
-        this.currencyCode = currencyCode;
-    }
 
     @JsonIgnore
     @Override
