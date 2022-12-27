@@ -20,7 +20,9 @@
 package de.siegmar.billomat4j.domain.confirmation;
 
 import de.siegmar.billomat4j.domain.AbstractInvoiceFilter;
+import lombok.ToString;
 
+@ToString(callSuper = true)
 public class ConfirmationFilter extends AbstractInvoiceFilter<ConfirmationFilter> {
 
     public ConfirmationFilter byConfirmationNumber(final String confirmationNumber) {

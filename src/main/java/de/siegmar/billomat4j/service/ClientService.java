@@ -22,8 +22,6 @@ package de.siegmar.billomat4j.service;
 import java.util.List;
 import java.util.Optional;
 
-import org.apache.commons.lang3.Validate;
-
 import de.siegmar.billomat4j.domain.client.Client;
 import de.siegmar.billomat4j.domain.client.ClientFilter;
 import de.siegmar.billomat4j.domain.client.ClientPropertyValue;
@@ -35,6 +33,7 @@ import de.siegmar.billomat4j.domain.client.Contact;
 import de.siegmar.billomat4j.domain.client.Contacts;
 import de.siegmar.billomat4j.domain.settings.ClientProperties;
 import de.siegmar.billomat4j.domain.settings.ClientProperty;
+import lombok.NonNull;
 
 public class ClientService extends AbstractService
     implements GenericCustomFieldService, GenericPropertyService<ClientProperty,
@@ -100,8 +99,11 @@ public class ClientService extends AbstractService
      * @throws IllegalArgumentException if clientNumber is empty
      * @throws ServiceException         if an error occurred while accessing the web service
      */
-    public Optional<Client> getClientByNumber(final String clientNumber) {
-        return single(findClients(new ClientFilter().byClientNumber(Validate.notEmpty(clientNumber))));
+    public Optional<Client> getClientByNumber(@NonNull final String clientNumber) {
+        if (clientNumber.isEmpty()) {
+            throw new IllegalArgumentException("clientNumber must not be empty");
+        }
+        return single(findClients(new ClientFilter().byClientNumber(clientNumber)));
     }
 
     /**
@@ -109,8 +111,8 @@ public class ClientService extends AbstractService
      * @throws NullPointerException if client is null
      * @throws ServiceException     if an error occurred while accessing the web service
      */
-    public void createClient(final Client client) {
-        create(RESOURCE, Validate.notNull(client));
+    public void createClient(@NonNull final Client client) {
+        create(RESOURCE, client);
     }
 
     /**
@@ -118,8 +120,8 @@ public class ClientService extends AbstractService
      * @throws NullPointerException if client is null
      * @throws ServiceException     if an error occurred while accessing the web service
      */
-    public void updateClient(final Client client) {
-        update(RESOURCE, Validate.notNull(client));
+    public void updateClient(@NonNull final Client client) {
+        update(RESOURCE, client);
     }
 
     /**
@@ -143,13 +145,13 @@ public class ClientService extends AbstractService
     }
 
     @Override
-    public void createProperty(final ClientProperty clientProperty) {
-        create(PROPERTIES_RESOURCE, Validate.notNull(clientProperty));
+    public void createProperty(@NonNull final ClientProperty clientProperty) {
+        create(PROPERTIES_RESOURCE, clientProperty);
     }
 
     @Override
-    public void updateProperty(final ClientProperty clientProperty) {
-        update(PROPERTIES_RESOURCE, Validate.notNull(clientProperty));
+    public void updateProperty(@NonNull final ClientProperty clientProperty) {
+        update(PROPERTIES_RESOURCE, clientProperty);
     }
 
     @Override
@@ -174,8 +176,8 @@ public class ClientService extends AbstractService
     }
 
     @Override
-    public void createPropertyValue(final ClientPropertyValue clientPropertyValue) {
-        create(ATTRIBUTE_RESOURCE, Validate.notNull(clientPropertyValue));
+    public void createPropertyValue(@NonNull final ClientPropertyValue clientPropertyValue) {
+        create(ATTRIBUTE_RESOURCE, clientPropertyValue);
     }
 
     // ClientTag
@@ -191,8 +193,8 @@ public class ClientService extends AbstractService
     }
 
     @Override
-    public void createTag(final ClientTag clientTag) {
-        create(TAG_RESOURCE, Validate.notNull(clientTag));
+    public void createTag(@NonNull final ClientTag clientTag) {
+        create(TAG_RESOURCE, clientTag);
     }
 
     @Override
@@ -227,8 +229,8 @@ public class ClientService extends AbstractService
      * @throws NullPointerException if contact is null
      * @throws ServiceException     if an error occurred while accessing the web service
      */
-    public void createContact(final Contact contact) {
-        create(CONTACT_RESOURCE, Validate.notNull(contact));
+    public void createContact(@NonNull final Contact contact) {
+        create(CONTACT_RESOURCE, contact);
     }
 
     /**
@@ -236,8 +238,8 @@ public class ClientService extends AbstractService
      * @throws NullPointerException if contact is null
      * @throws ServiceException     if an error occurred while accessing the web service
      */
-    public void updateContact(final Contact contact) {
-        update(CONTACT_RESOURCE, Validate.notNull(contact));
+    public void updateContact(@NonNull final Contact contact) {
+        update(CONTACT_RESOURCE, contact);
     }
 
     /**

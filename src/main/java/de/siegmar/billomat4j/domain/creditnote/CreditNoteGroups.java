@@ -30,9 +30,11 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import de.siegmar.billomat4j.domain.WrappedRecord;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
+@ToString(callSuper = true)
 @JsonRootName("credit-note-groups")
 public class CreditNoteGroups implements WrappedRecord<CreditNoteGroup> {
 

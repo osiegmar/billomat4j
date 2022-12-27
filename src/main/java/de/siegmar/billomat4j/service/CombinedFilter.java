@@ -22,8 +22,6 @@ package de.siegmar.billomat4j.service;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import org.apache.commons.lang3.Validate;
-
 import de.siegmar.billomat4j.domain.Filter;
 
 class CombinedFilter implements Filter {
@@ -31,7 +29,9 @@ class CombinedFilter implements Filter {
     private final Map<String, String> map;
 
     CombinedFilter(final Filter... filters) {
-        Validate.notEmpty(filters);
+        if (filters == null || filters.length == 0) {
+            throw new IllegalArgumentException("Filter required");
+        }
 
         map = new LinkedHashMap<>(filters.length);
 

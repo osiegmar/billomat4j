@@ -23,9 +23,8 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
-
-import org.apache.commons.lang3.Validate;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -42,6 +41,7 @@ import de.siegmar.billomat4j.domain.Filter;
 import de.siegmar.billomat4j.domain.Identifiable;
 import de.siegmar.billomat4j.domain.Pageable;
 import de.siegmar.billomat4j.domain.WrappedRecord;
+import lombok.NonNull;
 
 // CSOFF: ClassFanOutComplexity
 abstract class AbstractService {
@@ -136,10 +136,12 @@ abstract class AbstractService {
         }
     }
 
-    protected void sendEmail(final String resource, final int id, final Email email) {
-        Validate.notNull(email);
-        Validate.notNull(email.getRecipients());
-        Validate.notEmpty(email.getRecipients().getToRecipients());
+    protected void sendEmail(final String resource, final int id, @NonNull final Email email) {
+        Objects.requireNonNull(email.getRecipients());
+        Objects.requireNonNull(email.getRecipients().getToRecipients());
+        if (email.getRecipients().getToRecipients().isEmpty()) {
+            throw new IllegalArgumentException("toRecipients must not be empty");
+        }
 
         try {
             final byte[] data = objectWriter.writeValueAsBytes(email);

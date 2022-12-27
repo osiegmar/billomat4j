@@ -19,10 +19,10 @@
 
 package de.siegmar.billomat4j.domain;
 
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.Map;
-
-import org.apache.commons.lang3.StringUtils;
+import java.util.stream.Collectors;
 
 public abstract class AbstractFilter<T extends Filter> implements Filter {
 
@@ -31,12 +31,16 @@ public abstract class AbstractFilter<T extends Filter> implements Filter {
     @SuppressWarnings("unchecked")
     protected T add(final String key, final Object value) {
         if (value instanceof Object[]) {
-            filterMap.put(key, StringUtils.join((Object[]) value, ','));
+            filterMap.put(key, join((Object[]) value));
         } else {
             filterMap.put(key, value.toString());
         }
 
         return (T) this;
+    }
+
+    private static String join(final Object... value) {
+        return Arrays.stream(value).map(Object::toString).collect(Collectors.joining(","));
     }
 
     @Override
@@ -47,11 +51,6 @@ public abstract class AbstractFilter<T extends Filter> implements Filter {
     @Override
     public boolean isConfigured() {
         return !filterMap.isEmpty();
-    }
-
-    @Override
-    public String toString() {
-        return "AbstractFilter [filterMap=" + filterMap + "]";
     }
 
 }

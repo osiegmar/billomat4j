@@ -23,8 +23,6 @@ import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.apache.commons.lang3.StringUtils;
-
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
@@ -35,10 +33,11 @@ public class PaymentTypesDeserializer extends JsonDeserializer<Set<PaymentType>>
 
     @Override
     public Set<PaymentType> deserialize(final JsonParser jp, final DeserializationContext ctxt) throws IOException {
-        final String[] tokens = StringUtils.split(jp.getText(), ',');
+        final String text = jp.getText();
 
         final Set<PaymentType> paymentTypes = new HashSet<>();
-        if (tokens != null) {
+        if (text != null && !text.isEmpty()) {
+            final String[] tokens = text.split(",");
             for (final String token : tokens) {
                 paymentTypes.add(PaymentType.valueOf(token));
             }

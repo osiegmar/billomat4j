@@ -22,8 +22,6 @@ package de.siegmar.billomat4j.service;
 import java.util.List;
 import java.util.Optional;
 
-import org.apache.commons.lang3.Validate;
-
 import de.siegmar.billomat4j.domain.settings.UserProperties;
 import de.siegmar.billomat4j.domain.settings.UserProperty;
 import de.siegmar.billomat4j.domain.user.User;
@@ -31,6 +29,7 @@ import de.siegmar.billomat4j.domain.user.UserFilter;
 import de.siegmar.billomat4j.domain.user.UserPropertyValue;
 import de.siegmar.billomat4j.domain.user.UserPropertyValues;
 import de.siegmar.billomat4j.domain.user.Users;
+import lombok.NonNull;
 
 public class UserService extends AbstractService implements GenericCustomFieldService,
     GenericPropertyService<UserProperty, UserPropertyValue> {
@@ -94,13 +93,13 @@ public class UserService extends AbstractService implements GenericCustomFieldSe
     }
 
     @Override
-    public void createProperty(final UserProperty userProperty) {
-        create(PROPERTIES_RESOURCE, Validate.notNull(userProperty));
+    public void createProperty(@NonNull final UserProperty userProperty) {
+        create(PROPERTIES_RESOURCE, userProperty);
     }
 
     @Override
-    public void updateProperty(final UserProperty userProperty) {
-        update(PROPERTIES_RESOURCE, Validate.notNull(userProperty));
+    public void updateProperty(@NonNull final UserProperty userProperty) {
+        update(PROPERTIES_RESOURCE, userProperty);
     }
 
     @Override
@@ -122,8 +121,8 @@ public class UserService extends AbstractService implements GenericCustomFieldSe
     }
 
     @Override
-    public void createPropertyValue(final UserPropertyValue userPropertyValue) {
-        create(ATTRIBUTE_RESOURCE, Validate.notNull(userPropertyValue));
+    public void createPropertyValue(@NonNull final UserPropertyValue userPropertyValue) {
+        create(ATTRIBUTE_RESOURCE, userPropertyValue);
     }
 
 }

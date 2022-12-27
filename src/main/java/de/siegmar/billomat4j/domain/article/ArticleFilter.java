@@ -22,7 +22,9 @@ package de.siegmar.billomat4j.domain.article;
 import java.util.Currency;
 
 import de.siegmar.billomat4j.domain.AbstractFilter;
+import lombok.ToString;
 
+@ToString(callSuper = true)
 public class ArticleFilter extends AbstractFilter<ArticleFilter> {
 
     public ArticleFilter byArticleNumber(final String articleNumber) {

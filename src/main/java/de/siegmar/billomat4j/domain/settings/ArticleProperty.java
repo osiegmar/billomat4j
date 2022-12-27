@@ -21,6 +21,9 @@ package de.siegmar.billomat4j.domain.settings;
 
 import com.fasterxml.jackson.annotation.JsonRootName;
 
+import lombok.ToString;
+
+@ToString(callSuper = true)
 @JsonRootName("article-property")
 public class ArticleProperty extends AbstractProperty {
 

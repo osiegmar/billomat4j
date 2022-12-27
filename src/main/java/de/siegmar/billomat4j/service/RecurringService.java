@@ -22,8 +22,6 @@ package de.siegmar.billomat4j.service;
 import java.util.List;
 import java.util.Optional;
 
-import org.apache.commons.lang3.Validate;
-
 import de.siegmar.billomat4j.domain.recurring.Recurring;
 import de.siegmar.billomat4j.domain.recurring.RecurringEmailReceiver;
 import de.siegmar.billomat4j.domain.recurring.RecurringEmailReceivers;
@@ -33,6 +31,7 @@ import de.siegmar.billomat4j.domain.recurring.RecurringItems;
 import de.siegmar.billomat4j.domain.recurring.RecurringTag;
 import de.siegmar.billomat4j.domain.recurring.RecurringTags;
 import de.siegmar.billomat4j.domain.recurring.Recurrings;
+import lombok.NonNull;
 
 public class RecurringService extends AbstractService
     implements GenericCustomFieldService, GenericTagService<RecurringTag>,
@@ -85,8 +84,8 @@ public class RecurringService extends AbstractService
      * @throws NullPointerException if recurring is null
      * @throws ServiceException     if an error occurred while accessing the web service
      */
-    public void createRecurring(final Recurring recurring) {
-        create(RESOURCE, Validate.notNull(recurring));
+    public void createRecurring(@NonNull final Recurring recurring) {
+        create(RESOURCE, recurring);
     }
 
     /**
@@ -94,8 +93,8 @@ public class RecurringService extends AbstractService
      * @throws NullPointerException if recurring is null
      * @throws ServiceException     if an error occurred while accessing the web service
      */
-    public void updateRecurring(final Recurring recurring) {
-        update(RESOURCE, Validate.notNull(recurring));
+    public void updateRecurring(@NonNull final Recurring recurring) {
+        update(RESOURCE, recurring);
     }
 
     /**
@@ -123,13 +122,13 @@ public class RecurringService extends AbstractService
     }
 
     @Override
-    public void createItem(final RecurringItem recurringItem) {
-        create(RESOURCE_ITEMS, Validate.notNull(recurringItem));
+    public void createItem(@NonNull final RecurringItem recurringItem) {
+        create(RESOURCE_ITEMS, recurringItem);
     }
 
     @Override
-    public void updateItem(final RecurringItem recurringItem) {
-        update(RESOURCE_ITEMS, Validate.notNull(recurringItem));
+    public void updateItem(@NonNull final RecurringItem recurringItem) {
+        update(RESOURCE_ITEMS, recurringItem);
     }
 
     @Override
@@ -150,8 +149,8 @@ public class RecurringService extends AbstractService
     }
 
     @Override
-    public void createTag(final RecurringTag recurringTag) {
-        create(RESOURCE_TAGS, Validate.notNull(recurringTag));
+    public void createTag(@NonNull final RecurringTag recurringTag) {
+        create(RESOURCE_TAGS, recurringTag);
     }
 
     @Override
@@ -188,8 +187,8 @@ public class RecurringService extends AbstractService
      * @throws NullPointerException if recurringEmailReceiver is null
      * @throws ServiceException     if an error occurred while accessing the web service
      */
-    public void createRecurringEmailReceiver(final RecurringEmailReceiver recurringEmailReceiver) {
-        create(RESOURCE_EMAIL_RECEIVER, Validate.notNull(recurringEmailReceiver));
+    public void createRecurringEmailReceiver(@NonNull final RecurringEmailReceiver recurringEmailReceiver) {
+        create(RESOURCE_EMAIL_RECEIVER, recurringEmailReceiver);
     }
 
     /**
@@ -197,8 +196,8 @@ public class RecurringService extends AbstractService
      * @throws NullPointerException if recurringEmailReceiver is null
      * @throws ServiceException     if an error occurred while accessing the web service
      */
-    public void updateRecurringEmailReceiver(final RecurringEmailReceiver recurringEmailReceiver) {
-        update(RESOURCE_EMAIL_RECEIVER, Validate.notNull(recurringEmailReceiver));
+    public void updateRecurringEmailReceiver(@NonNull final RecurringEmailReceiver recurringEmailReceiver) {
+        update(RESOURCE_EMAIL_RECEIVER, recurringEmailReceiver);
     }
 
     /**

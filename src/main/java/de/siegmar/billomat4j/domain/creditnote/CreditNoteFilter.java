@@ -20,7 +20,9 @@
 package de.siegmar.billomat4j.domain.creditnote;
 
 import de.siegmar.billomat4j.domain.AbstractInvoiceFilter;
+import lombok.ToString;
 
+@ToString(callSuper = true)
 public class CreditNoteFilter extends AbstractInvoiceFilter<CreditNoteFilter> {
 
     public CreditNoteFilter byCreditNoteNumber(final String creditNoteNumber) {

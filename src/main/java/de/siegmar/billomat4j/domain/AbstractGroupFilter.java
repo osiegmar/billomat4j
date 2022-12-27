@@ -24,8 +24,9 @@ import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.Map;
 
-import org.apache.commons.lang3.StringUtils;
+import lombok.ToString;
 
+@ToString
 public abstract class AbstractGroupFilter<T extends AbstractGroupFilter<?>> implements Filter {
 
     private final Collection<String> groupCriteria = new LinkedHashSet<>();
@@ -72,7 +73,7 @@ public abstract class AbstractGroupFilter<T extends AbstractGroupFilter<?>> impl
             return null;
         }
 
-        return Collections.singletonMap("group_by", StringUtils.join(groupCriteria, ','));
+        return Collections.singletonMap("group_by", String.join(",", groupCriteria));
     }
 
     @Override

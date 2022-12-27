@@ -24,9 +24,11 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import de.siegmar.billomat4j.domain.AbstractInvoiceItem;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
+@ToString(callSuper = true)
 @JsonRootName("recurring-item")
 public class RecurringItem extends AbstractInvoiceItem {
 

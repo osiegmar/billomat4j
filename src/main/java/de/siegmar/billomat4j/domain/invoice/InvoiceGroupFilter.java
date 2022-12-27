@@ -20,7 +20,9 @@
 package de.siegmar.billomat4j.domain.invoice;
 
 import de.siegmar.billomat4j.domain.AbstractGroupFilter;
+import lombok.ToString;
 
+@ToString(callSuper = true)
 public class InvoiceGroupFilter extends AbstractGroupFilter<InvoiceGroupFilter> {
 
 }

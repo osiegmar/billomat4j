@@ -23,9 +23,11 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
+@ToString
 @JsonRootName("email")
 public class Email {
 

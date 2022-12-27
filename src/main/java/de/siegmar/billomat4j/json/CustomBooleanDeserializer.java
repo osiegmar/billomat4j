@@ -21,8 +21,6 @@ package de.siegmar.billomat4j.json;
 
 import java.io.IOException;
 
-import org.apache.commons.lang3.BooleanUtils;
-
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonDeserializer;
@@ -31,7 +29,16 @@ public class CustomBooleanDeserializer extends JsonDeserializer<Boolean> {
 
     @Override
     public Boolean deserialize(final JsonParser jp, final DeserializationContext ctxt) throws IOException {
-        return BooleanUtils.toBooleanObject(jp.getText(), "1", "0", "");
+        switch (jp.getText()) {
+            case "0":
+                return false;
+            case "1":
+                return true;
+            case "":
+                return null;
+            default:
+                throw new IllegalStateException("Invalid boolean: " + jp.getText());
+        }
     }
 
 }

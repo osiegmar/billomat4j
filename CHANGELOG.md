@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Use Lombok to ease maintainability
 - Refactored some attribute names
+- Removed dependency to commons-lang3
 
 ## [2.0.1] - 2022-12-26
 ### Added

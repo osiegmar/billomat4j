@@ -39,9 +39,11 @@ import de.siegmar.billomat4j.json.Views;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
+@ToString(callSuper = true)
 @JsonRootName("client")
 public class Client extends AbstractMeta {
 

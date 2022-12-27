@@ -24,9 +24,11 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import de.siegmar.billomat4j.domain.AbstractPayment;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
+@ToString(callSuper = true)
 @JsonRootName("credit-note-payment")
 public class CreditNotePayment extends AbstractPayment {
 

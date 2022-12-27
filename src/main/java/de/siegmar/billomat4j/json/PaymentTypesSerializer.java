@@ -21,8 +21,7 @@ package de.siegmar.billomat4j.json;
 
 import java.io.IOException;
 import java.util.Set;
-
-import org.apache.commons.lang3.StringUtils;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.JsonSerializer;
@@ -37,7 +36,7 @@ public class PaymentTypesSerializer extends JsonSerializer<Set<PaymentType>> {
         throws IOException {
 
         if (value != null) {
-            jgen.writeString(StringUtils.join(value, ','));
+            jgen.writeString(value.stream().map(PaymentType::name).collect(Collectors.joining(",")));
         }
     }
 

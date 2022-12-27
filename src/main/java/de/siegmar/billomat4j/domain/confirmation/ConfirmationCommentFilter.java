@@ -20,7 +20,9 @@
 package de.siegmar.billomat4j.domain.confirmation;
 
 import de.siegmar.billomat4j.domain.AbstractFilter;
+import lombok.ToString;
 
+@ToString(callSuper = true)
 public class ConfirmationCommentFilter extends AbstractFilter<ConfirmationCommentFilter> {
 
     public ConfirmationCommentFilter byActionKeys(final ConfirmationActionKey... actionKeys) {

@@ -27,9 +27,11 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import de.siegmar.billomat4j.domain.AbstractIdentifiable;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
+@ToString(callSuper = true)
 @JsonRootName("reminder-text")
 public class ReminderText extends AbstractIdentifiable {
 

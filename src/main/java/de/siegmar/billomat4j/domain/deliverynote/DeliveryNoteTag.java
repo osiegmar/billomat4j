@@ -24,9 +24,11 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import de.siegmar.billomat4j.domain.AbstractTag;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
+@ToString(callSuper = true)
 @JsonRootName("delivery-note-tag")
 public class DeliveryNoteTag extends AbstractTag {
 

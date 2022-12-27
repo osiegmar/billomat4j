@@ -27,7 +27,9 @@ import com.fasterxml.jackson.annotation.JsonView;
 import de.siegmar.billomat4j.json.Views;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
+@ToString(callSuper = true)
 public abstract class AbstractMeta extends AbstractIdentifiable {
 
     @Getter

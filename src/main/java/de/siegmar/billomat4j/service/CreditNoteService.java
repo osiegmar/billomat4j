@@ -24,8 +24,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import org.apache.commons.lang3.Validate;
-
 import de.siegmar.billomat4j.domain.Email;
 import de.siegmar.billomat4j.domain.Filter;
 import de.siegmar.billomat4j.domain.creditnote.CreditNote;
@@ -46,6 +44,7 @@ import de.siegmar.billomat4j.domain.creditnote.CreditNotePdf;
 import de.siegmar.billomat4j.domain.creditnote.CreditNoteTag;
 import de.siegmar.billomat4j.domain.creditnote.CreditNoteTags;
 import de.siegmar.billomat4j.domain.creditnote.CreditNotes;
+import lombok.NonNull;
 
 public class CreditNoteService extends AbstractService
     implements GenericCustomFieldService, GenericTagService<CreditNoteTag>,
@@ -91,11 +90,12 @@ public class CreditNoteService extends AbstractService
      * @throws NullPointerException if creditNoteGroupFilter is null
      * @throws ServiceException     if an error occurred while accessing the web service
      */
-    public List<CreditNoteGroup> getGroupedCreditNotes(final CreditNoteGroupFilter creditNoteGroupFilter,
+    public List<CreditNoteGroup> getGroupedCreditNotes(@NonNull final CreditNoteGroupFilter creditNoteGroupFilter,
                                                        final CreditNoteFilter creditNoteFilter) {
 
-        Validate.notNull(creditNoteGroupFilter);
-        Validate.isTrue(creditNoteGroupFilter.isConfigured());
+        if (!creditNoteGroupFilter.isConfigured()) {
+            throw new IllegalArgumentException("creditNoteGroupFilter must be configured");
+        }
         final CombinedFilter filter = new CombinedFilter(creditNoteGroupFilter, creditNoteFilter);
         return getAllFromResource(RESOURCE, CreditNoteGroups.class, filter);
     }
@@ -120,8 +120,11 @@ public class CreditNoteService extends AbstractService
      * @throws IllegalArgumentException if creditNoteNumber is empty
      * @throws ServiceException         if an error occurred while accessing the web service
      */
-    public Optional<CreditNote> getCreditNoteByNumber(final String creditNoteNumber) {
-        return single(findCreditNotes(new CreditNoteFilter().byCreditNoteNumber(Validate.notEmpty(creditNoteNumber))));
+    public Optional<CreditNote> getCreditNoteByNumber(@NonNull final String creditNoteNumber) {
+        if (creditNoteNumber.isEmpty()) {
+            throw new IllegalArgumentException("creditNoteNumber must not be empty");
+        }
+        return single(findCreditNotes(new CreditNoteFilter().byCreditNoteNumber(creditNoteNumber)));
     }
 
     /**
@@ -129,8 +132,8 @@ public class CreditNoteService extends AbstractService
      * @throws NullPointerException if creditNote is null
      * @throws ServiceException     if an error occurred while accessing the web service
      */
-    public void createCreditNote(final CreditNote creditNote) {
-        create(RESOURCE, Validate.notNull(creditNote));
+    public void createCreditNote(@NonNull final CreditNote creditNote) {
+        create(RESOURCE, creditNote);
     }
 
     /**
@@ -138,8 +141,8 @@ public class CreditNoteService extends AbstractService
      * @throws NullPointerException if creditNote is null
      * @throws ServiceException     if an error occurred while accessing the web service
      */
-    public void updateCreditNote(final CreditNote creditNote) {
-        update(RESOURCE, Validate.notNull(creditNote));
+    public void updateCreditNote(@NonNull final CreditNote creditNote) {
+        update(RESOURCE, creditNote);
     }
 
     /**
@@ -195,8 +198,8 @@ public class CreditNoteService extends AbstractService
      * @throws NullPointerException if pdf is null
      * @see #getCreditNoteSignedPdf(int)
      */
-    public void uploadCreditNoteSignedPdf(final int creditNoteId, final byte[] pdf) {
-        uploadSignedPdf(RESOURCE, creditNoteId, Validate.notNull(pdf));
+    public void uploadCreditNoteSignedPdf(final int creditNoteId, @NonNull final byte[] pdf) {
+        uploadSignedPdf(RESOURCE, creditNoteId, pdf);
     }
 
     /**
@@ -222,13 +225,13 @@ public class CreditNoteService extends AbstractService
     }
 
     @Override
-    public void createItem(final CreditNoteItem creditNoteItem) {
-        create(RESOURCE_ITEMS, Validate.notNull(creditNoteItem));
+    public void createItem(@NonNull final CreditNoteItem creditNoteItem) {
+        create(RESOURCE_ITEMS, creditNoteItem);
     }
 
     @Override
-    public void updateItem(final CreditNoteItem creditNoteItem) {
-        update(RESOURCE_ITEMS, Validate.notNull(creditNoteItem));
+    public void updateItem(@NonNull final CreditNoteItem creditNoteItem) {
+        update(RESOURCE_ITEMS, creditNoteItem);
     }
 
     @Override
@@ -256,8 +259,8 @@ public class CreditNoteService extends AbstractService
     }
 
     @Override
-    public void createComment(final CreditNoteComment creditNoteComment) {
-        create(RESOURCE_COMMENTS, Validate.notNull(creditNoteComment));
+    public void createComment(@NonNull final CreditNoteComment creditNoteComment) {
+        create(RESOURCE_COMMENTS, creditNoteComment);
     }
 
     @Override
@@ -278,8 +281,8 @@ public class CreditNoteService extends AbstractService
     }
 
     @Override
-    public void createPayment(final CreditNotePayment creditNotePayment) {
-        create(RESOURCE_PAYMENTS, Validate.notNull(creditNotePayment));
+    public void createPayment(@NonNull final CreditNotePayment creditNotePayment) {
+        create(RESOURCE_PAYMENTS, creditNotePayment);
     }
 
     @Override
@@ -300,8 +303,8 @@ public class CreditNoteService extends AbstractService
     }
 
     @Override
-    public void createTag(final CreditNoteTag creditNoteTag) {
-        create(RESOURCE_TAGS, Validate.notNull(creditNoteTag));
+    public void createTag(@NonNull final CreditNoteTag creditNoteTag) {
+        create(RESOURCE_TAGS, creditNoteTag);
     }
 
     @Override

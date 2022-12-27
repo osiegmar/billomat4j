@@ -19,24 +19,19 @@
 
 package de.siegmar.billomat4j.domain;
 
-import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
-
 import com.fasterxml.jackson.annotation.JsonView;
 
 import de.siegmar.billomat4j.json.Views;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
+@ToString
 public abstract class AbstractIdentifiable implements Identifiable {
 
     @Getter
     @Setter
     @JsonView(Views.NonSerialize.class)
     private Integer id;
-
-    @Override
-    public String toString() {
-        return ReflectionToStringBuilder.toString(this);
-    }
 
 }

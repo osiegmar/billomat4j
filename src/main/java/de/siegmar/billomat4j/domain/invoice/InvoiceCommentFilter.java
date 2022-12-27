@@ -20,7 +20,9 @@
 package de.siegmar.billomat4j.domain.invoice;
 
 import de.siegmar.billomat4j.domain.AbstractFilter;
+import lombok.ToString;
 
+@ToString(callSuper = true)
 public class InvoiceCommentFilter extends AbstractFilter<InvoiceCommentFilter> {
 
     public InvoiceCommentFilter byActionKeys(final InvoiceActionKey... actionKeys) {

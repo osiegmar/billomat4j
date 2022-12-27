@@ -21,17 +21,17 @@ package de.siegmar.billomat4j.domain.deliverynote;
 
 import java.time.LocalDate;
 
-import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
-
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
+@ToString
 @JsonRootName("delivery-note-params")
 public class DeliveryNoteParams {
 
@@ -43,10 +43,5 @@ public class DeliveryNoteParams {
 
     @JsonInclude(Include.NON_NULL)
     private LocalDate to;
-
-    @Override
-    public String toString() {
-        return ReflectionToStringBuilder.toString(this);
-    }
 
 }

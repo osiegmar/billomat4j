@@ -22,9 +22,11 @@ package de.siegmar.billomat4j.domain;
 import de.siegmar.billomat4j.domain.types.PropertyType;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
+@ToString(callSuper = true)
 public abstract class AbstractPropertyValue extends AbstractMeta {
 
     private PropertyType type;

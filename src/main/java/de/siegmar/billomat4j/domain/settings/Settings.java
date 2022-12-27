@@ -24,8 +24,6 @@ import java.time.ZonedDateTime;
 import java.util.Currency;
 import java.util.Locale;
 
-import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import com.fasterxml.jackson.annotation.JsonView;
@@ -34,9 +32,11 @@ import de.siegmar.billomat4j.json.Views;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
+@ToString
 @JsonRootName("settings")
 public class Settings {
 
@@ -160,10 +160,5 @@ public class Settings {
     private String letterIntro;
     private String templateEngine;
     private String taxation;
-
-    @Override
-    public String toString() {
-        return ReflectionToStringBuilder.toString(this);
-    }
 
 }

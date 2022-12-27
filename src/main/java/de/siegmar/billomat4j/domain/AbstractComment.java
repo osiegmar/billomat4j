@@ -23,9 +23,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
+@ToString(callSuper = true)
 public abstract class AbstractComment<K extends ActionKey> extends AbstractMeta {
 
     private Integer userId;

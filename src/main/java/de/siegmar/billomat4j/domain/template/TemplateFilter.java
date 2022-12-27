@@ -20,7 +20,9 @@
 package de.siegmar.billomat4j.domain.template;
 
 import de.siegmar.billomat4j.domain.AbstractFilter;
+import lombok.ToString;
 
+@ToString(callSuper = true)
 public class TemplateFilter extends AbstractFilter<TemplateFilter> {
 
     public TemplateFilter byType(final TemplateType... templateTypes) {

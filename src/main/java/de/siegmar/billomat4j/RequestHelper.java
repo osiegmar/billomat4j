@@ -31,7 +31,6 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -184,7 +183,9 @@ public class RequestHelper {
     URI buildUrl(final String resource, final String id, final String method,
                  final Map<String, String> filter) {
 
-        Validate.notEmpty(resource, "resource required");
+        if (resource == null || resource.isEmpty()) {
+            throw new IllegalArgumentException("resource required");
+        }
 
         final StringBuilder sb = new StringBuilder();
 

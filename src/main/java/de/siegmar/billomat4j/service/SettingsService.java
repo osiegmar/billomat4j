@@ -21,9 +21,8 @@ package de.siegmar.billomat4j.service;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
-
-import org.apache.commons.lang3.Validate;
 
 import de.siegmar.billomat4j.domain.settings.CountryTax;
 import de.siegmar.billomat4j.domain.settings.CountryTaxes;
@@ -32,6 +31,7 @@ import de.siegmar.billomat4j.domain.settings.ReminderTexts;
 import de.siegmar.billomat4j.domain.settings.Settings;
 import de.siegmar.billomat4j.domain.settings.Tax;
 import de.siegmar.billomat4j.domain.settings.Taxes;
+import lombok.NonNull;
 
 public class SettingsService extends AbstractService {
 
@@ -68,7 +68,7 @@ public class SettingsService extends AbstractService {
      */
     public void updateSettings(final Settings settings) {
         try {
-            final byte[] requestData = objectWriter.writeValueAsBytes(Validate.notNull(settings));
+            final byte[] requestData = objectWriter.writeValueAsBytes(Objects.requireNonNull(settings));
             final byte[] responseData = requestHelper.put(RESOURCE, null, null, requestData);
             objectReader.forType(Settings.class).withValueToUpdate(settings).readValue(responseData);
         } catch (final IOException e) {
@@ -102,8 +102,8 @@ public class SettingsService extends AbstractService {
      * @throws NullPointerException if tax is null
      * @throws ServiceException     if an error occurred while accessing the web service
      */
-    public void createTax(final Tax tax) {
-        create(TAX_RESOURCE, Validate.notNull(tax));
+    public void createTax(@NonNull final Tax tax) {
+        create(TAX_RESOURCE, tax);
     }
 
     /**
@@ -111,8 +111,8 @@ public class SettingsService extends AbstractService {
      * @throws NullPointerException if tax is null
      * @throws ServiceException     if an error occurred while accessing the web service
      */
-    public void updateTax(final Tax tax) {
-        update(TAX_RESOURCE, Validate.notNull(tax));
+    public void updateTax(@NonNull final Tax tax) {
+        update(TAX_RESOURCE, tax);
     }
 
     /**
@@ -149,8 +149,8 @@ public class SettingsService extends AbstractService {
      * @throws NullPointerException if countryTax is null
      * @throws ServiceException     if an error occurred while accessing the web service
      */
-    public void createCountryTax(final CountryTax countryTax) {
-        create(COUNTRY_TAX_RESOURCE, Validate.notNull(countryTax));
+    public void createCountryTax(@NonNull final CountryTax countryTax) {
+        create(COUNTRY_TAX_RESOURCE, countryTax);
     }
 
     /**
@@ -158,8 +158,8 @@ public class SettingsService extends AbstractService {
      * @throws NullPointerException if countryTax is null
      * @throws ServiceException     if an error occurred while accessing the web service
      */
-    public void updateCountryTax(final CountryTax countryTax) {
-        update(COUNTRY_TAX_RESOURCE, Validate.notNull(countryTax));
+    public void updateCountryTax(@NonNull final CountryTax countryTax) {
+        update(COUNTRY_TAX_RESOURCE, countryTax);
     }
 
     /**
@@ -196,8 +196,8 @@ public class SettingsService extends AbstractService {
      * @throws NullPointerException if reminderText is null
      * @throws ServiceException     if an error occurred while accessing the web service
      */
-    public void createReminderText(final ReminderText reminderText) {
-        create(REMINDER_TEXT_RESOURCE, Validate.notNull(reminderText));
+    public void createReminderText(@NonNull final ReminderText reminderText) {
+        create(REMINDER_TEXT_RESOURCE, reminderText);
     }
 
     /**
@@ -205,8 +205,8 @@ public class SettingsService extends AbstractService {
      * @throws NullPointerException if reminderText is null
      * @throws ServiceException     if an error occurred while accessing the web service
      */
-    public void updateReminderText(final ReminderText reminderText) {
-        update(REMINDER_TEXT_RESOURCE, Validate.notNull(reminderText));
+    public void updateReminderText(@NonNull final ReminderText reminderText) {
+        update(REMINDER_TEXT_RESOURCE, reminderText);
     }
 
     /**

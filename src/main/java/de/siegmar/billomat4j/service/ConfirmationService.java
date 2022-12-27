@@ -22,8 +22,6 @@ package de.siegmar.billomat4j.service;
 import java.util.List;
 import java.util.Optional;
 
-import org.apache.commons.lang3.Validate;
-
 import de.siegmar.billomat4j.domain.Email;
 import de.siegmar.billomat4j.domain.Filter;
 import de.siegmar.billomat4j.domain.confirmation.Confirmation;
@@ -38,6 +36,7 @@ import de.siegmar.billomat4j.domain.confirmation.ConfirmationPdf;
 import de.siegmar.billomat4j.domain.confirmation.ConfirmationTag;
 import de.siegmar.billomat4j.domain.confirmation.ConfirmationTags;
 import de.siegmar.billomat4j.domain.confirmation.Confirmations;
+import lombok.NonNull;
 
 public class ConfirmationService extends AbstractService
     implements GenericCustomFieldService, GenericTagService<ConfirmationTag>,
@@ -95,8 +94,10 @@ public class ConfirmationService extends AbstractService
      * @throws IllegalArgumentException if confirmationNumber is empty
      * @throws ServiceException         if an error occurred while accessing the web service
      */
-    public Optional<Confirmation> getConfirmationByNumber(final String confirmationNumber) {
-        Validate.notEmpty(confirmationNumber);
+    public Optional<Confirmation> getConfirmationByNumber(@NonNull final String confirmationNumber) {
+        if (confirmationNumber.isEmpty()) {
+            throw new IllegalArgumentException("confirmationNumber must not be empty");
+        }
         return single(findConfirmations(new ConfirmationFilter().byConfirmationNumber(confirmationNumber)));
     }
 
@@ -105,8 +106,8 @@ public class ConfirmationService extends AbstractService
      * @throws NullPointerException if confirmation is null
      * @throws ServiceException     if an error occurred while accessing the web service
      */
-    public void createConfirmation(final Confirmation confirmation) {
-        create(RESOURCE, Validate.notNull(confirmation));
+    public void createConfirmation(@NonNull final Confirmation confirmation) {
+        create(RESOURCE, confirmation);
     }
 
     /**
@@ -114,8 +115,8 @@ public class ConfirmationService extends AbstractService
      * @throws NullPointerException if confirmation is null
      * @throws ServiceException     if an error occurred while accessing the web service
      */
-    public void updateConfirmation(final Confirmation confirmation) {
-        update(RESOURCE, Validate.notNull(confirmation));
+    public void updateConfirmation(@NonNull final Confirmation confirmation) {
+        update(RESOURCE, confirmation);
     }
 
     /**
@@ -207,13 +208,13 @@ public class ConfirmationService extends AbstractService
     }
 
     @Override
-    public void createItem(final ConfirmationItem confirmationItem) {
-        create(RESOURCE_ITEMS, Validate.notNull(confirmationItem));
+    public void createItem(@NonNull final ConfirmationItem confirmationItem) {
+        create(RESOURCE_ITEMS, confirmationItem);
     }
 
     @Override
-    public void updateItem(final ConfirmationItem confirmationItem) {
-        update(RESOURCE_ITEMS, Validate.notNull(confirmationItem));
+    public void updateItem(@NonNull final ConfirmationItem confirmationItem) {
+        update(RESOURCE_ITEMS, confirmationItem);
     }
 
     @Override
@@ -237,8 +238,8 @@ public class ConfirmationService extends AbstractService
     }
 
     @Override
-    public void createComment(final ConfirmationComment confirmationComment) {
-        create(RESOURCE_COMMENTS, Validate.notNull(confirmationComment));
+    public void createComment(@NonNull final ConfirmationComment confirmationComment) {
+        create(RESOURCE_COMMENTS, confirmationComment);
     }
 
     @Override
@@ -259,8 +260,8 @@ public class ConfirmationService extends AbstractService
     }
 
     @Override
-    public void createTag(final ConfirmationTag confirmationTag) {
-        create(RESOURCE_TAGS, Validate.notNull(confirmationTag));
+    public void createTag(@NonNull final ConfirmationTag confirmationTag) {
+        create(RESOURCE_TAGS, confirmationTag);
     }
 
     @Override

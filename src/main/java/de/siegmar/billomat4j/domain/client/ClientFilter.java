@@ -20,7 +20,9 @@
 package de.siegmar.billomat4j.domain.client;
 
 import de.siegmar.billomat4j.domain.AbstractFilter;
+import lombok.ToString;
 
+@ToString(callSuper = true)
 public class ClientFilter extends AbstractFilter<ClientFilter> {
 
     public ClientFilter byName(final String name) {

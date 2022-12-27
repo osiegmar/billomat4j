@@ -27,9 +27,11 @@ import de.siegmar.billomat4j.domain.ByteString;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
+@ToString(callSuper = true)
 @JsonRootName("template")
 public class Template extends AbstractMeta {
 

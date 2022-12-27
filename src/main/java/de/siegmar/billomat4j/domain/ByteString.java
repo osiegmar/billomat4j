@@ -5,13 +5,14 @@ import java.io.OutputStream;
 import java.nio.file.Files;
 import java.nio.file.OpenOption;
 import java.nio.file.Path;
+import java.util.Objects;
 
 public final class ByteString {
 
     private final byte[] data;
 
-    public ByteString(final byte[] data) {
-        this.data = data.clone();
+    private ByteString(final byte[] data) {
+        this.data = Objects.requireNonNull(data).clone();
     }
 
     public static ByteString of(final byte[] data) {
@@ -28,6 +29,11 @@ public final class ByteString {
 
     public void saveTo(final Path path, final OpenOption... openOptions) throws IOException {
         Files.write(path, data, openOptions);
+    }
+
+    @Override
+    public String toString() {
+        return "ByteString[" + data.length + " bytes]";
     }
 
 }

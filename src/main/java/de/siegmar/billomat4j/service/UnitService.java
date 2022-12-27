@@ -22,11 +22,10 @@ package de.siegmar.billomat4j.service;
 import java.util.List;
 import java.util.Optional;
 
-import org.apache.commons.lang3.Validate;
-
 import de.siegmar.billomat4j.domain.unit.Unit;
 import de.siegmar.billomat4j.domain.unit.UnitFilter;
 import de.siegmar.billomat4j.domain.unit.Units;
+import lombok.NonNull;
 
 public class UnitService extends AbstractService implements GenericCustomFieldService {
 
@@ -71,8 +70,8 @@ public class UnitService extends AbstractService implements GenericCustomFieldSe
      * @throws NullPointerException if unit is null
      * @throws ServiceException     if an error occurred while accessing the web service
      */
-    public void createUnit(final Unit unit) {
-        create(RESOURCE, Validate.notNull(unit));
+    public void createUnit(@NonNull final Unit unit) {
+        create(RESOURCE, unit);
     }
 
     /**
@@ -80,8 +79,8 @@ public class UnitService extends AbstractService implements GenericCustomFieldSe
      * @throws NullPointerException if unit is null
      * @throws ServiceException     if an error occurred while accessing the web service
      */
-    public void updateUnit(final Unit unit) {
-        update(RESOURCE, Validate.notNull(unit));
+    public void updateUnit(@NonNull final Unit unit) {
+        update(RESOURCE, unit);
     }
 
     /**

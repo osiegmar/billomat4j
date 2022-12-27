@@ -20,7 +20,9 @@
 package de.siegmar.billomat4j.domain.unit;
 
 import de.siegmar.billomat4j.domain.AbstractFilter;
+import lombok.ToString;
 
+@ToString(callSuper = true)
 public class UnitFilter extends AbstractFilter<UnitFilter> {
 
     public UnitFilter byName(final String name) {

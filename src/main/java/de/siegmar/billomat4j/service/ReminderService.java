@@ -24,8 +24,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import org.apache.commons.lang3.Validate;
-
 import de.siegmar.billomat4j.domain.Email;
 import de.siegmar.billomat4j.domain.reminder.Reminder;
 import de.siegmar.billomat4j.domain.reminder.ReminderFilter;
@@ -35,6 +33,7 @@ import de.siegmar.billomat4j.domain.reminder.ReminderPdf;
 import de.siegmar.billomat4j.domain.reminder.ReminderTag;
 import de.siegmar.billomat4j.domain.reminder.ReminderTags;
 import de.siegmar.billomat4j.domain.reminder.Reminders;
+import lombok.NonNull;
 
 public class ReminderService extends AbstractService
     implements GenericCustomFieldService, GenericTagService<ReminderTag>,
@@ -86,8 +85,8 @@ public class ReminderService extends AbstractService
      * @throws NullPointerException if reminder is null
      * @throws ServiceException     if an error occurred while accessing the web service
      */
-    public void createReminder(final Reminder reminder) {
-        create(RESOURCE, Validate.notNull(reminder));
+    public void createReminder(@NonNull final Reminder reminder) {
+        create(RESOURCE, reminder);
     }
 
     /**
@@ -95,8 +94,8 @@ public class ReminderService extends AbstractService
      * @throws NullPointerException if reminder is null
      * @throws ServiceException     if an error occurred while accessing the web service
      */
-    public void updateReminder(final Reminder reminder) {
-        update(RESOURCE, Validate.notNull(reminder));
+    public void updateReminder(@NonNull final Reminder reminder) {
+        update(RESOURCE, reminder);
     }
 
     /**
@@ -152,8 +151,8 @@ public class ReminderService extends AbstractService
      * @throws NullPointerException if pdf is null
      * @see #getReminderSignedPdf(int)
      */
-    public void uploadReminderSignedPdf(final int reminderId, final byte[] pdf) {
-        uploadSignedPdf(RESOURCE, reminderId, Validate.notNull(pdf));
+    public void uploadReminderSignedPdf(final int reminderId, @NonNull final byte[] pdf) {
+        uploadSignedPdf(RESOURCE, reminderId, pdf);
     }
 
     /**
@@ -193,13 +192,13 @@ public class ReminderService extends AbstractService
     }
 
     @Override
-    public void createItem(final ReminderItem reminderItem) {
-        create(RESOURCE_ITEMS, Validate.notNull(reminderItem));
+    public void createItem(@NonNull final ReminderItem reminderItem) {
+        create(RESOURCE_ITEMS, reminderItem);
     }
 
     @Override
-    public void updateItem(final ReminderItem reminderItem) {
-        update(RESOURCE_ITEMS, Validate.notNull(reminderItem));
+    public void updateItem(@NonNull final ReminderItem reminderItem) {
+        update(RESOURCE_ITEMS, reminderItem);
     }
 
     @Override
@@ -220,8 +219,8 @@ public class ReminderService extends AbstractService
     }
 
     @Override
-    public void createTag(final ReminderTag reminderTag) {
-        create(RESOURCE_TAGS, Validate.notNull(reminderTag));
+    public void createTag(@NonNull final ReminderTag reminderTag) {
+        create(RESOURCE_TAGS, reminderTag);
     }
 
     @Override

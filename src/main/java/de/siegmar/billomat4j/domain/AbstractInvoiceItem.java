@@ -23,9 +23,11 @@ import java.math.BigDecimal;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
+@ToString(callSuper = true)
 public abstract class AbstractInvoiceItem extends AbstractItem {
 
     private String taxName;

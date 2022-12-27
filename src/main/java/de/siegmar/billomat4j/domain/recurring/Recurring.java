@@ -38,9 +38,11 @@ import de.siegmar.billomat4j.json.PaymentTypesDeserializer;
 import de.siegmar.billomat4j.json.PaymentTypesSerializer;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
+@ToString(callSuper = true)
 @JsonRootName("recurring")
 public class Recurring extends AbstractMeta {
 

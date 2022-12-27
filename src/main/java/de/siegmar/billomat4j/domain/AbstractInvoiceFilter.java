@@ -22,6 +22,9 @@ package de.siegmar.billomat4j.domain;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
+import lombok.ToString;
+
+@ToString(callSuper = true)
 public abstract class AbstractInvoiceFilter<T extends AbstractInvoiceFilter<T>> extends AbstractFilter<T> {
 
     public T byClientId(final int clientId) {

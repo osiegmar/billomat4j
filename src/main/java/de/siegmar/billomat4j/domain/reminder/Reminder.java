@@ -32,9 +32,11 @@ import de.siegmar.billomat4j.domain.AbstractMeta;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
+@ToString(callSuper = true)
 @JsonRootName("reminder")
 public class Reminder extends AbstractMeta {
 

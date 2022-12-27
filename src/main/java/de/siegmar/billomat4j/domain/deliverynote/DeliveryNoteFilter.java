@@ -20,7 +20,9 @@
 package de.siegmar.billomat4j.domain.deliverynote;
 
 import de.siegmar.billomat4j.domain.AbstractInvoiceFilter;
+import lombok.ToString;
 
+@ToString(callSuper = true)
 public class DeliveryNoteFilter extends AbstractInvoiceFilter<DeliveryNoteFilter> {
 
     public DeliveryNoteFilter byDeliveryNoteNumber(final String deliveryNoteNumber) {

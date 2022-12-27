@@ -25,9 +25,11 @@ import de.siegmar.billomat4j.domain.AbstractIdentifiable;
 import de.siegmar.billomat4j.domain.types.RecipientType;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
+@ToString(callSuper = true)
 @JsonRootName("recurring-email-receiver")
 public class RecurringEmailReceiver extends AbstractIdentifiable {
 

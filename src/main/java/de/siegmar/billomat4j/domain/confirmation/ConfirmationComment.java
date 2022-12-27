@@ -24,9 +24,11 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import de.siegmar.billomat4j.domain.AbstractComment;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
+@ToString(callSuper = true)
 @JsonRootName("confirmation-comment")
 public class ConfirmationComment extends AbstractComment<ConfirmationActionKey> {
 

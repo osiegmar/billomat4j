@@ -22,8 +22,6 @@ package de.siegmar.billomat4j.service;
 import java.util.List;
 import java.util.Optional;
 
-import org.apache.commons.lang3.Validate;
-
 import de.siegmar.billomat4j.domain.Email;
 import de.siegmar.billomat4j.domain.Filter;
 import de.siegmar.billomat4j.domain.offer.Offer;
@@ -38,6 +36,7 @@ import de.siegmar.billomat4j.domain.offer.OfferPdf;
 import de.siegmar.billomat4j.domain.offer.OfferTag;
 import de.siegmar.billomat4j.domain.offer.OfferTags;
 import de.siegmar.billomat4j.domain.offer.Offers;
+import lombok.NonNull;
 
 public class OfferService extends AbstractService implements GenericCustomFieldService,
     GenericTagService<OfferTag>, GenericCommentService<OfferActionKey, OfferComment, OfferCommentFilter>,
@@ -94,8 +93,11 @@ public class OfferService extends AbstractService implements GenericCustomFieldS
      * @throws IllegalArgumentException if offerNumber is empty
      * @throws ServiceException         if an error occurred while accessing the web service
      */
-    public Optional<Offer> getOfferByNumber(final String offerNumber) {
-        return single(findOffers(new OfferFilter().byOfferNumber(Validate.notEmpty(offerNumber))));
+    public Optional<Offer> getOfferByNumber(@NonNull final String offerNumber) {
+        if (offerNumber.isEmpty()) {
+            throw new IllegalArgumentException("offerNumber must not be empty");
+        }
+        return single(findOffers(new OfferFilter().byOfferNumber(offerNumber)));
     }
 
     /**
@@ -103,8 +105,8 @@ public class OfferService extends AbstractService implements GenericCustomFieldS
      * @throws NullPointerException if offer is null
      * @throws ServiceException     if an error occurred while accessing the web service
      */
-    public void createOffer(final Offer offer) {
-        create(RESOURCE, Validate.notNull(offer));
+    public void createOffer(@NonNull final Offer offer) {
+        create(RESOURCE, offer);
     }
 
     /**
@@ -112,8 +114,8 @@ public class OfferService extends AbstractService implements GenericCustomFieldS
      * @throws NullPointerException if offer is null
      * @throws ServiceException     if an error occurred while accessing the web service
      */
-    public void updateOffer(final Offer offer) {
-        update(RESOURCE, Validate.notNull(offer));
+    public void updateOffer(@NonNull final Offer offer) {
+        update(RESOURCE, offer);
     }
 
     /**
@@ -222,13 +224,13 @@ public class OfferService extends AbstractService implements GenericCustomFieldS
     }
 
     @Override
-    public void createItem(final OfferItem offerItem) {
-        create(RESOURCE_ITEMS, Validate.notNull(offerItem));
+    public void createItem(@NonNull final OfferItem offerItem) {
+        create(RESOURCE_ITEMS, offerItem);
     }
 
     @Override
-    public void updateItem(final OfferItem offerItem) {
-        update(RESOURCE_ITEMS, Validate.notNull(offerItem));
+    public void updateItem(@NonNull final OfferItem offerItem) {
+        update(RESOURCE_ITEMS, offerItem);
     }
 
     @Override
@@ -250,8 +252,8 @@ public class OfferService extends AbstractService implements GenericCustomFieldS
     }
 
     @Override
-    public void createComment(final OfferComment offerComment) {
-        create(RESOURCE_COMMENTS, Validate.notNull(offerComment));
+    public void createComment(@NonNull final OfferComment offerComment) {
+        create(RESOURCE_COMMENTS, offerComment);
     }
 
     @Override
@@ -272,8 +274,8 @@ public class OfferService extends AbstractService implements GenericCustomFieldS
     }
 
     @Override
-    public void createTag(final OfferTag offerTag) {
-        create(RESOURCE_TAGS, Validate.notNull(offerTag));
+    public void createTag(@NonNull final OfferTag offerTag) {
+        create(RESOURCE_TAGS, offerTag);
     }
 
     @Override

@@ -22,15 +22,15 @@ package de.siegmar.billomat4j.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
+@ToString
 public class EmailRecipients {
 
     @JsonProperty("to")
@@ -61,11 +61,6 @@ public class EmailRecipients {
             this.bccRecipients = new ArrayList<>();
         }
         this.bccRecipients.add(bcc);
-    }
-
-    @Override
-    public String toString() {
-        return ReflectionToStringBuilder.toString(this);
     }
 
 }

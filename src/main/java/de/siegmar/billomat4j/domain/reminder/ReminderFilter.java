@@ -20,7 +20,9 @@
 package de.siegmar.billomat4j.domain.reminder;
 
 import de.siegmar.billomat4j.domain.AbstractInvoiceFilter;
+import lombok.ToString;
 
+@ToString(callSuper = true)
 public class ReminderFilter extends AbstractInvoiceFilter<ReminderFilter> {
 
     public ReminderFilter byInvoiceNumber(final String invoiceNumber) {

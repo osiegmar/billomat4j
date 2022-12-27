@@ -22,8 +22,6 @@ package de.siegmar.billomat4j.service;
 import java.util.List;
 import java.util.Optional;
 
-import org.apache.commons.lang3.Validate;
-
 import de.siegmar.billomat4j.domain.article.Article;
 import de.siegmar.billomat4j.domain.article.ArticleFilter;
 import de.siegmar.billomat4j.domain.article.ArticlePropertyValue;
@@ -33,6 +31,7 @@ import de.siegmar.billomat4j.domain.article.ArticleTags;
 import de.siegmar.billomat4j.domain.article.Articles;
 import de.siegmar.billomat4j.domain.settings.ArticleProperties;
 import de.siegmar.billomat4j.domain.settings.ArticleProperty;
+import lombok.NonNull;
 
 public class ArticleService extends AbstractService
     implements GenericCustomFieldService, GenericPropertyService<ArticleProperty,
@@ -88,8 +87,11 @@ public class ArticleService extends AbstractService
      * @throws IllegalArgumentException if articleNumber is empty
      * @throws ServiceException         if an error occurred while accessing the web service
      */
-    public Optional<Article> getArticleByNumber(final String articleNumber) {
-        return single(findArticles(new ArticleFilter().byArticleNumber(Validate.notEmpty(articleNumber))));
+    public Optional<Article> getArticleByNumber(@NonNull final String articleNumber) {
+        if (articleNumber.isEmpty()) {
+            throw new IllegalArgumentException("articleNumber must not be empty");
+        }
+        return single(findArticles(new ArticleFilter().byArticleNumber(articleNumber)));
     }
 
     /**
@@ -97,8 +99,8 @@ public class ArticleService extends AbstractService
      * @throws NullPointerException if article is null
      * @throws ServiceException     if an error occurred while accessing the web service
      */
-    public void createArticle(final Article article) {
-        create(RESOURCE, Validate.notNull(article));
+    public void createArticle(@NonNull final Article article) {
+        create(RESOURCE, article);
     }
 
     /**
@@ -106,8 +108,8 @@ public class ArticleService extends AbstractService
      * @throws NullPointerException if article is null
      * @throws ServiceException     if an error occurred while accessing the web service
      */
-    public void updateArticle(final Article article) {
-        update(RESOURCE, Validate.notNull(article));
+    public void updateArticle(@NonNull final Article article) {
+        update(RESOURCE, article);
     }
 
     /**
@@ -131,13 +133,13 @@ public class ArticleService extends AbstractService
     }
 
     @Override
-    public void createProperty(final ArticleProperty articleProperty) {
-        create(PROPERTIES_RESOURCE, Validate.notNull(articleProperty));
+    public void createProperty(@NonNull final ArticleProperty articleProperty) {
+        create(PROPERTIES_RESOURCE, articleProperty);
     }
 
     @Override
-    public void updateProperty(final ArticleProperty articleProperty) {
-        update(PROPERTIES_RESOURCE, Validate.notNull(articleProperty));
+    public void updateProperty(@NonNull final ArticleProperty articleProperty) {
+        update(PROPERTIES_RESOURCE, articleProperty);
     }
 
     @Override
@@ -162,8 +164,8 @@ public class ArticleService extends AbstractService
     }
 
     @Override
-    public void createPropertyValue(final ArticlePropertyValue articlePropertyValue) {
-        create(ATTRIBUTE_RESOURCE, Validate.notNull(articlePropertyValue));
+    public void createPropertyValue(@NonNull final ArticlePropertyValue articlePropertyValue) {
+        create(ATTRIBUTE_RESOURCE, articlePropertyValue);
     }
 
     // ArticleTag
@@ -179,8 +181,8 @@ public class ArticleService extends AbstractService
     }
 
     @Override
-    public void createTag(final ArticleTag articleTag) {
-        create(TAG_RESOURCE, Validate.notNull(articleTag));
+    public void createTag(@NonNull final ArticleTag articleTag) {
+        create(TAG_RESOURCE, articleTag);
     }
 
     @Override

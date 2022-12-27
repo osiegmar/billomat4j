@@ -20,7 +20,9 @@
 package de.siegmar.billomat4j.domain.offer;
 
 import de.siegmar.billomat4j.domain.AbstractInvoiceFilter;
+import lombok.ToString;
 
+@ToString(callSuper = true)
 public class OfferFilter extends AbstractInvoiceFilter<OfferFilter> {
 
     public OfferFilter byOfferNumber(final String offerNumber) {

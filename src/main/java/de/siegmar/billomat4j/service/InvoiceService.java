@@ -24,8 +24,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import org.apache.commons.lang3.Validate;
-
 import de.siegmar.billomat4j.domain.Email;
 import de.siegmar.billomat4j.domain.Filter;
 import de.siegmar.billomat4j.domain.invoice.Invoice;
@@ -46,6 +44,7 @@ import de.siegmar.billomat4j.domain.invoice.InvoicePdf;
 import de.siegmar.billomat4j.domain.invoice.InvoiceTag;
 import de.siegmar.billomat4j.domain.invoice.InvoiceTags;
 import de.siegmar.billomat4j.domain.invoice.Invoices;
+import lombok.NonNull;
 
 public class InvoiceService extends AbstractService
     implements GenericCustomFieldService, GenericTagService<InvoiceTag>,
@@ -91,11 +90,12 @@ public class InvoiceService extends AbstractService
      * @throws NullPointerException if invoiceGroupFilter is null
      * @throws ServiceException     if an error occurred while accessing the web service
      */
-    public List<InvoiceGroup> getGroupedInvoices(final InvoiceGroupFilter invoiceGroupFilter,
+    public List<InvoiceGroup> getGroupedInvoices(@NonNull final InvoiceGroupFilter invoiceGroupFilter,
                                                  final InvoiceFilter invoiceFilter) {
 
-        Validate.notNull(invoiceGroupFilter);
-        Validate.isTrue(invoiceGroupFilter.isConfigured());
+        if (!invoiceGroupFilter.isConfigured()) {
+            throw new IllegalArgumentException("invoiceGroupFilter must be configured");
+        }
         return getAllFromResource(RESOURCE, InvoiceGroups.class, new CombinedFilter(invoiceGroupFilter, invoiceFilter));
     }
 
@@ -119,8 +119,11 @@ public class InvoiceService extends AbstractService
      * @throws IllegalArgumentException if invoiceNumber is empty
      * @throws ServiceException         if an error occurred while accessing the web service
      */
-    public Optional<Invoice> getInvoiceByNumber(final String invoiceNumber) {
-        return single(findInvoices(new InvoiceFilter().byInvoiceNumber(Validate.notEmpty(invoiceNumber))));
+    public Optional<Invoice> getInvoiceByNumber(@NonNull final String invoiceNumber) {
+        if (invoiceNumber.isEmpty()) {
+            throw new IllegalArgumentException("invoiceNumber must not be empty");
+        }
+        return single(findInvoices(new InvoiceFilter().byInvoiceNumber(invoiceNumber)));
     }
 
     /**
@@ -128,8 +131,8 @@ public class InvoiceService extends AbstractService
      * @throws NullPointerException if invoice is null
      * @throws ServiceException     if an error occurred while accessing the web service
      */
-    public void createInvoice(final Invoice invoice) {
-        create(RESOURCE, Validate.notNull(invoice));
+    public void createInvoice(@NonNull final Invoice invoice) {
+        create(RESOURCE, invoice);
     }
 
     /**
@@ -137,8 +140,8 @@ public class InvoiceService extends AbstractService
      * @throws NullPointerException if invoice is null
      * @throws ServiceException     if an error occurred while accessing the web service
      */
-    public void updateInvoice(final Invoice invoice) {
-        update(RESOURCE, Validate.notNull(invoice));
+    public void updateInvoice(@NonNull final Invoice invoice) {
+        update(RESOURCE, invoice);
     }
 
     /**
@@ -194,8 +197,8 @@ public class InvoiceService extends AbstractService
      * @throws NullPointerException if pdf is null
      * @see #getInvoiceSignedPdf(int)
      */
-    public void uploadInvoiceSignedPdf(final int invoiceId, final byte[] pdf) {
-        uploadSignedPdf(RESOURCE, invoiceId, Validate.notNull(pdf));
+    public void uploadInvoiceSignedPdf(final int invoiceId, @NonNull final byte[] pdf) {
+        uploadSignedPdf(RESOURCE, invoiceId, pdf);
     }
 
     /**
@@ -235,13 +238,13 @@ public class InvoiceService extends AbstractService
     }
 
     @Override
-    public void createItem(final InvoiceItem invoiceItem) {
-        create(RESOURCE_ITEMS, Validate.notNull(invoiceItem));
+    public void createItem(@NonNull final InvoiceItem invoiceItem) {
+        create(RESOURCE_ITEMS, invoiceItem);
     }
 
     @Override
-    public void updateItem(final InvoiceItem invoiceItem) {
-        update(RESOURCE_ITEMS, Validate.notNull(invoiceItem));
+    public void updateItem(@NonNull final InvoiceItem invoiceItem) {
+        update(RESOURCE_ITEMS, invoiceItem);
     }
 
     @Override
@@ -263,8 +266,8 @@ public class InvoiceService extends AbstractService
     }
 
     @Override
-    public void createComment(final InvoiceComment invoiceComment) {
-        create(RESOURCE_COMMENTS, Validate.notNull(invoiceComment));
+    public void createComment(@NonNull final InvoiceComment invoiceComment) {
+        create(RESOURCE_COMMENTS, invoiceComment);
     }
 
     @Override
@@ -285,8 +288,8 @@ public class InvoiceService extends AbstractService
     }
 
     @Override
-    public void createPayment(final InvoicePayment invoicePayment) {
-        create(RESOURCE_PAYMENTS, Validate.notNull(invoicePayment));
+    public void createPayment(@NonNull final InvoicePayment invoicePayment) {
+        create(RESOURCE_PAYMENTS, invoicePayment);
     }
 
     @Override
@@ -307,8 +310,8 @@ public class InvoiceService extends AbstractService
     }
 
     @Override
-    public void createTag(final InvoiceTag invoiceTag) {
-        create(RESOURCE_TAGS, Validate.notNull(invoiceTag));
+    public void createTag(@NonNull final InvoiceTag invoiceTag) {
+        create(RESOURCE_TAGS, invoiceTag);
     }
 
     @Override

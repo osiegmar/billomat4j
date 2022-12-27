@@ -21,15 +21,15 @@ package de.siegmar.billomat4j.domain;
 
 import java.math.BigDecimal;
 
-import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
-
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
+@ToString
 @JsonRootName("tax")
 public class Tax {
 
@@ -44,10 +44,5 @@ public class Tax {
     private BigDecimal amountGross;
     private BigDecimal amountGrossPlain;
     private BigDecimal amountGrossRounded;
-
-    @Override
-    public String toString() {
-        return ReflectionToStringBuilder.toString(this);
-    }
 
 }

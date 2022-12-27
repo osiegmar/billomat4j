@@ -23,12 +23,11 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
-import org.apache.commons.lang3.Validate;
-
 import de.siegmar.billomat4j.domain.template.ImageFormat;
 import de.siegmar.billomat4j.domain.template.Template;
 import de.siegmar.billomat4j.domain.template.TemplateFilter;
 import de.siegmar.billomat4j.domain.template.Templates;
+import lombok.NonNull;
 
 public class TemplateService extends AbstractService implements GenericCustomFieldService {
 
@@ -75,8 +74,8 @@ public class TemplateService extends AbstractService implements GenericCustomFie
      * @throws NullPointerException if template is null
      * @throws ServiceException     if an error occurred while accessing the web service
      */
-    public void createTemplate(final Template template) {
-        create(RESOURCE, Validate.notNull(template));
+    public void createTemplate(@NonNull final Template template) {
+        create(RESOURCE, template);
     }
 
     /**
@@ -84,8 +83,8 @@ public class TemplateService extends AbstractService implements GenericCustomFie
      * @throws NullPointerException if template is null
      * @throws ServiceException     if an error occurred while accessing the web service
      */
-    public void updateTemplate(final Template template) {
-        update(RESOURCE, Validate.notNull(template));
+    public void updateTemplate(@NonNull final Template template) {
+        update(RESOURCE, template);
     }
 
     /**
@@ -102,9 +101,7 @@ public class TemplateService extends AbstractService implements GenericCustomFie
      * @return the template preview as binary data
      * @throws ServiceException if an error occurred while accessing the web service
      */
-    public Optional<byte[]> getTemplatePreview(final int templateId, final ImageFormat imageFormat) {
-        Validate.notNull(imageFormat);
-
+    public Optional<byte[]> getTemplatePreview(final int templateId, @NonNull final ImageFormat imageFormat) {
         try {
             return Optional.ofNullable(requestHelper.get(RESOURCE, Integer.toString(templateId), "thumb",
                 new GenericFilter("format", imageFormat).toMap()));

@@ -20,7 +20,9 @@
 package de.siegmar.billomat4j.domain.invoice;
 
 import de.siegmar.billomat4j.domain.AbstractPaymentFilter;
+import lombok.ToString;
 
+@ToString(callSuper = true)
 public class InvoicePaymentFilter extends AbstractPaymentFilter<InvoicePaymentFilter> {
 
     public InvoicePaymentFilter byInvoiceId(final int invoiceId) {

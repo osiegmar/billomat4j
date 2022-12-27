@@ -22,8 +22,6 @@ package de.siegmar.billomat4j.service;
 import java.util.List;
 import java.util.Optional;
 
-import org.apache.commons.lang3.Validate;
-
 import de.siegmar.billomat4j.domain.Email;
 import de.siegmar.billomat4j.domain.Filter;
 import de.siegmar.billomat4j.domain.deliverynote.DeliveryNote;
@@ -38,6 +36,7 @@ import de.siegmar.billomat4j.domain.deliverynote.DeliveryNotePdf;
 import de.siegmar.billomat4j.domain.deliverynote.DeliveryNoteTag;
 import de.siegmar.billomat4j.domain.deliverynote.DeliveryNoteTags;
 import de.siegmar.billomat4j.domain.deliverynote.DeliveryNotes;
+import lombok.NonNull;
 
 public class DeliveryNoteService extends AbstractService
     implements GenericCustomFieldService, GenericTagService<DeliveryNoteTag>,
@@ -73,17 +72,19 @@ public class DeliveryNoteService extends AbstractService
         return getById(RESOURCE, DeliveryNote.class, deliveryNoteId);
     }
 
-    public Optional<DeliveryNote> getDeliveryNoteByNumber(final String deliveryNoteNumber) {
-        Validate.notEmpty(deliveryNoteNumber);
+    public Optional<DeliveryNote> getDeliveryNoteByNumber(@NonNull final String deliveryNoteNumber) {
+        if (deliveryNoteNumber.isEmpty()) {
+            throw new IllegalArgumentException("deliveryNoteNumber must not be empty");
+        }
         return single(findDeliveryNotes(new DeliveryNoteFilter().byDeliveryNoteNumber(deliveryNoteNumber)));
     }
 
-    public void createDeliveryNote(final DeliveryNote deliveryNote) {
-        create(RESOURCE, Validate.notNull(deliveryNote));
+    public void createDeliveryNote(@NonNull final DeliveryNote deliveryNote) {
+        create(RESOURCE, deliveryNote);
     }
 
-    public void updateDeliveryNote(final DeliveryNote deliveryNote) {
-        update(RESOURCE, Validate.notNull(deliveryNote));
+    public void updateDeliveryNote(@NonNull final DeliveryNote deliveryNote) {
+        update(RESOURCE, deliveryNote);
     }
 
     public void deleteDeliveryNote(final int deliveryNoteId) {
@@ -119,13 +120,13 @@ public class DeliveryNoteService extends AbstractService
     }
 
     @Override
-    public void createItem(final DeliveryNoteItem deliveryNoteItem) {
-        create(RESOURCE_ITEMS, Validate.notNull(deliveryNoteItem));
+    public void createItem(@NonNull final DeliveryNoteItem deliveryNoteItem) {
+        create(RESOURCE_ITEMS, deliveryNoteItem);
     }
 
     @Override
-    public void updateItem(final DeliveryNoteItem deliveryNoteItem) {
-        update(RESOURCE_ITEMS, Validate.notNull(deliveryNoteItem));
+    public void updateItem(@NonNull final DeliveryNoteItem deliveryNoteItem) {
+        update(RESOURCE_ITEMS, deliveryNoteItem);
     }
 
     @Override
@@ -149,8 +150,8 @@ public class DeliveryNoteService extends AbstractService
     }
 
     @Override
-    public void createComment(final DeliveryNoteComment deliveryNoteComment) {
-        create(RESOURCE_COMMENTS, Validate.notNull(deliveryNoteComment));
+    public void createComment(@NonNull final DeliveryNoteComment deliveryNoteComment) {
+        create(RESOURCE_COMMENTS, deliveryNoteComment);
     }
 
     @Override
@@ -171,8 +172,8 @@ public class DeliveryNoteService extends AbstractService
     }
 
     @Override
-    public void createTag(final DeliveryNoteTag deliveryNoteTag) {
-        create(RESOURCE_TAGS, Validate.notNull(deliveryNoteTag));
+    public void createTag(@NonNull final DeliveryNoteTag deliveryNoteTag) {
+        create(RESOURCE_TAGS, deliveryNoteTag);
     }
 
     @Override

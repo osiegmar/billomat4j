@@ -21,7 +21,9 @@ package de.siegmar.billomat4j.domain.recurring;
 
 import de.siegmar.billomat4j.domain.AbstractFilter;
 import de.siegmar.billomat4j.domain.types.PaymentType;
+import lombok.ToString;
 
+@ToString(callSuper = true)
 public class RecurringFilter extends AbstractFilter<RecurringFilter> {
 
     public RecurringFilter byClientId(final int clientId) {

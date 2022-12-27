@@ -21,7 +21,9 @@ package de.siegmar.billomat4j.domain.invoice;
 
 import de.siegmar.billomat4j.domain.AbstractInvoiceFilter;
 import de.siegmar.billomat4j.domain.types.PaymentType;
+import lombok.ToString;
 
+@ToString(callSuper = true)
 public class InvoiceFilter extends AbstractInvoiceFilter<InvoiceFilter> {
 
     public InvoiceFilter byInvoiceNumber(final String invoiceNumber) {

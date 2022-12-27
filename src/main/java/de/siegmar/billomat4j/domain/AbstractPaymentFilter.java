@@ -23,7 +23,9 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
 import de.siegmar.billomat4j.domain.types.PaymentType;
+import lombok.ToString;
 
+@ToString(callSuper = true)
 public abstract class AbstractPaymentFilter<T extends AbstractPaymentFilter<?>> extends AbstractFilter<T> {
 
     public T byFrom(final LocalDate from) {

@@ -20,7 +20,9 @@
 package de.siegmar.billomat4j.domain.creditnote;
 
 import de.siegmar.billomat4j.domain.AbstractGroupFilter;
+import lombok.ToString;
 
+@ToString(callSuper = true)
 public class CreditNoteGroupFilter extends AbstractGroupFilter<CreditNoteGroupFilter> {
 
 }

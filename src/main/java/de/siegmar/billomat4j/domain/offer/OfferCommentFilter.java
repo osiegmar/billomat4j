@@ -20,7 +20,9 @@
 package de.siegmar.billomat4j.domain.offer;
 
 import de.siegmar.billomat4j.domain.AbstractFilter;
+import lombok.ToString;
 
+@ToString(callSuper = true)
 public class OfferCommentFilter extends AbstractFilter<OfferCommentFilter> {
 
     public OfferCommentFilter byActionKeys(final OfferActionKey... actionKeys) {
