@@ -23,6 +23,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import de.siegmar.billomat4j.domain.AbstractMeta;
+import de.siegmar.billomat4j.domain.ByteString;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -36,14 +38,15 @@ public class Template extends AbstractMeta {
     private TemplateFormat format;
 
     @JsonProperty("base64file")
-    private byte[] templateFile;
+    private ByteString data;
 
-    public byte[] getTemplateFile() {
-        return templateFile.clone();
-    }
+    @Setter(AccessLevel.NONE)
+    private String templateType;
 
-    public void setTemplateFile(final byte[] templateFile) {
-        this.templateFile = templateFile.clone();
-    }
+    @JsonProperty("is_background_available")
+    private Boolean backgroundAvailable; // TODO undocumented feature - clarify with support
+
+    @JsonProperty("is_default")
+    private Boolean defaultTemplate;
 
 }

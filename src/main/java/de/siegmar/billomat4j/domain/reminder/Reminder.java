@@ -21,6 +21,7 @@ package de.siegmar.billomat4j.domain.reminder;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Currency;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -28,6 +29,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import de.siegmar.billomat4j.domain.AbstractMeta;
+import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -52,11 +54,27 @@ public class Reminder extends AbstractMeta {
     private LocalDate dueDate;
     private BigDecimal totalGross;
     private ReminderItems reminderItems;
-    private String customerportalUrl;
+
+    @JsonProperty("customerportal_url")
+    private String customerPortalUrl;
+
     private Integer templateId;
 
     @JsonProperty("is_old")
     private Boolean old;
+
+    @Setter(AccessLevel.NONE)
+    private String clientId;
+    private String contactId;
+    private Integer dueDays;
+    private String address;
+    private Currency currencyCode;
+
+    @Setter(AccessLevel.NONE)
+    private BigDecimal paidAmount;
+
+    @Setter(AccessLevel.NONE)
+    private BigDecimal openAmount;
 
     public void addReminderItem(final ReminderItem reminderItem) {
         if (reminderItems == null) {

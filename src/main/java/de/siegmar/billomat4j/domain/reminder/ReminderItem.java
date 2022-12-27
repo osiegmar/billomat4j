@@ -21,6 +21,7 @@ package de.siegmar.billomat4j.domain.reminder;
 
 import java.math.BigDecimal;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import de.siegmar.billomat4j.domain.AbstractItem;
@@ -34,5 +35,8 @@ public class ReminderItem extends AbstractItem {
 
     private Integer reminderId;
     private BigDecimal total;
+
+    @JsonProperty("is_charge")
+    private Boolean charge; // TODO undocumented feature - clarify with support
 
 }

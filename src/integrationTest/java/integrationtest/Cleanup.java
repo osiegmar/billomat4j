@@ -31,13 +31,17 @@ import de.siegmar.billomat4j.domain.invoice.Invoice;
 import de.siegmar.billomat4j.domain.offer.Offer;
 import de.siegmar.billomat4j.domain.recurring.Recurring;
 import de.siegmar.billomat4j.domain.reminder.Reminder;
+import de.siegmar.billomat4j.domain.settings.CountryTax;
+import de.siegmar.billomat4j.domain.settings.ReminderText;
+import de.siegmar.billomat4j.domain.settings.Tax;
 import de.siegmar.billomat4j.domain.template.Template;
 import de.siegmar.billomat4j.domain.unit.Unit;
 
 @SuppressWarnings({
     "checkstyle:uncommentedmain",
     "checkstyle:npathcomplexity",
-    "checkstyle:cyclomaticcomplexity"
+    "checkstyle:cyclomaticcomplexity",
+    "checkstyle:executablestatementcount"
     })
 public class Cleanup {
 
@@ -56,11 +60,6 @@ public class Cleanup {
         for (final Confirmation confirmation : ServiceHolder.CONFIRMATION.findConfirmations(null)) {
             LOG.info("Delete confirmation {}", confirmation);
             ServiceHolder.CONFIRMATION.deleteConfirmation(confirmation.getId());
-        }
-
-        for (final Template template : ServiceHolder.TEMPLATE.findTemplates(null)) {
-            LOG.info("Delete template {}", template);
-            ServiceHolder.TEMPLATE.deleteTemplate(template.getId());
         }
 
         for (final CreditNote creditNote : ServiceHolder.CREDITNOTE.findCreditNotes(null)) {
@@ -101,6 +100,26 @@ public class Cleanup {
         for (final Client client : ServiceHolder.CLIENT.findClients(null)) {
             LOG.info("Delete client {}", client);
             ServiceHolder.CLIENT.deleteClient(client.getId());
+        }
+
+        for (final Template template : ServiceHolder.TEMPLATE.findTemplates(null)) {
+            LOG.info("Delete template {}", template);
+            ServiceHolder.TEMPLATE.deleteTemplate(template.getId());
+        }
+
+        for (final Tax tax : ServiceHolder.SETTINGS.getTaxes()) {
+            LOG.info("Delete tax {}", tax);
+            ServiceHolder.SETTINGS.deleteTax(tax.getId());
+        }
+
+        for (final CountryTax countryTax : ServiceHolder.SETTINGS.getCountryTaxes()) {
+            LOG.info("Delete country tax {}", countryTax);
+            ServiceHolder.SETTINGS.deleteCountryTax(countryTax.getId());
+        }
+
+        for (final ReminderText reminderText : ServiceHolder.SETTINGS.getReminderTexts()) {
+            LOG.info("Delete reminder text {}", reminderText);
+            ServiceHolder.SETTINGS.deleteReminderText(reminderText.getId());
         }
     }
 

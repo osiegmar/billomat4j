@@ -197,13 +197,13 @@ public class OfferServiceIT {
         offerItem1.setTitle("Offer Item #1");
         offerItem1.setUnitPrice(new BigDecimal("11.11"));
         offerItem1.setQuantity(BigDecimal.ONE);
-        offer.addItem(offerItem1);
+        offer.addOfferItem(offerItem1);
 
         final OfferItem offerItem2 = new OfferItem();
         offerItem2.setTitle("Offer Item #2");
         offerItem2.setUnitPrice(new BigDecimal("22.22"));
         offerItem2.setQuantity(BigDecimal.ONE);
-        offer.addItem(offerItem2);
+        offer.addOfferItem(offerItem2);
 
         offerService.createOffer(offer);
 

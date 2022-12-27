@@ -21,6 +21,7 @@ package de.siegmar.billomat4j.domain;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Currency;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
@@ -51,5 +52,12 @@ public abstract class AbstractPayment extends AbstractMeta {
     private PaymentType paymentType;
 
     private Boolean markInvoiceAsPaid;
+
+    private String transactionPurpose; // TODO undocumented feature - clarify with support
+    private Currency currencyCode; // TODO undocumented feature - clarify with support
+    private Boolean quote; // TODO undocumented feature - clarify with support
+    private String paymentGroup; // TODO undocumented feature - clarify with support
+    private String finapiTransactionId; // TODO undocumented feature - clarify with support
+    private BigDecimal finapiTransactionAmount; // TODO undocumented feature - clarify with support
 
 }

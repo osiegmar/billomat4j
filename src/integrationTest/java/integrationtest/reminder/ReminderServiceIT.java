@@ -147,7 +147,7 @@ public class ReminderServiceIT {
         reminderService.uploadReminderSignedPdf(reminder.getId(), "dummy".getBytes(StandardCharsets.US_ASCII));
 
         assertArrayEquals("dummy".getBytes(StandardCharsets.US_ASCII),
-            reminderService.getReminderSignedPdf(reminder.getId()).orElseThrow().getBase64file());
+            reminderService.getReminderSignedPdf(reminder.getId()).orElseThrow().getData().toBytes());
     }
 
     @Test

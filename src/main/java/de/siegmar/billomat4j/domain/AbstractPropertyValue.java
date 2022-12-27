@@ -25,7 +25,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public abstract class AbstractPropertyValue extends AbstractIdentifiable {
+public abstract class AbstractPropertyValue extends AbstractMeta {
 
     private PropertyType type;
     private String name;

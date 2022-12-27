@@ -19,6 +19,7 @@
 
 package de.siegmar.billomat4j.domain;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import de.siegmar.billomat4j.json.Views;
@@ -35,5 +36,8 @@ public abstract class AbstractTag extends AbstractIdentifiable {
     @Setter(AccessLevel.NONE)
     @JsonView(Views.NonSerialize.class)
     private Integer count;
+
+    @JsonProperty("customfield")
+    private String customField;
 
 }

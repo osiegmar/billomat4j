@@ -21,6 +21,7 @@ package de.siegmar.billomat4j.domain.settings;
 
 import java.math.BigDecimal;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import de.siegmar.billomat4j.domain.AbstractIdentifiable;
@@ -40,5 +41,8 @@ public class ReminderText extends AbstractIdentifiable {
     private String chargeName;
     private String chargeDescription;
     private BigDecimal chargeAmount;
+
+    @JsonProperty("customfield")
+    private String customField;
 
 }

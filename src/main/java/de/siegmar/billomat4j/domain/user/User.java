@@ -22,7 +22,9 @@ package de.siegmar.billomat4j.domain.user;
 import java.util.Locale;
 import java.util.TimeZone;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import de.siegmar.billomat4j.domain.AbstractMeta;
 import de.siegmar.billomat4j.domain.types.SalutationType;
@@ -41,5 +43,10 @@ public class User extends AbstractMeta {
     private Locale locale;
     private TimeZone timezone;
     private Integer roleId;
+
+    @JsonProperty("is_account_owner")
+    private Boolean accountOwner; // TODO undocumented feature - clarify with support
+
+    private ObjectNode rights; // TODO implement
 
 }

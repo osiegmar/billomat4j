@@ -36,6 +36,14 @@ public class Tax {
     private String name;
     private BigDecimal rate;
     private BigDecimal amount;
+    private BigDecimal amountPlain;
+    private BigDecimal amountRounded;
+    private BigDecimal amountNet;
+    private BigDecimal amountNetPlain;
+    private BigDecimal amountNetRounded;
+    private BigDecimal amountGross;
+    private BigDecimal amountGrossPlain;
+    private BigDecimal amountGrossRounded;
 
     @Override
     public String toString() {

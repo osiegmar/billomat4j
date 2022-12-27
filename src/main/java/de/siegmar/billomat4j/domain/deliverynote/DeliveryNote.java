@@ -25,6 +25,7 @@ import java.util.Currency;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import com.fasterxml.jackson.annotation.JsonView;
 
@@ -70,8 +71,13 @@ public class DeliveryNote extends AbstractMeta {
     private Integer invoiceId;
     private DeliveryNoteItems deliveryNoteItems;
     private Integer contactId;
-    private String customerportalUrl;
+
+    @JsonProperty("customerportal_url")
+    private String customerPortalUrl;
+
     private Integer templateId;
+    private Integer numberLength;
+    private String title;
 
     public void addDeliveryNoteItem(final DeliveryNoteItem deliveryNoteItem) {
         if (deliveryNoteItems == null) {

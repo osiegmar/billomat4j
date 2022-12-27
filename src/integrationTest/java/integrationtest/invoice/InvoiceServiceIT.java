@@ -185,7 +185,7 @@ public class InvoiceServiceIT {
         invoiceService.uploadInvoiceSignedPdf(invoice.getId(), "dummy".getBytes(StandardCharsets.US_ASCII));
 
         assertArrayEquals("dummy".getBytes(StandardCharsets.US_ASCII),
-            invoiceService.getInvoiceSignedPdf(invoice.getId()).orElseThrow().getBase64file());
+            invoiceService.getInvoiceSignedPdf(invoice.getId()).orElseThrow().getData().toBytes());
     }
 
     @Test

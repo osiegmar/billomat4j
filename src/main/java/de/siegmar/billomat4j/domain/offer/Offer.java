@@ -67,7 +67,10 @@ public class Offer extends AbstractMeta {
     private BigDecimal quote;
     private Taxes taxes;
     private Integer contactId;
-    private String customerportalUrl;
+
+    @JsonProperty("customerportal_url")
+    private String customerPortalUrl;
+
     private Integer templateId;
 
     @JsonInclude(Include.NON_NULL)
@@ -76,7 +79,13 @@ public class Offer extends AbstractMeta {
     @JsonProperty("offer-items")
     private OfferItems offerItems;
 
-    public void addItem(final OfferItem offerItem) {
+    private Integer numberLength;
+    private String title;
+    private Integer validityDays;
+    private BigDecimal totalReduction; // TODO undocumented feature - clarify with support
+    private String netGross;
+
+    public void addOfferItem(final OfferItem offerItem) {
         if (offerItems == null) {
             offerItems = new OfferItems();
         }

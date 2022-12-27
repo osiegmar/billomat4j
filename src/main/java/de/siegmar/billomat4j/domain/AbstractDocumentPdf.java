@@ -19,11 +19,7 @@
 
 package de.siegmar.billomat4j.domain;
 
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import lombok.Getter;
@@ -37,20 +33,8 @@ public abstract class AbstractDocumentPdf extends AbstractMeta {
     private String filename;
     private String mimetype;
     private int filesize;
-    private byte[] base64file;
 
-    public byte[] getBase64file() {
-        return base64file.clone();
-    }
-
-    public void setBase64file(final byte[] base64file) {
-        this.base64file = base64file.clone();
-    }
-
-    public void saveTo(final File target) throws IOException {
-        try (BufferedOutputStream os = new BufferedOutputStream(new FileOutputStream(target))) {
-            os.write(base64file);
-        }
-    }
+    @JsonProperty("base64file")
+    private ByteString data;
 
 }

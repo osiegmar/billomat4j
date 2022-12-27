@@ -26,6 +26,7 @@ import org.junit.jupiter.api.extension.AfterAllCallback;
 import org.junit.jupiter.api.extension.BeforeAllCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
 
+import de.siegmar.billomat4j.domain.ByteString;
 import de.siegmar.billomat4j.domain.template.Template;
 import de.siegmar.billomat4j.domain.template.TemplateFormat;
 import de.siegmar.billomat4j.domain.template.TemplateType;
@@ -52,7 +53,7 @@ public class TemplateSetup implements BeforeAllCallback, AfterAllCallback {
         template.setFormat(TemplateFormat.rtf);
         template.setName("Test RTF Template");
         template.setType(type);
-        template.setTemplateFile(ResourceLoader.loadFile("template.rtf"));
+        template.setData(ByteString.of(ResourceLoader.loadFile("template.rtf")));
 
         return template;
     }

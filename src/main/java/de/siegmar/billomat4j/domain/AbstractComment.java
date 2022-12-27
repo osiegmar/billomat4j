@@ -35,4 +35,11 @@ public abstract class AbstractComment<K extends ActionKey> extends AbstractMeta 
     @JsonProperty("actionkey")
     private K actionKey;
 
+    @JsonProperty("public")
+    private Boolean publicComment;
+
+    private Boolean byClient; // TODO undocumented feature - clarify with support
+    private String emailId; // TODO undocumented feature - clarify with support
+    private String clientId; // TODO undocumented feature - clarify with support
+
 }

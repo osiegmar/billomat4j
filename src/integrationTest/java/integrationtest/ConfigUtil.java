@@ -53,10 +53,8 @@ final class ConfigUtil {
         try {
             final InputStream in = ConfigUtil.class.getClassLoader().getResourceAsStream("billomat.properties");
             if (in != null) {
-                try {
+                try (in) {
                     p.load(in);
-                } finally {
-                    in.close();
                 }
             }
         } catch (final IOException e) {

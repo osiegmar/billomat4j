@@ -75,7 +75,7 @@ public class OfferService extends AbstractService implements GenericCustomFieldS
     }
 
     /**
-     * Gets a offer by its id.
+     * Gets an offer by its id.
      *
      * @param offerId the offer's id
      * @return the offer
@@ -86,7 +86,7 @@ public class OfferService extends AbstractService implements GenericCustomFieldS
     }
 
     /**
-     * Gets a offer by its offer number.
+     * Gets an offer by its offer number.
      *
      * @param offerNumber the offer number, must not be empty / {@code null}
      * @return the offer

@@ -20,10 +20,13 @@
 package de.siegmar.billomat4j.domain.settings;
 
 import java.math.BigDecimal;
+import java.time.ZonedDateTime;
 import java.util.Currency;
+import java.util.Locale;
 
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import com.fasterxml.jackson.annotation.JsonView;
 
@@ -115,12 +118,48 @@ public class Settings {
     private Integer dueDays;
     private Integer offerValidityDays;
     private BccAddresses bccAddresses;
-    private String bgcolor;
+
+    @JsonProperty("bgcolor")
+    private String bgColor;
+
     private String color1;
     private String color2;
     private String color3;
     private String defaultEmailSender;
     private Boolean printVersion;
+
+    @Getter
+    @JsonView(Views.NonSerialize.class)
+    private ZonedDateTime created;
+
+    @Getter
+    @JsonView(Views.NonSerialize.class)
+    private ZonedDateTime updated;
+
+    private Locale locale;
+    private String netGross;
+    private String sepaCreditorId;
+    private String priceGroup2;
+    private String priceGroup3;
+    private String priceGroup4;
+    private String priceGroup5;
+    private String invoiceFilename;
+    private String invoiceLabel;
+    private String offerFilename;
+    private String offerLabel;
+    private String confirmationFilename;
+    private String confirmationLabel;
+    private String creditNoteFilename;
+    private String creditNoteLabel;
+    private String deliveryNoteFilename;
+    private String deliveryNoteLabel;
+    private String reminderFilename;
+    private Integer reminderDueDays;
+    private String letterLabel;
+    private String letterFilename;
+    private String letterIntro;
+    private String templateEngine;
+    private String taxation;
 
     @Override
     public String toString() {

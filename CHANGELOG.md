@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+### Added
+- Added lots of new attributes
+
+### Changed
+- Use Lombok to ease maintainability
+- Refactored some attribute names
+
 ## [2.0.1] - 2022-12-26
 ### Added
 - Added email_template_id
@@ -103,6 +111,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - First release
 
+[Unreleased]: https://github.com/osiegmar/billomat4j/compare/v2.0.1...develop
 [2.0.1]: https://github.com/osiegmar/billomat4j/compare/v2.0.0...v2.0.1
 [2.0.0]: https://github.com/osiegmar/billomat4j/compare/v1.1.3...v2.0.0
 [1.1.3]: https://github.com/osiegmar/billomat4j/compare/v1.1.2...v1.1.3

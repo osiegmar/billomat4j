@@ -25,6 +25,7 @@ import java.util.Currency;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import com.fasterxml.jackson.annotation.JsonView;
 
@@ -72,8 +73,16 @@ public class Confirmation extends AbstractMeta {
     private Integer offerId;
     private ConfirmationItems confirmationItems;
     private Integer contactId;
-    private String customerportalUrl;
+
+    @JsonProperty("customerportal_url")
+    private String customerPortalUrl;
+
     private Integer templateId;
+
+    private Integer numberLength;
+    private String title;
+    private BigDecimal totalReduction; // TODO undocumented feature - clarify with support
+    private String netGross;
 
     public void addConfirmationItem(final ConfirmationItem confirmationItem) {
         if (confirmationItems == null) {

@@ -21,6 +21,8 @@ package de.siegmar.billomat4j.domain;
 
 import java.math.BigDecimal;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -35,5 +37,8 @@ public abstract class AbstractItem extends AbstractIdentifiable {
     private BigDecimal unitPrice;
     private String title;
     private String description;
+
+    @JsonProperty("customfield")
+    private String customField;
 
 }

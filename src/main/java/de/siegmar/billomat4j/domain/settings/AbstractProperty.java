@@ -45,4 +45,7 @@ public abstract class AbstractProperty extends AbstractIdentifiable {
 
     private PropertyType type;
 
+    @JsonProperty("customfield")
+    private String customField;
+
 }

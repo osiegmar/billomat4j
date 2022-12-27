@@ -21,11 +21,15 @@ package de.siegmar.billomat4j.domain.client;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Currency;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import com.fasterxml.jackson.annotation.JsonView;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import de.siegmar.billomat4j.domain.AbstractMeta;
+import de.siegmar.billomat4j.domain.types.PaymentType;
 import de.siegmar.billomat4j.json.Views;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -81,7 +85,9 @@ public class Client extends AbstractMeta {
     private Integer priceGroup;
     private String note;
     private Boolean archived;
-    private String customerportalUrl;
+
+    @JsonProperty("customerportal_url")
+    private String customerPortalUrl;
 
     @Setter(AccessLevel.NONE)
     @JsonView(Views.NonSerialize.class)
@@ -90,5 +96,32 @@ public class Client extends AbstractMeta {
     @Setter(AccessLevel.NONE)
     @JsonView(Views.NonSerialize.class)
     private BigDecimal revenueNet;
+
+    private Boolean digExclude; // TODO undocumented feature - clarify with support
+    private String facturxIdentifier; // TODO undocumented feature - clarify with support
+
+    @Setter(AccessLevel.NONE)
+    private String address;
+
+    private Currency currencyCode;
+
+    @JsonProperty("enable_customerportal")
+    private Boolean enableCustomerPortal;
+
+    private String sellerIdentifier; // TODO undocumented feature - clarify with support
+    private PaymentType[] defaultPaymentTypes;
+    private String locale;
+    private String netGross;
+    private Integer debitorAccountNumber;
+    private BigDecimal reduction;
+    private Boolean dunningRun;
+
+    @JsonProperty("client-property-values")
+    private String clientPropertyValues; // TODO undocumented feature - clarify with support
+
+    private String plan; // TODO undocumented feature - clarify with support
+    private ObjectNode quotas; // TODO undocumented feature - clarify with support
+    private String taxAuthorityNumber; // TODO undocumented feature - clarify with support
+    private Boolean facturxFieldsEnabled; // TODO undocumented feature - clarify with support
 
 }

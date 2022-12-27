@@ -64,7 +64,7 @@ public abstract class AbstractPropertyIT<P extends AbstractProperty, A extends A
         service.updateProperty(articleProperty);
         assertEquals(articleProperty.getDefaultValue(), "Default Value");
 
-        // Get By Id
+        // Get By ID
         final P articlePropertyById = service.getPropertyById(articleProperty.getId()).orElseThrow();
         assertEquals(articlePropertyById.getDefaultValue(), "Default Value");
 

@@ -29,10 +29,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import de.siegmar.billomat4j.domain.AbstractIdentifiable;
+import de.siegmar.billomat4j.domain.ByteString;
 import de.siegmar.billomat4j.domain.template.ImageFormat;
 import de.siegmar.billomat4j.domain.template.Template;
 import de.siegmar.billomat4j.domain.template.TemplateFilter;
@@ -91,7 +91,7 @@ public class TemplateServiceIT {
         template.setFormat(TemplateFormat.rtf);
         template.setName("Test RTF Template");
         template.setType(type);
-        template.setTemplateFile(ResourceLoader.loadFile("template.rtf"));
+        template.setData(ByteString.of(ResourceLoader.loadFile("template.rtf")));
 
         return template;
     }
@@ -143,12 +143,11 @@ public class TemplateServiceIT {
         createTemplate(template);
         assertNotNull(template.getId());
 
-        // Load by Id
+        // Load by ID
         final Template templateLoaded = templateService.getTemplateById(template.getId()).orElseThrow();
         assertEquals(template.getCreated(), templateLoaded.getCreated());
     }
 
-    @Disabled("BROKEN-UPDATE-TEMPLATE-TYPE")
     @Test
     public void update() {
         // Create
@@ -157,10 +156,12 @@ public class TemplateServiceIT {
         assertNotNull(template.getId());
 
         // Update
-        template.setName("RTF Template");
-        templateService.updateTemplate(template);
+        final Template updateTemplate = new Template();
+        updateTemplate.setId(template.getId());
+        updateTemplate.setName("RTF Template");
+        templateService.updateTemplate(updateTemplate);
 
-        // Load by Id
+        // Load by ID
         final Template templateLoaded = templateService.getTemplateById(template.getId()).orElseThrow();
         assertEquals("RTF Template", templateLoaded.getName());
         assertEquals(template.getCreated(), templateLoaded.getCreated());

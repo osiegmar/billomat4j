@@ -25,6 +25,7 @@ import java.util.Currency;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import com.fasterxml.jackson.annotation.JsonView;
 
@@ -68,8 +69,17 @@ public class CreditNote extends AbstractMeta {
     private Integer invoiceId;
     private CreditNoteItems creditNoteItems;
     private Integer contactId;
-    private String customerportalUrl;
+
+    @JsonProperty("customerportal_url")
+    private String customerPortalUrl;
+
     private Integer templateId;
+    private Integer numberLength;
+    private String title;
+    private BigDecimal totalReduction; // TODO undocumented feature - clarify with support
+    private String netGross;
+    private BigDecimal paidAmount; // TODO undocumented feature - clarify with support
+    private BigDecimal openAmount; // TODO undocumented feature - clarify with support
 
     public void addCreditNoteItem(final CreditNoteItem creditNoteItem) {
         if (creditNoteItems == null) {

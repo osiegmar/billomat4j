@@ -100,7 +100,7 @@ public class InvoiceService extends AbstractService
     }
 
     /**
-     * Gets a invoice by its id.
+     * Gets an invoice by its id.
      *
      * @param invoiceId the invoice's id
      * @return the invoice
@@ -111,7 +111,7 @@ public class InvoiceService extends AbstractService
     }
 
     /**
-     * Gets a invoice by its invoice number.
+     * Gets an invoice by its invoice number.
      *
      * @param invoiceNumber the invoice number, must not be empty / {@code null}
      * @return the invoice

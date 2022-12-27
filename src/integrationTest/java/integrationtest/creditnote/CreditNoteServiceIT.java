@@ -35,6 +35,7 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
+import de.siegmar.billomat4j.domain.ByteString;
 import de.siegmar.billomat4j.domain.Email;
 import de.siegmar.billomat4j.domain.EmailRecipients;
 import de.siegmar.billomat4j.domain.client.Client;
@@ -189,7 +190,7 @@ public class CreditNoteServiceIT {
         template.setFormat(TemplateFormat.rtf);
         template.setName("Test RTF Template");
         template.setType(TemplateType.CREDIT_NOTE);
-        template.setTemplateFile(ResourceLoader.loadFile("template.rtf"));
+        template.setData(ByteString.of(ResourceLoader.loadFile("template.rtf")));
 
         return template;
     }
@@ -201,7 +202,7 @@ public class CreditNoteServiceIT {
         creditNoteService.uploadCreditNoteSignedPdf(creditNote.getId(), "dummy".getBytes(StandardCharsets.US_ASCII));
 
         assertArrayEquals("dummy".getBytes(StandardCharsets.US_ASCII),
-            creditNoteService.getCreditNoteSignedPdf(creditNote.getId()).orElseThrow().getBase64file());
+            creditNoteService.getCreditNoteSignedPdf(creditNote.getId()).orElseThrow().getData().toBytes());
     }
 
     @Test

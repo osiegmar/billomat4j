@@ -21,6 +21,7 @@ package integrationtest.template;
 
 import java.nio.charset.StandardCharsets;
 
+import de.siegmar.billomat4j.domain.ByteString;
 import de.siegmar.billomat4j.domain.template.Template;
 import de.siegmar.billomat4j.domain.template.TemplateFormat;
 import de.siegmar.billomat4j.domain.template.TemplateType;
@@ -39,7 +40,7 @@ public class TemplateCustomFieldIT extends AbstractCustomFieldServiceIT {
         template.setName("TemplateCustomFieldTest");
         template.setFormat(TemplateFormat.doc);
         template.setType(TemplateType.CONFIRMATION);
-        template.setTemplateFile("dummy".getBytes(StandardCharsets.US_ASCII));
+        template.setData(ByteString.of("dummy".getBytes(StandardCharsets.US_ASCII)));
         ServiceHolder.TEMPLATE.createTemplate(template);
         return template.getId();
     }

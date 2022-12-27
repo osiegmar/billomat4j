@@ -33,6 +33,7 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 
+import de.siegmar.billomat4j.domain.ByteString;
 import de.siegmar.billomat4j.domain.Email;
 import de.siegmar.billomat4j.domain.EmailRecipients;
 import de.siegmar.billomat4j.domain.client.Client;
@@ -154,7 +155,7 @@ public class ConfirmationServiceIT {
         template.setFormat(TemplateFormat.rtf);
         template.setName("Test RTF Template");
         template.setType(TemplateType.CONFIRMATION);
-        template.setTemplateFile(ResourceLoader.loadFile("template.rtf"));
+        template.setData(ByteString.of(ResourceLoader.loadFile("template.rtf")));
 
         return template;
     }

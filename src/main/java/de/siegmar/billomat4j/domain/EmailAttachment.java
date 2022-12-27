@@ -36,14 +36,6 @@ public class EmailAttachment {
     private String mimeType;
 
     @JsonProperty("base64file")
-    private byte[] data;
-
-    public byte[] getData() {
-        return data.clone();
-    }
-
-    public void setData(final byte[] data) {
-        this.data = data.clone();
-    }
+    private ByteString data;
 
 }

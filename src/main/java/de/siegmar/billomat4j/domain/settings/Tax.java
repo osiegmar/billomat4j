@@ -25,7 +25,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import com.fasterxml.jackson.annotation.JsonView;
 
-import de.siegmar.billomat4j.domain.AbstractIdentifiable;
+import de.siegmar.billomat4j.domain.AbstractMeta;
 import de.siegmar.billomat4j.json.Views;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -34,7 +34,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @JsonRootName("tax")
-public class Tax extends AbstractIdentifiable {
+public class Tax extends AbstractMeta {
 
     @Setter(AccessLevel.NONE)
     @JsonView(Views.NonSerialize.class)
@@ -45,5 +45,7 @@ public class Tax extends AbstractIdentifiable {
 
     @JsonProperty("is_default")
     private Boolean defaultTax;
+
+    private Boolean canDelete;
 
 }

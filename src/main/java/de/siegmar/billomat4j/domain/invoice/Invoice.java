@@ -80,7 +80,10 @@ public class Invoice extends AbstractMeta {
     private Integer confirmationId;
     private Integer recurringId;
     private Integer contactId;
-    private String customerportalUrl;
+
+    @JsonProperty("customerportal_url")
+    private String customerPortalUrl;
+
     private Integer templateId;
 
     @Setter(AccessLevel.NONE)
@@ -93,6 +96,13 @@ public class Invoice extends AbstractMeta {
 
     @JsonProperty("invoice-items")
     private InvoiceItems invoiceItems;
+
+    private Integer numberLength;
+    private String title;
+    private BigDecimal totalReduction; // TODO undocumented feature - clarify with support
+    private String netGross;
+    private Integer invoiceId;
+    private Boolean digProceeded; // TODO undocumented feature - clarify with support
 
     public void addInvoiceItem(final InvoiceItem invoiceItem) {
         if (invoiceItems == null) {

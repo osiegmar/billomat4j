@@ -22,6 +22,7 @@ package de.siegmar.billomat4j.domain.article;
 import java.math.BigDecimal;
 import java.util.Currency;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import com.fasterxml.jackson.annotation.JsonView;
 
@@ -53,5 +54,16 @@ public class Article extends AbstractMeta {
     private Currency currencyCode;
     private Integer unitId;
     private Integer taxId;
+
+    private Boolean archived; // TODO undocumented feature - clarify with support
+    private String type;
+    private String revenueAccountNumber; // TODO undocumented feature - clarify with support
+    private String costCenter; // TODO undocumented feature - clarify with support
+    private BigDecimal purchasePrice;
+    private String purchasePriceNetGross;
+    private Integer supplierId;
+
+    @JsonProperty("article-property-values")
+    private String articlePropertyValues; // TODO undocumented feature - clarify with support
 
 }

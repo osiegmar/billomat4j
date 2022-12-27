@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Oliver Siegmar
+ * Copyright 2022 Oliver Siegmar
  *
  * This file is part of Billomat4J.
  *
@@ -17,30 +17,21 @@
  * along with Billomat4J.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package de.siegmar.billomat4j.domain;
+package de.siegmar.billomat4j.json;
 
-import java.time.ZonedDateTime;
+import java.io.IOException;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonView;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.databind.DeserializationContext;
+import com.fasterxml.jackson.databind.JsonDeserializer;
 
-import de.siegmar.billomat4j.json.Views;
-import lombok.Getter;
-import lombok.Setter;
+import de.siegmar.billomat4j.domain.ByteString;
 
-public abstract class AbstractMeta extends AbstractIdentifiable {
+public class ByteStringDeserializer extends JsonDeserializer<ByteString> {
 
-    @Getter
-    @JsonView(Views.NonSerialize.class)
-    private ZonedDateTime created;
-
-    @Getter
-    @JsonView(Views.NonSerialize.class)
-    private ZonedDateTime updated;
-
-    @Getter
-    @Setter
-    @JsonProperty("customfield")
-    private String customField;
+    @Override
+    public ByteString deserialize(final JsonParser jp, final DeserializationContext ctxt) throws IOException {
+        return ByteString.of(jp.getBinaryValue());
+    }
 
 }
