@@ -22,15 +22,20 @@ package de.siegmar.billomat4j.domain.recurring;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Currency;
+import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import de.siegmar.billomat4j.domain.AbstractMeta;
 import de.siegmar.billomat4j.domain.types.PaymentType;
 import de.siegmar.billomat4j.domain.types.SupplyDateType;
+import de.siegmar.billomat4j.json.PaymentTypesDeserializer;
+import de.siegmar.billomat4j.json.PaymentTypesSerializer;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -55,7 +60,11 @@ public class Recurring extends AbstractMeta {
     private String reduction;
     private BigDecimal quote;
     private Integer ultimo;
-    private PaymentType[] paymentTypes;
+
+    @JsonSerialize(using = PaymentTypesSerializer.class)
+    @JsonDeserialize(using = PaymentTypesDeserializer.class)
+    private Set<PaymentType> paymentTypes;
+
     private RecurringAction action;
     private RecurringCycle cycle;
     private Integer hour;
@@ -109,14 +118,6 @@ public class Recurring extends AbstractMeta {
             recurringItems = new RecurringItems();
         }
         recurringItems.getRecurringItems().add(recurringItem);
-    }
-
-    public PaymentType[] getPaymentTypes() {
-        return paymentTypes != null ? paymentTypes.clone() : null;
-    }
-
-    public void setPaymentTypes(final PaymentType... paymentTypes) {
-        this.paymentTypes = paymentTypes;
     }
 
 }

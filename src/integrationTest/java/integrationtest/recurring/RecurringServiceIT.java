@@ -28,6 +28,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
@@ -151,7 +152,7 @@ public class RecurringServiceIT {
         recurring.setClientId(client.getId());
         recurring.setNextCreationDate(LocalDate.now().plusYears(1));
         recurring.setCycle(RecurringCycle.YEARLY);
-        recurring.setPaymentTypes(paymentType);
+        recurring.setPaymentTypes(Set.of(paymentType));
 
         final RecurringItem recurringItem1 = new RecurringItem();
         recurringItem1.setTitle("Recurring Item #1");

@@ -1,5 +1,7 @@
 module billomat4j {
 
+    exports de.siegmar.billomat4j.json to com.fasterxml.jackson.databind;
+
     exports de.siegmar.billomat4j.domain;
     exports de.siegmar.billomat4j.service;
 

@@ -34,12 +34,9 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 import de.siegmar.billomat4j.RequestHelper;
 import de.siegmar.billomat4j.domain.ByteString;
-import de.siegmar.billomat4j.domain.types.PaymentType;
 import de.siegmar.billomat4j.json.ByteStringDeserializer;
 import de.siegmar.billomat4j.json.ByteStringSerializer;
 import de.siegmar.billomat4j.json.CustomBooleanDeserializer;
-import de.siegmar.billomat4j.json.PaymentTypesDeserializer;
-import de.siegmar.billomat4j.json.PaymentTypesSerializer;
 import de.siegmar.billomat4j.json.Views;
 import lombok.Getter;
 import lombok.Setter;
@@ -94,16 +91,6 @@ public class BillomatConfiguration {
             new SimpleModule("CustomBooleanDeserializer",
                 new Version(1, 0, 0, null, GROUP_ID, ARTIFACT_ID))
                 .addDeserializer(Boolean.class, new CustomBooleanDeserializer()));
-
-        objectMapper.registerModule(
-            new SimpleModule("PaymentTypesDeserializer",
-                new Version(1, 0, 0, null, GROUP_ID, ARTIFACT_ID))
-                .addDeserializer(PaymentType[].class, new PaymentTypesDeserializer()));
-
-        objectMapper.registerModule(
-            new SimpleModule("PaymentTypesSerializer",
-                new Version(1, 0, 0, null, GROUP_ID, ARTIFACT_ID))
-                .addSerializer(PaymentType[].class, new PaymentTypesSerializer()));
 
         objectMapper.registerModule(
             new SimpleModule("ByteStringDeserializer",

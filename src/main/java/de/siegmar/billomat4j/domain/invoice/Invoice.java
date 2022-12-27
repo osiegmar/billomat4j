@@ -22,15 +22,20 @@ package de.siegmar.billomat4j.domain.invoice;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Currency;
+import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import com.fasterxml.jackson.annotation.JsonView;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import de.siegmar.billomat4j.domain.AbstractMeta;
 import de.siegmar.billomat4j.domain.Taxes;
 import de.siegmar.billomat4j.domain.types.PaymentType;
 import de.siegmar.billomat4j.domain.types.SupplyDateType;
+import de.siegmar.billomat4j.json.PaymentTypesDeserializer;
+import de.siegmar.billomat4j.json.PaymentTypesSerializer;
 import de.siegmar.billomat4j.json.Views;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -75,7 +80,11 @@ public class Invoice extends AbstractMeta {
     private Currency currencyCode;
     private BigDecimal quote;
     private Taxes taxes;
-    private PaymentType[] paymentTypes;
+
+    @JsonSerialize(using = PaymentTypesSerializer.class)
+    @JsonDeserialize(using = PaymentTypesDeserializer.class)
+    private Set<PaymentType> paymentTypes;
+
     private Integer offerId;
     private Integer confirmationId;
     private Integer recurringId;
@@ -109,14 +118,6 @@ public class Invoice extends AbstractMeta {
             invoiceItems = new InvoiceItems();
         }
         invoiceItems.getInvoiceItems().add(invoiceItem);
-    }
-
-    public PaymentType[] getPaymentTypes() {
-        return paymentTypes != null ? paymentTypes.clone() : null;
-    }
-
-    public void setPaymentTypes(final PaymentType... paymentTypes) {
-        this.paymentTypes = paymentTypes;
     }
 
 }

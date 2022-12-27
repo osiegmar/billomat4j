@@ -22,14 +22,19 @@ package de.siegmar.billomat4j.domain.client;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Currency;
+import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 import com.fasterxml.jackson.annotation.JsonView;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import de.siegmar.billomat4j.domain.AbstractMeta;
 import de.siegmar.billomat4j.domain.types.PaymentType;
+import de.siegmar.billomat4j.json.PaymentTypesDeserializer;
+import de.siegmar.billomat4j.json.PaymentTypesSerializer;
 import de.siegmar.billomat4j.json.Views;
 import lombok.AccessLevel;
 import lombok.Getter;
@@ -109,7 +114,11 @@ public class Client extends AbstractMeta {
     private Boolean enableCustomerPortal;
 
     private String sellerIdentifier; // TODO undocumented feature - clarify with support
-    private PaymentType[] defaultPaymentTypes;
+
+    @JsonSerialize(using = PaymentTypesSerializer.class)
+    @JsonDeserialize(using = PaymentTypesDeserializer.class)
+    private Set<PaymentType> defaultPaymentTypes;
+
     private String locale;
     private String netGross;
     private Integer debitorAccountNumber;

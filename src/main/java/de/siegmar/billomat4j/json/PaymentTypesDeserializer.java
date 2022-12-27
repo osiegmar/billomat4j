@@ -20,6 +20,8 @@
 package de.siegmar.billomat4j.json;
 
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -29,18 +31,17 @@ import com.fasterxml.jackson.databind.JsonDeserializer;
 
 import de.siegmar.billomat4j.domain.types.PaymentType;
 
-public class PaymentTypesDeserializer extends JsonDeserializer<PaymentType[]> {
+public class PaymentTypesDeserializer extends JsonDeserializer<Set<PaymentType>> {
 
     @Override
-    public PaymentType[] deserialize(final JsonParser jp, final DeserializationContext ctxt) throws IOException {
+    public Set<PaymentType> deserialize(final JsonParser jp, final DeserializationContext ctxt) throws IOException {
         final String[] tokens = StringUtils.split(jp.getText(), ',');
-        if (tokens == null || tokens.length == 0) {
-            return null;
-        }
 
-        final PaymentType[] paymentTypes = new PaymentType[tokens.length];
-        for (int i = 0; i < tokens.length; i++) {
-            paymentTypes[i] = PaymentType.valueOf(tokens[i]);
+        final Set<PaymentType> paymentTypes = new HashSet<>();
+        if (tokens != null) {
+            for (final String token : tokens) {
+                paymentTypes.add(PaymentType.valueOf(token));
+            }
         }
 
         return paymentTypes;

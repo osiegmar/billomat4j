@@ -20,6 +20,7 @@
 package de.siegmar.billomat4j.json;
 
 import java.io.IOException;
+import java.util.Set;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -29,12 +30,15 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 
 import de.siegmar.billomat4j.domain.types.PaymentType;
 
-public class PaymentTypesSerializer extends JsonSerializer<PaymentType[]> {
+public class PaymentTypesSerializer extends JsonSerializer<Set<PaymentType>> {
 
     @Override
-    public void serialize(final PaymentType[] value, final JsonGenerator jgen, final SerializerProvider provider)
+    public void serialize(final Set<PaymentType> value, final JsonGenerator jgen, final SerializerProvider provider)
         throws IOException {
-        jgen.writeString(StringUtils.join(value, ','));
+
+        if (value != null) {
+            jgen.writeString(StringUtils.join(value, ','));
+        }
     }
 
 }
