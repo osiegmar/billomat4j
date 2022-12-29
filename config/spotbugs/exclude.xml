@@ -1,0 +1,7 @@
+<FindBugsFilter>
+    <Match>
+        <Class name="de.siegmar.billomat4j.json.CustomBooleanDeserializer"/>
+        <Method name="deserialize"/>
+        <Bug pattern="NP_BOOLEAN_RETURN_NULL"/>
+    </Match>
+</FindBugsFilter>
