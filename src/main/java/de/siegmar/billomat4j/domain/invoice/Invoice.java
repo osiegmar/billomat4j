@@ -108,6 +108,7 @@ public class Invoice extends AbstractMeta {
     @JsonProperty("invoice-items")
     private InvoiceItems invoiceItems;
 
+    private Integer freeTextId;
     private Integer numberLength;
     private String title;
     private BigDecimal totalReduction; // TODO undocumented feature - clarify with support

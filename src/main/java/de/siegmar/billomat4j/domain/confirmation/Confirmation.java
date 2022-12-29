@@ -81,6 +81,7 @@ public class Confirmation extends AbstractMeta {
 
     private Integer templateId;
 
+    private Integer freeTextId;
     private Integer numberLength;
     private String title;
     private BigDecimal totalReduction; // TODO undocumented feature - clarify with support

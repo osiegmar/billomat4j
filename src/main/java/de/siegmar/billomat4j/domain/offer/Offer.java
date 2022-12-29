@@ -81,6 +81,7 @@ public class Offer extends AbstractMeta {
     @JsonProperty("offer-items")
     private OfferItems offerItems;
 
+    private Integer freeTextId;
     private Integer numberLength;
     private String title;
     private Integer validityDays;

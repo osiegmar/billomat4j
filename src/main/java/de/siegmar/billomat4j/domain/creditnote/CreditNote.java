@@ -75,6 +75,7 @@ public class CreditNote extends AbstractMeta {
     @JsonProperty("customerportal_url")
     private String customerPortalUrl;
 
+    private Integer freeTextId;
     private Integer templateId;
     private Integer numberLength;
     private String title;
