@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Added lots of new attributes
 
+### Fixed
+- Fix JSON name for confirmation-items, credit-note-items, delivery-note-items and reminder-items
+
 ### Changed
 - Use Lombok to ease maintainability
 - Refactored some attribute names

@@ -69,7 +69,10 @@ public class CreditNote extends AbstractMeta {
     private BigDecimal quote;
     private Taxes taxes;
     private Integer invoiceId;
+
+    @JsonProperty("credit-note-items")
     private CreditNoteItems creditNoteItems;
+
     private Integer contactId;
 
     @JsonProperty("customerportal_url")

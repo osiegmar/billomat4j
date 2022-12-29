@@ -73,7 +73,10 @@ public class Confirmation extends AbstractMeta {
     private LocalDate validityDate;
 
     private Integer offerId;
+
+    @JsonProperty("confirmation-items")
     private ConfirmationItems confirmationItems;
+
     private Integer contactId;
 
     @JsonProperty("customerportal_url")

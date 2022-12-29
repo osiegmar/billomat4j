@@ -55,6 +55,8 @@ public class Reminder extends AbstractMeta {
     private String note;
     private LocalDate dueDate;
     private BigDecimal totalGross;
+
+    @JsonProperty("reminder-items")
     private ReminderItems reminderItems;
 
     @JsonProperty("customerportal_url")

@@ -71,7 +71,10 @@ public class DeliveryNote extends AbstractMeta {
     private Integer offerId;
     private Integer confirmationId;
     private Integer invoiceId;
+
+    @JsonProperty("delivery-note-items")
     private DeliveryNoteItems deliveryNoteItems;
+
     private Integer contactId;
 
     @JsonProperty("customerportal_url")
