@@ -128,7 +128,7 @@ public class Client extends AbstractMeta {
     private Boolean dunningRun;
 
     @JsonProperty("client-property-values")
-    private String clientPropertyValues; // TODO undocumented feature - clarify with support
+    private ClientPropertyValues clientPropertyValues; // TODO undocumented feature - clarify with support
 
     private String plan; // TODO undocumented feature - clarify with support
     private ObjectNode quotas; // TODO undocumented feature - clarify with support
