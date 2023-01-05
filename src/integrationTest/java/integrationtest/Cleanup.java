@@ -28,6 +28,7 @@ import de.siegmar.billomat4j.domain.confirmation.Confirmation;
 import de.siegmar.billomat4j.domain.creditnote.CreditNote;
 import de.siegmar.billomat4j.domain.deliverynote.DeliveryNote;
 import de.siegmar.billomat4j.domain.invoice.Invoice;
+import de.siegmar.billomat4j.domain.letter.Letter;
 import de.siegmar.billomat4j.domain.offer.Offer;
 import de.siegmar.billomat4j.domain.recurring.Recurring;
 import de.siegmar.billomat4j.domain.reminder.Reminder;
@@ -90,6 +91,11 @@ public class Cleanup {
         for (final Invoice invoice : ServiceHolder.INVOICE.findInvoices(null)) {
             LOG.info("Delete invoice {}", invoice);
             ServiceHolder.INVOICE.deleteInvoice(invoice.getId());
+        }
+
+        for (final Letter letter : ServiceHolder.LETTER.findLetters(null)) {
+            LOG.info("Delete letter {}", letter);
+            ServiceHolder.LETTER.deleteLetter(letter.getId());
         }
 
         for (final Article article : ServiceHolder.ARTICLE.findArticles(null)) {

@@ -11,6 +11,7 @@ module billomat4j {
     exports de.siegmar.billomat4j.domain.creditnote;
     exports de.siegmar.billomat4j.domain.deliverynote;
     exports de.siegmar.billomat4j.domain.invoice;
+    exports de.siegmar.billomat4j.domain.letter;
     exports de.siegmar.billomat4j.domain.offer;
     exports de.siegmar.billomat4j.domain.recurring;
     exports de.siegmar.billomat4j.domain.reminder;
@@ -27,6 +28,7 @@ module billomat4j {
     opens de.siegmar.billomat4j.domain.creditnote;
     opens de.siegmar.billomat4j.domain.deliverynote;
     opens de.siegmar.billomat4j.domain.invoice;
+    opens de.siegmar.billomat4j.domain.letter;
     opens de.siegmar.billomat4j.domain.offer;
     opens de.siegmar.billomat4j.domain.recurring;
     opens de.siegmar.billomat4j.domain.reminder;

@@ -29,6 +29,7 @@ import de.siegmar.billomat4j.service.ConfirmationService;
 import de.siegmar.billomat4j.service.CreditNoteService;
 import de.siegmar.billomat4j.service.DeliveryNoteService;
 import de.siegmar.billomat4j.service.InvoiceService;
+import de.siegmar.billomat4j.service.LetterService;
 import de.siegmar.billomat4j.service.OfferService;
 import de.siegmar.billomat4j.service.RecurringService;
 import de.siegmar.billomat4j.service.ReminderService;
@@ -49,6 +50,7 @@ public final class ServiceHolder {
     public static final CreditNoteService CREDITNOTE;
     public static final DeliveryNoteService DELIVERYNOTE;
     public static final InvoiceService INVOICE;
+    public static final LetterService LETTER;
     public static final OfferService OFFER;
     public static final RecurringService RECURRING;
     public static final ReminderService REMINDER;
@@ -77,6 +79,7 @@ public final class ServiceHolder {
         OFFER = new OfferService(cfg);
         RECURRING = new RecurringService(cfg);
         REMINDER = new ReminderService(cfg);
+        LETTER = new LetterService(cfg);
         SETTINGS = new SettingsService(cfg);
         TEMPLATE = new TemplateService(cfg);
         UNIT = new UnitService(cfg);
