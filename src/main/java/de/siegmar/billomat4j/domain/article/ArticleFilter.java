@@ -47,4 +47,12 @@ public class ArticleFilter extends AbstractFilter<ArticleFilter> {
         return add("unit_id", unitId);
     }
 
+    public ArticleFilter byTags(final String... tags) {
+        return add("tags", tags);
+    }
+
+    public ArticleFilter bySupplierId(final Integer supplierId) {
+        return add("supplier_id", supplierId);
+    }
+
 }

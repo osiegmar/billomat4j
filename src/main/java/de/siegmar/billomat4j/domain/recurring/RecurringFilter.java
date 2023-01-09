@@ -30,6 +30,10 @@ public class RecurringFilter extends AbstractFilter<RecurringFilter> {
         return add("client_id", clientId);
     }
 
+    public RecurringFilter byContactId(final int contactId) {
+        return add("contact_id", contactId);
+    }
+
     public RecurringFilter byName(final String name) {
         return add("name", name);
     }
@@ -52,6 +56,10 @@ public class RecurringFilter extends AbstractFilter<RecurringFilter> {
 
     public RecurringFilter byNote(final String note) {
         return add("note", note);
+    }
+
+    public RecurringFilter byTags(final String... tags) {
+        return add("tags", tags);
     }
 
 }

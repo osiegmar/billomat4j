@@ -20,7 +20,6 @@
 package de.siegmar.billomat4j.domain.letter;
 
 import java.time.LocalDate;
-import java.util.Set;
 
 import de.siegmar.billomat4j.domain.AbstractFilter;
 import lombok.ToString;
@@ -60,8 +59,8 @@ public class LetterFilter extends AbstractFilter<LetterFilter> {
         return add("intro", intro);
     }
 
-    public LetterFilter byTags(final Set<String> tags) {
-        return add("tags", String.join(",", tags));
+    public LetterFilter byTags(final String... tags) {
+        return add("tags", tags);
     }
 
 }

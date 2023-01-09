@@ -53,4 +53,12 @@ public class ClientFilter extends AbstractFilter<ClientFilter> {
         return add("note", note);
     }
 
+    public ClientFilter byInvoiceId(final Integer invoiceId) {
+        return add("invoice_id", invoiceId);
+    }
+
+    public ClientFilter byTags(final String... tags) {
+        return add("tags", tags);
+    }
+
 }
