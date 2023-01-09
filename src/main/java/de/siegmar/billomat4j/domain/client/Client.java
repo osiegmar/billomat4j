@@ -29,7 +29,6 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import com.fasterxml.jackson.annotation.JsonView;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import de.siegmar.billomat4j.domain.AbstractMeta;
 import de.siegmar.billomat4j.domain.types.PaymentType;
@@ -104,8 +103,6 @@ public class Client extends AbstractMeta {
     @JsonView(Views.NonSerialize.class)
     private BigDecimal revenueNet;
 
-    private Boolean digExclude; // TODO undocumented feature - clarify with support
-    private String facturxIdentifier; // TODO undocumented feature - clarify with support
 
     @Setter(AccessLevel.NONE)
     private String address;
@@ -115,7 +112,6 @@ public class Client extends AbstractMeta {
     @JsonProperty("enable_customerportal")
     private Boolean enableCustomerPortal;
 
-    private String sellerIdentifier; // TODO undocumented feature - clarify with support
 
     @JsonSerialize(using = PaymentTypesSerializer.class)
     @JsonDeserialize(using = PaymentTypesDeserializer.class)
@@ -127,12 +123,17 @@ public class Client extends AbstractMeta {
     private BigDecimal reduction;
     private Boolean dunningRun;
 
-    @JsonProperty("client-property-values")
-    private ClientPropertyValues clientPropertyValues; // TODO undocumented feature - clarify with support
+    // TODO undocumented fields - clarify with support
 
-    private String plan; // TODO undocumented feature - clarify with support
-    private ObjectNode quotas; // TODO undocumented feature - clarify with support
-    private String taxAuthorityNumber; // TODO undocumented feature - clarify with support
-    private Boolean facturxFieldsEnabled; // TODO undocumented feature - clarify with support
+    @JsonProperty("client-property-values")
+    private ClientPropertyValues clientPropertyValues;
+
+    private Boolean digExclude;
+    private String facturxIdentifier;
+    private String sellerIdentifier;
+    private String plan;
+    private Quotas quotas;
+    private String taxAuthorityNumber;
+    private Boolean facturxFieldsEnabled;
 
 }

@@ -38,7 +38,9 @@ public class ReminderItem extends AbstractItem {
     private Integer reminderId;
     private BigDecimal total;
 
+    // TODO undocumented fields - clarify with support
+
     @JsonProperty("is_charge")
-    private Boolean charge; // TODO undocumented feature - clarify with support
+    private Boolean charge;
 
 }

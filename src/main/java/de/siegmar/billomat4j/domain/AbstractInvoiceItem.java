@@ -38,8 +38,9 @@ public abstract class AbstractInvoiceItem extends AbstractItem {
     private BigDecimal totalGrossUnreduced;
     private BigDecimal totalNetUnreduced;
 
-    private String type; // TODO undocumented feature - clarify with support
-    private String taxRateReverseCharge; // TODO undocumented feature - clarify with support
-    private Boolean taxChangedManually; // TODO undocumented feature - clarify with support
+    // TODO undocumented fields - clarify with support
+    private String type;
+    private String taxRateReverseCharge;
+    private Boolean taxChangedManually;
 
 }

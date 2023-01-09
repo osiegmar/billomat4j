@@ -104,16 +104,19 @@ public class Recurring extends AbstractMeta {
     private RecurringItems recurringItems;
 
     private String title;
-    private BigDecimal totalReduction; // TODO undocumented feature - clarify with support
     private String netGross;
-    private BigDecimal discountAmount; // TODO undocumented feature - clarify with support
-    private String status; // TODO undocumented feature - clarify with support
-    private Boolean inProgress; // TODO undocumented feature - clarify with support
     private Boolean emailBcc;
     private Boolean letterColor;
     private Boolean letterDuplex;
     private Integer letterPaperWeight;
     private Integer emailTemplateId;
+
+    // TODO undocumented fields - clarify with support
+
+    private BigDecimal totalReduction;
+    private BigDecimal discountAmount;
+    private String status;
+    private Boolean inProgress;
 
     public void addRecurringItem(final RecurringItem recurringItem) {
         if (recurringItems == null) {

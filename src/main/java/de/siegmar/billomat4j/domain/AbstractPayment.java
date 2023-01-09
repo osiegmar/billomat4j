@@ -55,11 +55,12 @@ public abstract class AbstractPayment extends AbstractMeta {
 
     private Boolean markInvoiceAsPaid;
 
-    private String transactionPurpose; // TODO undocumented feature - clarify with support
-    private Currency currencyCode; // TODO undocumented feature - clarify with support
-    private Boolean quote; // TODO undocumented feature - clarify with support
-    private String paymentGroup; // TODO undocumented feature - clarify with support
-    private String finapiTransactionId; // TODO undocumented feature - clarify with support
-    private BigDecimal finapiTransactionAmount; // TODO undocumented feature - clarify with support
+    // TODO undocumented fields - clarify with support
+    private String transactionPurpose;
+    private Currency currencyCode;
+    private Boolean quote;
+    private String paymentGroup;
+    private String finapiTransactionId;
+    private BigDecimal finapiTransactionAmount;
 
 }

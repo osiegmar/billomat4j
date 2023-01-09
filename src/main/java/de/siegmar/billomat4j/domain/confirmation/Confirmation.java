@@ -87,8 +87,11 @@ public class Confirmation extends AbstractMeta {
     private Integer freeTextId;
     private Integer numberLength;
     private String title;
-    private BigDecimal totalReduction; // TODO undocumented feature - clarify with support
     private String netGross;
+
+    // TODO undocumented fields - clarify with support
+
+    private BigDecimal totalReduction;
 
     public void addConfirmationItem(final ConfirmationItem confirmationItem) {
         if (confirmationItems == null) {

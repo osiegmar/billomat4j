@@ -85,8 +85,11 @@ public class Offer extends AbstractMeta {
     private Integer numberLength;
     private String title;
     private Integer validityDays;
-    private BigDecimal totalReduction; // TODO undocumented feature - clarify with support
     private String netGross;
+
+    // TODO undocumented fields - clarify with support
+
+    private BigDecimal totalReduction;
 
     public void addOfferItem(final OfferItem offerItem) {
         if (offerItems == null) {

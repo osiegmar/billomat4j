@@ -82,10 +82,13 @@ public class CreditNote extends AbstractMeta {
     private Integer templateId;
     private Integer numberLength;
     private String title;
-    private BigDecimal totalReduction; // TODO undocumented feature - clarify with support
     private String netGross;
-    private BigDecimal paidAmount; // TODO undocumented feature - clarify with support
-    private BigDecimal openAmount; // TODO undocumented feature - clarify with support
+
+    // TODO undocumented fields - clarify with support
+
+    private BigDecimal totalReduction;
+    private BigDecimal paidAmount;
+    private BigDecimal openAmount;
 
     public void addCreditNoteItem(final CreditNoteItem creditNoteItem) {
         if (creditNoteItems == null) {

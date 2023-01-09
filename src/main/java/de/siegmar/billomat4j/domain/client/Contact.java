@@ -49,7 +49,9 @@ public class Contact extends AbstractMeta {
     private String email;
     private String www;
 
-    private String address; // TODO undocumented feature - clarify with support
-    private String locale; // TODO undocumented feature - clarify with support
+    // TODO undocumented fields - clarify with support
+
+    private String address;
+    private String locale;
 
 }

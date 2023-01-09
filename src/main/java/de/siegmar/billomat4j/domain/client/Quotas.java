@@ -1,5 +1,5 @@
 /*
- * Copyright 2012 Oliver Siegmar
+ * Copyright 2023 Oliver Siegmar
  *
  * This file is part of Billomat4J.
  *
@@ -17,9 +17,13 @@
  * along with Billomat4J.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package de.siegmar.billomat4j.domain;
+package de.siegmar.billomat4j.domain.client;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonRootName;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -27,22 +31,11 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@ToString(callSuper = true)
-public abstract class AbstractComment<K extends ActionKey> extends AbstractMeta {
+@ToString
+@JsonRootName("quotas")
+public class Quotas {
 
-    private Integer userId;
-    private String comment;
-    private Integer contactId;
-
-    @JsonProperty("actionkey")
-    private K actionKey;
-
-    @JsonProperty("public")
-    private Boolean publicComment;
-
-    // TODO undocumented fields - clarify with support
-    private Boolean byClient;
-    private String emailId;
-    private String clientId;
+    @JsonProperty("quota")
+    private List<Quota> quota = new ArrayList<>();
 
 }

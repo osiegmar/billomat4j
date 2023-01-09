@@ -111,10 +111,12 @@ public class Invoice extends AbstractMeta {
     private Integer freeTextId;
     private Integer numberLength;
     private String title;
-    private BigDecimal totalReduction; // TODO undocumented feature - clarify with support
     private String netGross;
     private Integer invoiceId;
-    private Boolean digProceeded; // TODO undocumented feature - clarify with support
+
+    // TODO undocumented fields - clarify with support
+    private Boolean digProceeded;
+    private BigDecimal totalReduction;
 
     public void addInvoiceItem(final InvoiceItem invoiceItem) {
         if (invoiceItems == null) {

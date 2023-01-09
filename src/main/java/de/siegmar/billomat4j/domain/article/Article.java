@@ -57,15 +57,17 @@ public class Article extends AbstractMeta {
     private Integer unitId;
     private Integer taxId;
 
-    private Boolean archived; // TODO undocumented feature - clarify with support
     private String type;
-    private String revenueAccountNumber; // TODO undocumented feature - clarify with support
-    private String costCenter; // TODO undocumented feature - clarify with support
     private BigDecimal purchasePrice;
     private String purchasePriceNetGross;
     private Integer supplierId;
 
+    // TODO undocumented fields - clarify with support
+    private Boolean archived;
+    private String revenueAccountNumber;
+    private String costCenter;
+
     @JsonProperty("article-property-values")
-    private String articlePropertyValues; // TODO undocumented feature - clarify with support
+    private String articlePropertyValues;
 
 }

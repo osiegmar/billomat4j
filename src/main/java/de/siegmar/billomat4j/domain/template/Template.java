@@ -45,10 +45,12 @@ public class Template extends AbstractMeta {
     @Setter(AccessLevel.NONE)
     private String templateType;
 
-    @JsonProperty("is_background_available")
-    private Boolean backgroundAvailable; // TODO undocumented feature - clarify with support
-
     @JsonProperty("is_default")
     private Boolean defaultTemplate;
+
+    // TODO undocumented fields - clarify with support
+
+    @JsonProperty("is_background_available")
+    private Boolean backgroundAvailable;
 
 }
