@@ -19,6 +19,7 @@
 
 package de.siegmar.billomat4j.service;
 
+import java.util.Locale;
 import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -53,6 +54,7 @@ public class BillomatConfiguration {
     private String apiKey;
     private String appId;
     private String appSecret;
+    private Locale locale;
     private boolean secure = true;
     private boolean ignoreUnknownProperties = true;
     private RequestHelper requestHelper;

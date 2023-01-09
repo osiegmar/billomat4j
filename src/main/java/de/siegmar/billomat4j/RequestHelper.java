@@ -176,6 +176,9 @@ public class RequestHelper {
         if (billomatConfiguration.getAppSecret() != null) {
             builder.setHeader("X-AppSecret", billomatConfiguration.getAppSecret());
         }
+        if (billomatConfiguration.getLocale() != null) {
+            builder.setHeader("Accept-Language", billomatConfiguration.getLocale().toLanguageTag());
+        }
 
         return builder;
     }

@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Added LetterService
 - Added lots of new attributes
+- Added configurable Accept-Language header
 
 ### Fixed
 - Fix JSON name for confirmation-items, credit-note-items, delivery-note-items and reminder-items
