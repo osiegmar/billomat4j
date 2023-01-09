@@ -53,7 +53,7 @@ public class ClientFilter extends AbstractFilter<ClientFilter> {
         return add("note", note);
     }
 
-    public ClientFilter byInvoiceId(final Integer invoiceId) {
+    public ClientFilter byInvoiceId(final int invoiceId) {
         return add("invoice_id", invoiceId);
     }
 

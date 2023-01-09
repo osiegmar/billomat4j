@@ -43,7 +43,7 @@ public class ArticleFilter extends AbstractFilter<ArticleFilter> {
         return add("currency_code", currencyCode);
     }
 
-    public ArticleFilter byUnitId(final Integer unitId) {
+    public ArticleFilter byUnitId(final int unitId) {
         return add("unit_id", unitId);
     }
 
@@ -51,7 +51,7 @@ public class ArticleFilter extends AbstractFilter<ArticleFilter> {
         return add("tags", tags);
     }
 
-    public ArticleFilter bySupplierId(final Integer supplierId) {
+    public ArticleFilter bySupplierId(final int supplierId) {
         return add("supplier_id", supplierId);
     }
 

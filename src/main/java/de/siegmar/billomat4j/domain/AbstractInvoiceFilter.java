@@ -55,7 +55,7 @@ public abstract class AbstractInvoiceFilter<T extends AbstractInvoiceFilter<T>> 
         return add("note", note);
     }
 
-    public T byArticleId(final Integer articleId) {
+    public T byArticleId(final int articleId) {
         return add("article_id", articleId);
     }
 
