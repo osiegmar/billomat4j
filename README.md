@@ -13,7 +13,6 @@ Java Software Development Kit for the [Billomat API](https://www.billomat.com/ap
 ## Requirements
 
 - Java 11
-- Apache Commons Lang
 - Jackson JSON Processor
 - SLF4J
 
