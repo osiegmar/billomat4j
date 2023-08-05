@@ -8,7 +8,7 @@ Java Software Development Kit for the [Billomat API](https://www.billomat.com/ap
 
 > :hand: Due to the unversioned Billomat API, the regular breaking changes, the lack of a changelog,
 > ongoing documentation errors and the ignorant support team, the active development and maintenance
-> of this project has been stopped. Pull requests with proper test cases might still be accepted.
+> of this project has been stopped.
 
 ## Requirements
 
